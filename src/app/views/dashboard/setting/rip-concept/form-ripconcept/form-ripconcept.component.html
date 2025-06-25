@@ -1,0 +1,13 @@
+<form [formGroup]="form()">
+    <div class="d-grid items-end">
+        <div class="col-span-full">
+            <input-panel-text setType="text" setLabel="Nombre" formControlName="name" />
+        </div>
+        <div class="col-span-6">
+            <input-panel-select [setOptions]="optionsTypeServ()" setLabel="Tipo de servicio" formControlName="typeServiceId" />
+        </div>
+        <div class="col-span-6">
+            <input-panel-select [setOptions]="optionsGroupSoat()" setLabel="Grupo Soat" formControlName="groupSoatId" />
+        </div>
+    </div>
+</form>

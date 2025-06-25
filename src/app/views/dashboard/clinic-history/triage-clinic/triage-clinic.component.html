@@ -1,0 +1,27 @@
+<blade-panel section="clinic-history" titleSection="Consulta externa">
+    <ng-container panels>
+        <div class="d-grid">
+            <div class="col-span-full">
+                <blade-tabs-horizontal [tabsControls]="tabs" #tabReferral setTitle="Triage">
+                    <ng-container tabsBody>
+                        <article bsTabContent [idConnect]="tabs[0].idConnect" [isActive]="tabs[0].active">
+                            <div class="d-grid">
+                                <div class="col-span-8">
+                                    <table-triage-clinic />
+                                </div>
+                                <div class="col-span-4 p-3 border-l">
+                                    <div class="block p-3">
+                                        <panel-patient-profile />
+                                    </div>
+                                </div>
+                            </div>
+                        </article>
+                        <article bsTabContent [idConnect]="tabs[1].idConnect" [isActive]="tabs[1].active">
+                            <form-triage-clinic />
+                        </article>
+                    </ng-container>
+                </blade-tabs-horizontal>
+            </div>
+        </div>
+    </ng-container>
+</blade-panel>

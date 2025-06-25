@@ -1,0 +1,9 @@
+<div class="flex flex-wrap rounded-lg p-4" [ngClass]="bgColor()">
+    <div class="text-4xl w-auto mr-4">
+        <i [ngClass]="[setIcon(), textColor()]"></i>
+    </div>
+    <div class="grow basis-[0]">
+        <div class="mb-1" [ngClass]="textColor()">{{ setTitle() }}</div>
+        <div>{{ setText() }}</div>
+    </div>
+</div>

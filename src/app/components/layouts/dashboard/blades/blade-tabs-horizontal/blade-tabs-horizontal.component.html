@@ -1,0 +1,22 @@
+<article class="tabs-panel" [ngClass]="boxUi()"><!--  overflow-hidden -->
+    <header class="tabs-header">
+        @if(setTitle()) {
+            <div class="label-header">{{ setTitle() }}</div>
+        }
+        <nav role="tablist" class="tabs-nav">
+            @for(tab of tabsControls(); track tab.idConnect) {
+            <button type="button" class="btn-tab" bsTabBtn [idConnect]="tab.idConnect" [isActive]="tab.active" (click)="emit(tab)">
+                <div class="btn-content">
+                    @if(tab.icon) {
+                        <i class="mr-2" [ngClass]="tab.icon"></i>
+                    }
+                    {{ tab.label }}
+                </div>
+            </button>
+            }
+        </nav>
+    </header>
+    <section>
+        <ng-content select="[tabsBody]"></ng-content>
+    </section>
+</article>

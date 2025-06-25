@@ -1,0 +1,29 @@
+<blade-panel section="setting" titleSection="Servicios hospitalarios">
+    <ng-container panels>
+        <div class="d-grid gap-3">
+            <div class="col-span-8 space-y-3">
+                <div class="block">
+                    <blade-box-panel setTitle="Nuevo" [padding]="true" [actionsActive]="true" (actionBar)="barAction($event)">
+                        <ng-container boxbody>
+                            <form-hospital-services [setForm]="form" />
+                        </ng-container>
+                    </blade-box-panel>
+                </div>
+                <div class="block">
+                    <blade-box-panel setTitle="Servicios hospitalarios">
+                        <ng-container boxbody>
+                            <table-hospital-services [dataTable]="hospitalServList()" #table />
+                        </ng-container>
+                    </blade-box-panel>
+                </div>
+            </div>
+            <div class="col-span-4">
+                <blade-box-panel [padding]="true" setTitle="Servicio hospitalario" [actionsActive]="true" (actionBar)="barAction($event)" [setActionsBar]="actionDetail">
+                    <ng-container boxbody>
+                        <tdetail-hospital-services />
+                    </ng-container>
+                </blade-box-panel>
+            </div>
+        </div>
+    </ng-container>
+</blade-panel>

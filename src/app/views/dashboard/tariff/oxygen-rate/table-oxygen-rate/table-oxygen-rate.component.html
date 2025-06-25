@@ -1,0 +1,26 @@
+<blade-table [ActiveLoad]="true" [headDivider]="true" [bodyYDivider]="true" [load]="list().length > 0" [paginate]="data()" (controlPaginate)="paginate.emit($event)">
+    <ng-container tableHead>
+        <tr>
+            <th>Nombre</th>
+            <th>Codigo de medicamento</th>
+            <th>Valor</th>
+            <th>Estado</th>
+            <th class="text-right">Accion</th>
+        </tr>
+    </ng-container>
+    <ng-container tableBody>
+        @for(oxigen of list(); track oxigen.id) {
+            <tr TrSelected [idx]="tdSelected()" [id]="oxigen.id">
+                <td>{{ oxigen.name }}</td>
+                <td>{{ oxigen.medication.name }}</td>
+                <td class="text-right">$ {{ oxigen.value }}</td>
+                <td class="text-center">
+                    <badge-status [setStatus]="oxigen.status"/>
+                </td>
+                <td class="text-right">
+                    <app-button setIcon="icofont-info-circle" setSize="sm" (action)="emit(oxigen)" />
+                </td>
+            </tr>
+        }
+    </ng-container>
+</blade-table>

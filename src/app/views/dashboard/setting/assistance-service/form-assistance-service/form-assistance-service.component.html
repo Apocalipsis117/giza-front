@@ -1,0 +1,48 @@
+<form [formGroup]="form()">
+    <div class="d-grid">
+        <div class="col-span-5">
+            <input-panel-text setLabel="Nombre" formControlName="name"></input-panel-text>
+        </div>
+        <div class="col-span-2">
+            <input-panel-text setType="number" formControlName="opportunityDays" setLabel="Dias oportunidad"></input-panel-text>
+        </div>
+        <div class="col-span-2">
+            <input-panel-text setLabel="Codigo indicador" setType="number" formControlName="indicatorCode"></input-panel-text>
+        </div>
+        <div class="col-span-3">
+            <input-panel-select setLabel="Nivel de servicio" [setOptions]="serviceLevOptions()" formControlName="serviceLevelId"></input-panel-select>
+        </div>
+        <div class="col-span-3">
+            <input-panel-select setLabel="Tipo de historia" [setOptions]="typeHistoryOptions()" formControlName="historyTypeId"></input-panel-select>
+        </div>
+        <div class="col-span-3">
+            <input-panel-select setLabel="Tipo de servicio" [setOptions]="typeServiceOptions()" formControlName="serviceTypeId"></input-panel-select>
+        </div>
+        <div class="col-span-full">
+            <blade-panel-options>
+                <ng-container optionsBody>
+                    <div class="col-span-full flex flex-wrap gap-3">
+                        <div class="grow basis-0">
+                            <input-panel-checkbox formControlName="doctor" typeCheck="switch" setSize="sm" [clean]="true" setText="Medico" />
+                        </div>
+                        <div class="grow basis-0">
+                            <input-panel-checkbox formControlName="specialist" typeCheck="switch" setSize="sm" [clean]="true" setText="Especialista" />
+                        </div>
+                        <div class="grow basis-0">
+                            <input-panel-checkbox formControlName="activeInstitution" typeCheck="switch" setSize="sm" [clean]="true" setText="Activa inst." />
+                        </div>
+                        <div class="grow basis-0">
+                            <input-panel-checkbox formControlName="appointments" typeCheck="switch" setSize="sm" [clean]="true" setText="Citas" />
+                        </div>
+                        <div class="grow basis-0">
+                            <input-panel-checkbox formControlName="receive" typeCheck="switch" setSize="sm" [clean]="true" setText="Recibir" />
+                        </div>
+                        <div class="grow basis-0">
+                            <input-panel-checkbox formControlName="surgeryRequired" typeCheck="switch" setSize="sm" [clean]="true" setText="R. Cirujia" />
+                        </div>
+                    </div>
+                </ng-container>
+            </blade-panel-options>
+        </div>
+    </div>
+</form>

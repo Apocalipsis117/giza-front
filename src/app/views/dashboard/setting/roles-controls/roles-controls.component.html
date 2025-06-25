@@ -1,0 +1,20 @@
+<blade-panel>
+    <ng-container panels>
+        <div class="d-grid">
+            <div class="col-span-4">
+                <blade-box-panel [padding]="true" setTitle="Rol">
+                    <ng-container boxbody>
+                        <form-roles />
+                    </ng-container>
+                </blade-box-panel>
+            </div>
+            <div class="col-span-8">
+                <blade-box-panel setTitle="Roles">
+                    <ng-container boxbody>
+                        <table-roles />
+                    </ng-container>
+                </blade-box-panel>
+            </div>
+        </div>
+    </ng-container>
+</blade-panel>

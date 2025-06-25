@@ -1,0 +1,12 @@
+<div class="grid-btns-aside">
+    @for(item of actions(); track index; let index = $index){
+        <button type="button" class="btn-aside" title="queso" effectBumbble>
+            <div class="btn-aside-icon" [ngClass]="[item.color]">
+                <i [ngClass]="item.icon"></i>
+            </div>
+            @if(item.display) {
+                <div class="btn-aside-label">{{ item.display | getDisplay : 'label' }}</div>
+            }
+        </button>
+    }
+</div>

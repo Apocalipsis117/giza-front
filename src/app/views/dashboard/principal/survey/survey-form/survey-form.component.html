@@ -1,0 +1,31 @@
+<form [formGroup]="form">
+    <div class="d-grid">
+        <div class="col-span-4">
+            <input-panel-text setType="number" setLabel="N° De encuesta" />
+        </div>
+        <div class="col-span-8">
+            <input-panel-time setLabel="Fecha" />
+        </div>
+        <div class="col-span-5">
+            <input-panel-text setType="number" setLabel="N° Identidad" />
+        </div>
+        <div class="col-span-7">
+            <input-panel-text setLabel="Nombre" />
+        </div>
+        <div class="col-span-12">
+            <input-panel-select setLabel="EPS" />
+        </div>
+        <div class="col-span-full">
+            <input-panel-textarea setLabel="¿Como calificarías su experiencia respecto a los servicios de salud que se ha recibido a travez de su EPS?" />
+        </div>
+        <div class="col-span-12">
+            <input-panel-switch setLabel="¿Recomendarías a tus familiare y amigos esta EPS?" />
+        </div>
+        <div class="col-span-12">
+            <input-panel-select setLabel="Nivel de satisfación" />
+        </div>
+        <div class="col-span-full">
+            <input-panel-textarea setLabel="Obsevación" />
+        </div>
+    </div>
+</form>

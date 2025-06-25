@@ -1,0 +1,8 @@
+<div class="d-grid">
+    <div class="col-span-8">
+        <app-button ngClass="w-full" [setSize]="setSize()" setTitle="Guardar" setColor="green" (action)="emit('save')" />
+    </div>
+    <div class="col-span-4">
+        <app-button ngClass="w-full" [setSize]="setSize()" setTitle="Reset" (action)="emit('reset')" />
+    </div>
+</div>

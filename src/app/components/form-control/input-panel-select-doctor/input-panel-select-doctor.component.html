@@ -1,0 +1,18 @@
+@if(setLabel){
+<label class="form-label text-gray-500 text-[0.95rem]">{{ setLabel }}</label>
+}
+<div [id]="idContainer" class="relative w-full">
+    <div class="input-group" [id]="idInput">
+          <span class="input-group-text">
+              <i class="icofont-search-1"></i>
+          </span>
+        <span class="input-group-text bg-no-repeat bg-center bg-cover w-[40px]" [style.backgroundImage]="'url(' + valueInput.avatar + ')'"></span>
+        <input type="text" class="form-control" [value]="valueInput.name" placeholder="Username" readonly>
+    </div>
+    <ul [ngClass]="isVisible" class="absolute top-full left-0 p-2 shadow-lg rounded-md bg-white z-[1] w-full">
+        <input type="text" [placeholder]="valueInput.name" class="form-control form-control-sm w-full" name="filter" (input)="filter()" [(ngModel)]="nameSearch">
+        @for(option of optionsFilters; track option.value) {
+        <li [title]="option.name" (click)="select(option)">{{ option.name }}</li>
+        }
+    </ul>
+</div>

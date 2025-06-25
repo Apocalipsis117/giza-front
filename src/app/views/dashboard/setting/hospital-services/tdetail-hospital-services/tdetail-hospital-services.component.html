@@ -1,0 +1,49 @@
+@if(data()) {
+<div class="d-grid">
+    <div class="col-span-full mb-2 text-xl">
+        <h3>{{ value().name }}</h3>
+        <badge-status [setStatus]="value().isActive" />
+    </div>
+    <ul class="col-span-full ul-list-row">
+        <li>
+            <div class="col-span-4">
+                <small>Edad min</small>
+                <div>{{ value().minAge }}</div>
+            </div>
+            <div class="col-span-4">
+                <small>Edad max</small>
+                <div>{{ value().maxAge }}</div>
+            </div>
+            <div class="col-span-4">
+                <small>Numero de camas</small>
+                <div>{{ value().bedCount }}</div>
+            </div>
+        </li>
+        <li>
+            <div class="col-span-4">
+                <small>Ambito</small>
+                <div>{{ value().scope }}</div>
+            </div>
+        </li>
+    </ul>
+    <div class="col-span-full font-bold"><i class="icofont-settings mr-2"></i> Centro de costos</div>
+    <ul class="col-span-full ul-list-row">
+        <li>
+            <div class="col-span-4">
+                <small>Nombre</small>
+                <div>{{ value().costCenter }}</div>
+            </div>
+            <div class="col-span-4">
+                <small>Cuenta contable</small>
+                <div>{{ value().accountingAccount }}</div>
+            </div>
+            <div class="col-span-4">
+                <small>Area</small>
+                <div>{{ value().area }}</div>
+            </div>
+        </li>
+    </ul>
+</div>
+} @else {
+    <select-some-item />
+}

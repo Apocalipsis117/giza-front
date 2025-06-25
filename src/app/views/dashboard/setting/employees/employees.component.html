@@ -1,0 +1,94 @@
+<blade-panel titleSection="Empleados" section="setting">
+    <ng-container panels>
+        <div class="d-grid">
+            <div class="col-span-7">
+                <blade-tabs-horizontal [tabsControls]="tabsControls" setTitle="Title">
+                    <ng-container tabsBody>
+                        <article
+                            bsTabContent
+                            [idConnect]="tabsControls[0].idConnect"
+                            [isActive]="tabsControls[0].active"
+                        >
+                            <blade-box-panel
+                                [actionsActive]="true"
+                                [headerActive]="false"
+                                [padding]="true"
+                            >
+                                <ng-container boxbody>
+                                    <div class="flex gap-3 mb-5">
+                                        <div class="flex-grow">
+                                            <input-panel-checkbox
+                                                [(ngModel)]="activeFormAuth"
+                                                setText="Prestaciones y serv.."
+                                                typeCheck="switch"
+                                                [clean]="true"
+                                            />
+                                        </div>
+                                        <div class="flex-grow">
+                                            <input-panel-checkbox
+                                                [(ngModel)]="activeFormContract"
+                                                setText="Contrato"
+                                                typeCheck="switch"
+                                                [clean]="true"
+                                            />
+                                        </div>
+                                        <div class="flex-grow">
+                                            <input-panel-checkbox
+                                                setText="Autorizacion"
+                                                typeCheck="switch"
+                                                [clean]="true"
+                                            />
+                                        </div>
+                                    </div>
+                                    <blade-box-collapse idParent="form-employees" #collpaseController>
+                                        <blade-collapse-block
+                                            idParent="form-employees"
+                                            [idConnect]="collapseControl[0].idConnect"
+                                            [setTitle]="collapseControl[0].label"
+                                            [setIcon]="collapseControl[0].icon"
+                                            [isActive]="collapseControl[0].active"
+                                        >
+                                            <employees-form-basic />
+                                        </blade-collapse-block>
+                                        <blade-collapse-block
+                                            [disableCollapse]="!activeFormAuth()"
+                                            idParent="form-employees"
+                                            [idConnect]="collapseControl[1].idConnect"
+                                            [setTitle]="collapseControl[1].label"
+                                            [setIcon]="collapseControl[1].icon"
+                                            [isActive]="collapseControl[1].active"
+                                        >
+                                            lorem
+                                        </blade-collapse-block>
+                                        <blade-collapse-block
+                                            [disableCollapse]="!activeFormContract()"
+                                            idParent="form-employees"
+                                            [idConnect]="collapseControl[2].idConnect"
+                                            [setTitle]="collapseControl[2].label"
+                                            [setIcon]="collapseControl[2].icon"
+                                            [isActive]="collapseControl[2].active"
+                                        >
+                                            contract
+                                        </blade-collapse-block>
+                                    </blade-box-collapse>
+                                </ng-container>
+                            </blade-box-panel>
+                        </article>
+                        <article
+                            bsTabContent
+                            [idConnect]="tabsControls[1].idConnect"
+                            [isActive]="tabsControls[1].active"
+                        >
+                            title b
+                        </article>
+                    </ng-container>
+                </blade-tabs-horizontal>
+            </div>
+            <div class="col-span-5">
+                <blade-box-panel [padding]="true" setTitle="Autorizaciones" ui="white">
+                    <employees-form-auth />
+                </blade-box-panel>
+            </div>
+        </div>
+    </ng-container>
+</blade-panel>

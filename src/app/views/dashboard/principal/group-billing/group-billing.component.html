@@ -1,0 +1,27 @@
+<blade-panel>
+    <ng-container panels>
+        <div class="d-grid">
+            <div class="col-span-full">
+                <blade-box-panel [padding]="true" setTitle="Nuevo grupo" [actionsActive]="true">
+                    <ng-container boxbody>
+                        <group-billing-form />
+                    </ng-container>
+                </blade-box-panel>
+            </div>
+            <div class="col-span-8">
+                <blade-box-panel setTitle="Factiraciones">
+                    <ng-container boxbody>
+                        <group-billing-table />
+                    </ng-container>
+                </blade-box-panel>
+            </div>
+            <div class="col-span-4">
+                <blade-box-panel setTitle="Factiracion" [actionsActive]="true" [setActionsBar]="actionsBar">
+                    <ng-container boxbody>
+                        <group-billing-detail />
+                    </ng-container>
+                </blade-box-panel>
+            </div>
+        </div>
+    </ng-container>
+</blade-panel>

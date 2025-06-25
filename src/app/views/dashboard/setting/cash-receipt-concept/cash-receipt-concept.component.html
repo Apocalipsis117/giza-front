@@ -1,0 +1,22 @@
+<blade-panel section="setting" titleSection="Conceptos recibidos de caja">
+    <ng-container panels>
+        <div class="d-grid">
+            <div class="col-span-6">
+                <div class="mb-3">
+                    <blade-box-panel setTitle="Concepto" [padding]="true">
+                        <ng-container boxbody>
+                            <form-cash-concept/>
+                        </ng-container>
+                    </blade-box-panel>
+                </div>
+                <div class="mb-3">
+                    <blade-box-panel setTitle="Conceptos">
+                        <ng-container boxbody>
+                            <table-cash-concept/>
+                        </ng-container>
+                    </blade-box-panel>
+                </div>
+            </div>
+        </div>
+    </ng-container>
+</blade-panel>

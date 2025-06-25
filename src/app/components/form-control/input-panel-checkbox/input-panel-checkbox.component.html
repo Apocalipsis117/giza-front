@@ -1,0 +1,11 @@
+@if(setLabel()){
+    <label class="form-label text-gray-500 text-[0.95rem]" [for]="id">{{ setLabel() }}</label>
+}
+<label class="input-group" [class]="[inputSize(), isClean()]" [for]="id">
+    <div class="input-group-text">
+        <div class="form-check" [class]="uiCheckbox()">
+            <input class="form-check-input" [ngModel]="currentValue()" (ngModelChange)="changeInput($event)" type="checkbox" [id]="id">
+        </div>
+    </div>
+    <div class="input-group-text input-text-white grow">{{ setText() }}</div>
+</label>

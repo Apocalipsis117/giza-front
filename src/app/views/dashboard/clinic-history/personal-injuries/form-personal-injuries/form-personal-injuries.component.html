@@ -1,0 +1,101 @@
+<div class="block p-4 space-y-3">
+        <div class="block">
+            <div class="w-4/12">
+                <input-panel-select-doctor setLabel="Medico" />
+            </div>
+        </div>
+    <div class="block pt-1">
+        <blade-box-title setTitle="Buscar" theme="light">
+            <ng-container boxtitleBody>
+                <div class="d-grid items-end">
+                    <div class="col-span-3">
+                        <input-panel-select setSize="sm" setLabel="N° Radicado" />
+                    </div>
+                    <div class="col-span-3">
+                        <input-panel-select setSize="sm" setLabel="N° Documento" />
+                    </div>
+                    <div class="col-span-3">
+                        <input-panel-select setSize="sm" setLabel="Apellidos" />
+                    </div>
+                    <div class="col-span-3">
+                        <app-button setTitle="Buscar" setSize="sm" setIcon="icofont-search-1" />
+                    </div>
+                </div>
+            </ng-container>
+        </blade-box-title>
+    </div>
+    <form class="d-grid">
+        <div class="col-span-2">
+            <input-panel-text setType="number" setLabel="N° Radicado" />
+        </div>
+        <div class="col-span-2">
+            <input-panel-text setType="number" setLabel="Ciudad" />
+        </div>
+        <div class="col-span-2">
+            <input-panel-time setType="date" setLabel="Fecha" />
+        </div>
+        <div class="col-span-2">
+            <input-panel-time setType="time" setLabel="Hora" />
+        </div>
+        <div class="col-span-2">
+            <input-panel-select setLabel="Indocumentado" />
+        </div>
+        <div class="col-span-2">
+            <input-panel-select setLabel="Tipo Identificacion" />
+        </div>
+        <div class="col-span-2">
+            <input-panel-text setType="number" setLabel="N° documentacion" />
+        </div>
+        <div class="col-span-2">
+            <input-panel-text setType="date" setLabel="Expedida" />
+        </div>
+        <div class="col-span-2">
+            <input-panel-text setLabel="Nombres" />
+        </div>
+        <div class="col-span-2">
+            <input-panel-text setLabel="Apellidos" />
+        </div>
+        <div class="col-span-2">
+            <input-panel-text setType="date" setLabel="Fecha nacimiento" />
+        </div>
+        <div class="col-span-1">
+            <input-panel-text setLabel="Edad" [readOnly]="true" />
+        </div>
+        <div class="col-span-3">
+            <input-panel-text setLabel="Autoridad solicitante" />
+        </div>
+        <div class="col-span-2">
+            <input-panel-text setType="number" setLabel="Oficio N°" />
+        </div>
+        <div class="col-span-2">
+            <input-panel-time setType="date" setLabel="fecha de oficio" />
+        </div>
+        <div class="col-span-2">
+            <input-panel-time setType="time" setLabel="hora de oficio" />
+        </div>
+        <div class="col-span-3">
+            <input-panel-select setLabel="Reconocimiento" />
+        </div>
+        <div class="col-span-full">
+            <title-icon-section setIcon="icofont-ui-file" setTitle="Descripcion" setSize="sm" />
+        </div>
+        <div class="col-span-6">
+            <input-panel-textarea setLabel="Descripcion de la naturaliza de la lesion" />
+        </div>
+        <div class="col-span-6">
+            <input-panel-textarea setLabel="Observaciones" />
+        </div>
+        <div class="col-span-6">
+            <input-panel-text setLabel="Incapacidad medica - legar 7 dias" />
+        </div>
+        <div class="col-span-6">
+            <input-panel-text setLabel="Elemento causal condundente" />
+        </div>
+        <div class="col-span-6">
+            <input-panel-text setLabel="Secuelas y complicacion" />
+        </div>
+        <div class="col-span-6">
+            <input-panel-text setLabel="Perdida de conocimiento, sangrado por orificios naturales" />
+        </div>
+    </form>
+</div>

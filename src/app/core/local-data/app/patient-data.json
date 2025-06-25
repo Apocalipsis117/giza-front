@@ -1,0 +1,72 @@
+{
+    "data": {
+        "menuShortcut": [
+            {
+                "action": "history",
+                "icon": "icofont-history",
+                "color": "text-red-500",
+                "display": [
+                    {
+                        "lang": "es",
+                        "label": "Historial servicios"
+                    }
+                ]
+            },
+            {
+                "action": "inconsistency",
+                "icon": "icofont-papers",
+                "color": "text-orange-500",
+                "display": [
+                    {
+                        "lang": "es",
+                        "label": "Inconcistencias"
+                    }
+                ]
+            },
+            {
+                "action": "unify",
+                "icon": "icofont-share-boxed",
+                "color": "text-amber-500",
+                "display": [
+                    {
+                        "lang": "es",
+                        "label": "Unificar pacientes"
+                    }
+                ]
+            },
+            {
+                "action": "export",
+                "icon": "icofont-share-alt",
+                "color": "text-yellow-500",
+                "display": [
+                    {
+                        "lang": "es",
+                        "label": "Exportar paciente"
+                    }
+                ]
+            },
+            {
+                "action": "occupation",
+                "icon": "icofont-briefcase",
+                "color": "text-lime-500",
+                "display": [
+                    {
+                        "lang": "es",
+                        "label": "Ocupaciones"
+                    }
+                ]
+            },
+            {
+                "action": "occupation",
+                "icon": "icofont-id",
+                "color": "text-green-500",
+                "display": [
+                    {
+                        "lang": "es",
+                        "label": "Crear Identidad extranjero"
+                    }
+                ]
+            }
+        ]
+    }
+}

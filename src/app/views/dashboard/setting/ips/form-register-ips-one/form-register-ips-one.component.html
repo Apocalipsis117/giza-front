@@ -1,0 +1,53 @@
+<form [formGroup]="form()">
+    <div class="d-grid">
+        <div class="col-span-full">
+            <div class="d-grid items-center">
+                <div class="col-span-6">
+                    <input-panel-img (files)="changeFile($event)" #inputLogo /><!-- ipsLogo -->
+                </div>
+                <div class="col-span-6 pl-5">
+                    <h1 class="text-4xl font-bold">{{ name }}</h1>
+                </div>
+            </div>
+        </div>
+        <div class="col-span-2">
+            <input-panel-text setLabel="Codigo" formControlName="code" />
+        </div>
+        <div class="col-span-4">
+            <input-panel-text setLabel="Nombre" formControlName="name" />
+        </div>
+        <div class="col-span-2">
+            <input-panel-select setLabel="Tipo de identificacion" [setOptions]="optionsDniIps()" formControlName="ipsIdentificationTypeId" />
+        </div>
+        <div class="col-span-2">
+            <input-panel-text setLabel="Numero de identificacíon" setType="number" formControlName="identificationNumber" />
+        </div>
+        <div class="col-span-2">
+            <input-panel-text setLabel="Digitos de verificación" formControlName="verificationDigit" />
+        </div>
+        <div class="col-span-3">
+            <input-panel-text setLabel="Indicativo" setType="number" formControlName="indicative" />
+        </div>
+        <div class="col-span-3">
+            <input-panel-text setLabel="Telefono" setType="tel" setIcon="icofont-ui-call" formControlName="phone" />
+        </div>
+        <div class="col-span-3">
+            <input-panel-select setLabel="Departamento" [setOptions]="optionsDepartments()" formControlName="departmentId" />
+        </div>
+        <div class="col-span-3">
+            <input-panel-select setLabel="Ciudad" [setOptions]="optionsCities()" formControlName="cityId" [hiddenLoad]="true" />
+        </div>
+        <div class="col-span-3">
+            <input-panel-text setLabel="Barrio" setIcon="icofont-home" formControlName="neighborhood" />
+        </div>
+        <div class="col-span-4">
+            <input-panel-text setLabel="Direccion" formControlName="address" formControlName="address" />
+        </div>
+        <div class="col-span-5">
+            <input-panel-text setLabel="Correo electronico" setType="email" setIcon="icofont-ui-email" formControlName="email" />
+        </div>
+        <div class="col-span-2">
+            <input-panel-select [setOptions]="optionslevelIps()" setLabel="Nivel" formControlName="levelId" />
+        </div>
+    </div>
+</form>

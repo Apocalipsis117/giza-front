@@ -1,0 +1,210 @@
+{
+    "data": {
+        "menuShortcut": [
+            {
+                "uuid": "c19540c7-9ca9-4af8-9447-09928c86b776",
+                "path": "/dashboard/audit/new-audit",
+                "icon": "icofont-search-document",
+                "color": "text-red-400",
+                "display": [
+                    {
+                        "lang": "es",
+                        "title": "Auditoría"
+                    }
+                ]
+            },
+            {
+                "uuid": "4cf3b36e-afd8-4748-b38a-2fa6819fb147",
+                "path": "/dashboard/audit/invoice",
+                "icon": "icofont-search-document",
+                "color": "text-orange-400",
+                "display": [
+                    {
+                        "lang": "es",
+                        "title": "Facturas"
+                    }
+                ]
+            },
+            {
+                "uuid": "b51dfcdb-dfc5-486b-b48a-574309f273a6",
+                "path": "",
+                "icon": "icofont-businessman",
+                "color": "text-amber-400",
+                "display": [
+                    {
+                        "lang": "es",
+                        "title": "Facturadores"
+                    }
+                ]
+            },
+            {
+                "uuid": "01b38be6-eb43-48f7-a240-d84e7f4e7ff1",
+                "path": "/dashboard/audit/referral-audit",
+                "icon": "icofont-patient-bed",
+                "color": "text-yellow-400",
+                "display": [
+                    {
+                        "lang": "es",
+                        "title": "Remisiones"
+                    }
+                ]
+            },
+            {
+                "uuid": "25fbf015-bbaa-43d1-b647-7dc27b1fd258",
+                "path": "/dashboard/audit/encode-query",
+                "icon": "icofont-prescription",
+                "color": "text-lime-400",
+                "display": [
+                    {
+                        "lang": "es",
+                        "title": "Codificar Consultas"
+                    }
+                ]
+            },
+            {
+                "uuid": "d4e18190-af2c-4317-b0a5-ee61d313cd67",
+                "path": "/dashboard/audit/gloss-date-receipt",
+                "icon": "icofont-calendar",
+                "color": "text-green-400",
+                "display": [
+                    {
+                        "lang": "es",
+                        "title": "Glosas x fecha recibido"
+                    }
+                ]
+            },
+            {
+                "uuid": "377765d8-4a31-4442-866e-aa762fff1799",
+                "path": "/dashboard/audit/admissions-control",
+                "icon": "icofont-search-folder",
+                "color": "text-emerald-400",
+                "display": [
+                    {
+                        "lang": "es",
+                        "title": "Control admisiones"
+                    }
+                ]
+            },
+            {
+                "uuid": "d238bfce-10c1-465e-b16b-39ce4d993b0c",
+                "path": "",
+                "icon": "icofont-ambulance-cross",
+                "color": "text-teal-400",
+                "display": [
+                    {
+                        "lang": "es",
+                        "title": "Control ambulancias"
+                    }
+                ]
+            },
+            {
+                "uuid": "13b00c9f-224f-47dd-9e99-5349bd3cc15d",
+                "path": "/dashboard/audit/gloss-by-validity",
+                "icon": "icofont-ui-copy",
+                "color": "text-cyan-400",
+                "display": [
+                    {
+                        "lang": "es",
+                        "title": "Glosas x vigencia"
+                    }
+                ]
+            },
+            {
+                "uuid": "fa8d54a7-a582-4ead-bdc1-5bb770194b2d",
+                "path": "/dashboard/audit/invoice-support",
+                "icon": "icofont-attachment",
+                "color": "text-sky-400",
+                "display": [
+                    {
+                        "lang": "es",
+                        "title": "Soporte de facturas"
+                    }
+                ]
+            },
+            {
+                "uuid": "fa367323-470b-4df6-8339-0ad822ddb4cc",
+                "path": "",
+                "icon": "icofont-opposite",
+                "color": "text-blue-400",
+                "display": [
+                    {
+                        "lang": "es",
+                        "title": "Preauditoria"
+                    }
+                ]
+            },
+            {
+                "uuid": "5c90433b-2109-42df-865f-ab67b3db8546",
+                "path": "/dashboard/audit/pending-glosses",
+                "icon": "icofont-files-stack",
+                "color": "text-indigo-400",
+                "display": [
+                    {
+                        "lang": "es",
+                        "title": "Glosas pendientes"
+                    }
+                ]
+            },
+            {
+                "uuid": "25f52a29-20f3-4f04-a8df-6324c3e77e28",
+                "path": "/dashboard/audit/unfiled-invoices",
+                "icon": "icofont-search-stock",
+                "color": "text-violet-400",
+                "display": [
+                    {
+                        "lang": "es",
+                        "title": "Facturas sin radicar"
+                    }
+                ]
+            },
+            {
+                "uuid": "352d4467-2583-4fcc-be34-ab8b99eeac45",
+                "path": "",
+                "icon": "icofont-connection",
+                "color": "text-purple-400",
+                "display": [
+                    {
+                        "lang": "es",
+                        "title": "Concurrencia"
+                    }
+                ]
+            },
+            {
+                "uuid": "b5d38eea-65f0-4ebe-aea8-aa9fc81138a8",
+                "path": "",
+                "icon": "icofont-clip-board",
+                "color": "text-fuchsia-400",
+                "display": [
+                    {
+                        "lang": "es",
+                        "title": "Glosas (Cargue conciliaciones)"
+                    }
+                ]
+            },
+            {
+                "uuid": "c15e63f6-e588-4c94-8bf4-0622b9c94700",
+                "path": "/dashboard/audit/traceability-patient",
+                "icon": "icofont-prescription",
+                "color": "text-pink-400",
+                "display": [
+                    {
+                        "lang": "es",
+                        "title": "Trazabilidad"
+                    }
+                ]
+            },
+            {
+                "uuid": "0a8ce1e1-0fe8-487b-b9a0-4066c7651048",
+                "path": "",
+                "icon": "icofont-ui-delete",
+                "color": "text-rose-500",
+                "display": [
+                    {
+                        "lang": "es",
+                        "title": "Registros eliminados"
+                    }
+                ]
+            }
+        ]
+    }
+}

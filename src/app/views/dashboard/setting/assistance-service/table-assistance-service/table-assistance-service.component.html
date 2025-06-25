@@ -1,0 +1,26 @@
+<blade-table [bodyYDivider]="true" [headDivider]="true" [activeSearch]="true" [ActiveLoad]="true" [load]="list().length > 0" [paginate]="data()" (controlPaginate)="paginate.emit($event)">
+    <ng-container tableHead>
+        <tr>
+            <th>Nombre</th>
+            <th>Tipo de historia</th>
+            <th>Codigo indicativo</th>
+            <th>Tipo servicio</th>
+            <th>Nivel servicio</th>
+            <th>Acciones</th>
+        </tr>
+    </ng-container>
+    <ng-container tableBody>
+        @for(assistance of list(); track assistance.id; let idx = $index) {
+        <tr  TrSelected [idx]="tdSelected()" [id]="assistance.id">
+            <td>{{ assistance.name }}</td>
+            <td>{{ assistance.historyType.name }}</td>
+            <td>{{ assistance.indicatorCode }}</td>
+            <td>{{ assistance.serviceType.name }}</td>
+            <td>{{ assistance.serviceLevel.name }}</td>
+            <td class="text-right">
+                <app-button (action)="emitAssistance(assistance)" setIcon="icofont-info-circle" setSize="sm" />
+            </td>
+        </tr>
+        }
+    </ng-container>
+</blade-table>

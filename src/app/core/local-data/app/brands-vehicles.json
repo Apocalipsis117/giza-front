@@ -1,0 +1,66 @@
+{
+    "data": {
+        "brands": [
+            {
+                "id": 1,
+                "name": "Ford"
+            },
+            {
+                "id": 2,
+                "name": "Toyota"
+            },
+            {
+                "id": 3,
+                "name": "Honda"
+            },
+            {
+                "id": 4,
+                "name": "Volkswagen"
+            },
+            {
+                "id": 5,
+                "name": "Chevrolet"
+            },
+            {
+                "id": 6,
+                "name": "Nissan"
+            },
+            {
+                "id": 7,
+                "name": "Hyundai"
+            },
+            {
+                "id": 8,
+                "name": "Mercedes-Benz"
+            },
+            {
+                "id": 9,
+                "name": "BMW"
+            },
+            {
+                "id": 10,
+                "name": "Audi"
+            },
+            {
+                "id": 11,
+                "name": "Subaru"
+            },
+            {
+                "id": 12,
+                "name": "Kia"
+            },
+            {
+                "id": 13,
+                "name": "Volvo"
+            },
+            {
+                "id": 14,
+                "name": "Fiat"
+            },
+            {
+                "id": 15,
+                "name": "Mazda"
+            }
+        ]
+    }
+}

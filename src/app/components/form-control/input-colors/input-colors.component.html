@@ -1,0 +1,9 @@
+@for(option of options(); track option.value) {
+    <label class="im-control-color">
+        <input [attr.name]="id" type="radio" [id]="'radio-' + option.value" [checked]="option.check" (change)="check(option.value)">
+        <div>
+            <figure [class]="option.cssClass"></figure>
+            <span>{{ option.name }}</span>
+        </div>
+    </label>
+}

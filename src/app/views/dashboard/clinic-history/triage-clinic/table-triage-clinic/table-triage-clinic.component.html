@@ -1,0 +1,28 @@
+<blade-table [headDivider]="true" [bodyYDivider]="true">
+    <ng-container tableHead>
+        <tr>
+            <th>Paciente</th>
+            <th>Fecha de ingreso</th>
+            <th>...</th>
+            <th>...</th>
+            <th>...</th>
+            <th>...</th>
+            <th width="100" class="text-right">Accion</th>
+        </tr>
+    </ng-container>
+    <ng-container tableBody>
+        <tr>
+            <td>...</td>
+            <td>...</td>
+            <td>...</td>
+            <td>...</td>
+            <td>...</td>
+            <td>...</td>
+            <td class="text-right">
+                <div>
+                    <app-button setSize="sm" setTitle="Info." />
+                </div>
+            </td>
+        </tr>
+    </ng-container>
+</blade-table>

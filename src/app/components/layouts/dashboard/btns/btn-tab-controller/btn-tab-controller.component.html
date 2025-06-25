@@ -1,0 +1,15 @@
+<div class="li-tab-controller" [ngClass]="value().active">
+    <div class="li-body rounded-t-md">
+        <div class="btns-tab-group overflow-hidden rounded-md">
+            <button type="button" [disabled]="value().active" class="btn-tab-controller" (click)="toGo()">
+                <!-- <i [ngClass]="value().icon" class="mr-2"></i> -->
+                <span>{{ value().display }}</span>
+            </button>
+            <div class="h-[34px] p-1">
+                <button type="button" class="btn-tab-action" (click)="deleteTab()">
+                    <i class="icofont-close"></i>
+                </button>
+            </div>
+        </div>
+    </div>
+</div>

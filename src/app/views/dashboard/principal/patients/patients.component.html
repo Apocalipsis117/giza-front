@@ -1,0 +1,78 @@
+<blade-panel section="principal" titleSection="Pacientes">
+    <ng-container panels>
+        <div class="d-grid">
+            <div class="col-span-9">
+                <blade-tabs-horizontal [tabsControls]="tabsControls" setTitle="Paciente" >
+                    <ng-container tabsBody>
+                        <article
+                            bsTabContent
+                            [idConnect]="tabsControls[0].idConnect"
+                            [isActive]="tabsControls[0].active"
+                        >
+                            <blade-box-panel
+                                ui="clean"
+                                [padding]="true"
+                                [headerActive]="false"
+                                [actionsActive]="true"
+                                (actionBar)="barAction($event)"
+                            >
+                                <ng-container boxbody>
+                                    <blade-box-collapse idParent="form-patient" #collpase>
+                                        <div class="block space-y-2">
+                                            @for ( comp of collapseControl; track comp.idConnect ) {
+                                                <div>
+                                                    <blade-collapse-block
+                                                        idParent="form-patient"
+                                                        [idConnect]="comp.idConnect"
+                                                        [setTitle]="comp.label"
+                                                        [setIcon]="comp.icon"
+                                                        [isActive]="comp.active"
+                                                        setTitleSize="sm"
+                                                    >
+                                                        @switch (comp.idConnect) {
+                                                            @case ("patients-form-main") {
+                                                                <patients-form-main #formMain />
+                                                            }
+                                                            @case ("patients-form-other") {
+                                                                <patients-form-other #formOther />
+                                                            }
+                                                            @case ("patients-form-affiliation") {
+                                                                <patients-form-affiliation #formAffiliation />
+                                                            }
+                                                        }
+                                                    </blade-collapse-block>
+                                                </div>
+                                            }
+                                        </div>
+                                    </blade-box-collapse>
+                                </ng-container>
+                            </blade-box-panel>
+                        </article>
+                        <article
+                            bsTabContent
+                            [idConnect]="tabsControls[1].idConnect"
+                            [isActive]="tabsControls[1].active"
+                        >
+                            <patients-table />
+                        </article>
+                    </ng-container>
+                </blade-tabs-horizontal>
+                <!--  -->
+            </div>
+            <div class="col-span-3">
+                <btns-aside [actions]="menuSidePatient" />
+            </div>
+        </div>
+    </ng-container>
+</blade-panel>
+<button type="bytton" BtnBsToggle setRole="modal" idConnect="patients-profile">queso</button>
+<blade-modal
+    idConnect="patients-profile"
+    [disableFullscreen]="true"
+    [disableStatic]="true"
+    [disableFullscreen]="false"
+>
+    <ng-container modalBody>
+        <patients-profile />
+    </ng-container>
+</blade-modal>

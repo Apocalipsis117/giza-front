@@ -1,0 +1,29 @@
+<form class="flex flex-wrap w-full" (submit)="submit()" (reset)="reset()" [formGroup]="form">
+    <h1 class="w-full text-4xl text-center mb-[4rem] text-blue-600">
+        Inicio de sesión
+    </h1>
+    <div class="flex flex-wrap w-full">
+        <div class="w-full mb-3">
+            <input-auth-text inputLabel="Nombre de usuario" inputType="text" ngClass="w-full" formControlName="user"></input-auth-text>
+        </div>
+        <div class="w-full mb-8">
+            <input-auth-text inputLabel="Contraseña" inputType="password" ngClass="w-full" formControlName="password"></input-auth-text>
+        </div>
+        <div class="w-full mb-[2rem]">
+            <input-auth-select [options]="optionsSelect()"></input-auth-select>
+        </div>
+        <div class="flex flex-wrap gap-3 w-full mb-4">
+            <div class="w-[150px]">
+                <button type="submit" [disabled]="isValid" class="btn btn-outline-light w-full shadow-lg relative">
+                    <span class="me-2">Iniciar</span> <load-spinner ngClass="inline-block" [load]="loadSpinner()"></load-spinner>
+                </button>
+            </div>
+            <div class="grow basis-1">
+                <button type="button" class="btn w-full btn-red-400">Olvide mi contraseña</button>
+            </div>
+        </div>
+        <div class="w-full">
+            <alert-display [hidden]="authError()" (changehidden)="authError.set($event);"></alert-display>
+        </div>
+    </div>
+</form>

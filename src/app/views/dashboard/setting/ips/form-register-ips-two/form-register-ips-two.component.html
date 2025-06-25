@@ -1,0 +1,52 @@
+<form [formGroup]="form" (submit)="save()">
+    <div class="d-grid">
+        <div class="col-span-5 space-y-3">
+            <div class="block">
+                <blade-box-title setTitle="Agregar representante" theme="light">
+                    <ng-container boxtitleBody>
+                        <div class="d-grid">
+                            <div class="col-span-full">
+                                <input-panel-select setLabel="Tipo de representante" [setOptions]="options()" formControlName="type" setIcon="icofont-business-man" />
+                            </div>
+                            <div class="col-span-full">
+                                <input-panel-text setLabel="Nombres y apellidos" formControlName="name" setIcon="icofont-business-man" />
+                            </div>
+                            <div class="col-span-full flex flex-wrap">
+                                <div class="grow basis-0 mr-2">
+                                    <input-panel-img-preview (file)="fileImg($event)" #inputFileImg />
+                                </div>
+                                <div class="w-auto">
+                                    <app-button setTitle="Guardar" setType="submit" />
+                                </div>
+                            </div>
+                        </div>
+                    </ng-container>
+                </blade-box-title>
+            </div>
+        </div>
+        <div class="col-span-7">
+            <div class="block mb-4">
+                <title-icon-section setIcon="icofont-users-alt-5" setTitle="Representantes" setSize="md" />
+            </div>
+            <ul class="block space-y-2">
+                @for(item of list(); track item.id) {
+                <li class="flex flex-wrap p-2 rounded-md" [ngClass]="selectForDelete() === item.id ? 'bg-red-200' : ''">
+                    <img [src]="item.file.base64" class="p-2 rounded-lg bg-gray-100 mr-2 object-center object-cover w-[185px] h-[120px]">
+                    <div class="grow basis-0">
+                        <p class="text-gray-400">{{ item.typeName }}</p>
+                        <p class="text-lg">{{ item.name }}</p>
+                    </div>
+                    <div class="w-auto">
+                        <app-button setIcon="icofont-bin" setColor="red" setType="button" (click)="delete(item.id)" />
+                    </div>
+                </li>
+                } @empty {
+                <li class="text-center border p-3 rounded-md border-dashed">
+                    <img width="120" class="inline-block" src="assets/img/ui/empty.png" alt="">
+                    <p class="text-gray-400">Vacio</p>
+                </li>
+                }
+            </ul>
+        </div>
+    </div>
+</form>

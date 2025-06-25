@@ -1,0 +1,47 @@
+<div class="ui-box-notify">
+    <h1>
+        <i class="icofont-bell-alt"></i> Notificaciones
+    </h1>
+    <ul class="">
+        @for(item of [1,2,3]; track item) {
+        <li class="w-full">
+            <div class="li-item-notify">
+                <div class="title-group-notify">
+                    <p>Title notify</p>
+                </div>
+                <ul class="m-x-1">
+                    @for(item2 of [1,2]; track item2) {
+                    <li>
+                        <a [routerLink]="['/dashboard/panel/home']" class="box-notify" data-bs-dismiss="offcanvas">
+                            <div class="notify-content">
+                                <div class="flex items-center">
+                                    <div class="w-auto mr-3">
+                                        <i class="icofont-tooth text-xl text-default-400"></i>
+                                    </div>
+                                    <div class="grow">
+                                        <p class="notify-text">
+                                            Lorem ipsum dolor sit amet consectetur adipisicing elit.
+                                        </p>
+                                    </div>
+                                </div>
+                                <div class="notify-time">
+                                    <time  datetime="12/12/2022">
+                                        <i class="icofont-clock-time mr-2"></i>
+                                        <span>17 de dic 1995</span>
+                                    </time>
+                                </div>
+                            </div>
+                            <div class="w-auto">
+                                <button type="button" class="px-2">
+                                    <i class="icofont-close-line"></i>
+                                </button>
+                            </div>
+                        </a>
+                    </li>
+                    }
+                </ul>
+            </div>
+        </li>
+        }
+    </ul>
+</div>

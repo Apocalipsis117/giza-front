@@ -1,0 +1,38 @@
+<div class="flex flex-col w-full">
+    <div class="flex items-start flex-wrap justify-between w-full">
+        <div class="mb-4">
+            <h2 class="text-xl">Resumen de Pacientes</h2>
+            <p class="text-sm text-gray-400">Estadistica general ultima semana</p>
+        </div>
+        <div>
+            <button type="button" class="btn btn-sm btn-light">
+                <i class="icofont-navigation-menu"></i>
+            </button>
+        </div>
+    </div>
+    <div class="flex items-end flex-wrap w-full mb-6">
+        <div class="w-4/12">
+            <h3 class="text-4xl mb-3">
+                <i class="icofont-users mr-2 text-teal-500"></i>
+                340 <small class="text-base text-gray-400">pacientes</small>
+            </h3>
+            <p class="text-gray-500 text-sm w-2/3">Total estadisticas de pacientes remitido la ultima semana</p>
+        </div>
+        <div class="w-8/12 pl-3">
+            <chart-vertical-bars></chart-vertical-bars>
+        </div>
+    </div>
+    <div class="w-full">
+        <div class="ui-card-outline">
+            <div class="col-span-4">
+                <card-basic-chart [setCounter]="120" setTitle="Paciente atendidos" setIcon="icofont-sign-in" setColor="green" [setPorcentage]="30" />
+            </div>
+            <div class="col-span-4">
+                <card-basic-chart [setCounter]="83" setTitle="Tratamientos actuales" setIcon="icofont-medical-sign" [setPorcentage]="60" />
+            </div>
+            <div class="col-span-4">
+                <card-basic-chart [setCounter]="22" setTitle="Dados de alta" setIcon="icofont-login" [setPorcentage]="28" />
+            </div>
+        </div>
+    </div>
+</div>

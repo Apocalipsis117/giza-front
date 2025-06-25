@@ -1,0 +1,235 @@
+{
+    "data": {
+        "path": "/dashboard/clinic-history/",
+        "menuShortcut": [
+            {
+                "uuid": "1f5356fa-3547-48ce-9889-151d4094a4b9",
+                "path": "",
+                "icon": "icofont-search-document",
+                "color": "text-red-400",
+                "display": [
+                    {
+                        "lang": "es",
+                        "title": "Consulta externa"
+                    }
+                ]
+            },
+            {
+                "uuid": "918e37bf-2186-4bea-a2c4-11e0dd118336",
+                "path": "/dashboard/clinic-history/triage-clinic",
+                "icon": "icofont-stethoscope-alt",
+                "color": "text-orange-400",
+                "display": [
+                    {
+                        "lang": "es",
+                        "title": "Triage"
+                    }
+                ]
+            },
+            {
+                "uuid": "1119beef-c7bf-4b68-beda-eb029d8d2b73none",
+                "path": "/dashboard/clinic-history/physical-therapy",
+                "icon": "icofont-stretcher",
+                "color": "text-amber-400",
+                "display": [
+                    {
+                        "lang": "es",
+                        "title": "Terapia física"
+                    }
+                ]
+            },
+            {
+                "uuid": "32e297bd-20c2-4fa1-816b-6fcdfe58d526none",
+                "path": "",
+                "icon": "icofont-doctor",
+                "color": "text-yellow-400",
+                "display": [
+                    {
+                        "lang": "es",
+                        "title": "Medico legal sexológico"
+                    }
+                ]
+            },
+            {
+                "uuid": "5f772b2b-446d-4b56-902f-90419c53e37dnone",
+                "path": "/dashboard/clinic-history/priority-queries",
+                "icon": "icofont-ui-clip-board",
+                "color": "text-lime-400",
+                "display": [
+                    {
+                        "lang": "es",
+                        "title": "Consulta prioritaria"
+                    }
+                ]
+            },
+            {
+                "uuid": "642fb697-2e7c-4e1f-b675-132f9ee4ea28none",
+                "path": "/dashboard/clinic-history/patients-emergency",
+                "icon": "icofont-ambulance",
+                "color": "text-green-400",
+                "display": [
+                    {
+                        "lang": "es",
+                        "title": "Urgencia"
+                    }
+                ]
+            },
+            {
+                "uuid": "51b15b43-3289-48b9-816a-2e5e565bb09anone",
+                "path": "/dashboard/clinic-history/occupational-therapy",
+                "icon": "icofont-nurse-alt",
+                "color": "text-emerald-400",
+                "display": [
+                    {
+                        "lang": "es",
+                        "title": "Terapia ocupacional"
+                    }
+                ]
+            },
+            {
+                "uuid": "fddb9b3e-18a3-4d47-8b8e-c06500eedc23none",
+                "path": "/dashboard/clinic-history/personal-injuries",
+                "icon": "icofont-nurse-alt",
+                "color": "text-teal-400",
+                "display": [
+                    {
+                        "lang": "es",
+                        "title": "Medico legal lesiones personales"
+                    }
+                ]
+            },
+            {
+                "uuid": "5158c632-f601-430d-91c1-703ba069fc96none",
+                "path": "",
+                "icon": "icofont-tooth",
+                "color": "text-cyan-400",
+                "display": [
+                    {
+                        "lang": "es",
+                        "title": "Odontología"
+                    }
+                ]
+            },
+            {
+                "uuid": "77214032-db0c-400d-9c37-d17aa586d64dnone",
+                "path": "/dashboard/clinic-history/hospitalization",
+                "icon": "icofont-hospital",
+                "color": "text-sky-400",
+                "display": [
+                    {
+                        "lang": "es",
+                        "title": "Hopitalización"
+                    }
+                ]
+            },
+            {
+                "uuid": "ce56ec6c-84a1-416b-a8b8-d4ffa9166afcnone",
+                "path": "",
+                "icon": "icofont-autism",
+                "color": "text-blue-400",
+                "display": [
+                    {
+                        "lang": "es",
+                        "title": "Psicología"
+                    }
+                ]
+            },
+            {
+                "uuid": "b3a42551-7a6a-4e48-9eb7-49b0f74d6a6dnone",
+                "path": "",
+                "icon": "icofont-doctor-alt",
+                "color": "text-indigo-400",
+                "display": [
+                    {
+                        "lang": "es",
+                        "title": "Medico legal embriaguez"
+                    }
+                ]
+            },
+            {
+                "uuid": "32a6a627-5761-4fc2-ae8c-c9d715b4be27none",
+                "path": "",
+                "icon": "icofont-apple",
+                "color": "text-violet-400",
+                "display": [
+                    {
+                        "lang": "es",
+                        "title": "Nutrición"
+                    }
+                ]
+            },
+            {
+                "uuid": "b747962b-07dd-4448-935d-6f0afa98b96enone",
+                "path": "",
+                "icon": "icofont-surgeon",
+                "color": "text-purple-400",
+                "display": [
+                    {
+                        "lang": "es",
+                        "title": "Cirugía ambulatoría"
+                    }
+                ]
+            },
+            {
+                "uuid": "91008671-d2f5-4018-a579-7c90b9543cf8none",
+                "path": "",
+                "icon": "icofont-nurse",
+                "color": "text-fuchsia-400",
+                "display": [
+                    {
+                        "lang": "es",
+                        "title": "Trabajo social"
+                    }
+                ]
+            },
+            {
+                "uuid": "51009388-08a8-498b-9d40-c60c8f0b12b4none",
+                "path": "",
+                "icon": "icofont-search-document",
+                "color": "text-pink-400",
+                "display": [
+                    {
+                        "lang": "es",
+                        "title": "Consulta Historias"
+                    }
+                ]
+            },
+            {
+                "uuid": "98ac6e57-2a0e-4134-8a89-3999bc3e2814none",
+                "path": "",
+                "icon": "icofont-test-tube",
+                "color": "text-rose-400",
+                "display": [
+                    {
+                        "lang": "es",
+                        "title": "Citología"
+                    }
+                ]
+            },
+            {
+                "uuid": "08143a99-fdb5-4c38-ad55-08cebd9fbc82none",
+                "path": "",
+                "icon": "icofont-girl",
+                "color": "text-red-400",
+                "display": [
+                    {
+                        "lang": "es",
+                        "title": "Mamografía"
+                    }
+                ]
+            },
+            {
+                "uuid": "b9735bed-444e-4331-9695-c108a8a93d22none",
+                "path": "",
+                "icon": "icofont-files-stack",
+                "color": "text-orange-400",
+                "display": [
+                    {
+                        "lang": "es",
+                        "title": "Tipo Historias"
+                    }
+                ]
+            }
+        ]
+    }
+}

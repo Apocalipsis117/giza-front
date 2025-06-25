@@ -1,0 +1,30 @@
+{
+    "data": {
+        "menuShortcut": [
+            {
+                "uuid": "02bb30e0-0b7e-4144-9bb0-b19a19e51590",
+                "path": "/dashboard/pharmacy/packoff",
+                "icon": "icofont-external-link",
+                "color": "text-red-400",
+                "display": [
+                    {
+                        "lang": "es",
+                        "title": "Despacho"
+                    }
+                ]
+            },
+            {
+                "uuid": "b702ff56-ada2-4e7d-a7b7-5252686e52f2",
+                "path": "",
+                "icon": "icofont-ui-clip-board",
+                "color": "text-orange-400",
+                "display": [
+                    {
+                        "lang": "es",
+                        "title": "Inventario"
+                    }
+                ]
+            }
+        ]
+    }
+}

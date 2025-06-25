@@ -1,0 +1,52 @@
+.ui-box-notify {
+    > h1 {
+        @apply mb-3;
+        > i {
+            @apply mr-2 text-lg;
+        }
+    }
+    > ul {
+        @apply flex flex-col;
+        > li {
+            @apply  w-full;
+        }
+    }
+    .li-item-notify {
+        @apply block w-full;
+        .title-group-notify {
+            @apply flex justify-between items-center;
+            p {
+                @apply text-sm text-gray-500 py-1;
+            }
+        }
+        .box-notify {
+            @apply flex p-2 shadow-sm text-left w-full active:bg-[var(--color-100)] rounded-md bg-[var(--color-50)] border border-[var(--color-100)] hover:border-[var(--color-200)];
+            .notify-content {
+                @apply grow basis-[0];
+            }
+            .notify-text {
+                @apply text-[0.8rem] text-gray-700;
+            }
+            .notify-time {
+                @apply flex flex-wrap justify-end;
+                time {
+                    @apply text-[0.8rem] text-gray-400;
+                }
+            }
+        }
+    }
+}
+
+.dark-mode .ui-box-notify {
+    .li-item-notify .box-notify {
+        @apply bg-[var(--darkmode-600)] border-[var(--darkmode-500)] hover:border-[var(--color-500)];
+    }
+    .li-item-notify {
+        .notify-text {
+            @apply text-[var(--darkmode-100)];
+        }
+        .title-group-notify p {
+            @apply text-[var(--darkmode-100)];
+        }
+    }
+}

@@ -1,0 +1,18 @@
+<blade-table [headDivider]="true" [activeSearch]="true">
+    <ng-container tableHead>
+        <tr>
+            <th width="145">Codigo</th>
+            <th>Nombre</th>
+            <th width="100">Acciones</th>
+        </tr>
+    </ng-container>
+    <ng-container tableBody>
+        <tr>
+            <td>122334</td>
+            <td>Nombre grupo cup</td>
+            <td class="text-right">
+                <dropdown-actions></dropdown-actions>
+            </td>
+        </tr>
+    </ng-container>
+</blade-table>

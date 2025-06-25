@@ -1,0 +1,27 @@
+<blade-table [headDivider]="true" [bodyYDivider]="true" [ActiveLoad]="true" [paginate]="dataTable()" (controlPaginate)="paginate.emit($event)" [load]="load()">
+    <ng-container tableHead>
+        <tr>
+            <th>Nombre</th>
+            <th>Tipo</th>
+            <th>Formula farm.</th>
+            <th width="200">Tipo de servicio</th>
+            <th width="80" class="text-end">Accion</th>
+        </tr>
+    </ng-container>
+    <ng-container tableBody>
+        @for(item of list(); track item.id) {
+            <tr [ngClass]="item.id | trSelected: tdSelected()">
+                <td>
+                    <div>{{ item.name }}</div>
+                    <small class="text-gray-400">{{ item.code }}</small>
+                </td>
+                <td>{{ item.medicineType!.name }}</td>
+                <td>{{ item.pharmaceuticalForm.name }}</td>
+                <td>{{ item.serviceTypes.name }}</td>
+                <td class="text-end">
+                    <app-button setIcon="icofont-info-circle" setSize="sm" (action)="emit(item)" />
+                </td>
+            </tr>
+        }
+    </ng-container>
+</blade-table>

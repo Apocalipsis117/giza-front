@@ -1,0 +1,61 @@
+<blade-panel>
+    <ng-container panels>
+        <div class="d-grid-gap-4">
+            <div class="col-span-3 space-y-6">
+                <div class="block">
+                    <blade-box-ui>
+                        <div class="d-grid items-end">
+                            <div class="col-span-10">
+                                <input-panel-text setLabel="Buscar" setPlaceholder="N° identida / Nombre" />
+                            </div>
+                            <div class="col-span-2">
+                                <app-button class="w-full" setIcon="icofont-search-1" ui="outlight" />
+                            </div>
+                        </div>
+                    </blade-box-ui>
+                </div>
+                <div class="block">
+                    <card-patient-data />
+                </div>
+            </div>
+            <div class="col-span-9">
+                <blade-box-panel setTitle="Nuevo anexo" [actionsActive]="true" (actionBar)="barAction($event)" [padding]="true">
+                    <ng-container boxbody>
+                        <div class="block space-y-4">
+                            <div class="block">
+                                <title-icon-section setSize="normal" setTitle="Datos anexo" setIcon="icofont-attachment" />
+                            </div>
+                            <div class="block">
+                                <auth-annex-form-date #formAnnex />
+                            </div>
+                            <div class="block">
+                                <title-icon-section setSize="normal" setTitle="Diagnosticos, servicios y materiales" setIcon="icofont-life-buoy" />
+                            </div>
+                            <div class="block">
+                                <blade-tabs-horizontal [tabsControls]="tabsControls" ui="clean">
+                                    <ng-container tabsBody>
+                                        <article class="mt-2" bsTabContent [idConnect]="tabsControls[0].idConnect" [isActive]="tabsControls[0].active">
+                                            <auth-annex-form-diagnosis />
+                                        </article>
+                                        <article class="mt-2" bsTabContent [idConnect]="tabsControls[1].idConnect" [isActive]="tabsControls[1].active">
+                                            <auth-annex-form-services />
+                                        </article>
+                                        <article class="mt-2" bsTabContent [idConnect]="tabsControls[2].idConnect" [isActive]="tabsControls[2].active">
+                                            <auth-annex-form-materials />
+                                        </article>
+                                    </ng-container>
+                                </blade-tabs-horizontal>
+                            </div>
+                            <div class="block">
+                                <title-icon-section setSize="normal" setTitle="Otros datos" setIcon="icofont-life-buoy" />
+                            </div>
+                            <div class="block">
+                                <auth-annex-form-footer />
+                            </div>
+                        </div>
+                    </ng-container>
+                </blade-box-panel>
+            </div>
+        </div>
+    </ng-container>
+</blade-panel>

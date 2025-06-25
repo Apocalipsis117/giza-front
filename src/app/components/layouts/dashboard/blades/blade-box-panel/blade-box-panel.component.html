@@ -1,0 +1,21 @@
+<div class="ui-box-panel" [ngClass]="uiBox()">
+    @if(headerActive()) {
+        <div class="box-panel-header">
+            <div class="flex justify-between py-2 px-4 flex-wrap">
+                <div class="text-lg font-semibold">
+                    @if(setIcon()) {
+                        <i class="inline-block scale-110 mr-3" [ngClass]="[setIcon()]"></i>
+                    }
+                    <span>{{ setTitle() }}</span>
+                </div>
+                <ng-content select="[boxHead]"></ng-content>
+            </div>
+        </div>
+    }
+    @if(actionsActive()) {
+        <bar-actions [enableActions]="setActionsBar()" (actionBar)="emitAction($event)" />
+    }
+    <div class="rounded-lg" [ngClass]="[padd()]">
+        <ng-content select="[boxbody]"/>
+    </div>
+</div>

@@ -1,0 +1,11 @@
+<fieldset class="im-fieldset">
+    @if(setLabel()) {
+        <legend>{{ setLabel() }}</legend>
+    }
+    <input type="text" [id]="id" [value]="selected()?.name" readonly [placeholder]="setPlaceholder()" (focus)="change()">
+    <ul [hidden]="!visible()">
+        @for(option of options(); track option.value) {
+            <li [title]="option.name" [ariaValueText]="option.value" (click)="changeInput(option.value)">{{ option.name }}</li>
+        }
+    </ul>
+</fieldset>

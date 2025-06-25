@@ -1,0 +1,54 @@
+import { CommonModule } from '@angular/common';
+import { Component, computed, inject, input, signal } from '@angular/core';
+import { FormGroup, ReactiveFormsModule } from '@angular/forms';
+import { InputPanelCheckboxComponent } from '@form-control/input-panel-checkbox/input-panel-checkbox.component';
+import { InputPanelSelectComponent } from '@form-control/input-panel-select/input-panel-select.component';
+import { InputPanelTextComponent } from '@form-control/input-panel-text/input-panel-text.component';
+import { CupsDTO_APP } from '@interfaces/app';
+import { IForm, OptionsForm } from '@interfaces/index';
+import { BladePanelOptionsComponent } from '@layouts/dashboard/blades/blade-panel-options/blade-panel-options.component';
+import { GroupQxService, RipConceptService, ServiceLevelService, ServicesService, TypeAmbitService, TypeBirthService, TypeSexService } from '@services/api';
+
+@Component({
+    selector: 'form-cups',
+    standalone: true,
+    imports: [
+        CommonModule,
+        InputPanelTextComponent,
+        InputPanelSelectComponent,
+        InputPanelCheckboxComponent,
+        BladePanelOptionsComponent,
+        ReactiveFormsModule,
+    ],
+    templateUrl: './form-cups.component.html'
+})
+export class FormCupsComponent {
+    public setForm = input<FormGroup<IForm<CupsDTO_APP>>>();
+    levelServ = inject(ServiceLevelService);
+    genderServ = inject(TypeSexService);
+    ambitServ = inject(TypeAmbitService);
+    birthServ = inject(TypeBirthService);
+    servicesServ = inject(ServicesService);
+    ripConceptServ = inject(RipConceptService);
+    groupQxServ = inject(GroupQxService);
+
+    optionsLevels = signal<OptionsForm[]>([]);
+    optionsGender = signal<OptionsForm[]>([]);
+    optionsAmbit = signal<OptionsForm[]>([]);
+    optionsBirth = signal<OptionsForm[]>([]);
+    optionsServices = signal<OptionsForm[]>([]);
+    optionsRipConcept = signal<OptionsForm[]>([]);
+    optionsGroupqx = signal<OptionsForm[]>([]);
+
+    form = computed(() => this.setForm() as FormGroup);
+
+    ngOnInit(): void {
+        this.levelServ.getAll('options').subscribe(data => this.optionsLevels.set(data));
+        this.genderServ.getAll('options').subscribe(data => this.optionsGender.set(data));
+        this.ambitServ.getAll('options').subscribe(data => this.optionsAmbit.set(data));
+        this.birthServ.getAll('options').subscribe(data => this.optionsBirth.set(data));
+        this.ripConceptServ.getAll('options').subscribe(data => this.optionsRipConcept.set(data));
+        this.servicesServ.getAll('options').subscribe(data => this.optionsServices.set(data));
+        this.groupQxServ.getAll('options').subscribe(data => this.optionsGroupqx.set(data));
+    }
+}

@@ -1,0 +1,47 @@
+<section class="space-y-4">
+    <section>
+        <div class="flex gap-4">
+            <label class="w-[260px] overflow-hidden rounded-lg shadow-md">
+                <img class="w-full" src="assets/img/ui/menu-aside.jpg" alt="">
+                <input type="radio" hidden="true" name="menu-ui" value="ui-aside" [formControl]="menuUi">
+            </label>
+            <label class="w-[260px] overflow-hidden rounded-lg shadow-md">
+                <img class="w-full" src="assets/img/ui/menu-icons.jpg" alt="">
+                <input type="radio" hidden="true" name="menu-ui" value="ui-icons" [formControl]="menuUi">
+            </label>
+            <label class="w-[260px] overflow-hidden rounded-lg shadow-md">
+                <img class="w-full" src="assets/img/ui/menu-hide.jpg" alt="">
+                <input type="radio" hidden="true" name="menu-ui" value="ui-hide" [formControl]="menuUi">
+            </label>
+        </div>
+    </section>
+    <section class="block">
+        <blade-box-collapse idParent="form-patient" #collpaseController>
+            <blade-box-collapse idParent="form-patient" [setSpaceY]="2" #collpase>
+                @for(comp of collapseControl; track comp.idConnect) {
+                    <div class="block">
+                        <blade-collapse-block
+                            idParent="form-patient"
+                            [idConnect]="comp.idConnect"
+                            [setTitle]="comp.label"
+                            [setIcon]="comp.icon"
+                            [isActive]="comp.active"
+                            [setLabel]="comp.sublabel"
+                            setTitleSize="md"
+                            ui="plane"
+                        >
+                        @switch(comp.idConnect) {
+                            @case(collapseControl[0].idConnect) {
+                                <custom-app-colors />
+                            }
+                            @case(collapseControl[1].idConnect) {
+                                <p>queso B</p>
+                            }
+                        }
+                        </blade-collapse-block>
+                    </div>
+                }
+            </blade-box-collapse>
+        </blade-box-collapse>
+    </section>
+</section>

@@ -1,0 +1,35 @@
+.ui-box-panel {
+    @apply flex flex-wrap flex-col rounded-lg shadow-md bg-white;
+    .box-panel-header {
+        @apply w-full border-t border-x rounded-t-lg text-white;
+    }
+}
+
+.ui-box-panel.ui-default {
+    .box-panel-header {
+        @apply bg-[var(--color-700)]  border-[var(--color-700)];
+    }
+}
+
+.ui-box-panel.ui-clean {
+    background-color: transparent !important;
+    box-shadow: none;
+    .box-panel-header {
+        @apply border-t-transparent border-x-transparent border-b text-inherit;
+    }
+}
+
+.ui-box-panel.ui-white {
+    .box-panel-header {
+        @apply border-t-transparent border-x-transparent border-b text-[var(--color-800)];
+    }
+}
+.ui-box-panel.ui-gentle {
+    .box-panel-header {
+        @apply bg-[var(--color-300)]  border-[var(--color-400)] text-black;
+    }
+}
+
+.dark-mode .ui-box-panel {
+    @apply bg-[var(--darkmode-700)];
+}

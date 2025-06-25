@@ -1,0 +1,14 @@
+<div class="flex justify-center items-center border-2 relative h-[250px] border-dashed w-full p-2 rounded-lg">
+@for(item of saveFiles(); let i = $index; track i) {
+    <img [src]="item.base64" class="img-avatar avatar-4xl" alt="">
+    <button type="button" (click)="delete(i)" class="absolute top-3 right-3 btn btn-sm btn-blue-light">Eliminar Logo</button>
+} @empty  {
+    <input type="file" [id]="id" (change)="getFiles($event)" [accept]="accept()" class="hidden">
+    <label [for]="id" class="absolute top-0 left-0 w-full h-full flex justify-center items-center cursor-pointer">
+        <div class="text-lg text-gray-400"><i class="icofont-ui-image text-2xl mr-2"></i> Subir logo de la entidad</div>
+    </label>
+}
+</div>
+@if(visibleLoad()) {
+<progress-bar [porcentLoad]="porcentLoad()"></progress-bar>
+}

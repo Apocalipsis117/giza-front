@@ -1,0 +1,7 @@
+<div class="flex gap-4">
+    @for(item of stadistics; track idx; let idx = $index) {
+        <div class="flex-grow basis-0">
+            <card-basic-chart [setTitle]="item.title" [setColor]="item.color" [setCounter]="item.quantity" [setPorcentage]="item.porcent" [setIcon]="item.icon" />
+        </div>
+    }
+</div>

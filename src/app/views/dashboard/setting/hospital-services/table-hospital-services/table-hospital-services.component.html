@@ -1,0 +1,22 @@
+<blade-table [headDivider]="true" [bodyYDivider]="true" [ActiveLoad]="true" [load]="load()">
+    <ng-container tableHead>
+        <tr>
+            <th>Nombre</th>
+            <th>Ambito</th>
+            <th>Sexo</th>
+            <th class="text-end">Accion</th>
+        </tr>
+    </ng-container>
+    <ng-container tableBody>
+        @for(item of dataTable(); track item.id) {
+            <tr TrSelected [idx]="tdSelected()" [id]="item.id">
+                <td>{{ item.name }}</td>
+                <td>{{ item.scope.name }}</td>
+                <td>{{ item.gender.name }}</td>
+                <td class="text-end">
+                    <app-button setIcon="icofont-info-circle" setSize="sm" (action)="emit(item)" />
+                </td>
+            </tr>
+        }
+    </ng-container>
+</blade-table>

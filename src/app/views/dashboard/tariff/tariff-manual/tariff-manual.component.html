@@ -1,0 +1,31 @@
+<blade-panel>
+    <ng-container panels>
+        <div class="grid gap-5 grid-cols-12">
+            <div class="col-span-6">
+                <div class="flex flex-col gap-5 flex-wrap">
+                    <div class="w-full">
+                        <blade-box-panel setTitle="Datos tarifarios" [padding]="true">
+                            <ng-container boxbody>
+                                <form-tariff></form-tariff>
+                            </ng-container>
+                        </blade-box-panel>
+                    </div>
+                    <div class="w-full">
+                        <blade-box-panel setTitle="Reportes" [padding]="true">
+                            <ng-container boxbody>
+                                <form-reports></form-reports>
+                            </ng-container>
+                        </blade-box-panel>
+                    </div>
+                </div>
+            </div>
+            <div class="col-span-6">
+                <blade-box-panel setTitle="CUPS">
+                    <ng-container boxbody>
+                        <table-cups></table-cups>
+                    </ng-container>
+                </blade-box-panel>
+            </div>
+        </div>
+    </ng-container>
+</blade-panel>

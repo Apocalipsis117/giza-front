@@ -1,0 +1,30 @@
+<blade-panel section="clinic-history" titleSection="Urgencia">
+    <ng-container panels>
+        <div class="grid gap-5 grid-cols-12">
+            <div class="col-span-8 gap-4 flex flex-col">
+                <div>
+                    <title-icon-section setSize="md" setTitle="Pacientes en urgencia hoy" setIcon="icofont-crutch" />
+                </div>
+                <div>
+                    <panel-patients-emergency />
+                </div>
+                <div>
+                    <blade-box-panel setTitle="Pacientes">
+                        <ng-container boxbody>
+                            <table-patients-emergency />
+                        </ng-container>
+                    </blade-box-panel>
+                </div>
+            </div>
+            <div class="col-span-4">
+                <blade-box-panel setTitle="Paciente">
+                    <ng-container boxbody>
+                        <div class="p-5">
+                            <panel-patient-profile />
+                        </div>
+                    </ng-container>
+                </blade-box-panel>
+            </div>
+        </div>
+    </ng-container>
+</blade-panel>

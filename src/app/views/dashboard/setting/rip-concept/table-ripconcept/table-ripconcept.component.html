@@ -1,0 +1,25 @@
+<blade-table [headDivider]="true" [bodyYDivider]="true" [ActiveLoad]="true" [load]="load()">
+    <ng-container tableCols>
+        <!-- <col> -->
+    </ng-container>
+    <ng-container tableHead>
+        <tr>
+            <th>Nombre</th>
+            <th>Tipo de servicio</th>
+            <th>Grupo Soat</th>
+            <th class="text-end">Accion</th>
+        </tr>
+    </ng-container>
+    <ng-container tableBody>
+        @for(item of dataTable(); track item.id) {
+            <tr>
+                <td>{{ item.name }}</td>
+                <td>{{ item.typeService?.name }}</td>
+                <td>{{ item.groupSoat?.name }}</td>
+                <td class="text-end">
+                    <app-button setIcon="icofont-info-circle" setSize="sm" />
+                </td>
+            </tr>
+        }
+    </ng-container>
+</blade-table>

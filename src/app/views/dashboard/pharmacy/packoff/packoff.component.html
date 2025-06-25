@@ -1,0 +1,40 @@
+<blade-panel section="pharmacy" titleSection="Despacho">
+    <ng-container panels>
+        <div class="d-grid-gap-4">
+            <div class="col-span-full">
+                <blade-box-panel setTitle="Paciente" [padding]="true">
+                    <ng-container boxbody>
+                        <form-packoff />
+                    </ng-container>
+                </blade-box-panel>
+            </div>
+            <div class="col-span-8">
+                <div class="mb-3">
+                    <blade-box-panel [padding]="true" [headerActive]="false">
+                        <ng-container boxbody>
+                            <form-control-items (uiList)="changeUiList($event)" />
+                        </ng-container>
+                    </blade-box-panel>
+                </div>
+                <div class="mb-3">
+                    <items-pharmacy [setUiList]="setUiList()" />
+                </div>
+            </div>
+            <div class="col-span-4">
+                <blade-box-panel setTitle="Carrito" setIcon="icofont-shopping-cart" [padding]="true">
+                    <ng-container boxbody>
+                        <cart-pharmacy />
+                    </ng-container>
+                </blade-box-panel>
+            </div>
+        </div>
+    </ng-container>
+</blade-panel>
+<blade-modal idConnect="queso">
+    <ng-container modalHeader>
+        <h1>Filtrar</h1>
+    </ng-container>
+    <ng-container modalBody>
+        content
+    </ng-container>
+</blade-modal>

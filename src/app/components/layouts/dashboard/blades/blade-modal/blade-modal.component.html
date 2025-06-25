@@ -1,0 +1,51 @@
+<div
+    class="modal"
+    [ngClass]="fade()"
+    [id]="idConnect()"
+    tabindex="-1"
+    aria-hidden="true"
+>
+    <div
+        class="modal-dialog p-5"
+        [ngClass]="[modalSize(), scrollable(), modalCenter(), fullscreen()]"
+    >
+        <div class="modal-content rounded-xl box-shadow-super" #modal>
+            @if(!hideHeader()) {
+                <div class="modal-header">
+                    <div class="flex w-full p-5 pb-4">
+                        <div class="modal-title fs-5 flex-grow basis-0">
+                            <ng-content select="[modalHeader]"></ng-content>
+                        </div>
+                        <button type="button" data-bs-dismiss="modal">
+                            <span class="mir mi-close"></span>
+                        </button>
+                    </div>
+                </div>
+            }
+            <div class="modal-body">
+                {{ !disableFullscreen() ? "si" : "no" }}
+                <ng-content select="[modalBody]"></ng-content>
+            </div>
+            @if (!hideFooter()) {
+                <div class="modal-footer">
+                    <div class="p-5 pt-0">
+                        <div class="row">
+                            <div class="col">
+                                <ng-content select="[modalFooter]"></ng-content>
+                            </div>
+                            <div class="col-auto">
+                                <button
+                                    type="button"
+                                    class="tw-btn theme-secondary"
+                                    data-bs-dismiss="modal"
+                                >
+                                    Close
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            }
+        </div>
+    </div>
+</div>

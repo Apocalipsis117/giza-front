@@ -1,0 +1,10 @@
+<div class="blade-box-ui">
+    @if(icon() || title()) {
+        <div class="block">
+            <title-icon-section [setIcon]="icon()" [setTitle]="title()" setSize="md" />
+        </div>
+    }
+    <div class="block">
+        <ng-content/>
+    </div>
+</div>

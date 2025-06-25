@@ -1,0 +1,29 @@
+<blade-panel section="setting" titleSection="Entidades Administradoras">
+    <ng-container panels>
+        <div class="d-grid">
+            <div class="col-span-8">
+                <blade-tabs-horizontal [tabsControls]="tabs" #tabController>
+                    <ng-container tabsBody>
+                        <article bsTabContent [idConnect]="tabs[0].idConnect" [isActive]="tabs[0].active">
+                            <blade-box-panel [headerActive]="false" [padding]="true" ui="clean" [actionsActive]="true" (actionBar)="barAction($event)">
+                                <ng-container boxbody>
+                                    <form-date-entity #formDateEntityRef />
+                                </ng-container>
+                            </blade-box-panel>
+                        </article>
+                        <article bsTabContent [idConnect]="tabs[1].idConnect" [isActive]="tabs[1].active">
+                            <table-platform-entity [dataTable]="administrativeEntities()" #table />
+                        </article>
+                    </ng-container>
+                </blade-tabs-horizontal>
+            </div>
+            <div class="col-span-4">
+                <blade-box-panel setTitle="Entidad" [padding]="true" [actionsActive]="true" [setActionsBar]="actionsDetail" (actionBar)="barAction($event)">
+                    <ng-container boxbody>
+                        <tdetail-administrative-entity />
+                    </ng-container>
+                </blade-box-panel>
+            </div>
+        </div>
+    </ng-container>
+</blade-panel>

@@ -1,0 +1,22 @@
+<div class="offcanvas shadow-xl" [ngClass]="[offcanvaDirection(), setWidth()]" tabindex="-1" [id]="idConnect()">
+    <div class="offcanvas-header pt-3 pb-1 px-3">
+        <div class="flex items-center w-full px-3 py-2 border rounded-lg bg-white shadow-md">
+            <div class="grow">
+                <h5 class="text-lg">{{ setTitle() }}</h5>
+            </div>
+            <div class="w-auto">
+                <button type="button" class="py-1 px-3 active:bg-default-100 rounded-lg hover:bg-default-50 text-2xl" data-bs-dismiss="offcanvas" aria-label="Close">
+                    <i class="icofont-close"></i>
+                </button>
+            </div>
+        </div>
+    </div>
+    <div class="offcanvas-body">
+        <div class="block px-3">
+            <ng-content select="[offcanvasBody]"/>
+        </div>
+    </div>
+    <div class="offcanvas-footer">
+        <ng-content select="[offcanvasFooter]"/>
+    </div>
+</div>

@@ -1,0 +1,2 @@
+<label class="inline-block mb-1 text-gray-500">{{ inputLabel() }}</label>
+<input [type]="inputType()" class="border block w-full rounded-lg px-3 focus:outline-none py-[7px] border-gray-300" [ngModel]="currentValue()" (ngModelChange)="changeInput($event)">

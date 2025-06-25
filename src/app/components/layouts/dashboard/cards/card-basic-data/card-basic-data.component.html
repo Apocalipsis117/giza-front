@@ -1,0 +1,15 @@
+<!-- component -->
+        <div class="shadow-lg rounded-lg p-6 space-y-4 border" [ngClass]="theme()!.card">
+            <div class="flex space-x-4">
+                <div class="ui-icono icono-md rounded-full" [ngClass]="theme()!.icono">
+                    <i [ngClass]="setIcon()"></i>
+                </div>
+                <div class="grow basis-0">
+                    <div class="text-gray-600 text-sm">{{ setTitle() }}</div>
+                    <div class="text-gray-900 text-2xl font-semibold">{{ setQuantity() }}</div>
+                </div>
+                <div class="flex self-stretch items-center pl-2 text-2xl opacity-25 justify-center">
+                    <i class="icofont-rounded-right"></i>
+                </div>
+            </div>
+        </div>

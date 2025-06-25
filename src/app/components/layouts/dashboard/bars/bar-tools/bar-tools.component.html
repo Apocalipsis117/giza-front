@@ -1,0 +1,26 @@
+<section class="ui-bar-tools">
+    <div class="bar-tools-header">
+        <div class="bar-tools-hcontent">
+            <menu>
+                <ul class="bar-tools-ul">
+                    @for(tool of menuTools(); track tool.id) {
+                    <li class="px-2">
+                        <button type="button" class="bar-tools-btn" (click)="action(tool.action)">
+                            <i [ngClass]="tool.icon"></i>
+                            <span>{{ tool.display | getDisplay : 'title' }}</span>
+                        </button>
+                    </li>
+                    }
+                </ul>
+            </menu>
+            <!-- <div>
+                <input-panel-text setType="search" setPlaceholder="Buscar" setIcon="icofont-search-1" setSize="sm"></input-panel-text>
+            </div> -->
+        </div>
+    </div>
+    <div class="w-auto self-stretch">
+        <button type="button" class="inline-block px-5 rounded-lg h-full bg-red-400 text-white" (click)="close()">
+            <i class="mr-3 icofont-exit"></i> <span>Salir</span>
+        </button>
+    </div>
+</section>

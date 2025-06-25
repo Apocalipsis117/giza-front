@@ -1,0 +1,22 @@
+<blade-table [headDivider]="true" [activeSearch]="true">
+    <ng-container tableHead>
+        <tr>
+            <th>Código habitación</th>
+            <th>Nombre institucional</th>
+            <th>Teléfono</th>
+            <th>Nivel de complejidad</th>
+            <th width="100">Acciones</th>
+        </tr>
+    </ng-container>
+    <ng-container tableBody>
+        <tr>
+            <td>129334</td>
+            <td>Lorem, ipsum.</td>
+            <td>317884432</td>
+            <td>Alto</td>
+            <td class="text-right">
+                <dropdown-actions></dropdown-actions>
+            </td>
+        </tr>
+    </ng-container>
+</blade-table>

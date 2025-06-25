@@ -1,0 +1,28 @@
+<blade-panel section="audit" titleSection="Control de admisiones">
+    <ng-container panels>
+        <div class="d-grid">
+            <div class="col-span-full">
+                <div class="d-grid-gap-4">
+                    <div class="col-span-9">
+                        <blade-tabs-horizontal [tabsControls]="tabs" #tabReferral setTitle="Crear auditoría">
+                            <ng-container tabsBody>
+                                <article class="p-4" bsTabContent [idConnect]="tabs[0].idConnect" [isActive]="true">
+                                    <form-audit />
+                                </article>
+                                <article class="pt-4" bsTabContent [idConnect]="tabs[1].idConnect">
+                                    <table-newaudit-diagnosis />
+                                </article>
+                                <article class="pt-4" bsTabContent [idConnect]="tabs[2].idConnect">
+                                    <table-newaudit-support />
+                                </article>
+                            </ng-container>
+                        </blade-tabs-horizontal>
+                    </div>
+                    <div class="col-span-3">
+                        <btns-aside [actions]="actionsAside()" />
+                    </div>
+                </div>
+            </div>
+        </div>
+    </ng-container>
+</blade-panel>

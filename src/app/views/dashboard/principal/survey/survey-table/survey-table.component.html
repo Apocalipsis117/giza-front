@@ -1,0 +1,23 @@
+<blade-table [headDivider]="true" [bodyYDivider]="true">
+    <ng-container tableCols>
+        <!-- <col> -->
+    </ng-container>
+    <ng-container tableHead>
+        <tr>
+            <th>Fecha</th>
+            <th>Nombre</th>
+            <th>Valoracion</th>
+            <th class="text-end">Accion</th>
+        </tr>
+    </ng-container>
+    <ng-container tableBody>
+        <tr>
+            <td>---</td>
+            <td>---</td>
+            <td>---</td>
+            <td class="text-end">
+                <app-button setIcon="icofont-info-circle" setSize="sm" />
+            </td>
+        </tr>
+    </ng-container>
+</blade-table>

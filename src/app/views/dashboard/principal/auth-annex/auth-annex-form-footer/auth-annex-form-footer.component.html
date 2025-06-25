@@ -1,0 +1,16 @@
+<form [formGroup]="form">
+    <div class="d-grid">
+        <div class="col-span-full">
+            <input-panel-textarea setLabel="Justificación clínica" [setRow]="2" />
+        </div>
+        <div class="col-span-3">
+            <input-panel-select setLabel="Tipo de servicio" />
+        </div>
+        <div class="col-span-5">
+            <input-panel-select setLabel="Medico" />
+        </div>
+        <div class="col-span-4">
+            <input-panel-text setType="number" setLabel="Valor factura" />
+        </div>
+    </div>
+</form>

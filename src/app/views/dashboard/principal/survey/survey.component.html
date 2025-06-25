@@ -1,0 +1,25 @@
+<blade-panel>
+    <ng-container panels>
+        <div class="d-grid-gap-4">
+            <div class="col-span-full">
+                <survey-statistics />
+            </div>
+            <div class="col-span-4">
+                <blade-box-panel setTitle="Encuesta" [actionsActive]="true" [padding]="true" (actionBar)="barAction($event)">
+                    <ng-container boxbody>
+                        <survey-form #surveyForm />
+                    </ng-container>
+                </blade-box-panel>
+            </div>
+            <div class="col-span-8 space-y-4">
+                <div class="block">
+                    <blade-box-panel setTitle="Ultimos encuestados">
+                        <ng-container boxbody>
+                            <survey-table />
+                        </ng-container>
+                    </blade-box-panel>
+                </div>
+            </div>
+        </div>
+    </ng-container>
+</blade-panel>

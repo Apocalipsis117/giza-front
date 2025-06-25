@@ -1,0 +1,11 @@
+<div class="inline-block fixed bottom-[2rem] right-[2rem] z-[100]">
+    <app-button idConnect="readme" setRole="modal" setTitle="Readme" />
+</div>
+
+<blade-modal idConnect="readme">
+    <ng-container modalBody>
+<pre>
+<ng-content select="[noteBody]"></ng-content>
+</pre>
+    </ng-container>
+</blade-modal>

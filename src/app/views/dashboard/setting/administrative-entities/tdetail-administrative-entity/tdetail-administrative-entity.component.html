@@ -1,0 +1,48 @@
+@if(data()) {
+    <div class="d-grid">
+        <div class="col-span-full mb-2 text-xl">{{ value().name }}</div>
+        <ul class="col-span-full ul-list-row">
+            <li>
+                <div class="col-span-4">
+                    <small>Codigo</small>
+                    <div>{{ value().code }}</div>
+                </div>
+                <div class="col-span-4">
+                    <small>Nit</small>
+                    <div>{{ value().taxId }}</div>
+                </div>
+                <div class="col-span-4">
+                    <small>regimen</small>
+                    <div>{{ value().regimeName }}</div>
+                </div>
+            </li>
+            <li>
+                <div class="col-span-6">
+                    <small>Direccion</small>
+                    <div>{{ value().address }}</div>
+                </div>
+                <div class="col-span-6">
+                    <small>Direccion de radicado</small>
+                    <div>{{ value().filingAddress }}</div>
+                </div>
+            </li>
+        </ul>
+        <div class="col-span-full font-bold"><i class="icofont-settings mr-2"></i> Caracteristicas</div>
+        <ul class="col-span-full divide-y">
+            <li>
+                <block-switch-status [active]="value().isActive">Activo</block-switch-status>
+            </li>
+            <li>
+                <block-switch-status [active]="value().hasInsurance">Soat</block-switch-status>
+            </li>
+            <li>
+                <block-switch-status [active]="value().ripsTaxIdVerification">Rips Dígitos de verificacion Nit</block-switch-status>
+            </li>
+            <li>
+                <block-switch-status [active]="value().requiresAnnex2">Requiere anexo 2 (atención inicial)</block-switch-status>
+            </li>
+        </ul>
+    </div>
+} @else {
+    Seleciona entidad
+}

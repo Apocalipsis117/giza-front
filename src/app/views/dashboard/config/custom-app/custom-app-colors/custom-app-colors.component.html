@@ -1,0 +1,15 @@
+<ul class="divide-y divide-gray-400 divide-opacity-15">
+    <li class="py-2">
+        <block-item-config setTitle="Modo" setSubtitle="Alterna el modo de énfasis" setIcon="icofont-moon">
+            <input-panel-select [setOptions]="optionsMode" [formControl]="appMode" />
+        </block-item-config>
+    </li>
+    <li class="py-2">
+        <block-item-config setTitle="Color" setSubtitle="Personaliza el color de tema" setIcon="icofont-test-bulb">
+            <input-panel-select [setOptions]="optionsColor" />
+        </block-item-config>
+        <section class="mt-4 block p-4 rounded-md bg-gray-400 bg-opacity-10">
+            <input-colors [setOptions]="optionsColors" [formControl]="appColor" />
+        </section>
+    </li>
+</ul>

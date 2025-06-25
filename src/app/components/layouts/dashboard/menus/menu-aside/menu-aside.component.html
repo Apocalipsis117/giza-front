@@ -1,0 +1,31 @@
+<aside class="ui-menu-aside" [ngClass]="menuUi()">
+    <div class="aside-content">
+        <hr class="hr-space">
+        <!-- <section class="aside-content-control">
+            <div class="w-full p-2">
+                <button class="inline-block p-2 active:bg-[rgb(255,255,255,.1)] rounded-lg float-right">
+                    <i class="icofont-navigation-menu text-4xl text-white"></i>
+                </button>
+            </div>
+        </section> -->
+        <section class="aside-content-user">
+            <div class="aside-user-profile">
+                <img src="http://localhost/multimedia/relleno/img-c2.png" class="ui-avatar-border mb-2" alt="">
+                <div class="aside-profile-info">
+                    <h2 class="text-2xl">Malejandra R.</h2>
+                    <div class="text-sm">Medico especialista</div>
+                </div>
+            </div>
+        </section>
+        <section class="aside-menu-center">
+            <nav>
+                <menu-aside-ul [items]="asideMenuData().navegation"></menu-aside-ul>
+            </nav>
+        </section>
+        <section class="aside-menu-end">
+            <nav class="pb-[4rem]">
+                <menu-aside-ul [items]="asideMenuData().setting"></menu-aside-ul>
+            </nav>
+        </section>
+    </div>
+</aside>

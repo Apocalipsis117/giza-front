@@ -1,0 +1,42 @@
+<div class="ui-bar-user">
+    <div class="bar-user-content">
+        <div>
+            <ul class="breadcrumb-bar-signin">
+                <li class="li-icon">
+                    <i [ngClass]="currentSection().icon"></i>
+                </li>
+                <li class="li-main font-bold">
+                    <a [routerLink]="currentSection().path">{{ currentSection().display }}</a>
+                </li>
+                @if(currentView().display.length > 0) {
+                    <li>{{ currentView().display | getDisplay: 'title' }}</li>
+                }
+            </ul>
+        </div>
+        <menu class="w-auto">
+            <ul class="flex gap-4 items-center">
+                <li>
+                    <button type="button" class="btn-bar-search" BtnBsToggle idConnect="searh-main" setRole="modal">
+                        Buscar
+                        <span class="absolute top-0 right-0 h-full flex items-center px-4 justify-center">
+                            <i class="icofont-search-1 text-xl"></i>
+                        </span>
+                    </button>
+                </li>
+                <li>
+                    <button type="button" class="btn-bar-signin" bsOffcanvasBtn idConnect="notifications">
+                        <i class="icofont-bell-alt inline-block scale-[1.8]"></i>
+                    </button>
+                </li>
+                <li>
+                    <button type="button" class="btn-bar-signin">
+                        <i class="icofont-ui-calendar inline-block scale-[1.8]"></i>
+                    </button>
+                </li>
+                <li>
+                    <dropdown-user-actions></dropdown-user-actions>
+                </li>
+            </ul>
+        </menu>
+    </div>
+</div>

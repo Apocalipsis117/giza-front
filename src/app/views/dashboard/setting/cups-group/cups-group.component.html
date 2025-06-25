@@ -1,0 +1,20 @@
+<blade-panel section="setting" titleSection="Grupos CUPS">
+    <ng-container panels>
+        <div class="grid grid-cols-5 gap-3">
+            <div class="col-span-2">
+                <blade-box-panel setTitle="Nuevo grupo cups" setIcon="icofont-id-card" [padding]="true">
+                    <ng-container boxbody>
+                        <form-cups-group></form-cups-group>
+                    </ng-container>
+                </blade-box-panel>
+            </div>
+            <div class="col-span-3">
+                <blade-box-panel setTitle="Cups">
+                    <ng-container boxbody>
+                        <table-cups-group></table-cups-group>
+                    </ng-container>
+                </blade-box-panel>
+            </div>
+        </div>
+    </ng-container>
+</blade-panel>

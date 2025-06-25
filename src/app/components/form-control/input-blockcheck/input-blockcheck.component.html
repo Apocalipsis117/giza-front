@@ -1,0 +1,6 @@
+<div class="flex items-center justify-between w-full">
+    <label [for]="id" class="flex-grow select-none">{{ setLabel() }}</label>
+    <div class="w-auto">
+        <input class="form-check-input" type="checkbox" role="switch" [id]="id" [(ngModel)]="currentValue" (input)="changeInput($event)" [id]="id">
+    </div>
+</div>

@@ -1,0 +1,165 @@
+{
+    "data": {
+        "pacientes": [
+            {
+                "id": 1,
+                "nombre": "Juan Pérez",
+                "fecha_nacimiento": "1989-05-15",
+                "numero_identidad": "123456789",
+                "sexo": "m",
+                "historial_medico": {
+                    "presion_arterial": "120/80",
+                    "enfermedades_previas": [
+                        "diabetes"
+                    ],
+                    "alergias": [
+                        "penicilina"
+                    ],
+                    "antecedentes_personales": [
+                        "cirugía apendicitis"
+                    ],
+                    "antecedentes_familiares": [
+                        "hipertensión"
+                    ],
+                    "enfermedad_cronica": "ninguna",
+                    "estilo_de_vida": "sedentario",
+                    "habitos": [
+                        "fumador"
+                    ],
+                    "nivel_gravedad": 2
+                },
+                "contacto": {
+                    "telefono": "123-456-7890",
+                    "direccion": "Calle Principal 123, Ciudad",
+                    "correo_electronico": "juan.perez@email.com"
+                }
+            },
+            {
+                "id": 2,
+                "nombre": "Ana Gómez",
+                "fecha_nacimiento": "2012-09-22",
+                "numero_identidad": "987654321",
+                "sexo": "f",
+                "historial_medico": {
+                    "presion_arterial": "110/75",
+                    "enfermedades_previas": [
+                        "asma"
+                    ],
+                    "alergias": [
+                        "nuez"
+                    ],
+                    "antecedentes_personales": [
+                        "ninguno"
+                    ],
+                    "antecedentes_familiares": [
+                        "asma"
+                    ],
+                    "enfermedad_cronica": "ninguna",
+                    "estilo_de_vida": "activo",
+                    "habitos": [
+                        "ninguno"
+                    ],
+                    "nivel_gravedad": 1
+                },
+                "contacto": {
+                    "telefono": "987-654-3210",
+                    "direccion": "Avenida Secundaria 456, Ciudad",
+                    "correo_electronico": "ana.gomez@email.com"
+                }
+            },
+            {
+                "id": 3,
+                "nombre": "Carlos Rodríguez",
+                "fecha_nacimiento": "1982-03-10",
+                "numero_identidad": "555555555",
+                "sexo": "m",
+                "historial_medico": {
+                    "presion_arterial": "130/85",
+                    "enfermedades_previas": [
+                        "hipertensión"
+                    ],
+                    "alergias": [
+                        "sulfa"
+                    ],
+                    "antecedentes_personales": [
+                        "colesterol alto"
+                    ],
+                    "antecedentes_familiares": [
+                        "diabetes"
+                    ],
+                    "enfermedad_cronica": "ninguna",
+                    "estilo_de_vida": "activo",
+                    "habitos": [
+                        "consumo moderado de alcohol"
+                    ],
+                    "nivel_gravedad": 3
+                },
+                "contacto": {
+                    "telefono": "555-123-7890",
+                    "direccion": "Plaza Principal 789, Ciudad",
+                    "correo_electronico": "carlos.rodriguez@email.com"
+                }
+            },
+            {
+                "id": 4,
+                "nombre": "Maria Sánchez",
+                "fecha_nacimiento": "1990-12-03",
+                "numero_identidad": "456789012",
+                "sexo": "f",
+                "historial_medico": {
+                    "presion_arterial": "null",
+                    "enfermedades_previas": [],
+                    "alergias": [
+                        "polen"
+                    ],
+                    "antecedentes_personales": [
+                        "ninguno"
+                    ],
+                    "antecedentes_familiares": [
+                        "ninguno"
+                    ],
+                    "enfermedad_cronica": "diabetes",
+                    "estilo_de_vida": "activo",
+                    "habitos": [
+                        "ninguno"
+                    ],
+                    "nivel_gravedad": 1
+                },
+                "contacto": {
+                    "telefono": "111-222-3333",
+                    "direccion": "Calle Secundaria 789, Ciudad",
+                    "correo_electronico": "maria.sanchez@email.com"
+                }
+            },
+            {
+                "id": 5,
+                "nombre": "Pedro López",
+                "fecha_nacimiento": "2018-07-18",
+                "numero_identidad": "789012345",
+                "sexo": "m",
+                "historial_medico": {
+                    "presion_arterial": "null",
+                    "enfermedades_previas": [],
+                    "alergias": [],
+                    "antecedentes_personales": [
+                        "asma"
+                    ],
+                    "antecedentes_familiares": [
+                        "asma"
+                    ],
+                    "enfermedad_cronica": "ninguna",
+                    "estilo_de_vida": "sedentario",
+                    "habitos": [
+                        "fumador"
+                    ],
+                    "nivel_gravedad": null
+                },
+                "contacto": {
+                    "telefono": "333-444-5555",
+                    "direccion": "Avenida Principal 789, Ciudad",
+                    "correo_electronico": "pedro.lopez@email.com"
+                }
+            }
+        ]
+    }
+}

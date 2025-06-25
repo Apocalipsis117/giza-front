@@ -1,0 +1,36 @@
+<blade-table [headDivider]="true" [bodyYDivider]="true">
+    <ng-container tableActions>
+        <tform-patients-emergency />
+    </ng-container>
+    <ng-container tableHead>
+        <tr>
+            <th>N° Admision</th>
+            <th>Paciente</th>
+            <th>N° ID</th>
+            <th>Triage</th>
+            <th>Prioridad</th>
+            <th width="150">Hora de ingreso</th>
+            <th>Estado</th>
+            <th>Accion</th>
+        </tr>
+    </ng-container>
+    <ng-container tableBody>
+        @for (patient of patienst(); track patient.id) {
+            <tr>
+                <td>{{ patient.id }}</td>
+                <td>
+                    <card-table-patient [data]="patient" />
+                </td>
+                <td>---</td>
+                <td>---</td>
+                <td>---</td>
+                <td>---</td>
+                <td>---</td>
+                <td class="text-right">
+                    <app-button setTitle="Triage" setSize="sm" />
+                    <app-button setTitle="Info." (action)="emitPatient(patient)" setSize="sm" />
+                </td>
+            </tr>
+        }
+    </ng-container>
+</blade-table>

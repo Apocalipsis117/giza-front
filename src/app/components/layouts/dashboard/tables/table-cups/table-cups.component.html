@@ -1,0 +1,23 @@
+<blade-table>
+    <colgroup>
+        <col width="100">
+    </colgroup>
+    <ng-container tableHead>
+        <tr>
+            <th>Codigo</th>
+            <th>Nombre</th>
+            <th>GP</th>
+            <th class="text-right">Valor</th>
+        </tr>
+    </ng-container>
+    <ng-container tableBody>
+        @for(item of [1,2,3]; track item) {
+        <tr>
+            <td>1</td>
+            <td>---</td>
+            <td>---</td>
+            <td class="text-right">---</td>
+        </tr>
+        }
+    </ng-container>
+</blade-table>

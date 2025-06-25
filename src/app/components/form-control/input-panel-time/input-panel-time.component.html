@@ -1,0 +1,26 @@
+<div class="w-full" [ngClass]="verticalContent()">
+    @if(setLabel()) {
+    <label [for]="id" class="form-label text-gray-500 text-[0.95rem] truncate" [attr.title]="setLabel()">{{ setLabel() }}</label>
+    }
+    <div class="input-group col-span-3" [ngClass]="[inputSize(), uiReadOnly()]">
+        @if(setIcon()) {
+            <span class="input-group-text">
+                <i [ngClass]="setIcon()"></i>
+            </span>
+        }
+        @if(setText()) {
+              <span class="input-group-text">{{ setText() }}</span>
+        }
+        <input [type]="setType()" class="form-control" [id]="id" [placeholder]="setPlaceholder()" [readonly]="readOnly()" [(ngModel)]="currentValue" (change)="changeInput()">
+        @if (load()) {
+            <div class="input-group-text input-text-white">
+                <div class="spinner-border spinner-border-sm" role="status"></div>
+            </div>
+        }
+        @if(!readOnly()) {
+            <button type="button" class="input-group-text" (click)="setTimeNow()">
+                <i class="icofont-ui-calendar"></i>
+            </button>
+        }
+    </div>
+</div>

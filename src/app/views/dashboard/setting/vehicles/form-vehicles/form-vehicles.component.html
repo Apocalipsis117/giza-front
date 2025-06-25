@@ -1,0 +1,25 @@
+<form [formGroup]="form()">
+    <div class="d-grid">
+        <div class="col-span-4">
+            <input-panel-select [setOptions]="optionsBrandsvehicles()" setLabel="Marca" formControlName="brand" />
+        </div>
+        <div class="col-span-8">
+            <input-panel-text setLabel="Modelo" formControlName="model" />
+        </div>
+        <div class="col-span-full">
+            <input-panel-select [setOptions]="optionsTypevehicles()" setLabel="Tipo de vehiculo" formControlName="vehicleTypeId" setIcon="icofont-police-car-alt-2" />
+        </div>
+        <div class="col-span-6">
+            <input-panel-text setLabel="Placa" formControlName="licensePlate" />
+        </div>
+        <div class="col-span-6">
+            <input-panel-checkbox setLabel="Estado" setText="Activo" typeCheck="switch" [clean]="true" formControlName="status" />
+        </div>
+        <div class="col-span-full">
+            <input-panel-select [setOptions]="optionsActivityVehicle()" setLabel="Actividad" formControlName="activityId" />
+        </div>
+        <div class="col-span-12 mb-3">
+            <input-panel-textarea setLabel="Descripción" formControlName="description" />
+        </div>
+    </div>
+</form>

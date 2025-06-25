@@ -1,0 +1,20 @@
+<blade-panel>
+    <ng-container panels>
+        <div class="d-grid">
+            <div class="col-span-8">
+                <blade-box-panel setTitle="Autorizaciones">
+                    <ng-container boxbody>
+                        <auth-consults-table />
+                    </ng-container>
+                </blade-box-panel>
+            </div>
+            <div class="col-span-4">
+                <blade-box-panel setTitle="Autorizacion" (actionBar)="barAction($event)" [actionsActive]="true" [setActionsBar]="barActions">
+                    <ng-container boxbody>
+                        <auth-consults-details />
+                    </ng-container>
+                </blade-box-panel>
+            </div>
+        </div>
+    </ng-container>
+</blade-panel>

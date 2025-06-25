@@ -1,0 +1,120 @@
+<form>
+    <div class="d-grid mb-5">
+        <div class="col-span-full">
+            <title-icon-section setTitle="Malejandra torregroza" setIcon="icofont-crutch" setLabel="Paciente" />
+        </div>
+        <div class="col-span-3">
+            <input-panel-text [readOnly]="true" setLabel="Facturador" setSize="sm" />
+        </div>
+        <div class="col-span-3">
+            <input-panel-text [readOnly]="true" setLabel="Medico que ordena remision" setSize="sm" />
+        </div>
+        <div class="col-span-3">
+            <input-panel-text [readOnly]="true" setLabel="Servicio que remite" setSize="sm" />
+        </div>
+        <div class="col-span-3">
+            <input-panel-text [readOnly]="true" setLabel="Servicio al cual es remitido" setSize="sm" />
+        </div>
+        <div class="col-span-2">
+            <input-panel-text [readOnly]="true" setLabel="Codigo Dx" setSize="sm" />
+        </div>
+        <div class="col-span-3">
+            <input-panel-text [readOnly]="true" setLabel="Nombre Dx" setSize="sm" />
+        </div>
+        <div class="col-span-2">
+            <input-panel-text [readOnly]="true" setType="datetime-local" setLabel="Fecha y hora de solicitud" setSize="sm" />
+        </div>
+        <div class="col-span-3">
+            <input-panel-text [readOnly]="true" setLabel="Institucion a donde es remitido" setSize="sm" />
+        </div>
+        <div class="col-span-2">
+            <input-panel-text [readOnly]="true" setType="datetime-local" setLabel="Fecha y hora de aceptacion" setSize="sm" />
+        </div>
+        <div class="col-span-2">
+            <input-panel-text [readOnly]="true" setType="datetime-local" setLabel="Fecha y hora de salida" setSize="sm" />
+        </div>
+        <div class="col-span-2">
+            <input-panel-text [readOnly]="true" setLabel="Tipo de traslado" setSize="sm" />
+        </div>
+        <div class="col-span-3">
+            <input-panel-text [readOnly]="true" setLabel="Medico traslada" setSize="sm" />
+        </div>
+        <div class="col-span-3">
+            <input-panel-text [readOnly]="true" setLabel="Auxiliar de enfermiria traslada" setSize="sm" />
+        </div>
+        <div class="col-span-2">
+            <input-panel-text [readOnly]="true" setLabel="Conductor" setSize="sm" />
+        </div>
+    </div>
+    <div class="d-grid items-end mb-3">
+        <div class="col-span-full">
+            <title-icon-section setTitle="Remision destino" setIcon="icofont-ui-edit" setSize="sm" />
+        </div>
+        <div class="col-span-2">
+            <input-panel-checkbox setText="Remision" [clean]="true" />
+        </div>
+        <div class="col-span-2">
+            <input-panel-text setType="datetime-local" setLabel="Fecha y hora llegada destino" />
+        </div>
+        <div class="col-span-2">
+            <input-panel-text setType="datetime-local" setLabel="Fecha y hora llegada origen" />
+        </div>
+        <!--  -->
+        <!--  -->
+        <div class="col-span-full pt-3">
+            <title-icon-section setTitle="Ambulancia" setIcon="icofont-ambulance-cross" setSize="sm" />
+        </div>
+        <div class="col-span-3">
+            <input-panel-text [readOnly]="true" setLabel="Ambulancia" />
+        </div>
+        <div class="col-span-1">
+            <input-panel-text [readOnly]="true" setType="number" setLabel="Km de salida" />
+        </div>
+        <div class="col-span-2">
+            <input-panel-text [readOnly]="true" setType="number" setLabel="Nivel conbustible" />
+        </div>
+        <div class="col-span-2">
+            <input-panel-text setType="number" setLabel="Km de llegada" />
+        </div>
+        <div class="col-span-2">
+            <input-panel-text setType="number" setLabel="Km recorridos" />
+        </div>
+    </div>
+</form>
+
+<form (submit)="add()" [formGroup]="observation">
+    <div class="d-grid-gap-5">
+        <div class="col-span-full">
+            <title-icon-section setTitle="Observacion y dotacion" setIcon="icofont-patient-file" setSize="sm" />
+        </div>
+        <div class="col-span-4">
+            <div class="d-grid">
+                <div class="col-span-full">
+                    <input-panel-text setLabel="Dotacion medica" formControlName="dotacion" />
+                </div>
+                <div class="col-span-full">
+                    <input-panel-textarea setLabel="Observacion medica" formControlName="observacion" />
+                </div>
+                <div class="col-span-full">
+                    <app-button setType="submit" setTitle="Agregar" [isDisabled]="observation.invalid" />
+                </div>
+            </div>
+        </div>
+        <div class="col-span-8">
+            <div class="d-grid">
+                @for(item of observations(); track item.id) {
+                    <div class="col-span-full">
+                        <item-referral-observer [data]="item" />
+                    </div>
+                }
+                @empty {
+                    <div class="col-span-full">
+                        <div class="block p-2 rounded-lg bg-orange-100 text-center">
+                            Sin observaciones
+                        </div>
+                    </div>
+                }
+            </div>
+        </div>
+    </div>
+</form>

@@ -1,0 +1,50 @@
+<blade-panel>
+    <ng-container panels>
+        <div class="d-grid-gap-4">
+            <div class="col-span-full">
+                <blade-tabs-horizontal [tabsControls]="tabsControls" setTitle="N° Admición: 0000">
+                    <ng-container tabsBody>
+                        <article bsTabContent [idConnect]="tabsControls[0].idConnect" [isActive]="tabsControls[0].active">
+                            <blade-box-ui>
+                                <billing-invoice-data />
+                            </blade-box-ui>
+                        </article>
+                        <article bsTabContent [idConnect]="tabsControls[1].idConnect" [isActive]="tabsControls[1].active">
+                            <blade-box-ui>
+                                <billing-patient-data />
+                            </blade-box-ui>
+                        </article>
+                    </ng-container>
+                </blade-tabs-horizontal>
+            </div>
+            <div class="col-span-4">
+                <blade-box-panel setTitle="Contrato" ui="white" [padding]="true">
+                    <ng-container boxbody>
+                        <billing-contract-form />
+                    </ng-container>
+                </blade-box-panel>
+            </div>
+            <div class="col-span-8 space-y-4">
+                <blade-tabs-horizontal [tabsControls]="tabsControls_services">
+                    <ng-container tabsBody>
+                        <article bsTabContent [idConnect]="tabsControls_services[0].idConnect" [isActive]="tabsControls_services[0].active">
+                            <blade-box-ui>
+                                df
+                            </blade-box-ui>
+                        </article>
+                        <article bsTabContent [idConnect]="tabsControls_services[1].idConnect" [isActive]="tabsControls_services[1].active">
+                            <blade-box-ui>
+                                y
+                            </blade-box-ui>
+                        </article>
+                    </ng-container>
+                </blade-tabs-horizontal>
+                <div class="block">
+                    <blade-box-ui>
+                        <billing-enable-form />
+                    </blade-box-ui>
+                </div>
+            </div>
+        </div>
+    </ng-container>
+</blade-panel>

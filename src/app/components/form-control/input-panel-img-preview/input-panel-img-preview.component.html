@@ -1,0 +1,17 @@
+@if(visibleLoad()) {
+    <hr [style]="{ 'width' : porcentLoad() + '%' }">
+}
+@if(saveFile()) {
+<div class="bg-white text-center p-2 border rounded-lg relative">
+    <img [src]="saveFile()!.base64" alt="" class="h-[100px] inline-block">
+    <button (click)="clean()" type="button" class="btn btn-sm btn-blue-light top-2 right-2 absolute z-[1]">Remover firma</button>
+</div>
+} @else {
+    <div class="relative w-full">
+        <input type="file" (change)="getFiles($event)" class="hidden" multiple [accept]="accept" [id]="id">
+        <label class="btn btn-blue-light w-full" [for]="id">
+            <i class="icofont-ui-image mr-3"></i>
+            Cargar firma
+        </label>
+    </div>
+}

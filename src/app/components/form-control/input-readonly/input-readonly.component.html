@@ -1,0 +1,20 @@
+@if(setLabel()) {
+<label class="form-label text-gray-500 text-[0.95rem] truncate" [title]="setLabel()">{{ setLabel() }}</label>
+}
+<div class="input-group col-span-3 input-group-readonly" [ngClass]="[inputSize()]">
+    @if(setIcon()) {
+        <span class="input-group-text">
+            <i [ngClass]="setIcon()"></i>
+        </span>
+    }
+    @if(setText()) {
+          <span class="input-group-text">{{ setText() }}</span>
+    }
+    <input [type]="setType()" class="form-control" [placeholder]="setPlaceholder()" readonly="true">
+    @if (load()) {
+        <div class="input-group-text input-text-white">
+            <div class="spinner-border spinner-border-sm" role="status"></div>
+        </div>
+    }
+</div>
+

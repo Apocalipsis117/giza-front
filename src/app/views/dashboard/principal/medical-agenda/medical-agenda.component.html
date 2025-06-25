@@ -1,0 +1,49 @@
+<blade-panel>
+    <ng-container panels>
+        <div class="d-grid">
+            <div class="col-span-4 space-y-4">
+                <div class="block">
+                    <blade-box-panel [padding]="true" setTitle="Atencion y horario" [actionsActive]="true" (actionBar)="barActionAgenda($event)">
+                        <ng-container boxbody>
+                            <medical-agenda-form #formMedicalAgenda />
+                        </ng-container>
+                    </blade-box-panel>
+                </div>
+                <div class="block">
+                    <blade-box-ui>
+                        <div class="d-grid">
+                            <div class="col-span-5 flex items-center gap-4">
+                                <i class="icofont-ui-calendar"></i>
+                                <span>Generar Agenda</span>
+                            </div>
+                            <div class="col-span-7">
+                                <app-button setTitle="Agendar" class="w-full" ui="outlight" />
+                            </div>
+                        </div>
+                    </blade-box-ui>
+                </div>
+            </div>
+            <div class="col-span-8 space-y-5">
+                <!-- <div class="block">
+                    <blade-box-ui>
+                        <medical-agenda-stadistic />
+                    </blade-box-ui>
+                </div> -->
+                <div class="block">
+                    <blade-box-title setTitle="+ Interno" [hideHeader]="false" (onActionBar)="barActionIntern($event)">
+                        <ng-container boxtitleBody>
+                            <medical-agenda-form-intern #formMedicalIntern />
+                        </ng-container>
+                    </blade-box-title>
+                </div>
+                <div class="block">
+                    <blade-box-panel setTitle="Insumos">
+                        <ng-container boxbody>
+                            <medical-agenda-table />
+                        </ng-container>
+                    </blade-box-panel>
+                </div>
+            </div>
+        </div>
+    </ng-container>
+</blade-panel>

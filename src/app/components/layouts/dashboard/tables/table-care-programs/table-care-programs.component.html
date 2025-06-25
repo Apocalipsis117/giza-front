@@ -1,0 +1,19 @@
+<blade-table [bodyYDivider]="true" tableSize="sm">
+    <ng-container tableCols>
+        <col width="150">
+    </ng-container>
+    <ng-container tableHead>
+        <tr>
+            <th>Codigo</th>
+            <th>Nombre de servicio</th>
+        </tr>
+    </ng-container>
+    <ng-container tableBody>
+        @for(item of [1,2,3]; track item) {
+        <tr>
+            <td>1</td>
+            <td>---</td>
+        </tr>
+        }
+    </ng-container>
+</blade-table>

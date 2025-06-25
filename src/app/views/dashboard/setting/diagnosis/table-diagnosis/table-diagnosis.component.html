@@ -1,0 +1,33 @@
+<blade-table [headDivider]="true" [bodyYDivider]="true" [ActiveLoad]="true" [load]="load()"  [paginate]="dataTable()" (controlPaginate)="paginate.emit($event)">
+    <ng-container tableCols>
+        <col width="400">
+        <col>
+        <col width="100">
+        <col width="100">
+    </ng-container>
+    <ng-container tableHead>
+        <tr>
+            <th>Nombre</th>
+            <th>Sexo / edad</th>
+            <th>Vigente</th>
+            <th class="text-end">Accion</th>
+        </tr>
+    </ng-container>
+    <ng-container tableBody>
+        @for(item of list(); track item.id) {
+            <tr [ngClass]="item.id | trSelected: tdSelected()">
+                <td>{{ item.name }}</td>
+                <td>
+                    <div>{{ item.gender.name }}</div>
+                    <small class="text-gray-400">Edad: max {{ item.minAge }} min {{ item.maxAge }}</small>
+                </td>
+                <td>
+                    <badge-status [setStatus]="item.active" />
+                </td>
+                <td class="text-end">
+                    <app-button setIcon="icofont-info-circle" setSize="sm" (action)="emit(item)" />
+                </td>
+            </tr>
+        }
+    </ng-container>
+</blade-table>

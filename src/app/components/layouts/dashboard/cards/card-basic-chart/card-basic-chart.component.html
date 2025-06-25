@@ -1,0 +1,18 @@
+<div class="card-basic-chart" [ngClass]="theme()">
+    <div class="flex flex-wrap gap-4 items-center">
+        <div class="w-auto">
+            <div class="ui-icon-box rounded-lg">
+                <i [ngClass]="[setIcon()]"></i>
+            </div>
+        </div>
+        <div class="grow basis-0 font-semibold text-gray-400">
+            <div class="truncate">{{ setTitle() }}</div>
+        </div>
+    </div>
+    <div>
+        <h4 class="text-xl mb-1">{{ setCounter() }}</h4>
+        <div class="bar-progress">
+             <span [style.width.%]="setPorcentage()"></span>
+           </div>
+    </div>
+</div>

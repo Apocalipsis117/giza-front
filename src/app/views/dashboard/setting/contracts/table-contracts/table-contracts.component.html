@@ -1,0 +1,19 @@
+<blade-table [bodyYDivider]="true" tableSize="sm">
+    <ng-container tableCols>
+        <col>
+        <col width="350">
+    </ng-container>
+    <ng-container tableBody>
+        @for(item of [1,2,3]; track item) {
+            <tr>
+                <td>Lorem ipsum dolor sit.</td>
+                <td class="text-right">
+                    <div class="inline-flex gap-3">
+                        <app-button setSize="sm" setTitle="Configurcion" setIcon="icofont-settings"></app-button>
+                        <app-button setSize="sm" setColor="red" setTitle="Eliminar programa" setIcon="icofont-trash"></app-button>
+                    </div>
+                </td>
+            </tr>
+        }
+    </ng-container>
+</blade-table>

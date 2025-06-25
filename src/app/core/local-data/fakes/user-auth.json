@@ -1,0 +1,42 @@
+{
+    "data": {
+        "userAuth": {
+            "uuid": "7cff15e5-0da9-400f-a631-e85cce726af5",
+            "name": "Malejandra ferreira",
+            "token": "cc9c5a60-7592-45b3-899a-b3258b6c273c-9d91ccc7-9dea-4ff5-bdd5-4a59010cf8c7",
+            "username": "Maleja",
+            "gender": "f",
+            "active": true,
+            "email": "maleja@mail.com",
+            "avatar": "http://localhost/multimedia/lorem/avatar/avatar-5.jpeg",
+            "cargo": [
+                {
+                    "name": "Medico",
+                    "rol": "admin"
+                }
+            ],
+            "auth": [
+                {
+                    "app": "clinic-history",
+                    "active": true,
+                    "views": [
+                        {
+                            "view": "external-consultation",
+                            "permissions": [
+                                "read",
+                                "update"
+                            ]
+                        },
+                        {
+                            "view": "physical-therapy",
+                            "permissions": [
+                                "read",
+                                "update"
+                            ]
+                        }
+                    ]
+                }
+            ]
+        }
+    }
+}

@@ -1,0 +1,35 @@
+<blade-table
+    [bodyYDivider]="true"
+    [headDivider]="true"
+    [ActiveLoad]="true"
+    [paginate]="dataTable()"
+    (controlPaginate)="paginate.emit($event)"
+    [load]="load()"
+>
+    <ng-container tableHead>
+        <tr>
+            <th>Nombre</th>
+            <th>Ambito</th>
+            <th>Sexo</th>
+            <th>Tipo de servicio</th>
+            <th class="text-end">Accion</th>
+        </tr>
+    </ng-container>
+    <ng-container tableBody>
+        @for (cup of list(); track cup.id) {
+            <tr TrSelected [idx]="tdSelected()" [id]="cup.id">
+                <td>{{ cup.name }}</td>
+                <td>{{ cup.scope.name }}</td>
+                <td>{{ cup.gender.name }}</td>
+                <td>{{ cup.serviceType.name | lowercase }}</td>
+                <td class="text-end">
+                    <app-button
+                        setIcon="icofont-exclamation-circle"
+                        setSize="sm"
+                        (action)="emit(cup)"
+                    />
+                </td>
+            </tr>
+        }
+    </ng-container>
+</blade-table>

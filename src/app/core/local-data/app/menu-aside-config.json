@@ -1,0 +1,54 @@
+{
+    "data": {
+        "menuShortcut": [
+            {
+                "uuid": "ba6e2996-5e0c-47e0-bb9d-f3219732c05e",
+                "path": "/dashboard/config/home",
+                "icon": "icofont-settings",
+                "color": "text-green-400",
+                "display": [
+                    {
+                        "lang": "es",
+                        "title": "Inicio"
+                    }
+                ]
+            },
+            {
+                "uuid": "ec31e0f9-235b-4d0b-981b-28192956e76f",
+                "path": "/dashboard/config/personalization",
+                "icon": "icofont-architecture-alt",
+                "color": "text-emerald-400",
+                "display": [
+                    {
+                        "lang": "es",
+                        "title": "Personalización"
+                    }
+                ]
+            },
+            {
+                "uuid": "5640556e-77e1-4909-8517-3612076f64d8",
+                "path": "/dashboard/config/aplicacion",
+                "icon": "icofont-pencil-alt-5",
+                "color": "text-teal-400",
+                "display": [
+                    {
+                        "lang": "es",
+                        "title": "Aplicación"
+                    }
+                ]
+            },
+            {
+                "uuid": "11045945-d1f0-43ec-a917-dcfc24d19315",
+                "path": "/dashboard/config/user-profile",
+                "icon": "icofont-ui-user",
+                "color": "text-teal-400",
+                "display": [
+                    {
+                        "lang": "es",
+                        "title": "Mi perfil"
+                    }
+                ]
+            }
+        ]
+    }
+}

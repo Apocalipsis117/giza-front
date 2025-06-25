@@ -1,0 +1,22 @@
+<label>{{ inputLabel() }}</label>
+<div class="block w-full relative">
+    <input
+        [value]="valueInput"
+        readonly
+        [id]="idInput()"
+        class="border cursor-default block w-full rounded-lg px-3 focus:outline-none py-[7px] border-gray-300"
+    />
+    @if (visible() && options().length > 0) {
+        <ul class="ul-select top">
+            @for (option of options(); track option.value) {
+                <li
+                    [title]="option.name"
+                    (click)="select(option)"
+                    class="li-option"
+                >
+                    {{ option.name }}
+                </li>
+            }
+        </ul>
+    }
+</div>

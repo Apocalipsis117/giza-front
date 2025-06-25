@@ -1,0 +1,25 @@
+<blade-panel  section="setting" titleSection="Vehiculos">
+    <ng-container panels>
+        <div class="d-grid">
+            <div class="col-span-4">
+                <blade-box-panel setTitle="Vehiculo" [padding]="true" (actionBar)="barAction($event)" [actionsActive]="true">
+                    <ng-container boxbody>
+                        <form-vehicles [setForm]="form" />
+                    </ng-container>
+                </blade-box-panel>
+            </div>
+            <div class="col-span-8">
+                <blade-box-panel setTitle="Vehiculos">
+                    <ng-container boxbody>
+                        <table-vehicles [vehicles]="vehicles()" />
+                    </ng-container>
+                </blade-box-panel>
+            </div>
+        </div>
+    </ng-container>
+</blade-panel>
+<app-note>
+    <ng-container noteBody>
+# vehicle
+    </ng-container>
+</app-note>

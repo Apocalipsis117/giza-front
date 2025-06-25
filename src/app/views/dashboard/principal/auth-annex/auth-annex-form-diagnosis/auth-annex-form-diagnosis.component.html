@@ -1,0 +1,42 @@
+<div class="d-grid">
+    <div class="col-span-full">
+        <blade-table [headDivider]="true" [bodyYDivider]="true">
+            <ng-container tableHead>
+                <tr>
+                    <th width="185">Prioridad</th>
+                    <th>Diagnostico</th>
+                    <th width="100" class="text-end">Acción</th>
+                </tr>
+            </ng-container>
+            <ng-container tableBody>
+                <tr>
+                    <td>---</td>
+                    <td>---</td>
+                    <td class="text-end">
+                        <div class="inline-flex gap-2">
+                            <app-button setIcon="icofont-ui-edit" setSize="sm" ui="outlight" />
+                            <app-button setIcon="icofont-trash" setColor="red" setSize="sm" ui="outlight" />
+                        </div>
+                    </td>
+                </tr>
+            </ng-container>
+        </blade-table>
+    </div>
+    <div class="col-span-full">
+        <blade-box-title setTitle="+ Diagnostico" theme="gentle" [activeShadow]="false">
+            <ng-container boxtitleBody>
+                <form class="d-grid items-end">
+                    <div class="col-span-2">
+                        <input-panel-select setLabel="Prioridad" />
+                    </div>
+                    <div class="col-span-8">
+                        <input-panel-select setLabel="Diagnostico" />
+                    </div>
+                    <div class="col-span-2">
+                        <app-button class="w-full" setIcon="icofont-plus" setTitle="Agregar" />
+                    </div>
+                </form>
+            </ng-container>
+        </blade-box-title>
+    </div>
+</div>

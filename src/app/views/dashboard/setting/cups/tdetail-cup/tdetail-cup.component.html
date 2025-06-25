@@ -1,0 +1,80 @@
+@if(cup()) {
+    <div class="d-grid">
+        <div class="col-span-full mb-2 text-xl">{{ cupData().name }}</div>
+        <ul class="col-span-full ul-list-row">
+            <li>
+                <div class="col-span-6">
+                    <small>Concepto de Rips</small>
+                    <div>{{ cupData().concRip }}</div>
+                </div>
+                <div class="col-span-3">
+                    <small>Nivel</small>
+                    <div>{{ cupData().level }}</div>
+                </div>
+                <div class="col-span-3">
+                    <small>Title</small>
+                    <div>{{ cupData().genderColor }}</div>
+                </div>
+            </li>
+            <li>
+                <div class="col-span-3" [ngClass]="cupData().genderColor">
+                    <small>Sexo</small>
+                    <div>{{ cupData().gender }}</div>
+                </div>
+                <div class="col-span-2">
+                    <small>UVT</small>
+                    <div>{{ cupData().uvt }}</div>
+                </div>
+                <div class="col-span-2">
+                    <small>UVR</small>
+                    <div>{{ cupData().uvr }}</div>
+                </div>
+                <div class="col-span-5">
+                    <small>Edad</small>
+                    <div>{{ cupData().age }}</div>
+                </div>
+            </li>
+            <li>
+                <div class="col-span-6">
+                    <small>Ambito</small>
+                    <div>{{ cupData().scope }}</div>
+                </div>
+                <div class="col-span-6">
+                    <small>Tipo de servicio</small>
+                    <div>{{ cupData().service }}</div>
+                </div>
+            </li>
+        </ul>
+        <div class="col-span-full font-bold"><i class="icofont-settings mr-2"></i> Opciones</div>
+        <ul class="col-span-full divide-y">
+            <li>
+                <block-switch-status [active]="cupData().birth">Parto</block-switch-status>
+            </li>
+            <li>
+                <block-switch-status [active]="cupData().unique">Unico</block-switch-status>
+            </li>
+            <li>
+                <block-switch-status [active]="cupData().nonInvasiveProcedure">Procedimiento incruento</block-switch-status>
+            </li>
+            <li>
+                <block-switch-status [active]="true">Title</block-switch-status>
+            </li>
+        </ul>
+        @if(cupData().birth){
+            <ul class="col-span-full ul-list-row">
+                <li>
+                    <div class="col-span-6">
+                        <small>Tipo de parto</small>
+                        <div>{{ cupData().birthType }}</div>
+                    </div>
+                    <div class="col-span-6">
+                        <small>Puntos</small>
+                        <div>{{ cupData().points }}</div>
+                    </div>
+                </li>
+            </ul>
+        }
+    </div>
+} @else {
+    <select-some-item />
+}

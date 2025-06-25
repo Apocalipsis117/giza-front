@@ -1,0 +1,23 @@
+<blade-table [headDivider]="true">
+    <ng-container tableActions>
+        <tform-traceability-patient />
+    </ng-container>
+    <ng-container tableHead>
+        <tr>
+            <th width="60"><input-check-table /></th>
+            <th>N° Factura</th>
+            <th>Paciente</th>
+            <th>Entrega</th>
+        </tr>
+    </ng-container>
+    <ng-container tableBody>
+        <tr>
+            <td class="text-center">
+                <input-check-table />
+            </td>
+            <td>---</td>
+            <td>---</td>
+            <td>---</td>
+        </tr>
+    </ng-container>
+</blade-table>

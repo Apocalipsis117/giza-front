@@ -1,0 +1,52 @@
+<blade-panel section="setting" titleSection="medicamentos">
+    <ng-container panels>
+        <div class="grid grid-cols-12 gap-3">
+            <div class="col-span-8">
+                <blade-tabs-horizontal [tabsControls]="tabsControls" setTitle="Medicamentos">
+                    <ng-container tabsBody>
+                        <article bsTabContent [idConnect]="tabsControls[0].idConnect" [isActive]="tabsControls[0].active">
+                            <div class="flex flex-col gap-y-3">
+                                <div class="block">
+                                    <blade-box-panel setTitle="Nuevo" [padding]="true" [actionsActive]="true" (actionBar)="barAction($event)" [headerActive]="false" ui="clean">
+                                        <ng-container boxbody>
+                                            <form-medicine [setForm]="form" />
+                                        </ng-container>
+                                    </blade-box-panel>
+                                </div>
+                                <div class="block p-4 pt-0">
+                                    <blade-box-title setTitle="Actualizar codigos CUM">
+                                        <ng-container boxtitleBody>
+                                            <form-update-cum />
+                                        </ng-container>
+                                    </blade-box-title>
+                                </div>
+                            </div>
+                        </article>
+                        <article bsTabContent [idConnect]="tabsControls[1].idConnect" [isActive]="tabsControls[1].active">
+                            <table-medicine [dataTable]="medicineData()" (paginate)="paginate($event)" #table />
+                        </article>
+                    </ng-container>
+                </blade-tabs-horizontal>
+            </div>
+            <div class="col-span-4">
+                <div class="flex flex-col gap-y-3">
+                    <blade-box-panel setTitle="Medicamento" [padding]="true" [actionsActive]="true" [setActionsBar]="actionssBar" (actionBar)="barAction($event)">
+                        <ng-container boxbody>
+                            <tdetail-medicine />
+                        </ng-container>
+                    </blade-box-panel>
+                </div>
+            </div>
+        </div>
+    </ng-container>
+</blade-panel>
+
+<app-note>
+    <ng-container noteBody>
+# inputs
+cum - pending
+Costcum - pending
+Costname - pending
+---
+    </ng-container>
+</app-note>

@@ -1,0 +1,34 @@
+<blade-table [headDivider]="true" [bodyYDivider]="true" [ActiveLoad]="true" [load]="load()" tableSize="sm">
+    <ng-container tableHead>
+        <tr>
+            <th>Interno</th>
+            <th>Factura</th>
+            <th>C. Global</th>
+            <th>Fecha</th>
+            <th>Ambito</th>
+            <th>Hora</th>
+            <th>N° Identidad</th>
+            <th>Nombre</th>
+            <th>$ Factura</th>
+            <th class="text-end">Accion</th>
+        </tr>
+    </ng-container>
+    <ng-container tableBody>
+        @for(item of dataTable(); track item.id) {
+            <tr [ngClass]="item.id | trSelected: tdSelected()">
+                <td>---</td>
+                <td>---</td>
+                <td>---</td>
+                <td>---</td>
+                <td>---</td>
+                <td>---</td>
+                <td>---</td>
+                <td>---</td>
+                <td>---</td>
+                <td class="text-end">
+                    <app-button setIcon="icofont-info-circle" setSize="sm" />
+                </td>
+            </tr>
+        }
+    </ng-container>
+</blade-table>

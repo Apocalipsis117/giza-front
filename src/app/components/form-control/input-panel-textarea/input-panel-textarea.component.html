@@ -1,0 +1,13 @@
+<div class="w-full" [ngClass]="verticalContent">
+    @if(setLabel) {
+    <label [for]="id" class="form-label text-gray-500 text-[0.95rem] col-span-2">{{ setLabel }}</label>
+    }
+    <div class="input-group col-span-3">
+        @if(setIcon) {
+            <span class="input-group-text">
+                <i [ngClass]="setIcon"></i>
+            </span>
+        }
+        <textarea class="form-control" [(ngModel)]="currentValue" [id]="id" [rows]="setRow" (input)="changeInput()"></textarea>
+    </div>
+</div>

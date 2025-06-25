@@ -1,0 +1,58 @@
+<blade-panel>
+    <ng-container panels>
+        <div class="d-grid">
+            <div class="col-span-3 space-y-6">
+                <div class="block">
+                    <blade-box-ui>
+                        <div class="d-grid items-end">
+                            <div class="col-span-10">
+                                <input-panel-text setLabel="Buscar" setPlaceholder="N° identida / Nombre" />
+                            </div>
+                            <div class="col-span-2">
+                                <app-button class="w-full" setIcon="icofont-search-1" ui="outlight" />
+                            </div>
+                        </div>
+                    </blade-box-ui>
+                </div>
+                <div class="block">
+                    <card-patient-data />
+                </div>
+            </div>
+            <div class="col-span-9 space-y-3">
+                <section>
+                    <blade-box-panel setTitle="Interno" setIcon="icofont-ui-user" [padding]="true" ui="white">
+                        <ng-container boxbody>
+                            <incivility-annex-form-inside />
+                        </ng-container>
+                    </blade-box-panel>
+                </section>
+                <section>
+                    <blade-box-panel setTitle="Información de la posible inconcistencia" [padding]="true">
+                        <ng-container boxbody>
+                            <div class="d-grid">
+                                <div class="col-span-4">
+                                    <blade-box-title setTitle="Variables presuntamente incorrectas" [activeShadow]="false" ui="border">
+                                        <ng-container boxtitleBody>
+                                            <div class="d-grid">
+                                                <div class="col-span-full">
+                                                    <incivility-annex-incorrect />
+                                                </div>
+                                            </div>
+                                        </ng-container>
+                                    </blade-box-title>
+                                </div>
+                                <div class="col-span-8">
+                                    <blade-box-title setTitle="Datos según documento de identificación" [activeShadow]="false" ui="border">
+                                        <ng-container boxtitleBody>
+                                            <incivility-annex-document />
+                                        </ng-container>
+                                    </blade-box-title>
+                                </div>
+                            </div>
+                        </ng-container>
+                    </blade-box-panel>
+                </section>
+            </div>
+        </div>
+    </ng-container>
+</blade-panel>

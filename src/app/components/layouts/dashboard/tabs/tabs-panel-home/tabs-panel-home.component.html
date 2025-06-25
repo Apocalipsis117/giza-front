@@ -1,0 +1,8 @@
+<div class="ui-tab-panel-home">
+    @for(menu of menu(); track menu.uuid) {
+        <button [routerLink]="menu.path" routerLinkActive="active" type="button">
+            <!-- <span class="mr-2" [ngClass]="menu.icon"></span> -->
+            {{ menu.display | getDisplay : 'title' }}
+        </button>
+    }
+</div>

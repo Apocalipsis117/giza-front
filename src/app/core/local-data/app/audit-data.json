@@ -1,0 +1,138 @@
+{
+    "data": {
+        "menuShortcut": [
+            {
+                "action": "S",
+                "icon": "icofont-patient-bed",
+                "color": "text-red-500",
+                "display": [
+                    {
+                        "lang": "es",
+                        "label": "Obsevacion"
+                    }
+                ]
+            },
+            {
+                "action": "s",
+                "icon": "icofont-patient-bed",
+                "color": "text-orange-500",
+                "display": [
+                    {
+                        "lang": "es",
+                        "label": "Hospitalización"
+                    }
+                ]
+            },
+            {
+                "action": "s",
+                "icon": "icofont-baby",
+                "color": "text-amber-500",
+                "display": [
+                    {
+                        "lang": "es",
+                        "label": "Recien nacido"
+                    }
+                ]
+            },
+            {
+                "action": "s",
+                "icon": "icofont-ambulance-cross",
+                "color": "text-yellow-500",
+                "display": [
+                    {
+                        "lang": "es",
+                        "label": "Remisión"
+                    }
+                ]
+            },
+            {
+                "action": "s",
+                "icon": "icofont-auto-mobile",
+                "color": "text-lime-500",
+                "display": [
+                    {
+                        "lang": "es",
+                        "label": "SOAT"
+                    }
+                ]
+            },
+            {
+                "action": "s",
+                "icon": "icofont-patient-file",
+                "color": "text-green-500",
+                "display": [
+                    {
+                        "lang": "es",
+                        "label": "Datos del paciente"
+                    }
+                ]
+            },
+            {
+                "action": "s",
+                "icon": "icofont-ambulance",
+                "color": "text-emerald-500",
+                "display": [
+                    {
+                        "lang": "es",
+                        "label": "Historia ambulancia"
+                    }
+                ]
+            },
+            {
+                "action": "s",
+                "icon": "icofont-patient-file",
+                "color": "text-teal-500",
+                "display": [
+                    {
+                        "lang": "es",
+                        "label": "Historia urgencia"
+                    }
+                ]
+            },
+            {
+                "action": "s",
+                "icon": "icofont-patient-file",
+                "color": "text-cyan-500",
+                "display": [
+                    {
+                        "lang": "es",
+                        "label": "Historia Hospitalización"
+                    }
+                ]
+            },
+            {
+                "action": "s",
+                "icon": "icofont-chart-flow",
+                "color": "text-sky-500",
+                "display": [
+                    {
+                        "lang": "es",
+                        "label": "Historia servicios"
+                    }
+                ]
+            },
+            {
+                "action": "s",
+                "icon": "icofont-people",
+                "color": "text-red-500",
+                "display": [
+                    {
+                        "lang": "es",
+                        "label": "Resultados laboral"
+                    }
+                ]
+            },
+            {
+                "action": "s",
+                "icon": "icofont-papers",
+                "color": "text-orange-500",
+                "display": [
+                    {
+                        "lang": "es",
+                        "label": "Facturas escaneadas"
+                    }
+                ]
+            }
+        ]
+    }
+}

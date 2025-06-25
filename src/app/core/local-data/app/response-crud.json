@@ -1,0 +1,24 @@
+{
+    "formSave": {
+        "formSave": [
+            {
+                "status": 201,
+                "display": [
+                    {
+                        "lang": "es",
+                        "message": "Registro creado correctamente"
+                    }
+                ]
+            },
+            {
+                "status": 200,
+                "display": [
+                    {
+                        "lang": "es",
+                        "message": "Registro actualizado correctamente"
+                    }
+                ]
+            }
+        ]
+    }
+}

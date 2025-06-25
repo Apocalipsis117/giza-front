@@ -1,0 +1,23 @@
+<aside class="menu-aside-config">
+    <nav class="space-y-3">
+        <section>
+            <blade-box-ui>
+                <input-panel-text setIcon="icofont-search-1" setLabel="Buscar" />
+            </blade-box-ui>
+        </section>
+        <section>
+            <blade-box-ui>
+            <ul class="aside-config-ul">
+                @for(nav of menuConfig(); track nav.uuid) {
+                    <li class="aside-config-li">
+                        <button class="aside-config-btn" type="button" [routerLink]="nav.path" routerLinkActive="active">
+                            <i [ngClass]="[nav.icon]"></i>
+                            <span>{{ nav.display | getDisplay: 'title' }}</span>
+                        </button>
+                    </li>
+                }
+            </ul>
+            </blade-box-ui>
+        </section>
+    </nav>
+</aside>

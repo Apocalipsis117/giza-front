@@ -1,0 +1,92 @@
+{
+    "data": {
+        "navegation": [
+            {
+                "id": 1,
+                "path": "/dashboard/panel/general",
+                "display": "Inicio",
+                "icon": "icofont-pie-chart",
+                "name": "panel"
+            },
+            {
+                "id": 2,
+                "path": "/dashboard/principal",
+                "display": "Principal",
+                "icon": "icofont-home",
+                "name": "principal"
+            },
+            {
+                "id": 3,
+                "path": "/dashboard/clinic-history",
+                "display": "Historia Clínica",
+                "icon": "icofont-patient-file",
+                "name": "clinic-history"
+            },
+            {
+                "id": 4,
+                "path": "/error-http/404",
+                "display": "Ayudas Diágnosticas",
+                "icon": "icofont-stethoscope-alt",
+                "name": ""
+            },
+            {
+                "id": 5,
+                "path": "/dashboard/pharmacy",
+                "display": "Famacia",
+                "icon": "icofont-pills",
+                "name": "pharmacy"
+            },
+            {
+                "id": 6,
+                "path": "/dashboard/audit",
+                "display": "Auditoría",
+                "icon": "icofont-prescription",
+                "name": "audit"
+            },
+            {
+                "id": 7,
+                "path": "/error-http/404",
+                "display": "Cuentas",
+                "icon": "icofont-coins",
+                "name": ""
+            },
+            {
+                "id": 8,
+                "path": "/error-http/404",
+                "display": "Reportes",
+                "icon": "icofont-search-stock",
+                "name": ""
+            },
+            {
+                "id": 9,
+                "path": "/error-http/404",
+                "display": "Familias en Acción",
+                "icon": "icofont-users-alt-5",
+                "name": ""
+            }
+        ],
+        "setting": [
+            {
+                "id": 1,
+                "path": "/dashboard/config",
+                "display": "Mi aplicacion Gisa",
+                "icon": "icofont-tools-bag",
+                "name": "config"
+            },
+            {
+                "id": 2,
+                "path": "/dashboard/tariff",
+                "display": "Tarifarios",
+                "icon": "icofont-coins",
+                "name": "tariff"
+            },
+            {
+                "id": 3,
+                "path": "/dashboard/setting",
+                "display": "Configuración",
+                "icon": "icofont-gears",
+                "name": "setting"
+            }
+        ]
+    }
+}

@@ -1,0 +1,10 @@
+<ul class="ui-bar-action">
+    @for(action of listActions(); track action.action) {
+    <li class="">
+        <button type="button" [ngClass]="action.color" (click)="emitAction(action.action)">
+            <i [ngClass]="action.icon"></i>
+            <span>{{ action.label }}</span>
+        </button>
+    </li>
+    }
+</ul>

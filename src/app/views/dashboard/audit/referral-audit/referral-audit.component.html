@@ -1,0 +1,21 @@
+<blade-panel section="audit" titleSection="Remisiones">
+    <ng-container panels>
+        <div class="d-grid">
+            <div class="col-span-full">
+                <blade-tabs-horizontal [tabsControls]="tabs" #tabReferral>
+                    <ng-container tabsBody>
+                        <article class="p-4" bsTabContent [idConnect]="tabs[0].idConnect" [isActive]="true">
+                            <table-referral-audit (action)="tabReferral.showTab('remision')" />
+                        </article>
+                        <article class="p-4" bsTabContent [idConnect]="tabs[1].idConnect">
+                            <data-referral-audit />
+                        </article>
+                        <article class="p-4" bsTabContent [idConnect]="tabs[2].idConnect">
+                            <form-new-referral/>
+                        </article>
+                    </ng-container>
+                </blade-tabs-horizontal>
+            </div>
+        </div>
+    </ng-container>
+</blade-panel>

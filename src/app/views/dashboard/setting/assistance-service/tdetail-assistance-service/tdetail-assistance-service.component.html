@@ -1,0 +1,54 @@
+@if(data()) {
+    <div class="d-grid">
+        <div class="col-span-full mb-2 text-xl">{{ value().name }}</div>
+        <ul class="col-span-full ul-list-row">
+            <li>
+                <div class="col-span-6">
+                    <small>Tipo de historia</small>
+                    <div>{{ value().historyTypeName }}</div>
+                </div>
+                <div class="col-span-6">
+                    <small>Tipo de servicio</small>
+                    <div>{{ value().serviceTypeName }}</div>
+                </div>
+            </li>
+            <li>
+                <div class="col-span-4">
+                    <small>Días oportunidad</small>
+                    <div>{{ value().opportunityDays }}</div>
+                </div>
+                <div class="col-span-4">
+                    <small>Cod. indicativo</small>
+                    <div>{{ value().indicatorCode }}</div>
+                </div>
+                <div class="col-span-4">
+                    <small>Nivel</small>
+                    <div>{{ value().serviceLevelName }}</div>
+                </div>
+            </li>
+        </ul>
+        <div class="col-span-full font-bold"><i class="icofont-settings mr-2"></i> Opciones</div>
+        <ul class="col-span-full divide-y">
+            <li>
+                <block-switch-status [active]="value().isActiveInstitution">Activa insti</block-switch-status>
+            </li>
+            <li>
+                <block-switch-status [active]="value().appointments">Citas</block-switch-status>
+            </li>
+            <li>
+                <block-switch-status [active]="value().receive">Recibir.</block-switch-status>
+            </li>
+            <li>
+                <block-switch-status [active]="value().surgeryRequired">R. Cirujia.</block-switch-status>
+            </li>
+            <li>
+                <block-switch-status [active]="value().specialist">Especialista.</block-switch-status>
+            </li>
+            <li>
+                <block-switch-status [active]="value().doctor">Medico.</block-switch-status>
+            </li>
+        </ul>
+    </div>
+} @else {
+    <select-some-item />
+}

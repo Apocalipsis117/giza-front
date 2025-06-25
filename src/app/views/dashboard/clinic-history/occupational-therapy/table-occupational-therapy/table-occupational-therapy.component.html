@@ -1,0 +1,30 @@
+<blade-table [headDivider]="true" [bodyYDivider]="true">
+    <ng-container tableHead>
+        <tr>
+            <th>Paciente</th>
+            <th>N° Identidad</th>
+            <th>Inst. Historia</th>
+            <th>Inst. Admision</th>
+            <th>Fecha</th>
+            <th>Regimen</th>
+            <th>Acciones</th>
+        </tr>
+    </ng-container>
+    <ng-container tableBody>
+        @for(patient of patients(); track patient.id) {
+            <tr>
+                <td>
+                    <card-table-patient [data]="patient" />
+                </td>
+                <td>...</td>
+                <td>...</td>
+                <td>...</td>
+                <td>...</td>
+                <td>...</td>
+                <td class="text-right">
+                    <app-button setTitle="Info." setSize="sm" />
+                </td>
+            </tr>
+        }
+    </ng-container>
+</blade-table>

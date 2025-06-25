@@ -1,0 +1,107 @@
+.ui-avatar-border {
+    @apply w-[80px] h-[80px] rounded-full border-4 border-white p-[3px] transition-all;
+}
+
+.ui-menu-aside {
+    @apply w-[300px] h-screen bg-[var(--color-700)] sticky z-[5] top-0 transition-all;
+    .aside-content {
+        @apply flex flex-col flex-wrap h-screen;
+    }
+    .hr-space {
+        @apply h-[60px] border-0;
+    }
+    .aside-content-control {
+        @apply w-full mb-5;
+    }
+    .aside-content-user {
+        @apply w-full mb-[5rem];
+    }
+    .aside-menu-center {
+        @apply grow basis-0 overflow-y-auto;
+    }
+
+    .aside-menu-end {
+        @apply w-full;
+    }
+
+    .aside-menu-center,
+    .aside-menu-end {
+        @apply pl-[2rem];
+    }
+
+    .aside-user-profile {
+        @apply w-full flex items-center flex-col;
+    }
+    .aside-profile-info {
+        @apply text-center text-white;
+    }
+    .ul-menu-aside {
+        @apply flex flex-col w-full space-y-[8px];
+    }
+    .btn-menu-aside {
+        @apply relative text-[1.025rem] py-[5px] px-[15px] rounded-l-lg  text-left text-white w-full block font-semibold hover:bg-[var(--color-600)] transition-colors;
+        &.active {
+            @apply bg-[var(--color-50)] text-[var(--color-500)];
+        }
+        &:disabled {
+            opacity: .5;
+        }
+        > i {
+            transform: scale(1.5);
+            @apply inline-block;
+        }
+    }
+}
+
+.ui-menu-aside.ui-icons {
+    @apply w-[95px];
+    .ul-menu-aside {
+        @apply space-y-1;
+    }
+    .btn-menu-aside {
+        @apply py-[0.55rem];
+        .btn-label {
+            @apply hidden;
+        }
+    }
+    .aside-profile-info {
+        @apply hidden;
+    }
+    .aside-menu-center,
+    .aside-menu-end {
+        @apply pl-[1.5rem];
+    }
+    .ui-avatar-border {
+        @apply w-[50px] h-[50px] border-2;
+    }
+}
+
+.dark-mode .ui-menu-aside {
+    .btn-menu-aside {
+        &.active {
+            @apply bg-[var(--darkmode-800)]
+        }
+    }
+}
+
+/*
+
+.btn-menu-aside {
+        @apply py-[0.55rem];
+        .btn-label {
+            left: calc(100% - 25px);
+            transition: left 150ms ease-out;
+            @apply absolute collapse z-[1] text-sm flex truncate top-[50%] -translate-y-[50%] py-3 px-2 rounded-r-lg bg-[var(--color-600)] text-white;
+        }
+        &.active {
+            .btn-label {
+                @apply bg-[var(--color-50)] text-[var(--color-700)];
+            }
+        }
+        &:hover {
+            .btn-label {
+                @apply visible left-full;
+            }
+        }
+    }
+ */

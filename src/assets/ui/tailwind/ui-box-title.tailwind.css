@@ -1,0 +1,47 @@
+.ui-box-title {
+    @apply rounded-lg mt-[0.8rem] relative border border-[var(--color-200)] bg-white;
+    .box-title-label {
+        @apply inline-block px-5 py-0.5 absolute rounded-md top-0 left-4 -translate-y-[50%] bg-[var(--color-700)] text-white;
+    }
+
+    &.theme-light {
+        @apply border-slate-200 bg-white;
+        .box-title-label {
+            @apply bg-slate-100 border border-slate-200 text-gray-500;
+        }
+    }
+
+    &.theme-gentle {
+        @apply border-[var(--color-100)] bg-[var(--color-50)];
+        .box-title-label {
+            @apply bg-[var(--color-500)] text-white;
+        }
+    }
+}
+
+.ui-box-title {
+    &.ui-clean {
+        border: none;
+        background-color: transparent !important;
+    }
+    &.ui-border {
+        @apply border-[var(--color-300)];
+        .box-title-label {
+            @apply bg-white text-[var(--color-800)] px-2;
+        }
+    }
+    &.ui-flat {
+        @apply bg-[var(--color-50)] border-[var(--color-100)];
+        .box-title-label {
+            @apply bg-[var(--color-500)];
+        }
+    }
+}
+
+.dark-mode .ui-box-title {
+    @apply bg-[var(--darkmode-700)] border-[var(--color-800)];
+
+    &.theme-gentle {
+        @apply bg-[var(--darkmode-600)] border-[var(--darkmode-500)];
+    }
+}

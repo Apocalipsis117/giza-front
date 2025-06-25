@@ -1,0 +1,52 @@
+<div class="d-grid">
+    <div class="col-span-full">
+        <blade-table [headDivider]="true" [bodyYDivider]="true">
+            <ng-container tableHead>
+                <tr>
+                    <th>CUPS</th>
+                    <th width="80">Cant</th>
+                    <th>Descripción</th>
+                    <th>Observación</th>
+                    <th width="100" class="text-end">Acción</th>
+                </tr>
+            </ng-container>
+            <ng-container tableBody>
+                <tr>
+                    <td>---</td>
+                    <td>---</td>
+                    <td>---</td>
+                    <td>---</td>
+                    <td class="text-end">
+                        <div class="inline-flex gap-2">
+                            <app-button setIcon="icofont-ui-edit" setSize="sm" ui="outlight" />
+                            <app-button setIcon="icofont-trash" setColor="red" setSize="sm" ui="outlight" />
+                        </div>
+                    </td>
+                </tr>
+            </ng-container>
+        </blade-table>
+    </div>
+    <div class="col-span-full">
+        <blade-box-title setTitle="+ Servicio" theme="gentle" [activeShadow]="false">
+            <ng-container boxtitleBody>
+                <form class="d-grid items-end">
+                    <div class="col-span-3">
+                        <input-panel-select setLabel="CUPS" />
+                    </div>
+                    <div class="col-span-2">
+                        <input-panel-text setType="number" setLabel="Cant" />
+                    </div>
+                    <div class="col-span-7">
+                        <input-panel-select setLabel="Descripción" />
+                    </div>
+                    <div class="col-span-10">
+                        <input-panel-textarea [setRow]="2" setLabel="Observación" />
+                    </div>
+                    <div class="col-span-2">
+                        <app-button class="w-full" setIcon="icofont-plus" setTitle="Agregar" />
+                    </div>
+                </form>
+            </ng-container>
+        </blade-box-title>
+    </div>
+</div>

@@ -1,0 +1,37 @@
+<form [formGroup]="form">
+    <div class="d-grid items-end">
+        <div class="col-span-4">
+            <input-panel-text setLabel="Interno" />
+        </div>
+        <div class="col-span-4">
+            <input-panel-time setLabel="Fecha" />
+        </div>
+        <div class="col-span-4">
+            <input-panel-select setLabel="Jornada" />
+        </div>
+        <div class="col-span-2">
+            <input-panel-time setType="time" setLabel="Hora inicio" />
+        </div>
+        <div class="col-span-2">
+            <input-panel-time setType="time" setLabel="Hora final" />
+        </div>
+        <div class="col-span-2">
+            <input-panel-text setType="number" setLabel="N° Minutos" />
+        </div>
+        <div class="col-span-2">
+            <input-panel-text setType="number" setLabel="N° Citas" />
+        </div>
+        <div class="col-span-4">
+            <input-panel-select setLabel="Modalidad de atención" />
+        </div>
+        <div class="col-span-5">
+            <input-panel-select setLabel="Forma consulta" />
+        </div>
+        <div class="col-span-5">
+            <input-panel-select setLabel="Genero agenda" />
+        </div>
+        <div class="col-span-2">
+            <input-panel-checkbox setLabel="Cerrar" typeCheck="switch" [clean]="true" />
+        </div>
+    </div>
+</form>

@@ -1,0 +1,28 @@
+<div class="w-10/12 max-w-[1280px] mx-auto" role="tablist">
+    <div class="ui-box-steps mb-4">
+        @for(item of steps(); track item.id) {
+        @let isActive = item.id === 1;
+        @let idConnect = 'step-'+item.id;
+        <!--  -->
+        <button class="ui-box-steps-item ui-decoration" bsTabBtn [idConnect]="idConnect" [isActive]="isActive">
+            <div class="ui-box-content">
+                {{ item.id }}
+            </div>
+            <div class="grow basis-[0]">
+                <div class="px-4">{{ item.display | getDisplay : 'title' }}</div>
+            </div>
+        </button>
+        }
+    </div>
+    <div class="flex flex-wrap flex-col">
+        <div class="block w-full" bsTabContent idConnect="step-1" [isActive]="true">
+            <ng-content select="[stepOne]"/>
+        </div>
+        <div class="block w-full" bsTabContent idConnect="step-2">
+            <ng-content select="[stepTwo]"/>
+        </div>
+        <div class="block w-full" bsTabContent idConnect="step-3">
+            <ng-content select="[stepThree]"/>
+        </div>
+    </div>
+</div>

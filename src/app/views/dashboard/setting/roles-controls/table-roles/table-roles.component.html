@@ -1,0 +1,56 @@
+<blade-table [headDivider]="true" [bodyYDivider]="true" [hover]="true">
+    <ng-container tableHead>
+        <tr>
+            <th>Cargo</th>
+            <th>Nombre rol</th>
+            <th>Descipcion</th>
+            <th>Estado</th>
+            <th>Editar</th>
+            <th>Crear</th>
+            <th>Leer</th>
+            <th>Eliminar</th>
+            <th width="70">
+                <i class="icofont-exclamation-circle text-xl text-gray-500"></i>
+            </th>
+        </tr>
+    </ng-container>
+    <ng-container tableBody>
+        @for(rol of paginator; track rol.id) {
+            <tr>
+                <td>{{ rol.cargo_id }}</td>
+                <td>{{ rol.name }}</td>
+                <td>{{ rol.description }}</td>
+                <td>
+                    <badge-status [setStatus]="rol.state"/>
+                </td>
+                <td class="text-center">
+                    <i class="text-xl icofont-verification-check" ColorStatusToogle [setStatus]="rol.read"></i>
+                </td>
+                <td class="text-center">
+                    <i class="text-xl icofont-verification-check" ColorStatusToogle [setStatus]="rol.create"></i>
+                </td>
+                <td class="text-center">
+                    <i class="text-xl icofont-verification-check" ColorStatusToogle [setStatus]="rol.read"></i>
+                </td>
+                <td class="text-center">
+                    <i class="text-xl icofont-verification-check" ColorStatusToogle [setStatus]="rol.delete"></i>
+                </td>
+                <td class="text-end">
+                    <dropdown-actions></dropdown-actions>
+                </td>
+            </tr>
+        } @empty {
+            <tr>
+                <td colspan="9">
+                    <load-spinner-block></load-spinner-block>
+                </td>
+            </tr>
+        }
+    </ng-container>
+</blade-table>
+<button type="button" class="border px-4 py-1" (click)="nextPage()">
+    siguiente
+</button>
+<button type="button" class="border px-4 py-1" (click)="prevtPage()">
+    anterior
+</button>

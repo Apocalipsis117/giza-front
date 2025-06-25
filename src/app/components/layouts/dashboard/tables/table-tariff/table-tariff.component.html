@@ -1,0 +1,22 @@
+<blade-table [bodyYDivider]="true" tableSize="sm">
+    <ng-container tableCols>
+        <col>
+        <col width="200">
+    </ng-container>
+    <ng-container tableHead>
+        <tr>
+            <th>Manual</th>
+            <th class="text-right">Valor</th>
+        </tr>
+    </ng-container>
+    <ng-container tableBody>
+        @for(item of [1,2,3]; track item) {
+        <tr>
+            <td>
+                <input-panel-select setPlaceholder="Seleccionar" setSize="sm"></input-panel-select>
+            </td>
+            <td class="text-right">150.000</td>
+        </tr>
+        }
+    </ng-container>
+</blade-table>

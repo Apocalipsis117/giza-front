@@ -1,0 +1,43 @@
+<form [formGroup]="form">
+    <div class="d-grid items-end">
+        <div class="col-span-2">
+            <input-panel-select setType="text" setLabel="Tipo de ID" />
+        </div>
+        <div class="col-span-2">
+            <input-panel-text setType="text" setLabel="Numero de identidad" />
+        </div>
+        <div class="col-span-4">
+            <input-panel-text setType="text" setLabel="Nombres" />
+        </div>
+        <div class="col-span-4">
+            <input-panel-text setType="text" setLabel="Apellidos" />
+        </div>
+        <div class="col-span-4">
+            <input-panel-text setType="text" setLabel="Direcion" />
+        </div>
+        <div class="col-span-4">
+            <input-panel-text setType="text" setLabel="Telefono" />
+        </div>
+        <div class="col-span-4">
+            <input-panel-text setType="email" setLabel="Correo" />
+        </div>
+        <div class="col-span-4">
+            <input-panel-text setType="email" setLabel="Numero de registro" formControlName="registrationNumber" />
+        </div>
+        <div class="col-span-4">
+            <input-panel-select [setOptions]="optionsDepartments()" setLabel="Departamento" formControlName="departmentId" />
+        </div>
+        <div class="col-span-4">
+            <input-panel-select [setOptions]="optionsCities()" setLabel="Ciudad" formControlName="cityId" />
+        </div>
+        <div class="col-span-4">
+            <input-panel-select [setOptions]="optionsJobtitle()" setLabel="Cargo laboral" formControlName="jobPositionId" />
+        </div>
+        <div class="col-span-4">
+            <input-panel-select [setOptions]="options()" setLabel="Contrato" formControlName="contractId" />
+        </div>
+        <div class="col-span-4">
+            <input-panel-checkbox [clean]="true" typeCheck="switch" setText="Estado" formControlName="status" />
+        </div>
+    </div>
+</form>

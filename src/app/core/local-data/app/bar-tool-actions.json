@@ -1,0 +1,94 @@
+{
+    "data": {
+        "barActions": [
+            {
+                "id": 1,
+                "action": "new",
+                "icon": "icofont-file-fill",
+                "display": [
+                    {
+                        "lang": "es",
+                        "title": "Nuevo"
+                    }
+                ]
+            },
+            {
+                "id": 2,
+                "icon": "icofont-diskette",
+                "action": "save",
+                "display": [
+                    {
+                        "lang": "es",
+                        "title": "Guardar"
+                    }
+                ]
+            },
+            {
+                "id": 3,
+                "icon": "icofont-ui-edit",
+                "action": "edit",
+                "display": [
+                    {
+                        "lang": "es",
+                        "title": "Editar"
+                    }
+                ]
+            },
+            {
+                "id": 4,
+                "icon": "icofont-search-1",
+                "action": "search",
+                "display": [
+                    {
+                        "lang": "es",
+                        "title": "Buscar"
+                    }
+                ]
+            },
+            {
+                "id": 5,
+                "icon": "icofont-print",
+                "action": "print",
+                "display": [
+                    {
+                        "lang": "es",
+                        "title": "Imprimir"
+                    }
+                ]
+            },
+            {
+                "id": 6,
+                "icon": "icofont-refresh",
+                "action": "undo",
+                "display": [
+                    {
+                        "lang": "es",
+                        "title": "Deshacer"
+                    }
+                ]
+            },
+            {
+                "id": 7,
+                "icon": "icofont-folder-open",
+                "action": "document",
+                "display": [
+                    {
+                        "lang": "es",
+                        "title": "Documento"
+                    }
+                ]
+            },
+            {
+                "id": 8,
+                "icon": "icofont-tools",
+                "action": "tools",
+                "display": [
+                    {
+                        "lang": "es",
+                        "title": "Herramientas"
+                    }
+                ]
+            }
+        ]
+    }
+}

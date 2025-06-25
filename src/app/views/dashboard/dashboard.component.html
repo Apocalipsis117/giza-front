@@ -1,0 +1,27 @@
+<section class="app-gisa block" [ngClass]="[appTheme().color, appTheme().mode]"><!-- app-color-teal -->
+    <div class="flex flex-wrap">
+        <div class="w-auto">
+            <menu-aside></menu-aside>
+        </div>
+        <main class="grow basis-[0]">
+            <div class="w-full block sticky top-0 z-[15]">
+                <tabs-controller/>
+            </div>
+            <div class="w-full">
+                <router-outlet />
+            </div>
+            <!-- notifications -->
+            <blade-offcanvas idConnect="notifications" setTitle="Bandeja de informacion">
+                <ng-container offcanvasBody>
+                    <list-notifications></list-notifications>
+                </ng-container>
+            </blade-offcanvas>
+            <!-- search -->
+            <blade-modal idConnect="searh-main" [disableFade]="true" [disableCenter]="true" setSize="lg" [hideHeader]="true">
+                <ng-container modalBody>
+                    content
+                </ng-container>
+            </blade-modal>
+        </main>
+    </div>
+</section>

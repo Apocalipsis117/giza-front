@@ -1,0 +1,30 @@
+<blade-panel section="setting" titleSection="Programa de atención">
+    <ng-container panels>
+        <div class="d-grid">
+            <div class="col-span-10">
+                <blade-tabs-horizontal [tabsControls]="tabsControls">
+                    <ng-container tabsBody>
+                        <article class="p-4" bsTabContent [idConnect]="tabsControls[0].idConnect" [isActive]="true">
+                            <div class="d-grid-gap-5">
+                                <div class="col-span-5">
+                                        <form-care-programs/>
+                                </div>
+                                <div class="col-span-7">
+                                    <div class="block border">
+                                        <table-care-programs/>
+                                    </div>
+                                </div>
+                            </div>
+                        </article>
+                        <article class="p-4" bsTabContent [idConnect]="tabsControls[1].idConnect">
+                            BBB
+                        </article>
+                        <article class="p-4" bsTabContent [idConnect]="tabsControls[2].idConnect">
+                            BBB
+                        </article>
+                    </ng-container>
+                </blade-tabs-horizontal>
+            </div>
+        </div>
+    </ng-container>
+</blade-panel>

@@ -1,0 +1,16 @@
+<form [formGroup]="form()">
+    <div class="d-grid items-end">
+        <div class="col-span-full">
+            <input-panel-text setLabel="Nombre centro de costo" formControlName="name" />
+        </div>
+        <div class="col-span-6">
+            <input-panel-text setType="number" setLabel="Cuenta contable" formControlName="accountingAccount" />
+        </div>
+        <div class="col-span-6">
+            <input-panel-checkbox setText="Estado" formControlName="status" [clean]="true" typeCheck="switch" />
+        </div>
+        <div class="col-span-full">
+            <input-panel-select setLabel="Area" [setOptions]="optionsArea()" formControlName="areaId" />
+        </div>
+    </div>
+</form>

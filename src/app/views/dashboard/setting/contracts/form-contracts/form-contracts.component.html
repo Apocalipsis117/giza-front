@@ -1,0 +1,103 @@
+<form [formGroup]="form()">
+    <div class="d-grid mb-4 items-end">
+        <div class="col-span-2">
+            <input-panel-text setLabel="Numero de contrato" formControlName="contractNumber" />
+        </div>
+        <div class="col-span-7">
+            <input-panel-text setLabel="Nombre" formControlName="contractName" />
+        </div>
+        <div class="col-span-3">
+            <input-panel-select [setOptions]="optionsModality()" setLabel="Modalidad" />
+        </div>
+        <div class="col-span-3">
+            <input-panel-select [setOptions]="optionsRegimen()" setLabel="Regimen" />
+        </div>
+        <div class="col-span-4">
+            <input-panel-select setLabel="Administradora" />
+        </div>
+
+        <div class="col-span-2">
+            <input-panel-text setType="number" setLabel="U.P.C" formControlName="upc" />
+        </div>
+        <div class="col-span-3">
+            <input-panel-time setLabel="Fecha de inicio" setType="date" formControlName="startDate" />
+        </div>
+        <div class="col-span-3">
+            <input-panel-time setLabel="Fecha final" setType="date" formControlName="endDate" />
+        </div>
+        <div class="col-span-3">
+            <input-panel-text setLabel="Cuenta de cobro" setType="number" formControlName="billingInvoice" />
+        </div>
+        <div class="col-span-3">
+            <input-panel-checkbox [clean]="true" typeCheck="switch" setText="Vigente"  formControlName="isActive" />
+        </div>
+        <div class="col-span-3">
+            <input-panel-checkbox [clean]="true" typeCheck="switch" setText="Copago"  formControlName="copayment" />
+        </div>
+        <div class="col-span-full">
+            <input-panel-textarea [setRow]="2" setLabel="Observacion" formControlName="observation" />
+        </div>
+    </div>
+    <div class="block mb-4">
+        <title-icon-section setTitle="Parametros" setIcon="icofont-gear" setSize="sm" />
+    </div>
+    <div class="d-grid">
+        <div class="col-span-6 d-grid">
+            <div class="col-span-6">Plan de beneficios</div>
+            <div class="col-span-6">
+                <input-panel-select [setOptions]="optionsBeneficies()" setSize="sm" formControlName="benefitPlanId" />
+            </div>
+            <div class="col-span-6">Manual Tarifarío</div>
+            <div class="col-span-6">
+                <input-panel-select setSize="sm" />
+            </div>
+            <div class="col-span-6">Tarifa medicamento</div>
+            <div class="col-span-6">
+                <input-panel-select setSize="sm" />
+            </div>
+            <div class="col-span-6">Tarifa materiales</div>
+            <div class="col-span-6">
+                <input-panel-select setSize="sm" />
+            </div>
+            <div class="col-span-6">Tarifa traslado</div>
+            <div class="col-span-6">
+                <input-panel-select setSize="sm" />
+            </div>
+            <div class="col-span-6">Tarifa oxigeno</div>
+            <div class="col-span-6">
+                <input-panel-select [setOptions]="optionsOxigenRate()" setSize="sm" formControlName="oxygenTariffId" />
+            </div>
+            <div class="col-span-6">Tipo de atención</div>
+            <div class="col-span-6">
+                <input-panel-select [setOptions]="optionsTypeAttention()" setSize="sm" formControlName="careTypeId" />
+            </div>
+            <div class="col-span-6">Nivel de observación</div>
+            <div class="col-span-6">
+                <input-panel-select [setOptions]="optionsLevel()" setSize="sm" formControlName="levelId" />
+            </div>
+        </div>
+        <div class="col-span-4 space-y-2">
+            <div class="block">
+                <input-panel-checkbox setText="Facturación grupal" typeCheck="switch" setSize="sm" [clean]="true" formControlName="groupBilling" />
+            </div>
+            <div class="block">
+                <input-panel-checkbox setText="Aut. Ambulatorio" typeCheck="switch" setSize="sm" [clean]="true" formControlName="outpatientAuthorization" />
+            </div>
+            <div class="block">
+                <input-panel-checkbox setText="Aut. Hospitalización" typeCheck="switch" setSize="sm" [clean]="true" formControlName="hospitalizationAuthorization" />
+            </div>
+            <div class="block">
+                <input-panel-checkbox setText="Aut. Urgencia" typeCheck="switch" setSize="sm" [clean]="true" formControlName="emergencyAuthorization" />
+            </div>
+            <div class="block">
+                <input-panel-checkbox setText="Multivitaminicos" typeCheck="switch" setSize="sm" [clean]="true" formControlName="multivitamins" />
+            </div>
+            <div class="block">
+                <input-panel-checkbox setText="Verificación de derechos" typeCheck="switch" setSize="sm" [clean]="true" formControlName="rightsVerification" />
+            </div>
+            <div class="block">
+                <input-panel-checkbox setText="Soat" typeCheck="switch" setSize="sm" [clean]="true" formControlName="soatCoverage" />
+            </div>
+        </div>
+    </div>
+</form>

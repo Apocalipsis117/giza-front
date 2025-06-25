@@ -1,0 +1,45 @@
+<form class="d-grid" [formGroup]="form()"><!--  -->
+    <div class="col-span-3">
+        <input-panel-text setLabel="Codigo" formControlName="code" />
+    </div>
+    <div class="col-span-3">
+        <input-panel-text setLabel="Codigo habitación" formControlName="roomCode" />
+    </div>
+    <div class="col-span-6">
+        <input-panel-text setLabel="Nombre" formControlName="name" />
+    </div>
+    <div class="col-span-4">
+        <input-panel-text setLabel="Direccion" formControlName="address" />
+    </div>
+    <div class="col-span-3">
+        <input-panel-text setLabel="Telefono" formControlName="phone" />
+    </div>
+    <div class="col-span-5">
+        <input-panel-text setLabel="Correo" formControlName="email" />
+    </div>
+    <div class="col-span-4">
+        <input-panel-select [setOptions]="optionsDepartment()" setLabel="departamento" formControlName="departmentId" />
+    </div>
+    <div class="col-span-4">
+        <input-panel-select [setOptions]="optionsCities()" setLabel="municipio" [hiddenLoad]="true" formControlName="cityId" />
+    </div>
+    <div class="col-span-4">
+        <input-panel-select [setOptions]="optionsLegalNature()" setLabel="Naturaleza Juridica" formControlName="legalNatureId" />
+    </div>
+    <div class="col-span-4">
+        <input-panel-select [setOptions]="optionsLevelComplexity()" setLabel="Nivel de complejidad" formControlName="complexityLevelId" />
+    </div>
+    <div class="col-span-8">
+        <blade-panel-options>
+            <ng-container optionsBody>
+            <div class="col-span-4">
+                <input-panel-checkbox setSize="sm" setText="A remitir" typeCheck="switch" [clean]="true" formControlName="toRefer" />
+            </div>
+            <div class="col-span-4">
+                <input-panel-checkbox setSize="sm" setText="Que Remite" typeCheck="switch" [clean]="true" formControlName="whoRefer" />
+            </div>
+            </ng-container>
+        </blade-panel-options>
+    </div>
+    <!--  -->
+</form>

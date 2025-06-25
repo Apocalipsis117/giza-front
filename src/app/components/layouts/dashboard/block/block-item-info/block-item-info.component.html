@@ -1,0 +1,13 @@
+<div class="flex justify-between gap-2">
+    <div class="w-auto">
+        @if(setIcon()) {
+            <i [ngClass]="setIcon()" class="mr-2"></i>
+        }
+        @if(setLabel()) {
+            <span>{{ setLabel() }}</span>
+        }
+    </div>
+    <div class="float-right">
+        {{ setText() }}
+    </div>
+</div>

@@ -1,0 +1,1 @@
+export { slideInAnimation }  from './input-output-view';

@@ -1,0 +1,19 @@
+<button
+    [type]="setType"
+    class="btn w-full relative overflow-hidden rounded-md"
+    [disabled]="isDisabled"
+    [ngClass]="[buttonSize(), color(), active()]"
+    (click)="emit()"
+    BtnBsToggle
+    [setRole]="setRole"
+    [idConnect]="idConnect"
+    effectBumbble
+    #button
+>
+    @if (setIcon()) {
+        <i [ngClass]="setIcon()"></i>
+    }
+    @if (setTitle()) {
+        <span [ngClass]="[marginIconText()]">{{ setTitle() }}</span>
+    }
+</button>

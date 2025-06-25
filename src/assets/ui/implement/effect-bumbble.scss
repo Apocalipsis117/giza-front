@@ -1,0 +1,26 @@
+.effect-dark .im-effect-bumbble {
+    --im-bumbble-bg-color: 0, 0, 0;
+}
+.effect-light .im-effect-bumbble {
+    --im-bumbble-bg-color: 255, 255, 255;
+}
+.im-effect-bumbble {
+    --im-bumbble-size: 0px;
+    --im-bumbble-opacity: 1;
+    --im-bumbble-position-y: 0px;
+    --im-bumbble-position-x: 0px;
+    --im-bumbble-bg-color: 57, 37, 81;
+    user-select: none;
+    pointer-events: none;
+    position: absolute;
+    background-color: rgb(var(--im-bumbble-bg-color), 0.1);
+    border-radius: 50%;
+    width: var(--im-bumbble-size);
+    height: var(--im-bumbble-size);
+    top: var(--im-bumbble-position-y);
+    left: var(--im-bumbble-position-x);
+    transform: translate(-50%, -50%);
+    opacity: var(--im-bumbble-opacity);
+    transition: 0.5s ease;
+    transition-property: width, height, opacity;
+}

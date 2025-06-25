@@ -1,0 +1,33 @@
+{
+    "data": {
+        "steps": [
+            {
+                "id": 1,
+                "display": [
+                    {
+                        "lang": "es",
+                        "title": "Datos principales"
+                    }
+                ]
+            },
+            {
+                "id": 2,
+                "display": [
+                    {
+                        "lang": "es",
+                        "title": "Representantes"
+                    }
+                ]
+            },
+            {
+                "id": 3,
+                "display": [
+                    {
+                        "lang": "es",
+                        "title": "Parametros de facturación"
+                    }
+                ]
+            }
+        ]
+    }
+}

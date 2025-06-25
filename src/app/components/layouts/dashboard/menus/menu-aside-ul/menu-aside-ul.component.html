@@ -1,0 +1,10 @@
+<ul class="ul-menu-aside">
+    @for(item of items(); track item.id; let i = $index) {
+        <li>
+            <button type="button" [routerLink]="[item.path]" [disabled]="item.path === '/error-http/404'" routerLinkActive="active" class="btn-menu-aside" (click)="change(item)">
+                <i class="mr-3" [ngClass]="item.icon"></i>
+                <span class="btn-label">{{ item.display }}</span>
+            </button>
+        </li>
+    }
+</ul>

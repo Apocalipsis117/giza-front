@@ -1,0 +1,10 @@
+<section class="grid" [ngClass]="[uiList().colSpan]">
+    @for(item of items(); track item.id) {
+        <div>
+            <item-pharmacy [data]="item" [uiItem]="uiList().ui" />
+        </div>
+    }
+    <div class="col-span-full mt-4">
+        <btns-paginate />
+    </div>
+</section>

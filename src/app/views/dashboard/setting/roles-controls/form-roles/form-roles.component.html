@@ -1,0 +1,50 @@
+<form [formGroup]="form" (submit)="save()">
+    <div class="d-grid">
+        <div class="col-span-6">
+            <input-panel-select [setOptions]="cargosOptions()" formControlName="cargo_id" setLabel="Cargo"/>
+        </div>
+        <div class="col-span-6">
+            <input-panel-text setLabel="Nombre rol" formControlName="nombre"/>
+        </div>
+        <div class="col-span-full">
+            <input-panel-text setLabel="Descripcion" formControlName="description"/>
+        </div>
+        <div class="col-span-full py-4">
+            <blade-table [bodyYDivider]="true" tableSize="sm">
+                <ng-container tableCols>
+                    <col>
+                    <col width="100">
+                </ng-container>
+                <ng-container tableBody>
+                    <tr>
+                        <td><i class="icofont-ui-edit mr-2"></i> Crear</td>
+                        <td class="text-right">
+                            <input-panel-switch formControlName="crear"/>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td><i class="icofont-ui-edit mr-2"></i> Editar</td>
+                        <td class="text-right">
+                            <input-panel-switch formControlName="editar"/>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td><i class="icofont-ui-file mr-2"></i> Leer</td>
+                        <td class="text-right">
+                            <input-panel-switch formControlName="leer"/>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td><i class="icofont-trash mr-2"></i> Eliminar</td>
+                        <td class="text-right">
+                            <input-panel-switch formControlName="eliminar"/>
+                        </td>
+                    </tr>
+                </ng-container>
+            </blade-table>
+        </div>
+        <div class="col-span-full">
+            <input-panel-checkbox setText="Estado"/>
+        </div>
+    </div>
+</form>

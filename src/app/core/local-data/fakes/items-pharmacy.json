@@ -1,0 +1,267 @@
+{
+    "data": {
+        "itmes": [
+            {
+                "id": 1,
+                "icon": "icofont-medicine",
+                "inventory": {
+                    "quantity": 432,
+                    "min": 50,
+                    "max": 500,
+                    "category": "Antibiotic",
+                    "tags": [
+                        {
+                            "id": 1,
+                            "tag": "Intravenosa"
+                        }
+                    ]
+                },
+                "indications": {
+                    "yearsold": {
+                        "min": 23,
+                        "max": 42
+                    }
+                },
+                "display": [
+                    {
+                        "lang": "es",
+                        "description": "landgravate nabak stemhead intraligamentous phytogeography",
+                        "name": "Paracetamol"
+                    }
+                ]
+            },
+            {
+                "id": 2,
+                "icon": "icofont-drug",
+                "inventory": {
+                    "quantity": 127,
+                    "min": 50,
+                    "max": 200,
+                    "category": "Generico",
+                    "tags": [
+                        {
+                            "id": 1,
+                            "tag": "Oral"
+                        }
+                    ]
+                },
+                "indications": {
+                    "yearsold": {
+                        "min": 23,
+                        "max": 42
+                    }
+                },
+                "display": [
+                    {
+                        "lang": "es",
+                        "description": "landgravate nabak stemhead intraligamentous phytogeography",
+                        "name": "Acetaminofen"
+                    }
+                ]
+            },
+            {
+                "id": 3,
+                "icon": "icofont-first-aid-alt",
+                "inventory": {
+                    "quantity": 127,
+                    "min": 50,
+                    "max": 200,
+                    "category": "Generico",
+                    "tags": [
+                        {
+                            "id": 1,
+                            "tag": "Exterior"
+                        }
+                    ]
+                },
+                "indications": {
+                    "yearsold": {
+                        "min": 23,
+                        "max": 42
+                    }
+                },
+                "display": [
+                    {
+                        "lang": "es",
+                        "description": "landgravate nabak stemhead intraligamentous phytogeography",
+                        "name": "Espaladrapo"
+                    }
+                ]
+            },
+            {
+                "id": 4,
+                "icon": "icofont-medicine",
+                "inventory": {
+                    "quantity": 1,
+                    "min": 50,
+                    "max": 500,
+                    "category": "Antibiotic",
+                    "tags": [
+                        {
+                            "id": 1,
+                            "tag": "Intravenosa"
+                        }
+                    ]
+                },
+                "indications": {
+                    "yearsold": {
+                        "min": 23,
+                        "max": 42
+                    }
+                },
+                "display": [
+                    {
+                        "lang": "es",
+                        "description": "landgravate nabak stemhead intraligamentous phytogeography",
+                        "name": "Sifloxacilina"
+                    }
+                ]
+            },
+            {
+                "id": 5,
+                "icon": "icofont-injection-syringe",
+                "inventory": {
+                    "quantity": 302,
+                    "min": 50,
+                    "max": 500,
+                    "category": "Antibiotic",
+                    "tags": [
+                        {
+                            "id": 1,
+                            "tag": "Intravenosa"
+                        }
+                    ]
+                },
+                "indications": {
+                    "yearsold": {
+                        "min": 20,
+                        "max": 42
+                    }
+                },
+                "display": [
+                    {
+                        "lang": "es",
+                        "description": "landgravate nabak stemhead intraligamentous phytogeography",
+                        "name": "Complejo B"
+                    }
+                ]
+            },
+            {
+                "id": 6,
+                "icon": "icofont-blood",
+                "inventory": {
+                    "quantity": 302,
+                    "min": 50,
+                    "max": 500,
+                    "category": "Antibiotic",
+                    "tags": [
+                        {
+                            "id": 1,
+                            "tag": "Intravenosa"
+                        }
+                    ]
+                },
+                "indications": {
+                    "yearsold": {
+                        "min": 20,
+                        "max": 42
+                    }
+                },
+                "display": [
+                    {
+                        "lang": "es",
+                        "description": "landgravate nabak stemhead intraligamentous phytogeography",
+                        "name": "Suero vitaminado"
+                    }
+                ]
+            },
+            {
+                "id": 7,
+                "icon": "icofont-blood",
+                "inventory": {
+                    "quantity": 302,
+                    "min": 50,
+                    "max": 500,
+                    "category": "Antibiotic",
+                    "tags": [
+                        {
+                            "id": 1,
+                            "tag": "Intravenosa"
+                        }
+                    ]
+                },
+                "indications": {
+                    "yearsold": {
+                        "min": 20,
+                        "max": 42
+                    }
+                },
+                "display": [
+                    {
+                        "lang": "es",
+                        "description": "landgravate nabak stemhead intraligamentous phytogeography",
+                        "name": "Suero normal"
+                    }
+                ]
+            },
+            {
+                "id": 8,
+                "icon": "icofont-medicine",
+                "inventory": {
+                    "quantity": 432,
+                    "min": 50,
+                    "max": 500,
+                    "category": "Antibiotic",
+                    "tags": [
+                        {
+                            "id": 1,
+                            "tag": "Intravenosa"
+                        }
+                    ]
+                },
+                "indications": {
+                    "yearsold": {
+                        "min": 23,
+                        "max": 42
+                    }
+                },
+                "display": [
+                    {
+                        "lang": "es",
+                        "description": "landgravate nabak stemhead intraligamentous phytogeography",
+                        "name": "Paracetamol"
+                    }
+                ]
+            },
+            {
+                "id": 9,
+                "icon": "icofont-drug",
+                "inventory": {
+                    "quantity": 127,
+                    "min": 50,
+                    "max": 200,
+                    "category": "Generico",
+                    "tags": [
+                        {
+                            "id": 1,
+                            "tag": "Oral"
+                        }
+                    ]
+                },
+                "indications": {
+                    "yearsold": {
+                        "min": 23,
+                        "max": 42
+                    }
+                },
+                "display": [
+                    {
+                        "lang": "es",
+                        "description": "landgravate nabak stemhead intraligamentous phytogeography",
+                        "name": "Acetaminofen"
+                    }
+                ]
+            }
+        ]
+    }
+}

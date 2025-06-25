@@ -1,0 +1,37 @@
+<blade-table [headDivider]="true">
+    <ng-container tableActions>
+        <form-referral-audit></form-referral-audit>
+    </ng-container>
+    <ng-container tableHead>
+        <tr>
+            <th class="text-center" width="60">
+                <input class="form-check-input" type="checkbox" value="">
+            </th>
+            <th>Auxiliar</th>
+            <th>Externo</th>
+            <th>fecha</th>
+            <th>Entidad</th>
+            <th>Paciente</th>
+            <th>EPS</th>
+            <th>Entrega</th>
+            <th class="text-end" width="100">Accion</th>
+        </tr>
+    </ng-container>
+    <ng-container tableBody>
+        <tr>
+            <td class="text-center">
+                <input class="form-check-input" type="checkbox" value="">
+            </td>
+            <td>---</td>
+            <td>---</td>
+            <td>---</td>
+            <td>---</td>
+            <td>---</td>
+            <td>---</td>
+            <td>---</td>
+            <td class="text-end">
+                <app-button setTitle="Ver" class="inline-block" setSize="sm" setIcon="icofont-ui-edit" (click)="tableAction()" />
+            </td>
+        </tr>
+    </ng-container>
+</blade-table>

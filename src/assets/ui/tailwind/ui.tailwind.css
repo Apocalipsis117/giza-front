@@ -1,0 +1,20 @@
+.d-grid-gap-3,
+.d-grid-gap-4,
+.d-grid-gap-5,
+.d-grid {
+    @apply grid grid-cols-12 gap-2;
+}
+
+.d-grid-gap-3 {
+    @apply gap-3;
+}
+.d-grid-gap-4 {
+    @apply gap-4;
+}
+.d-grid-gap-5 {
+    @apply gap-5;
+}
+
+.d-flex {
+    @apply flex flex-wrap w-full;
+}

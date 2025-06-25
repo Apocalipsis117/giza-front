@@ -1,0 +1,61 @@
+@if(data()) {
+<div class="d-grid">
+    <div class="col-span-full mb-2 text-xl">
+        <h1>{{ value().name }}</h1>
+        <badge-status [setStatus]="value().active" />
+    </div>
+    <ul class="col-span-full ul-list-row">
+        <li>
+            <div class="col-span-6">
+                <small>Codigo</small>
+                <div>{{ value().code }}</div>
+            </div>
+            <div class="col-span-3">
+                <small>Min edad</small>
+                <div>{{ value().minAge }}</div>
+            </div>
+            <div class="col-span-3">
+                <small>Max edad</small>
+                <div>{{ value().maxAge }}</div>
+            </div>
+        </li>
+        <li>
+            <div class="col-span-4">
+                <small>Sexo</small>
+                <div>{{ value().genderName }}</div>
+            </div>
+            <div class="col-span-8">
+                <small>Categía</small>
+                <div>{{ value().categoryName }}</div>
+            </div>
+        </li>
+        <li>
+            <div class="col-span-6">
+                <small>Rango</small>
+                <div>{{ value().categoryRange }}</div>
+            </div>
+            <div class="col-span-6">
+                <small>Capitulo</small>
+                <div>{{ value().charterName }}</div>
+            </div>
+        </li>
+    </ul>
+    <div class="col-span-full font-bold"><i class="icofont-settings mr-2"></i> Opciones</div>
+    <ul class="col-span-full divide-y">
+        <li>
+            <block-switch-status [active]="value().notify">Notificacin</block-switch-status>
+        </li>
+        <li>
+            <block-switch-status [active]="value().procedure">Procedimiento</block-switch-status>
+        </li>
+        <li>
+            <block-switch-status [active]="value().hospitalization">Hopitalizacion</block-switch-status>
+        </li>
+        <li>
+            <block-switch-status [active]="value().common">Común</block-switch-status>
+        </li>
+    </ul>
+</div>
+} @else {
+    <select-some-item />
+}

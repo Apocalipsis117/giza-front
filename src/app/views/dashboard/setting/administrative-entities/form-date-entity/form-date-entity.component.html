@@ -1,0 +1,66 @@
+<form [formGroup]="form" class="space-y-4">
+    <div class="d-grid items-end">
+        <div class="col-span-3">
+            <input-panel-text setText="Nit" setIcon="icofont-ui-v-card" formControlName="taxId" />
+        </div>
+        <div class="col-span-3">
+            <input-panel-text setLabel="Código Entidad" formControlName="code" />
+        </div>
+        <div class="col-span-6">
+            <input-panel-text setLabel="Nombre Entidad" formControlName="name" />
+        </div>
+        <div class="col-span-3">
+            <input-panel-select setLabel="Departamento" [setOptions]="optionsDepartment()" formControlName="stateId" />
+        </div>
+        <div class="col-span-3">
+            <input-panel-select setLabel="Municipio" [setOptions]="optionsCities()" formControlName="cityId" [hiddenLoad]="true" />
+        </div>
+        <div class="col-span-6">
+            <input-panel-text setLabel="Dirección administrativa" formControlName="address" />
+        </div>
+        <div class="col-span-3">
+            <input-panel-text setLabel="Dirección radicación" formControlName="filingAddress" />
+        </div>
+        <div class="col-span-3">
+            <input-panel-text setType="tel" setLabel="Teléfono" formControlName="phone" />
+        </div>
+        <div class="col-span-3">
+            <input-panel-text setType="email" setLabel="Correo electrónico" formControlName="email" />
+        </div>
+        <div class="col-span-3">
+            <input-panel-select setLabel="régimen" [setOptions]="optionsRegime()" formControlName="regimeId" /><!--  -->
+        </div>
+        <div class="col-span-2">
+            <input-panel-text setType="number" setLabel="Long. autorización" formControlName="authorizationLength" />
+        </div>
+        <div class="col-span-2">
+            <input-panel-text setType="number" setLabel="N° copias" formControlName="hasCopies" />
+        </div>
+        <div class="col-span-4">
+            <input-panel-text setType="text" setLabel="Otros datos" formControlName="otherData" />
+        </div>
+    </div>
+    <div class="block">
+        <title-icon-section setTitle="Caracteristicas" setIcon="icofont-ui-check" setSize="sm" />
+    </div>
+    <div class="d-grid items-end">
+        <div class="col-span-4">
+            <input-panel-checkbox typeCheck="switch" [clean]="true" setText="Rips Dígitos de verificación Nit" formControlName="ripsTaxIdVerification" />
+        </div>
+        <div class="col-span-4">
+            <input-panel-checkbox typeCheck="switch" [clean]="true" setText="Requiere anexo 2 (atención inicial)" formControlName="requiresAnnex2" />
+        </div>
+        <div class="col-span-4">
+            <input-panel-checkbox typeCheck="switch" [clean]="true" setText="SOAT" formControlName="hasInsurance" />
+        </div>
+        <div class="col-span-4">
+            <input-panel-checkbox typeCheck="switch" [clean]="true" setText="Activo" formControlName="isActive" />
+        </div>
+        <div class="col-span-4">
+            <input-panel-checkbox typeCheck="switch" [clean]="true" setText="Reporte resolución 256" value="1" (eventCheck)="eventCheck($event)" />
+        </div>
+        <div class="col-span-4">
+            <input-panel-checkbox typeCheck="switch" [clean]="true" setText="Reporte resolución 1552" value="2" (eventCheck)="eventCheck($event)" />
+        </div>
+    </div>
+</form>

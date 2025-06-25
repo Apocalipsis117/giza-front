@@ -1,0 +1,28 @@
+<div class="w-full" [ngClass]="verticalContent">
+    @if(setLabel()){
+        <label class="form-label text-gray-500 text-[0.95rem] col-span-2" [for]="id">{{ setLabel() }}</label>
+    }
+    <div class="input-group col-span-3" [ngClass]="[inputSize()]">
+        @if(setIcon()) {
+            <span class="input-group-text">
+                <i [ngClass]="setIcon()"></i>
+            </span>
+        }
+        @if(setText()) {
+            <span class="input-group-text">{{ setText() }}</span>
+        }
+        <select class="form-select" [id]="id" (change)="select($event)" [disabled]="!active()">
+            @if(setPlaceholder()) {
+                <option selected disabled>{{ setPlaceholder() }}</option>
+            }
+            @for(option of options(); track option.value) {
+                <option [value]="option.value" [selected]="option.value === currentValue">{{ option.name }}</option>
+            }
+        </select>
+        @if (!active() && !hiddenLoad()) {
+            <div class="input-group-text input-text-white">
+                <div class="spinner-border spinner-border-sm text-default-500" role="status"></div>
+            </div>
+        }
+    </div>
+</div>

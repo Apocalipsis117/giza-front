@@ -1,0 +1,20 @@
+<blade-table [headDivider]="true" [activeSearch]="true">
+    <ng-container tableHead>
+        <tr>
+            <th>Nombre</th>
+            <th>Telefono</th>
+            <th>Estado</th>
+            <th width="100">Acciones</th>
+        </tr>
+    </ng-container>
+    <ng-container tableBody>
+        <tr>
+            <td>Ferreira</td>
+            <td>317884432</td>
+            <td>activo</td>
+            <td class="text-right">
+                <dropdown-actions></dropdown-actions>
+            </td>
+        </tr>
+    </ng-container>
+</blade-table>

@@ -1,0 +1,307 @@
+{
+    "data": {
+        "path": "/dashboard/setting/",
+        "menuShortcut": [
+            {
+                "uuid": "09048e05-29cb-423b-b624-4e2b9a1ac00c",
+                "path": "/dashboard/setting/ips",
+                "icon": "icofont-users-alt-5",
+                "color": "text-red-400",
+                "display": [
+                    {
+                        "lang": "es",
+                        "title": "IPS"
+                    }
+                ]
+            },
+            {
+                "uuid": "f275ad50-3787-446b-ba60-c1f2866522ac",
+                "path": "/dashboard/setting/assistance-service",
+                "icon": "icofont-ui-alarm",
+                "color": "text-amber-400",
+                "display": [
+                    {
+                        "lang": "es",
+                        "title": "Servicios Asistenciales"
+                    }
+                ]
+            },
+            {
+                "uuid": "7f151fd9-3155-4a51-bb3c-37cc39b9f57b",
+                "path": "/dashboard/setting/vehicles",
+                "icon": "icofont-ambulance",
+                "color": "text-green-400",
+                "display": [
+                    {
+                        "lang": "es",
+                        "title": "Vehiculos"
+                    }
+                ]
+            },
+            {
+                "uuid": "a8c6082c-510a-4e3c-b697-50c43f63b879",
+                "path": "/dashboard/setting/cups",
+                "icon": "icofont-bricks",
+                "color": "text-emerald-400",
+                "display": [
+                    {
+                        "lang": "es",
+                        "title": "CUPS"
+                    }
+                ]
+            },
+            {
+                "uuid": "829d297a-aba5-4ad7-b730-34e199271db0",
+                "path": "/dashboard/setting/medicines",
+                "icon": "icofont-drug",
+                "color": "text-teal-400",
+                "display": [
+                    {
+                        "lang": "es",
+                        "title": "Medicamentos"
+                    }
+                ]
+            },
+            {
+                "uuid": "c8508808-0fbf-4e66-b8b3-06c0766e7d90",
+                "path": "",
+                "icon": "icofont-ui-social-link",
+                "color": "text-cyan-400",
+                "display": [
+                    {
+                        "lang": "es",
+                        "title": "Tegnología PyP"
+                    }
+                ]
+            },
+            {
+                "uuid": "a63eccb1-e011-40cb-8842-5465587c1ed9",
+                "path": "/dashboard/setting/contracts",
+                "icon": "icofont-handshake-deal",
+                "color": "text-sky-400",
+                "display": [
+                    {
+                        "lang": "es",
+                        "title": "Contratos"
+                    }
+                ]
+            },
+            {
+                "uuid": "fb633869-745a-4e7d-b711-834fa83c359b",
+                "path": "/dashboard/setting/administrative-entities",
+                "icon": "icofont-bank-alt",
+                "color": "text-blue-400",
+                "display": [
+                    {
+                        "lang": "es",
+                        "title": "Entidades Administradoras"
+                    }
+                ]
+            },
+            {
+                "uuid": "00a4b6b0-f61a-497d-9b5c-20f2e729e212",
+                "path": "/dashboard/setting/institutions",
+                "icon": "icofont-paper-plane",
+                "color": "text-indigo-400",
+                "display": [
+                    {
+                        "lang": "es",
+                        "title": "Instituciones"
+                    }
+                ]
+            },
+            {
+                "uuid": "8ba1cbdd-1cef-4d89-ba84-1b86e4989b56",
+                "path": "/dashboard/setting/cups-group",
+                "icon": "icofont-test-bottle",
+                "color": "text-violet-400",
+                "display": [
+                    {
+                        "lang": "es",
+                        "title": "Grupos CUPS"
+                    }
+                ]
+            },
+            {
+                "uuid": "86907ef9-d785-4f33-86bd-3c27ebfb6140",
+                "path": "/dashboard/setting/care-programs",
+                "icon": "icofont-users",
+                "color": "text-fuchsia-400",
+                "display": [
+                    {
+                        "lang": "es",
+                        "title": "Programa de atención"
+                    }
+                ]
+            },
+            {
+                "uuid": "86907ef9-d785-4f33-86bd-3c27ebfb6140",
+                "path": "",
+                "icon": "icofont-ui-social-link",
+                "color": "text-pink-400",
+                "display": [
+                    {
+                        "lang": "es",
+                        "title": "Programa PyP"
+                    }
+                ]
+            },
+            {
+                "uuid": "2502838e-baed-4e5d-a815-60a97943d276",
+                "path": "/dashboard/setting/employees",
+                "icon": "icofont-girl",
+                "color": "text-rose-400",
+                "display": [
+                    {
+                        "lang": "es",
+                        "title": "Empleados"
+                    }
+                ]
+            },
+            {
+                "uuid": "b6a27a58-2b2b-4988-8725-aa9e35c21e7b",
+                "path": "/dashboard/setting/diagnosis",
+                "icon": "icofont-heart-beat",
+                "color": "text-orange-400",
+                "display": [
+                    {
+                        "lang": "es",
+                        "title": "Diagnostico"
+                    }
+                ]
+            },
+            {
+                "uuid": "e347f95f-41a8-4d4d-bd3e-8f96260bb25d",
+                "path": "",
+                "icon": "icofont-dropbox",
+                "color": "text-amber-400",
+                "display": [
+                    {
+                        "lang": "es",
+                        "title": "Materiales e insumo"
+                    }
+                ]
+            },
+            {
+                "uuid": "db36baf7-6c4f-49f7-8903-3053fa375ea0",
+                "path": "",
+                "icon": "icofont-clip-board",
+                "color": "text-yellow-400",
+                "display": [
+                    {
+                        "lang": "es",
+                        "title": "Preriodo de facturación"
+                    }
+                ]
+            },
+            {
+                "uuid": "65f4543b-ed56-45de-8ac1-0906d0630ae6",
+                "path": "/dashboard/setting/hospital-services",
+                "icon": "icofont-patient-file",
+                "color": "text-lime-400",
+                "display": [
+                    {
+                        "lang": "es",
+                        "title": "Servicios hospitalarios"
+                    }
+                ]
+            },
+            {
+                "uuid": "a06985cb-d38a-4539-893d-a2ecf6e07405",
+                "path": "/dashboard/setting/cost-center",
+                "icon": "icofont-coins",
+                "color": "text-green-400",
+                "display": [
+                    {
+                        "lang": "es",
+                        "title": "Centro de costos"
+                    }
+                ]
+            },
+            {
+                "uuid": "fa18c073-c400-408b-a895-9cea74fedf6f",
+                "path": "/dashboard/setting/diagnostic-group",
+                "icon": "icofont-heart-beat",
+                "color": "text-emerald-400",
+                "display": [
+                    {
+                        "lang": "es",
+                        "title": "Grupos diagnosticos"
+                    }
+                ]
+            },
+            {
+                "uuid": "aafa46bd-69f0-4bf5-9b00-7b987dd23539",
+                "path": "/dashboard/setting/adverse-events",
+                "icon": "icofont-bullhorn",
+                "color": "text-cyan-400",
+                "display": [
+                    {
+                        "lang": "es",
+                        "title": "Eventos adversos"
+                    }
+                ]
+            },
+            {
+                "uuid": "347c3dc0-1405-4783-8b87-37c2e2a622b8",
+                "path": "",
+                "icon": "icofont-home",
+                "color": "text-sky-400",
+                "display": [
+                    {
+                        "lang": "es",
+                        "title": "Directorios"
+                    }
+                ]
+            },
+            {
+                "uuid": "a5afee3d-3ec6-4199-baed-eaf197a4d2b4",
+                "path": "/dashboard/setting/cash-receipt-concept",
+                "icon": "icofont-dropbox",
+                "color": "text-blue-400",
+                "display": [
+                    {
+                        "lang": "es",
+                        "title": "Conceptos recibidos de caja"
+                    }
+                ]
+            },
+            {
+                "uuid": "b143ba69-cbb5-47f3-853a-cbaab462fa57",
+                "path": "",
+                "icon": "icofont-home",
+                "color": "text-indigo-400",
+                "display": [
+                    {
+                        "lang": "es",
+                        "title": "Barrios o veredas"
+                    }
+                ]
+            },
+            {
+                "uuid": "211ee847-74bd-4ed6-ad96-8a315f839e76",
+                "path": "/dashboard/setting/roles",
+                "icon": "icofont-company",
+                "color": "text-purple-400",
+                "display": [
+                    {
+                        "lang": "es",
+                        "title": "Roles"
+                    }
+                ]
+            },
+            {
+                "uuid": "211ee847-74bd-4ed6-ad96-8a315f839e76",
+                "path": "/dashboard/setting/rip-concept",
+                "icon": "icofont-quote-right",
+                "color": "text-fuchsia-400",
+                "display": [
+                    {
+                        "lang": "es",
+                        "title": "Concepto RIP"
+                    }
+                ]
+            }
+        ]
+    }
+}

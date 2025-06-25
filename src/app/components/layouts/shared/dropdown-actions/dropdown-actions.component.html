@@ -1,0 +1,17 @@
+<div class="dropdown dropdown-menu-end">
+    <button class="btn btn-sm btn-light btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+        <i class="icofont-navigation-menu"></i>
+    </button>
+    <div class="dropdown-menu list-content">
+        <ul class="ul-list">
+            @for(item of actions; track item.id) {
+                <li class="li-list">
+                    <button type="button" class="btn-list" [ngClass]="item.color" (click)="emitAction(item.id)">
+                        <i class="mr-2" [ngClass]="item.icon"></i>
+                        <span>{{ item.display }}</span>
+                    </button>
+                </li>
+            }
+        </ul>
+    </div>
+</div>

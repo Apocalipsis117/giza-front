@@ -1,0 +1,15 @@
+@if(setLabel()){
+    <label class="form-label text-gray-500 text-[0.95rem] col-span-2">{{ setLabel() }}</label>
+}
+<div class="w-full input-clean radio">
+    <div class="grid gap-3" [ngClass]="gridCols()">
+        @for(item of setOptions(); let idx = $index; track idx) {
+            <div class="form-control">
+                <div class="form-check">
+                    <input class="form-check-input" [value]="item.value" type="radio" [name]="idGroup" [id]="idGroup + idx">
+                    <label class="form-check-label" [for]="idGroup + idx">{{ item.name }}</label>
+                </div>
+            </div>
+        }
+    </div>
+</div>

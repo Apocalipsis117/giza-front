@@ -1,0 +1,126 @@
+{
+    "data": {
+        "menuShortcut": [
+            {
+                "uuid": "b2ce9767-bd7f-4e06-bff8-d9d322b867aa",
+                "path": "/dashboard/principal/patients",
+                "icon": "icofont-ui-handicapped",
+                "color": "text-red-400",
+                "display": [
+                    {
+                        "lang": "es",
+                        "title": "Pacientes"
+                    }
+                ]
+            },
+            {
+                "uuid": "ce1246b0-a893-4986-b57f-fca409a1d84d",
+                "path": "/dashboard/principal/medical-agenda",
+                "icon": "icofont-contact-add",
+                "color": "text-amber-400",
+                "display": [
+                    {
+                        "lang": "es",
+                        "title": "Agenda Medica"
+                    }
+                ]
+            },
+            {
+                "uuid": "eaea698e-06c9-4e74-8d76-d97ee510f1d9",
+                "path": "/dashboard/principal/billing",
+                "icon": "icofont-coins",
+                "color": "text-green-400",
+                "display": [
+                    {
+                        "lang": "es",
+                        "title": "Facturación"
+                    }
+                ]
+            },
+            {
+                "uuid": "a4152723-dc79-4cba-8d8b-562d2bc39912",
+                "path": "/dashboard/principal/group-billing",
+                "icon": "icofont-group",
+                "color": "text-emerald-400",
+                "display": [
+                    {
+                        "lang": "es",
+                        "title": "Facturación Grupal"
+                    }
+                ]
+            },
+            {
+                "uuid": "bcbf0a03-9c3c-4f67-ad46-0952809ab23a",
+                "path": "/dashboard/principal/auth-annex",
+                "icon": "icofont-ui-clip-board",
+                "color": "text-teal-400",
+                "display": [
+                    {
+                        "lang": "es",
+                        "title": "Autorizaciones anexo 3"
+                    }
+                ]
+            },
+            {
+                "uuid": "41f691d3-7b3a-4be3-b781-7cacb0176329",
+                "path": "/dashboard/principal/cash-receipts",
+                "icon": "icofont-files-stack",
+                "color": "text-cyan-400",
+                "display": [
+                    {
+                        "lang": "es",
+                        "title": "Recibos de caja"
+                    }
+                ]
+            },
+            {
+                "uuid": "41f691d3-7b3a-4be3-b781-7cacb0176329",
+                "path": "/dashboard/principal/incivility-annex",
+                "icon": "icofont-files-stack",
+                "color": "text-sky-400",
+                "display": [
+                    {
+                        "lang": "es",
+                        "title": "Inconsistencias anexo 1"
+                    }
+                ]
+            },
+            {
+                "uuid": "a8afd7fc-d0f0-4e87-ae23-1622195d55f6",
+                "path": "/dashboard/principal/billable-admissions",
+                "icon": "icofont-ui-clock",
+                "color": "text-blue-400",
+                "display": [
+                    {
+                        "lang": "es",
+                        "title": "Admisiones por facturar"
+                    }
+                ]
+            },
+            {
+                "uuid": "56f1a71d-f1e0-41a1-9bd0-cc9716ca88b5",
+                "path": "/dashboard/principal/auth-consults",
+                "icon": "icofont-safety",
+                "color": "text-indigo-400",
+                "display": [
+                    {
+                        "lang": "es",
+                        "title": "Consultar autorizaciones"
+                    }
+                ]
+            },
+            {
+                "uuid": "ef4d3eaa-2cbe-4606-9b0b-560128c2fd75",
+                "path": "/dashboard/principal/survey",
+                "icon": "icofont-search-document",
+                "color": "text-indigo-400",
+                "display": [
+                    {
+                        "lang": "es",
+                        "title": "Encuestas"
+                    }
+                ]
+            }
+        ]
+    }
+}

@@ -1,0 +1,152 @@
+<form [formGroup]="form()">
+    <div class="d-grid">
+        <div class="col-span-2">
+            <input-panel-text
+                setType="number"
+                setLabel="Codigo"
+                formControlName="code"
+            />
+        </div>
+        <div class="col-span-5">
+            <input-panel-text setLabel="Nombre" formControlName="name" />
+        </div>
+        <!--  -->
+        <div class="col-span-2">
+            <input-panel-select
+                [setOptions]="optionsLevels()"
+                setLabel="Nivel"
+                formControlName="levelId"
+            />
+        </div>
+        <div class="col-span-3">
+            <input-panel-select
+                [setOptions]="optionsRipConcept()"
+                setLabel="Concepto de Rips"
+                formControlName="ripsConceptId"
+            />
+        </div>
+        <div class="col-span-2">
+            <input-panel-text
+                setType="number"
+                setLabel="Puntos"
+                formControlName="points"
+            />
+        </div>
+        <div class="col-span-2">
+            <input-panel-text
+                setType="number"
+                setLabel="UVT"
+                formControlName="uvt"
+            />
+        </div>
+        <div class="col-span-2">
+            <input-panel-text
+                setType="number"
+                setLabel="UVR"
+                formControlName="uvr"
+            />
+        </div>
+        <!--  -->
+        <div class="col-span-2">
+            <input-panel-select
+                [setOptions]="optionsGroupqx()"
+                setLabel="Grupo Qx"
+                formControlName="surgicalGroupId"
+            />
+        </div>
+        <div class="col-span-1">
+            <input-panel-text
+                setLabel="Edad min"
+                setType="number"
+                formControlName="minAge"
+            />
+        </div>
+        <div class="col-span-1">
+            <input-panel-text
+                setLabel="Edad max"
+                setType="number"
+                formControlName="maxAge"
+            />
+        </div>
+        <div class="col-span-2">
+            <input-panel-select
+                [setOptions]="optionsGender()"
+                setLabel="Sexo"
+                formControlName="genderId"
+            />
+        </div>
+        <div class="col-span-2">
+            <input-panel-select
+                [setOptions]="optionsAmbit()"
+                setLabel="Ambito"
+                formControlName="scopeId"
+            />
+        </div>
+        <!--  -->
+        <div class="col-span-3">
+            <input-panel-select
+                [setOptions]="optionsBirth()"
+                setLabel="Tipo de parto"
+                formControlName="birthTypeId"
+            />
+        </div>
+        <div class="col-span-4">
+            <input-panel-select
+                [setOptions]="optionsServices()"
+                setLabel="Tipo de servicio"
+                formControlName="serviceTypeId"
+            />
+        </div>
+        <div class="col-span-full">
+            <blade-panel-options>
+                <ng-container optionsBody>
+                    <div class="col-span-2">
+                        <input-panel-checkbox
+                            setSize="sm"
+                            [clean]="true"
+                            typeCheck="switch"
+                            setText="Proc.. incruento"
+                            formControlName="nonInvasiveProcedure"
+                        />
+                    </div>
+                    <div class="col-span-2">
+                        <input-panel-checkbox
+                            setSize="sm"
+                            [clean]="true"
+                            typeCheck="switch"
+                            setText="Parto"
+                            formControlName="birth"
+                        />
+                    </div>
+                    <div class="col-span-2">
+                        <input-panel-checkbox
+                            setSize="sm"
+                            [clean]="true"
+                            typeCheck="switch"
+                            setText="Vigente"
+                            formControlName="current"
+                        />
+                    </div>
+                    <div class="col-span-2">
+                        <input-panel-checkbox
+                            setSize="sm"
+                            [clean]="true"
+                            typeCheck="switch"
+                            setText="Estado"
+                            formControlName="status"
+                        />
+                    </div>
+                    <div class="col-span-2">
+                        <input-panel-checkbox
+                            setSize="sm"
+                            [clean]="true"
+                            typeCheck="switch"
+                            setText="Unico"
+                            formControlName="status"
+                        />
+                    </div>
+                </ng-container>
+            </blade-panel-options>
+        </div>
+    </div>
+</form>

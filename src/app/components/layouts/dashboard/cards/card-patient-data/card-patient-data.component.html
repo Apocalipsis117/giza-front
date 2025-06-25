@@ -1,0 +1,60 @@
+
+<blade-box-title setTitle="Datos del paciente">
+    <ng-container boxtitleBody>
+        <div class="d-grid pt-2">
+            <div class="col-span-full mb-4">
+                <p class="text-xl mb-3">Malejandra</p>
+                <ul class="divide-y">
+                    <li><block-item-info setLabel="N° identidad:" setText="1.079.932.648" /></li>
+                    <li><block-item-info setLabel="Edad:" setText="22" /></li>
+                    <li><block-item-info setLabel="Sexo:" setText="Femenino" /></li>
+                </ul>
+            </div>
+            <ul class="col-span-full ul-list-row">
+                <li>
+                    <div class="col-span-6">
+                        <small>Interno</small>
+                        <div>---</div>
+                    </div>
+                </li>
+                <li>
+                    <div class="col-span-full">
+                        <small>Afilicacion</small>
+                        <div>---</div>
+                    </div>
+                </li>
+                <li>
+                    <div class="col-span-6">
+                        <small>Fecha de reporte</small>
+                        <div>---</div>
+                    </div>
+                    <div class="col-span-6">
+                        <small>Hora</small>
+                        <div>---</div>
+                    </div>
+                </li>
+                <li>
+                    <div class="col-span-full">
+                        <small>Regimen</small>
+                        <div>---</div>
+                    </div>
+                </li>
+                <li>
+                    <div class="col-span-full">
+                        <small>Emtidad a la que se informo</small>
+                        <div>---</div>
+                    </div>
+                </li>
+            </ul>
+            <div class="col-span-full font-bold"><i class="icofont-settings mr-2"></i> Otros datos</div>
+            <ul class="col-span-full divide-y">
+                <li>
+                    <block-switch-status [active]="true">Title</block-switch-status>
+                </li>
+                <li>
+                    <block-switch-status [active]="true">Title</block-switch-status>
+                </li>
+            </ul>
+        </div>
+    </ng-container>
+</blade-box-title>

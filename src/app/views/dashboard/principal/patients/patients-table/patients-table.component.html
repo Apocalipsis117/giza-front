@@ -1,0 +1,21 @@
+<blade-table [bodyYDivider]="true" [headDivider]="true">
+    <ng-container tableCols>
+        <!-- <col> -->
+    </ng-container>
+    <ng-container tableHead>
+        <tr>
+            <th>head</th>
+            <th class="text-end">Accion</th>
+        </tr>
+    </ng-container>
+    <ng-container tableBody>
+        @for(i of [1,2,3]; track i) {
+            <tr>
+                <td>body</td>
+                <td class="text-end">
+                    <app-button setIcon="icofont-info-circle" setSize="sm" />
+                </td>
+            </tr>
+        }
+    </ng-container>
+</blade-table>

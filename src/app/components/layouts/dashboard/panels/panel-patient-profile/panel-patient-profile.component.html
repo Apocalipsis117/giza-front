@@ -1,0 +1,67 @@
+@if(patient()){
+    <div class="d-flex border-b pb-4 mb-4">
+        <div class="w-auto mr-4">
+            <div class="img-avatar avatar-xl avatar-rounded">
+                <img [src]="avatar" alt="">
+            </div>
+        </div>
+        <div class="grow">
+            <div>
+                <small class="text-gray-400">Nombre</small>
+                <div class="text-xl">{{ name }}</div>
+            </div>
+            <div>
+                <small class="text-gray-400">N° Identidad</small>
+                <div>1089344556</div>
+            </div>
+        </div>
+    </div>
+    <div class="d-grid mb-4">
+        <div class="col-span-3">
+            <small class="text-gray-400">Edad</small>
+            <div>18</div>
+        </div>
+        <div class="col-span-3">
+            <small class="text-gray-400">Sexo</small>
+            <div>f/m</div>
+        </div>
+        <div class="col-span-3">
+            <small class="text-gray-400">Fecha nacimiento</small>
+            <div>22 Junio 2001</div>
+        </div>
+        <div class="col-span-3">
+            <small class="text-gray-400">Estatura</small>
+            <div>1.62</div>
+        </div>
+    </div>
+    <div class="mb-4 font-bold text-gray-500">
+        Antecedentes médicos
+    </div>
+    <ul class="space-y-2 mb-4">
+        <li class="text-sm bg-default-50 border border-default-100 rounded-md p-3">
+            Lorem ipsum dolor sit amet consectetur adipisicing elit.
+            <div class="float-right ui-badge badge-red">Alto</div>
+        </li>
+        <li class="text-sm bg-default-50 border border-default-100 rounded-md p-3">
+            Lorem ipsum dolor sit amet consectetur adipisicing elit.
+        </li>
+    </ul>
+    <div class="mb-4 font-bold text-gray-500">
+        Medicamentos y tratamientos
+    </div>
+    <ul class="space-y-2 mb-4">
+        <li class="text-sm bg-default-50 border border-default-100 rounded-md p-3">
+            <h2>Acetaminofen 400mg</h2>
+            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit.</p>
+        </li>
+    </ul>
+    <div class="mb-4 font-bold text-gray-500">
+        Hábitos y estilo de vida
+    </div>
+    <div class="d-flex gap-2">
+        <span class="ui-badge">Alcohol</span>
+        <span class="ui-badge">Insognio</span>
+    </div>
+} @else {
+    Seleccione un paciente
+}

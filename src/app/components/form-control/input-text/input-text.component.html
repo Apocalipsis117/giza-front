@@ -1,0 +1,12 @@
+<fieldset class="im-fieldset">
+    @if(setLabel()) {
+        <legend>{{ setLabel() }}</legend>
+    }
+    <!-- <span>
+        <i class="icofont-edit"></i>
+    </span> -->
+    <input [type]="setType()" [(ngModel)]="currentValue" (input)="change()" (paste)="change()" (focus)="change()" [id]="id">
+    <!-- <button type="button">
+        <i class="icofont-edit"></i>
+    </button> -->
+</fieldset>

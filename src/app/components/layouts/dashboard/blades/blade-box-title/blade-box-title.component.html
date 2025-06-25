@@ -1,0 +1,17 @@
+<div class="ui-box-title" [ngClass]="[themeBox(), uiBox(), shadow(), margTop()]">
+    @if(setTitle()) {
+        <span class="box-title-label">
+            {{ setTitle() }}
+        </span>
+    }
+    <div class="block w-full" [ngClass]="[paddTop()]">
+        @if(!hideHeader()) {
+        <div class="block mb-2">
+            <bar-actions [enableActions]="enableActions()" (actionBar)="emitAction($event)" />
+        </div>
+        }
+        <div class="block">
+            <ng-content select="[boxtitleBody]"/>
+        </div>
+    </div>
+</div>

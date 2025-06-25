@@ -1,0 +1,37 @@
+{
+    "data": {
+        "userActions": [
+            {
+                "group": "Perfil",
+                "children": [
+                    {
+                        "id": 1,
+                        "action": "path",
+                        "display": "Mi Perfil",
+                        "path": "#",
+                        "icon": "icofont-user-male"
+                    }
+                ]
+            },
+            {
+                "group": "Actions",
+                "children": [
+                    {
+                        "id": 1,
+                        "action": "button",
+                        "display": "Cerrar sesion",
+                        "path": "/auth/signin",
+                        "icon": "icofont-exit"
+                    },
+                    {
+                        "id": 2,
+                        "action": "path",
+                        "display": "Ayuda",
+                        "path": "#",
+                        "icon": "icofont-life-buoy"
+                    }
+                ]
+            }
+        ]
+    }
+}

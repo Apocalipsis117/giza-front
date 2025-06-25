@@ -1,0 +1,55 @@
+<div class="form-label text-gray-500 text-[0.95rem]">{{ setLabel() }}</div>
+<div class="grid grid-cols-2 gap-3 mb-3">
+    <ul class="list-transfer-ul">
+        @for(item of serviceDisableds(); track item.id) {
+            @if(item.active === false){
+            <li>
+                <button type="button" class="list-transfer-btn" [ngClass]="{ 'active' : item.select }" (dblclick)="transfer(item.id)" (click)="selectTransfer(item.id)">{{ item.display }}</button>
+            </li>
+            }
+        } @empty {
+            <ng-container [ngTemplateOutlet]="emty"></ng-container>
+        }
+    </ul>
+    <ul class="list-transfer-ul">
+        @for(item of serviceActives(); track item.id) {
+            @if(item.active === true){
+            <li>
+                <button type="button" class="list-transfer-btn" [ngClass]="{ 'active' : item.select }" (dblclick)="transfer(item.id)" (click)="selectTransfer(item.id)">{{ item.display }}</button>
+            </li>
+            }
+        } @empty {
+            <ng-container [ngTemplateOutlet]="emty"></ng-container>
+        }
+    </ul>
+</div>
+<div class="grid grid-cols-2 gap-3">
+    <div class="grid grid-cols-2 gap-3">
+        <button type="button" class="list-transfer-btn-control" (click)="addSelects(true)">
+            <span>Agregar</span>
+            <i class="icofont-rounded-right ml-2"></i>
+        </button>
+        <button type="button" class="list-transfer-btn-control" (click)="addAll(true)">
+            <span>Agregar todo</span>
+            <i class="icofont-double-right ml-2"></i>
+        </button>
+    </div>
+    <div class="grid grid-cols-2 gap-3">
+        <button type="button" class="list-transfer-btn-control btn-red" (click)="addSelects(false)">
+            <i class="icofont-rounded-left mr-2"></i>
+            <span>Quitar</span>
+        </button>
+        <button type="button" class="list-transfer-btn-control btn-red" (click)="addAll(false)">
+            <i class="icofont-double-left mr-2"></i>
+            <span>Quitar todo</span>
+        </button>
+    </div>
+</div>
+<ng-template #emty>
+    <div class="w-full text-center h-full flex justify-center text-gray-400 items-center">
+        <div>
+            <i class="icofont-dropbox text-5xl"></i>
+            <div>Vacio</div>
+        </div>
+    </div>
+</ng-template>

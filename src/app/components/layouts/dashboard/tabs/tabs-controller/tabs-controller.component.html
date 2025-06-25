@@ -1,0 +1,16 @@
+<div class="block">
+    <nav class="nav-tabs-controller">
+        <ul class="ul-tab-controller">
+            @for (item of tabs(); track item.uuid) {
+                <li>
+                    <btn-tab-controller [data]="item"></btn-tab-controller>
+                </li>
+            }
+            <li class="li-tab-controller tab-plus" [ngClass]="cssActive()">
+                <button class="btn-tab-add" (click)="go()">
+                    <i class="icofont-plus"></i>
+                </button>
+            </li>
+        </ul>
+    </nav>
+</div>

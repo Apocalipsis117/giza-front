@@ -1,0 +1,49 @@
+.im-control-color {
+    position: relative;
+    display: inline-block;
+    input {
+        position: absolute;
+        width: 0;
+        height: 0;
+        top: 0;
+        left: 0;
+        opacity: 0;
+    }
+    div {
+        text-align: center;
+        display: block;
+        figure {
+            border-radius: 4px;
+            box-sizing: border-box;
+            width: 45px;
+            height: 45px;
+            border: 2px solid transparent;
+        }
+        span {
+            display: block;
+            font-size: .75rem;
+        }
+    }
+    input:checked ~ div {
+        figure {
+            box-shadow: 0 0 3px rgba(#000, .4);
+            border-color: #fff;
+            &::before {
+                content: 'c';
+                position: absolute;
+                top: 1px;
+                right: 1px;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                background-color: #fff;
+                width: 18px;
+                border-end-start-radius: 4px;
+            }
+        }
+    }
+}
+
+.im-control-color + .im-control-color {
+    margin-left: 10px;
+}

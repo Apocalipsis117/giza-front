@@ -1,0 +1,15 @@
+<div>
+    @if(setLabel()) {
+    <label [for]="id" class="form-label text-gray-500 text-[0.95rem] col-span-2">{{ setLabel() }}</label>
+    }
+    <div class="input-group col-span-3" [ngClass]="[inputSize()]">
+        @if(setIcon()) {
+            <span class="input-group-text">
+                <i [ngClass]="setIcon()"></i>
+            </span>
+        }
+        <button type="button" class="btn btn-blue-light" [disabled]="isDisabled()" (click)="decr()">-</button>
+        <input type="number" class="form-control input-number-custom text-center" [disabled]="isDisabled()" [id]="id" [ngModel]="currentValue()" (ngModelChange)="changeValue($event)" [readonly]="readOnly()" #inputNumber>
+        <button type="button" class="btn btn-blue-light" [disabled]="isDisabled()" (click)="incr()">+</button>
+    </div>
+</div>

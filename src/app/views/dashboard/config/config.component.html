@@ -1,0 +1,14 @@
+<blade-panel [hiddeTools]="true">
+    <ng-container panels>
+        <div class="max-w-[1280px] mx-auto pt-5">
+            <div class="flex flex-wrap gap-6">
+                <div class="w-[350px]">
+                    <menu-aside-config />
+                </div>
+                <div class="flex-grow basis-0">
+                    <router-outlet />
+                </div>
+            </div>
+        </div>
+    </ng-container>
+</blade-panel>

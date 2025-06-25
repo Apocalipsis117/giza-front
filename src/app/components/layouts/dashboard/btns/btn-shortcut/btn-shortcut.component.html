@@ -1,0 +1,8 @@
+<button [routerLink]="[path()]" type="button" class="btn-shortcut" [disabled]="hasPath()" (click)="addTab()">
+    <div class="btn-shortcut-icon">
+        <i class="icon-shortcut" [ngClass]="[icon(), color()]"></i>
+    </div>
+    <div class="btn-shortcut-content">
+        <h1 [ngClass]="countLetters()">{{ title() }}</h1>
+    </div>
+</button>

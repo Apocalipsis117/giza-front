@@ -1,0 +1,9 @@
+<div class="max-w-[1280px] mx-auto pt-5">
+    <div class="grid grid-cols-4 gap-4">
+        @for(item of menuShortcut(); track idx; let idx = $index) {
+        <div>
+            <btn-shortcut [data]="item" [index]="idx"></btn-shortcut>
+        </div>
+        }
+    </div>
+</div>

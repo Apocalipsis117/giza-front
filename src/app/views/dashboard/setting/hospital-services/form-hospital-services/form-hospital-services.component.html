@@ -1,0 +1,28 @@
+<form [formGroup]="form()">
+    <div class="d-grid items-end">
+        <div class="col-span-4">
+            <input-panel-text setLabel="Nombre del servicio" formControlName="name" />
+        </div>
+        <div class="col-span-4">
+            <input-panel-select [setOptions]="optionsAmbit()" setLabel="Ambito" formControlName="scopeId" />
+        </div>
+        <div class="col-span-4">
+            <input-panel-select [setOptions]="optionsGender()" setLabel="Sexo" formControlName="genderId" />
+        </div>
+        <div class="col-span-2">
+            <input-panel-text setType="number" setLabel="Numero de camas" setIcon="icofont-bed" formControlName="bedCount" />
+        </div>
+        <div class="col-span-2">
+            <input-panel-text setType="number" setLabel="Edad min" formControlName="minAge" />
+        </div>
+        <div class="col-span-2">
+            <input-panel-text setType="number" setLabel="Edad max" formControlName="maxAge" />
+        </div>
+        <div class="col-span-4">
+            <input-panel-select [setOptions]="optionsCentercost()" setLabel="Centro de costos" formControlName="costCenterId" />
+        </div>
+        <div class="col-span-2">
+            <input-panel-checkbox setText="Estado" [clean]="true" typeCheck="switch" formControlName="isActive" />
+        </div>
+    </div>
+</form>

@@ -1,0 +1,22 @@
+<div class="ui-blade-panel">
+    <div class="blade-panel-header">
+        <div class="flex flex-col px-5 pt-1 pb-3">
+            @if(!disabledUse()){
+            <div class="w-full block mb-1">
+                <bar-user-signin/>
+            </div>
+            }
+            @if(!hiddeTools()){
+            <div class="w-full block">
+                <app-bar-tools/>
+            </div>
+            }
+        </div>
+    </div>
+    <div class="blade-panel-content">
+        <div [@slideInAnimation]>
+            <ng-content select="[panels]"/>
+        </div>
+        <div class="block w-full h-[280px]"></div>
+    </div>
+</div>

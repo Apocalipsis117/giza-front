@@ -1,0 +1,19 @@
+<form class="d-grid items-end">
+    <div class="col-span-7">
+        <input-panel-text setLabel="Buscar" setIcon="icofont-search-1" setSize="sm" />
+    </div>
+    <div class="col-span-2">
+        <app-button setTitle="Filtrar" setSize="sm" setIcon="icofont-filter" setRole="modal" idConnect="queso" />
+    </div>
+    <div class="col-span-3 flex gap-1 justify-end">
+        <div class="w-auto px-2 font-bold text-gray-300">
+            Ver
+        </div>
+        <div class="w-auto">
+            <app-button setIcon="icofont-justify-all" setTitle="Lista" setSize="sm" setAction="lg" [setActive]="uiSelect === 'lg'" (action)="emitUi($event)" />
+        </div>
+        <div class="w-auto">
+            <app-button setIcon="icofont-brand-microsoft" setTitle="Celdas" setSize="sm" setAction="sm" [setActive]="uiSelect === 'sm'" (action)="emitUi($event)" />
+        </div>
+    </div>
+</form>

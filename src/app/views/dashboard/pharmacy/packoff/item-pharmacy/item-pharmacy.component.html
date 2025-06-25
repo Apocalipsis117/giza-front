@@ -1,0 +1,19 @@
+<div class="ui-item-pharmacy" [ngClass]="[ui]"><!--  ui-sm -->
+    <div class="item-pharmacy-icon">
+        <div class="ui-icon-box border border-default-100 rounded-lg text-cyan-600 bg-default-50">
+            <i [class]="[icon]"></i>
+        </div>
+    </div>
+    <div class="item-pharmacy-body">
+        <h1 class="block item-pharmacy-title">{{ name }}</h1>
+        <div class="item-pharmacy-details">
+            <div class="block pr-3">{{ category }}</div>
+            <div class="block px-3">{{ quantity }}</div>
+        </div>
+    </div>
+    <div class="item-pharmacy-control">
+        <button type="button" class="ui-btn-item-pharmacy">
+            <i class="icofont-shopping-cart"></i>
+        </button>
+    </div>
+</div>

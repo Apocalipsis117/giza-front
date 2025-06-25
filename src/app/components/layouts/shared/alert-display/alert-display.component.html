@@ -1,0 +1,13 @@
+@if (hidden()) {
+    <div class="flex items-center p-4 mb-4 text-sm text-red-500 rounded-lg bg-red-50" role="alert">
+        <i class="icofont-warning text-2xl me-3"></i>
+        <div class="grow">
+            <span class="font-bold">Ups!</span> Contraseña o usuario incorrecto.
+        </div>
+        <div class="w-auto self-start">
+            <button class="btn btn-sm" (click)="change()">
+                <i class="icofont-close"></i>
+            </button>
+        </div>
+    </div>
+}

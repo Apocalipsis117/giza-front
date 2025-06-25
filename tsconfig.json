@@ -1,0 +1,110 @@
+/* To learn more about Typescript configuration file: https://www.typescriptlang.org/docs/handbook/tsconfig-json.html. */
+/* To learn more about Angular compiler options: https://angular.dev/reference/configs/angular-compiler-options. */
+{
+    "compileOnSave": false,
+    "compilerOptions": {
+        "paths": {
+            "@store/app": [
+                "src/app/core/store/app.store.ts"
+            ],
+            "@reducers/*": [
+                "src/app/core/store/reducers/*"
+            ],
+            "@actions/*": [
+                "src/app/core/store/actions/*"
+            ],
+            "@selectors/*": [
+                "src/app/core/store/selectors/*"
+            ],
+            "@services/app": [
+                "src/app/core/services/app.services.ts"
+            ],
+            "@services/api": [
+                "src/app/core/services/api.services.ts"
+            ],
+            "@interceptors/index": [
+                "src/app/core/interceptors/_index.ts"
+            ],
+            "@guards/index": [
+                "src/app/core/guards/_index.ts"
+            ],
+            "@local-data/*": [
+                "src/app/core/local-data/*"
+            ],
+            "@interfaces/index": [
+                "src/app/core/interfaces/_index.ts"
+            ],
+            "@interfaces/app": [
+                "src/app/core/interfaces/app.interfaces.ts"
+            ],
+            "@interfaces/api": [
+                "src/app/core/interfaces/api.interfaces.ts"
+            ],
+            "@interfaces/*": [
+                "src/app/core/interfaces/*"
+            ],
+            "@models/index": [
+                "src/app/core/models/_index.ts"
+            ],
+            "@helpers/index": [
+                "src/app/core/helpers/_index.ts"
+            ],
+            "@helpers/*": [
+                "src/app/core/helpers/*"
+            ],
+            "@pipes/module": [
+                "src/app/core/pipes/pipes.module.ts"
+            ],
+            "@directive/module": [
+                "src/app/core/directives/directives.module.ts"
+            ],
+            "@layouts/*": [
+                "src/app/components/layouts/*"
+            ],
+            "@form-control/*": [
+                "src/app/components/form-control/*"
+            ],
+            "@views/*": [
+                "src/app/views/*"
+            ],
+            "@views-public/*": [
+                "src/app/views/public/*"
+            ],
+            "@views-dashboard/*": [
+                "src/app/views/dashboard/*"
+            ],
+            "@views-auth/*": [
+                "src/app/views/auth/*"
+            ],
+            "@views-errorhtml/*": [
+                "src/app/views/errorhtml/*"
+            ],
+            "@animations/index": [
+                "src/app/core/animations/_index.ts"
+            ]
+        },
+        "baseUrl": "./",
+        "outDir": "./dist/out-tsc",
+        "strict": true,
+        "noImplicitOverride": true,
+        "noPropertyAccessFromIndexSignature": true,
+        "noImplicitReturns": true,
+        "noFallthroughCasesInSwitch": true,
+        "skipLibCheck": true,
+        "isolatedModules": true,
+        "esModuleInterop": true,
+        "experimentalDecorators": true,
+        "moduleResolution": "bundler",
+        "importHelpers": true,
+        "target": "ES2022",
+        "module": "ES2022",
+        "useDefineForClassFields": false,
+        "resolveJsonModule": true
+    },
+    "angularCompilerOptions": {
+        "enableI18nLegacyMessageIdFormat": false,
+        "strictInjectionParameters": true,
+        "strictInputAccessModifiers": true,
+        "strictTemplates": true
+    }
+}

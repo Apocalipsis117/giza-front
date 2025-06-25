@@ -1,0 +1,14 @@
+{
+    "data": {
+        "theme": [
+            {
+                "color": "red",
+                "primary": {
+                    "border": "border-red-10",
+                    "text": "text-white",
+                    "bg": "bg-red-400"
+                }
+            }
+        ]
+    }
+}
