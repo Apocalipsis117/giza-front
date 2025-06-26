@@ -1,0 +1,60 @@
+@use 'assets/ui/implement/root';
+@use 'assets/ui/tailwind/styles.tailwind.css';
+@use 'assets/ui/tailwind/ui.tailwind.css';
+/* bs */
+@use 'assets/ui/bootstrap/btn.scss';
+@use 'assets/ui/bootstrap/form.scss';
+@use 'assets/ui/bootstrap/spinner.scss';
+@use 'assets/ui/bootstrap/bootstrap-clean.scss';
+@use 'assets/ui/bootstrap/table.scss';
+/* tw */
+@use 'assets/ui/tailwind/ui-components.tailwind.css';
+@use 'assets/ui/tailwind/ui-blade-panel.tailwind.css';
+@use 'assets/ui/tailwind/ui-box-steps.tailwind.css';
+@use 'assets/ui/tailwind/ui-bar-tool.tailwind.css';
+@use 'assets/ui/tailwind/ui-shortcut-menu.tailwind.css';
+@use 'assets/ui/tailwind/ui-form-control.tailwind.css';
+@use 'assets/ui/tailwind/ui-table.tailwind.css';
+@use 'assets/ui/tailwind/ui-tabs.tailwind.css';
+@use 'assets/ui/tailwind/ui-tab-panel-home.tailwind.css';
+@use 'assets/ui/tailwind/ui-tabs-controller.tailwind.css';
+@use 'assets/ui/tailwind/ui-cars.tailwind.css';
+@use 'assets/ui/tailwind/ui-item-pharmacy.tailwind.css';
+@use 'assets/ui/tailwind/ui-btns-pagination.tailwind.css';
+@use 'assets/ui/tailwind/ui-btns-aside.tailwind.css';
+@use 'assets/ui/tailwind/ui-ul.tailwind.css';
+@use 'assets/ui/tailwind/ui-collapse-block.tailwind.css';
+@use 'assets/ui/tailwind/ui-badge.tailwind.css';
+@use 'assets/ui/tailwind/ui-avatar.tailwind.css';
+@use 'assets/ui/tailwind/ui-icono.tailwind.css';
+@use 'assets/ui/tailwind/ui-menu-aside.tailwind.css';
+@use 'assets/ui/tailwind/menu-aside-config.tailwind.css';
+@use 'assets/ui/tailwind/ui-box-panel.tailwind.css';
+@use 'assets/ui/tailwind/blade-box-ui.tailwind.css';
+@use 'assets/ui/tailwind/ui-bar-user.tailwind.css';
+@use 'assets/ui/tailwind/ui-box-title.tailwind.css';
+@use 'assets/ui/tailwind/ui-some-item.tailwind.css';
+@use 'assets/ui/tailwind/ui-box-notify.tailwind.css';
+@use 'assets/ui/tailwind/ui-bar-action.tailwind.css';
+@use 'assets/ui/tailwind/card-basic-chart.tailwind.css';
+/* im */
+@use 'assets/ui/implement/scroll-bar.scss';
+@use 'assets/ui/implement/theme.scss';
+@use 'assets/ui/implement/colors-theme.scss';
+@use 'assets/ui/implement/effect-bumbble.scss';
+@use 'assets/ui/implement/im-fieldset.scss';
+/* ex */
+@use 'assets/ui/extend/load-progress.scss';
+@use 'assets/ui/extend/load-text.scss';
+@use 'assets/ui/extend/shadows.scss';
+@use 'assets/ui/tailwind/app-color.tailwind.css';
+
+input-check-table {
+    display: inline-block;
+    line-height: 0;
+    vertical-align: middle;
+}
+
+app-button {
+    display: inline-block;
+}

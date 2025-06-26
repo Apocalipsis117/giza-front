@@ -1,0 +1,73 @@
+@use 'vendor/colors' as colors;
+@use 'sass:map';
+
+@mixin varRoots {
+    /* dark colors */
+    @each $key, $value in colors.$color-gray {
+        --darkmode-#{$key}: #{$value};
+    }
+    /* default colors */
+    @each $key, $value in colors.$color-default {
+        --color-#{$key}: #{$value};
+    }
+}
+
+body {
+    @include varRoots;
+    background-color: var(--darkmode-50);
+    color: var(--darkmode-800);
+
+    .app-gisa.app-color-teal {
+        @each $key, $value in colors.$color-teal {
+            --color-#{$key}: #{$value};
+        }
+    }
+
+    .app-gisa.app-color-green {
+        @each $key, $value in colors.$color-green {
+            --color-#{$key}: #{$value};
+        }
+    }
+
+    .app-gisa.app-color-cyan {
+        @each $key, $value in colors.$color-cyan {
+            --color-#{$key}: #{$value};
+        }
+    }
+
+    .app-gisa.app-color-purple {
+        @each $key, $value in colors.$color-purple {
+            --color-#{$key}: #{$value};
+        }
+    }
+
+    .app-gisa.app-color-pink {
+        @each $key, $value in colors.$color-pink {
+            --color-#{$key}: #{$value};
+        }
+    }
+
+    .app-gisa.app-color-orange {
+        @each $key, $value in colors.$color-orange {
+            --color-#{$key}: #{$value};
+        }
+    }
+
+    .app-gisa.app-color-gray {
+        @each $key, $value in colors.$color-gray {
+            --color-#{$key}: #{$value};
+        }
+    }
+
+
+    .app-gisa.app-color-yellow {
+        @each $key, $value in colors.$color-yellow {
+            --color-#{$key}: #{$value};
+        }
+    }
+
+    &.dark-mode {
+        background-color: var(--darkmode-800);
+        color: var(--darkmode-50);
+    }
+}

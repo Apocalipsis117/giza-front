@@ -1,0 +1,15 @@
+.ui-blade-panel {
+    @apply flex flex-wrap;
+    .blade-panel-header {
+        @apply w-full sticky top-[42px] z-10 mb-1 bg-[var(--color-50)];
+    }
+    .blade-panel-content {
+        @apply block w-full px-5 overflow-hidden;
+    }
+}
+
+.dark-mode .ui-blade-panel {
+    .blade-panel-header {
+        @apply bg-[var(--darkmode-800)];
+    }
+}

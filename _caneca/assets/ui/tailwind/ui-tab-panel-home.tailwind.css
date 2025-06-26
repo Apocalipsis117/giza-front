@@ -1,0 +1,9 @@
+.ui-tab-panel-home {
+    @apply flex flex-wrap gap-4 border-b border-[var(--color-300)] font-semibold;
+    > button {
+        @apply inline-block bg-[var(--color-50)] rounded-t-lg text-lg px-5 py-2;
+        &.active {
+            @apply border-[var(--color-300)] border-x border-t mb-[-1px] text-[var(--color-500)];
+        }
+    }
+}

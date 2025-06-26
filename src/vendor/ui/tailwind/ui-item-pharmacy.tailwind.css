@@ -1,0 +1,46 @@
+.ui-item-pharmacy {
+    @apply flex flex-wrap items-center py-2 px-2 shadow-sm border border-[var(--color-100)] rounded-lg bg-white;
+}
+.ui-item-pharmacy.ui-sm {
+    @apply flex-col p-4;
+}
+
+.item-pharmacy-details {
+    @apply text-sm flex flex-wrap divide-x text-gray-400;
+}
+
+.ui-item-pharmacy.ui-sm .ui-btn-item-pharmacy,
+.ui-item-pharmacy.ui-sm .item-pharmacy-control {
+    @apply w-full;
+}
+.ui-item-pharmacy.ui-sm .ui-icon-box {
+    --size-box-icon: 75px;
+    @apply text-4xl;
+}
+.ui-item-pharmacy.ui-sm .item-pharmacy-body {
+    @apply py-4 text-center;
+}
+.ui-item-pharmacy.ui-sm .item-pharmacy-details {
+    @apply flex-col divide-none;
+}
+.ui-item-pharmacy.ui-sm .item-pharmacy-details > * {
+    @apply px-0;
+}
+.ui-item-pharmacy.ui-sm .item-pharmacy-title {
+    @apply mb-3;
+}
+.item-pharmacy-icon {
+    @apply w-auto;
+}
+
+.item-pharmacy-body {
+    @apply grow basis-1 px-4;
+}
+
+.item-pharmacy-control {
+    @apply w-auto flex;
+}
+
+.ui-btn-item-pharmacy {
+    @apply block bg-gray-100 hover:bg-gray-200 active:bg-[var(--color-200)] rounded-md py-1.5 px-3 text-xl;
+}

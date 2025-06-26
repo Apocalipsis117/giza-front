@@ -1,0 +1,16 @@
+<fieldset class="im-fieldset">
+    @if(setLabel()) {
+        <legend>{{ setLabel() }}</legend>
+    }
+    <div class="input-group">
+        <span class="input-group-text">
+            <span class="im-check" [class]="ui()">
+                <input type="checkbox" [name]="name()" [value]="setValue()" [checked]="isCheck()" (change)="onCheckboxChange($event.target)" [id]="id" />
+                <figure></figure>
+            </span>
+        </span>
+        <label class="input-group-text" [for]="id">
+            {{ setText() }}
+        </label>
+    </div>
+</fieldset>

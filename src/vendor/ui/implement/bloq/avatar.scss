@@ -1,0 +1,17 @@
+@use '../im-vendor/index' as *;
+
+.bloq-avatar {
+    --im-size: 45px;
+    --im-rounded: 3px;
+    display: inline-block;
+    position: relative;
+    width: var(--im-size);
+    height: var(--im-size);
+    > img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        object-position: center;
+        border-radius: var(--im-rounded);
+    }
+}

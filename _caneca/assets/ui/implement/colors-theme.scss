@@ -1,0 +1,32 @@
+.theme-red[class*= border-nth-]>*,
+.theme-red[class^=border-nth-]>*,
+.theme-red {
+    --imp-color-dark: #BF2828;
+    --imp-color-primary: #FF5252;
+    --imp-color-gentle: #FF9595;
+    --imp-color-light: #FFE0E0;
+    --imp-color-contrat: #ffffff;
+    --imp-color-combine: #FFA352;
+}
+
+.theme-green[class*= border-nth-]>*,
+.theme-green[class^=border-nth-]>*,
+.theme-green {
+    --imp-color-dark: #047857;
+    --imp-color-primary: #10b981;
+    --imp-color-gentle: #bbf7d0;
+    --imp-color-light: #dcfce7;
+    --imp-color-contrat: #ffffff;
+    --imp-color-combine: #0d9488;
+}
+
+.theme-orange[class*= border-nth-]>*,
+.theme-orange[class^=border-nth-]>*,
+.theme-orange {
+    --imp-color-dark: #E65100;
+    --imp-color-primary: #FF9800;
+    --imp-color-gentle: #FFB74D;
+    --imp-color-light: #FFF4E6;
+    --imp-color-contrat: #FFF3E0;
+    --imp-color-combine: #E9CD34;
+}

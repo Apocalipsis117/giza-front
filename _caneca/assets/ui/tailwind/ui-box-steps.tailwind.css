@@ -1,0 +1,48 @@
+/* steps  */
+
+.ui-box-steps {
+    @apply grid grid-cols-3 shadow-md rounded-lg overflow-hidden text-gray-400;
+    .ui-box-steps-item {
+        @apply flex flex-wrap items-center text-left relative bg-white;
+    }
+    .ui-box-content {
+        @apply w-[80px] self-stretch text-center py-2 text-2xl rounded-r-full font-bold text-gray-400 bg-gray-100;
+    }
+    .ui-decoration::before {
+        content: '';
+        --size: 20px;
+        @apply bg-white w-[var(--size)] h-[var(--size)] z-[1] block rotate-45 translate-y-[-50%] translate-x-[-50%] absolute top-[50%] left-full;
+    }
+    .ui-decoration:last-child::before {
+        content: none;
+    }
+    /* active */
+    .ui-box-steps-item.active {
+        @apply text-gray-800;
+        .ui-box-content {
+            @apply bg-[var(--color-700)] text-white;
+        }
+    }
+    .ui-box-steps-item.active,
+    .ui-box-steps-item.active::before {
+        @apply bg-[var(--color-200)];
+    }
+}
+
+
+.dark-mode .ui-box-steps {
+    .ui-box-steps-item::before,
+    .ui-box-steps-item {
+        @apply bg-[var(--darkmode-700)];
+    }
+    .ui-box-content {
+        @apply bg-[var(--darkmode-600)];
+    }
+    .ui-box-steps-item.active {
+        @apply text-[var(--darkmode-100)];
+    }
+    .ui-box-steps-item.active,
+    .ui-box-steps-item.active::before {
+        @apply bg-[var(--darkmode-500)];
+    }
+}

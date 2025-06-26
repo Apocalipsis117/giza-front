@@ -1,0 +1,34 @@
+.ui-bar-user {
+    @apply block w-full;
+    .bar-user-content {
+        @apply flex items-center justify-between;
+    }
+    .btn-bar-signin {
+        @apply inline-block py-2 px-3 rounded-lg border-gray-50 text-[var(--color-500)] active:bg-[var(--color-50)];
+    }
+    .btn-bar-search {
+        @apply border shadow-sm w-[250px] relative border-[var(--color-200)] text-[var(--color-500)] active:border-[var(--color-300)] active:bg-[var(--color-50)] bg-white rounded-md px-3 py-2;
+    }
+    .breadcrumb-bar-signin {
+        @apply flex items-center text-xl text-[var(--color-800)];
+        li:first-child {
+            @apply mr-2;
+        }
+        li:nth-child(3n):before {
+            content: '/';
+            @apply inline-block px-2;
+        }
+        .li-icon i {
+            @apply mr-2 inline-block scale-150 text-[var(--color-500)];
+        }
+    }
+}
+
+.dark-mode .ui-bar-user {
+    .btn-bar-search {
+        @apply bg-[var(--darkmode-700)] border-[var(--darkmode-600)];
+    }
+    .breadcrumb-bar-signin {
+        @apply text-[var(--color-300)];
+    }
+}

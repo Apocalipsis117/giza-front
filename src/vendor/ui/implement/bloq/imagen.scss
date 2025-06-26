@@ -1,0 +1,11 @@
+.bloq-imagen > img,
+img.bloq-imagen {
+    object-fit: cover;
+    object-position: center;
+    max-width: 100%;
+}
+
+.bloq-imagen > img {
+    width: 100%;
+    height: 100%;
+}

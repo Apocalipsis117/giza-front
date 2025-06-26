@@ -1,0 +1,11 @@
+[role="tablist"] .active {
+    background-color: red;
+}
+
+[role="tabpanel"] {
+    display: none;
+
+    &.active {
+        display: block;
+    }
+}

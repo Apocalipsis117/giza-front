@@ -1,0 +1,112 @@
+@use '../../vendor/index' as *;
+@use 'sass:map';
+
+.bloq-barprogress-y,
+.bloq-barprogress-x {
+    --im-large: 8px;
+    --im-progress: 25%;
+    --im-rounded: 8px;
+    position: relative;
+    border-radius: var(--im-rounded);
+
+    .bloq-progress {
+        position: absolute;
+        left: 0;
+        border-radius: var(--im-rounded);
+        overflow: hidden;
+
+        &::after {
+            content: '';
+            position: absolute;
+            background-image: linear-gradient(var(--im-deg), transparent, rgba(#fff, .25));
+            animation: 3s ease-in-out infinite normal both;
+        }
+    }
+}
+
+.bloq-barprogress-x {
+    --im-deg: 90deg;
+    width: 100%;
+    height: var(--im-large);
+
+    .bloq-progress {
+        top: 0;
+        height: 100%;
+        width: var(--im-progress);
+
+        &.load-effect::after {
+            left: 0;
+            top: 0;
+            height: 100%;
+            animation-name: barloar-effect-x;
+        }
+    }
+}
+
+.bloq-barprogress-y {
+    --im-deg: 45deg;
+    width: var(--im-large);
+    height: 320px;
+
+    .bloq-progress {
+        height: var(--im-progress);
+        bottom: 0;
+        width: 100%;
+
+        &.load-effect::after {
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            animation-name: barloar-effect-y;
+        }
+    }
+}
+
+.bloq-barprogress-y:not([class*=' bg-']):not([class^=bg-]),
+.bloq-barprogress-x:not([class*=' bg-']):not([class^=bg-]) {
+    background-color: var(--color-200);
+}
+
+.bloq-progress:not([class*=' bg-']):not([class^=bg-]) {
+    background-color: var(--color-400);
+}
+
+@keyframes barloar-effect-x {
+    from {
+        width: 0px;
+        left: 0;
+        opacity: 1;
+    }
+
+    50% {
+        width: 100%;
+        left: 0;
+        opacity: 1;
+    }
+
+    to {
+        width: 0px;
+        left: 100%;
+        opacity: .25;
+    }
+}
+
+@keyframes barloar-effect-y {
+    from {
+        height: 0px;
+        bottom: 0;
+        opacity: 1;
+    }
+
+    50% {
+        height: 100%;
+        bottom: 0;
+        opacity: 1;
+    }
+
+    to {
+        height: 0px;
+        bottom: 100%;
+        opacity: .25;
+    }
+}

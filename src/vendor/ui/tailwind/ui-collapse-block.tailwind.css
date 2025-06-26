@@ -1,0 +1,50 @@
+.ui-collapse-block {
+    @apply border rounded-lg overflow-hidden;
+}
+
+.ui-collapse-block .collapse-btn {
+    @apply block p-4 w-full text-left;
+}
+
+.ui-collapse-block .collapse-body {
+    @apply block p-4;
+}
+
+.ui-collapse-block .collapse-btn[aria-expanded=true] {
+    @apply bg-[var(--color-200)];
+}
+
+.ui-collapse-block.ui-i {
+    @apply border-none;
+}
+
+.ui-collapse-block.ui-i .collapse-btn {
+    @apply rounded-lg border border-[var(--color-100)];
+}
+
+/* ui-disabled  */
+.ui-collapse-block.ui-collapse-disabled .collapse-btn {
+    @apply border-gray-200 bg-gray-100 pointer-events-none select-none;
+}
+
+/* ui plane  */
+.ui-collapse-block.ui-plane {
+    @apply border-none shadow-md;
+    .collapse-body,
+    .collapse-btn {
+        @apply bg-white;
+    }
+    .collapse-body {
+        @apply border-t border-gray-400 border-opacity-15;
+    }
+}
+
+
+.dark-mode {
+    .ui-collapse-block {
+        .collapse-body,
+        .collapse-btn {
+            @apply bg-[var(--darkmode-700)];
+        }
+    }
+}

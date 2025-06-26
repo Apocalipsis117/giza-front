@@ -1,0 +1,59 @@
+@use '../vendor/colors' as colors;
+@use 'sass:map';
+
+.sweetalert-custom {
+    .sw-dialog {
+        border-radius: 13px;
+
+        &.swal2-toast {
+            .sw-content {
+                margin-top: 0;
+            }
+        }
+
+        &.swal2-loading {
+            width: 280px;
+            // background-color: transparent;
+
+            .swal2-loader {
+                border-color: map.get(colors.$color-default, '400') transparent map.get(colors.$color-default, '400') transparent;
+            }
+        }
+    }
+
+    .sw-title {
+        margin-bottom: .5rem;
+        font-size: 1.5rem;
+    }
+
+    .sw-content {
+        padding-top: 0;
+    }
+
+    .sw-btn-confirm,
+    .sw-btn-cancel {
+        i {
+            margin-right: 0.25rem;
+            vertical-align: -5px;
+            line-height: 0;
+        }
+    }
+
+    .sw-btn-confirm {
+        background-color: map.get(colors.$color-green, '400');
+    }
+
+    .sw-btn-cancel {
+        background-color: map.get(colors.$color-gray, '400');
+    }
+}
+
+.sweetalert-form {
+    .form-alert-icon {
+        margin-bottom: 0;
+        margin-top: 22px;
+    }
+    .form-alert-title {
+        font-size: 1.25rem;
+    }
+}

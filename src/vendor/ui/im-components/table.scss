@@ -1,0 +1,132 @@
+@use '../vendor/colors' as colors;
+@use 'sass:map';
+
+.im-table {
+    --im-table-padding: 0.5rem;
+    --im-table-border-color: #{rgba(map.get(colors.$color-gray, '500'), 0.2)};
+    --im-table-active-bg-color: #{rgba(map.get(colors.$color-gray, '200'), 0.15)};
+    --im-table-striped-accent: #{rgba(map.get(colors.$color-gray, '300'), 0.2)};
+    --im-table-item-bg-color: transparent;
+    --im-table-item-hover-bg-color: #{rgba(map.get(colors.$color-gray, '300'), 0.4)};
+    caption-side: bottom;
+    border-collapse: collapse;
+    width: 100%;
+
+    th,
+    td {
+        box-sizing: border-box;
+    }
+
+    tr>* {
+        background-color: var(--im-table-item-bg-color);
+        padding: var(--im-table-padding);
+        font-style: inherit;
+        font-family: inherit;
+        border: 0 solid var(--im-table-border-color);
+        transition: box-shadow 100ms ease-in;
+    }
+
+    &.ui-sm {
+        --im-table-padding: 0.25rem;
+    }
+
+    &.head-divide thead tr>*,
+    &.body-divide tbody tr>* {
+        border-width: 1px;
+    }
+
+    &.head-divide-y thead>tr:last-child>*,
+    &.head-divide thead>tr:last-child>* {
+        border-bottom-width: 1px;
+    }
+
+    &.head-divide-y thead>tr+tr>*,
+    &.body-divide-y tbody>tr+tr>*,
+    &.body-divide tbody>tr:first-child>* {
+        border-top-width: 1px;
+    }
+
+    &.head-divide,
+    &.body-divide {
+        tr>*:first-child {
+            border-left: none;
+        }
+
+        tr>*:last-child {
+            border-right: none;
+        }
+    }
+
+    &.head-divide>*:first-child tr>* {
+        border-top: none;
+    }
+
+    &.body-divide>*:last-child tr>* {
+        border-bottom: none;
+    }
+
+    &.body-divide-x tbody>tr>*+*,
+    &.head-divide-x thead>tr>*+* {
+        border-left-width: 1px;
+    }
+
+    &.striped-y tbody tr:nth-child(even) > * {
+        --im-table-item-bg-color: #{rgba(map.get(colors.$color-gray, '200'), 0.3)};
+    }
+
+    &.striped-x tbody tr > *:nth-child(even) {
+        --im-table-item-bg-color: #{rgba(map.get(colors.$color-gray, '200'), 0.3)};
+    }
+
+    &.tr-hover tbody tr:hover > * {
+        box-shadow: inset 0 0 0 100px var(--im-table-item-hover-bg-color);
+    }
+}
+
+@each $key, $value in colors.$colors {
+    .im-table {
+        .im-active-#{$key} > * {
+            --im-table-item-hover-bg-color: #{map.get($value, '500')};
+        }
+    }
+}
+
+.table-responsive {
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+}
+
+@media (max-width: 575.98px) {
+    .table-responsive-sm {
+        overflow-x: auto;
+        -webkit-overflow-scrolling: touch;
+    }
+}
+
+@media (max-width: 767.98px) {
+    .table-responsive-md {
+        overflow-x: auto;
+        -webkit-overflow-scrolling: touch;
+    }
+}
+
+@media (max-width: 991.98px) {
+    .table-responsive-lg {
+        overflow-x: auto;
+        -webkit-overflow-scrolling: touch;
+    }
+}
+
+@media (max-width: 1199.98px) {
+    .table-responsive-xl {
+        overflow-x: auto;
+        -webkit-overflow-scrolling: touch;
+    }
+}
+
+@media (max-width: 1399.98px) {
+    .table-responsive-xxl {
+        overflow-x: auto;
+        -webkit-overflow-scrolling: touch;
+    }
+}

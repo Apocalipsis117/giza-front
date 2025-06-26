@@ -1,0 +1,16 @@
+/* HTML: <div class="loader-text"></div> */
+
+.loader-text {
+    font-weight: bold;
+    animation: LoadAnim 1s linear infinite alternate;
+}
+
+.loader-text:before {
+    content: attr(aria-valuetext);
+}
+
+@keyframes LoadAnim {
+    to {
+        opacity: 0
+    }
+}

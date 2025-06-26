@@ -1,0 +1,17 @@
+.grid-btns-aside {
+    @apply grid gap-3;
+    grid-template-columns: repeat(auto-fill, minmax(6rem, 1fr));
+}
+.btn-aside {
+    @apply border p-3 overflow-hidden relative shadow-md bg-white rounded-md text-center hover:bg-[var(--color-50)] active:bg-[var(--color-100)] transition-colors;
+}
+.btn-aside-icon {
+    @apply text-4xl block mb-1;
+}
+
+.btn-aside-label {
+    @apply text-sm opacity-70;
+    text-overflow: ellipsis;
+    text-wrap: nowrap;
+    overflow: hidden;
+}

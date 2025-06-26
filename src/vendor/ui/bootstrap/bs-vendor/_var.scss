@@ -1,0 +1,49 @@
+/**
+ * ===================================
+ * widths and breakpoint
+ */
+
+$breakpoint: (
+    'sm': 576px,
+    'md': 768px,
+    'lg': 992px,
+    'xl': 1200px,
+    'xxl': 1400px
+);
+
+$widths: (
+    'auto': auto,
+    '1': 8.33333333%,
+    '2': 16.66666667%,
+    '3': 25%,
+    '4': 33.33333333%,
+    '5': 41.66666667%,
+    '6': 50%,
+    '7': 58.33333333%,
+    '8': 66.66666667%,
+    '9': 75%,
+    '10': 83.33333333%,
+    '11': 91.66666667%,
+    '12': 100%
+);
+
+/**
+ * ===================================
+ * modal
+ */
+
+$modal-backdrop-bg: rgba(#000, .5);
+$modal-backdrop-blur: 0px;
+
+/**
+ * ===================================
+ * offcanvas
+ */
+
+$offcanvas-backdrop-bg: rgba(#000, .5);
+$offcanvas-backdrop-blur: 0px;
+
+$offcanvas-bg-color: #fff;
+$offcanvas-height: 30vh;
+$offcanvas-width: 400px;
+$offcanvas-border-color: rgba(0,0,0,.2);

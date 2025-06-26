@@ -1,0 +1,33 @@
+// estandars de bootstrap
+.collapse:not(.show) {
+    display: none;
+}
+
+.fade {
+    transition: opacity 0.15s linear;
+}
+
+.fade:not(.show) {
+    opacity: 0;
+}
+
+.collapsing {
+    height: 0;
+    overflow: hidden;
+    transition: height 0.35s ease;
+}
+
+.collapsing.collapse-horizontal {
+    width: 0;
+    height: auto;
+    transition: width 0.35s ease;
+}
+
+.offcanvas-backdrop,
+.modal-backdrop {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+}

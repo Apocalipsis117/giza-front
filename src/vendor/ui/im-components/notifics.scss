@@ -1,0 +1,33 @@
+.im-notific-container {
+    width: 300px;
+    z-index: 1000;
+    display: flex;
+    flex-direction: column;
+}
+.im-notific {
+    background: #f9f9f9;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    margin: 0.5rem 0;
+    padding: 0.5rem;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    display: flex;
+    flex-direction: column;
+}
+.im-notific header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-weight: bold;
+}
+.im-notific .delete-btn {
+    background: transparent;
+    border: none;
+    font-size: 1.2rem;
+    cursor: pointer;
+}
+.im-notific section {
+    margin-top: 0.5rem;
+    font-size: 0.9rem;
+    color: #333;
+}

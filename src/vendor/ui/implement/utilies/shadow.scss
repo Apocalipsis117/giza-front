@@ -1,0 +1,49 @@
+/**
+ * shadow
+ *
+ * - USO
+ * varShadow($value: shadow_*())
+ */
+
+@function shadow_i($color: #000000) {
+    @return rgba($color, 0.16) 0px 1px 4px;
+}
+
+@function shadow_ii($color: #0000) {
+    @return rgba($color, 0.18) 0px 2px 4px;
+}
+
+@function shadow_iii($color: #0000) {
+    @return rgba($color, 0.1) 0px 4px 12px;
+}
+
+@function shadow_iv($color: #64646f) {
+    @return rgba($color, 0.2) 0px 7px 29px 0px;
+}
+
+@function shadow_v($color: #0000) {
+    @return rgba($color, 0.15) 0px 8px 24px;
+}
+
+@function shadow_vi($color: #0000) {
+    @return rgba($color, 0.24) 0px 3px 8px;
+}
+
+
+@function shadow_vii($color1: rgba(50, 50, 93, 0.25), $color2: rgba(0, 0, 0, 0.3)) {
+    @return #{$color1} 0px 6px 12px -2px, #{$color2} 0px 3px 7px -3px;
+}
+
+@function shadow_viii($color1: rgba(14, 30, 37, 0.12), $color2: rgba(14, 30, 37, 0.32)) {
+    @return #{$color1} 0px 2px 4px 0px, #{$color2} 0px 2px 16px 0px;
+}
+
+
+@function shadow_ix($color1: rgba(0, 0, 0, 0.15), $color2: rgba(0, 0, 0, 0.05)) {
+    @return #{$color1} 0px 15px 25px, #{$color2} 0px 5px 10px;
+}
+
+@function shadow_x($color: rgba(0, 0, 0, 0.2)) {
+    @return #{$color} 0px 20px 30px;
+}
+

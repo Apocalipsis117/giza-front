@@ -1,0 +1,75 @@
+@use 'colors' as colors;
+@use "sass:map";
+
+.app-gisa {
+    --darkmode-50: #f8fafc;
+    --darkmode-100: #f1f5f9;
+    --darkmode-200: #e2e8f0;
+    --darkmode-300: #cbd5e1;
+    --darkmode-400: #94a3b8;
+    --darkmode-500: #64748b;
+    --darkmode-600: #475569;
+    --darkmode-700: #334155;
+    --darkmode-800: #1e293b;
+    --darkmode-900: #0f172a;
+    --darkmode-950: #020617;
+    @each $key, $value in colors.$color-default {
+        --color-#{$key}: #{$value};
+    }
+}
+
+.app-gisa.app-color-teal {
+    @each $key, $value in colors.$color-teal {
+        --color-#{$key}: #{$value};
+    }
+}
+
+.app-gisa.app-color-green {
+    @each $key, $value in colors.$color-green {
+        --color-#{$key}: #{$value};
+    }
+}
+
+.app-gisa.app-color-cyan {
+    @each $key, $value in colors.$color-cyan {
+        --color-#{$key}: #{$value};
+    }
+}
+
+.app-gisa.app-color-purple {
+    @each $key, $value in colors.$color-purple {
+        --color-#{$key}: #{$value};
+    }
+}
+
+.app-gisa.app-color-pink {
+    @each $key, $value in colors.$color-pink {
+        --color-#{$key}: #{$value};
+    }
+}
+
+.app-gisa.app-color-orange {
+    @each $key, $value in colors.$color-orange {
+        --color-#{$key}: #{$value};
+    }
+}
+
+.app-gisa.app-color-gray {
+    @each $key, $value in colors.$color-gray {
+        --color-#{$key}: #{$value};
+    }
+}
+
+
+.app-gisa.app-color-yellow {
+    @each $key, $value in colors.$color-yellow {
+        --color-#{$key}: #{$value};
+    }
+}
+
+.app-gisa.dark-mode {
+    main {
+        background-color: var(--darkmode-800);
+        color: #E8E8E8;
+    }
+}

@@ -1,0 +1,312 @@
+@use 'bs-vendor/index' as *;
+
+.bs-container,
+.bs-container-fluid,
+.bs-container-xxl,
+.bs-container-xl,
+.bs-container-lg,
+.bs-container-md,
+.bs-container-sm {
+    --bs-gutter-x: 1.5rem;
+    --bs-gutter-y: 0;
+    width: 100%;
+    padding-right: calc(var(--bs-gutter-x) * .5);
+    padding-left: calc(var(--bs-gutter-x) * .5);
+    margin-right: auto;
+    margin-left: auto
+}
+
+@media(min-width:576px) {
+
+    .bs-container-sm,
+    .bs-container {
+        max-width: 540px
+    }
+}
+
+@media(min-width:768px) {
+
+    .bs-container-md,
+    .bs-container-sm,
+    .bs-container {
+        max-width: 720px
+    }
+}
+
+@media(min-width:992px) {
+
+    .bs-container-lg,
+    .bs-container-md,
+    .bs-container-sm,
+    .bs-container {
+        max-width: 960px
+    }
+}
+
+@media(min-width:1200px) {
+
+    .bs-container-xl,
+    .bs-container-lg,
+    .bs-container-md,
+    .bs-container-sm,
+    .bs-container {
+        max-width: 1140px
+    }
+}
+
+@media(min-width:1400px) {
+
+    .bs-container-xxl,
+    .bs-container-xl,
+    .bs-container-lg,
+    .bs-container-md,
+    .bs-container-sm,
+    .bs-container {
+        max-width: 1320px
+    }
+}
+
+.row {
+    --bs-gutter-x: 1.5rem;
+    --bs-gutter-y: 0;
+    display: flex;
+    flex-wrap: wrap;
+    margin-top: calc(-1 * var(--bs-gutter-y));
+    margin-right: calc(-0.5 * var(--bs-gutter-x));
+    margin-left: calc(-0.5 * var(--bs-gutter-x))
+}
+
+.row>* {
+    box-sizing: border-box;
+    flex-shrink: 0;
+    width: 100%;
+    max-width: 100%;
+    padding-right: calc(var(--bs-gutter-x) * .5);
+    padding-left: calc(var(--bs-gutter-x) * .5);
+    margin-top: var(--bs-gutter-y)
+}
+
+.col {
+    flex: 1 0 0
+}
+
+.row-cols-auto>* {
+    flex: 0 0 auto;
+    width: auto
+}
+@each $size, $porcent in $widths {
+    .col-#{$size} {
+        flex: 0 0 auto;
+        width: $porcent;
+    }
+}
+
+.g-0,
+.gx-0 {
+    --bs-gutter-x: 0
+}
+
+.g-0,
+.gy-0 {
+    --bs-gutter-y: 0
+}
+
+.g-1,
+.gx-1 {
+    --bs-gutter-x: .25rem
+}
+
+.g-1,
+.gy-1 {
+    --bs-gutter-y: .25rem
+}
+
+.g-2,
+.gx-2 {
+    --bs-gutter-x: .5rem
+}
+
+.g-2,
+.gy-2 {
+    --bs-gutter-y: .5rem
+}
+
+.g-3,
+.gx-3 {
+    --bs-gutter-x: 1rem
+}
+
+.g-3,
+.gy-3 {
+    --bs-gutter-y: 1rem
+}
+
+.g-4,
+.gx-4 {
+    --bs-gutter-x: 1.5rem
+}
+
+.g-4,
+.gy-4 {
+    --bs-gutter-y: 1.5rem
+}
+
+.g-5,
+.gx-5 {
+    --bs-gutter-x: 3rem
+}
+
+.g-5,
+.gy-5 {
+    --bs-gutter-y: 3rem
+}
+
+@each $key, $value in $breakpoint {
+    @media(min-width: #{$value}) {
+        .col-#{$key} {
+            flex: 1 0 0
+        }
+
+        @each $size, $porcent in $widths {
+            .col-#{$key}-#{$size} {
+                flex: 0 0 auto;
+                width: $porcent;
+            }
+        }
+
+        .g-#{$key}-0,
+        .gx-#{$key}-0 {
+            --bs-gutter-x: 0
+        }
+
+        .g-#{$key}-0,
+        .gy-#{$key}-0 {
+            --bs-gutter-y: 0
+        }
+
+        .g-#{$key}-1,
+        .gx-#{$key}-1 {
+            --bs-gutter-x: .25rem
+        }
+
+        .g-#{$key}-1,
+        .gy-#{$key}-1 {
+            --bs-gutter-y: .25rem
+        }
+
+        .g-#{$key}-2,
+        .gx-#{$key}-2 {
+            --bs-gutter-x: .5rem
+        }
+
+        .g-#{$key}-2,
+        .gy-#{$key}-2 {
+            --bs-gutter-y: .5rem
+        }
+
+        .g-#{$key}-3,
+        .gx-#{$key}-3 {
+            --bs-gutter-x: 1rem
+        }
+
+        .g-#{$key}-3,
+        .gy-#{$key}-3 {
+            --bs-gutter-y: 1rem
+        }
+
+        .g-#{$key}-4,
+        .gx-#{$key}-4 {
+            --bs-gutter-x: 1.5rem
+        }
+
+        .g-#{$key}-4,
+        .gy-#{$key}-4 {
+            --bs-gutter-y: 1.5rem
+        }
+
+        .g-#{$key}-5,
+        .gx-#{$key}-5 {
+            --bs-gutter-x: 3rem
+        }
+
+        .g-#{$key}-5,
+        .gy-#{$key}-5 {
+            --bs-gutter-y: 3rem
+        }
+    }
+}
+
+.d-none {
+    display: none !important
+}
+
+
+.order-first {
+    order: -1 !important
+}
+
+.order-0 {
+    order: 0 !important
+}
+
+.order-1 {
+    order: 1 !important
+}
+
+.order-2 {
+    order: 2 !important
+}
+
+.order-3 {
+    order: 3 !important
+}
+
+.order-4 {
+    order: 4 !important
+}
+
+.order-5 {
+    order: 5 !important
+}
+
+.order-last {
+    order: 6 !important
+}
+
+
+@each $key, $value in $breakpoint {
+    @media(min-width: #{$value}) {
+        .order-#{$key}-first {
+            order: -1 !important
+        }
+
+        .order-#{$key}-0 {
+            order: 0 !important
+        }
+
+        .order-#{$key}-1 {
+            order: 1 !important
+        }
+
+        .order-#{$key}-2 {
+            order: 2 !important
+        }
+
+        .order-#{$key}-3 {
+            order: 3 !important
+        }
+
+        .order-#{$key}-4 {
+            order: 4 !important
+        }
+
+        .order-#{$key}-5 {
+            order: 5 !important
+        }
+
+        .order-#{$key}-last {
+            order: 6 !important
+        }
+
+    }
+}

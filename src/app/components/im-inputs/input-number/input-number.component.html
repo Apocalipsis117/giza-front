@@ -1,0 +1,13 @@
+<fieldset class="im-fieldset">
+    @if(setLabel()) {
+        <legend>{{ setLabel() }}</legend>
+    }
+    <div class="input-group">
+        @if(setIcon()) {
+            <label class="input-group-text" [for]="id">
+                <i [class]="setIcon()"></i>
+            </label>
+        }
+        <input type="number" [ngModel]="currentValue" (focus)="change()" (ngModelChange)="changeValue($event)" autocomplete="off" [id]="id">
+    </div>
+</fieldset>

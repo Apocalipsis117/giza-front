@@ -1,0 +1,17 @@
+@use 'bootstrap/root';
+@use 'bootstrap/grid';
+@use 'bootstrap/offcanvas';
+@use 'bootstrap/modal';
+@use 'bootstrap/dropdowns';
+@use 'bootstrap/collpase';
+@use 'bootstrap/tab';
+@use 'bootstrap/carousel';
+@use 'bootstrap/tooltips';
+@use 'bootstrap/form.scss';
+@use 'bootstrap/spinner.scss';
+
+// ui
+@use 'bootstrap/btn';
+
+// frameword compativility
+@use 'bootstrap/ui-tailwind-reset';

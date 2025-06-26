@@ -1,0 +1,18 @@
+@use '../im-vendor/index' as *;
+
+.bloq-icon {
+    --im-size: 45px;
+    --im-rounded: 3px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    width: var(--im-size);
+    height: var(--im-size);
+    border-radius: var(--im-rounded);
+    > i, > span {
+        font-size: calc(var(--im-size) / 1.75);
+        color: inherit;
+        position: absolute;
+    }
+}

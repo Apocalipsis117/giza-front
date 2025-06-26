@@ -1,0 +1,30 @@
+/* img icono  */
+.ui-icono {
+    --size-icono: 40px;
+    @apply w-[var(--size-icono)] h-[var(--size-icono)] flex items-center justify-center;
+    font-size: calc(var(--size-icono) / 2);
+}
+
+.ui-icono.icono-md {
+    --size-icono: 55px;
+}
+
+.ui-icono.icono-lg {
+    --size-icono: 75px;
+}
+
+.ui-icono.icono-xl {
+    --size-icono: 85px;
+}
+
+.ui-icono.icono-2xl {
+    --size-icono: 100px;
+}
+
+.ui-icono.icono-3xl {
+    --size-icono: 145px;
+}
+
+.ui-icono.icono-4xl {
+    --size-icono: 155px;
+}

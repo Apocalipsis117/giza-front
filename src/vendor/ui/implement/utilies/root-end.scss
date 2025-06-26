@@ -1,0 +1,18 @@
+@use '../im-vendor/var' as *;
+
+
+@each $key, $value in $im-size-ixi {
+    .size-#{$key} {
+        --im-size: #{$value};
+    }
+}
+@each $key, $value in $im-size-large {
+    .large-#{$key} {
+        --im-large: #{$value};
+    }
+}
+@each $key, $value in $im-square-rounded {
+    .ui-#{$key} {
+        --im-rounded: #{$value};
+    }
+}
