@@ -5,7 +5,7 @@ import { InputPanelImgPreviewComponent } from '@form-control/input-panel-img-pre
 import { InputPanelSelectComponent } from '@form-control/input-panel-select/input-panel-select.component';
 import { InputPanelTextComponent } from '@form-control/input-panel-text/input-panel-text.component';
 import { ngFormHelper } from '@helpers/index';
-import { IForm, OptionsForm } from '@interfaces/index';
+import { IForm, FormControlOption } from '@interfaces/index';
 import { BladeBoxTitleComponent } from '@layouts/dashboard/blades/blade-box-title/blade-box-title.component';
 import { ButtonComponent } from '@layouts/shared/button/button.component';
 import { TitleIconSectionComponent } from '@layouts/shared/title-icon-section/title-icon-section.component';
@@ -39,7 +39,7 @@ export class FormRegisterIpsTwoComponent {
     swal = inject(SweetalertService);
     // signals
     legalRepresentatives = signal<any[]>([]);
-    typeRepresOptions = signal<OptionsForm[]>([]);
+    typeRepresOptions = signal<FormControlOption[]>([]);
     selectForDelete = signal<number>(-1);
     // form
     form: FormGroup;

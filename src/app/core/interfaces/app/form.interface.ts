@@ -1,10 +1,10 @@
-export interface OptionsForm {
-    value: number | '' | string;
+export interface FormControlOption<T = undefined> {
+    value: number | '' | string | null;
     name: string;
-    data?: any;
+    data?: T;
 }
 
-export interface FormControlOptionColor extends OptionsForm {
+export interface FormControlOptionColor extends FormControlOption {
     cssClass: string;
 }
 

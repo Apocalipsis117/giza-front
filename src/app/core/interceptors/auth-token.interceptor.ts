@@ -1,16 +1,20 @@
-import { HttpErrorResponse, HttpInterceptorFn } from '@angular/common/http';
-import { catchError, throwError } from 'rxjs';
+import { HttpInterceptorFn } from '@angular/common/http';
+import { inject } from '@angular/core';
+import { catchError } from 'rxjs';
+import { LocalStorageService } from '../services/app/local-storage.service';
+import { handleErrorResponse } from './httpHelper';
 
 export const interceptorAuthtoken: HttpInterceptorFn = (req, next) => {
-    const authToken = 'queso';
-    const clone = req.clone({
-        setHeaders: {
-            "X-Authentication-Token": authToken
-        }
-    });
-    return next(clone).pipe(catchError(handleErrorResponse));
-}
+    const localStorage$ = inject(LocalStorageService);
+    let clone = req;
+    const store = localStorage$.userLogin;
+    if(store && store.token) {
+        clone = req.clone({
+            setHeaders: {
+                'Authorization': 'Bearer ' + store.token
+            }
+        });
+    }
 
-function handleErrorResponse(error: HttpErrorResponse) {
-    return throwError(() => 'Error');
-}
+    return next(clone).pipe(catchError(handleErrorResponse));
+};

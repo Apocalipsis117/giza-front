@@ -1,4 +1,4 @@
-<blade-table [rounded]="true" [headDivider]="true" [bodyYDivider]="true" [load]="entitiesCant()" [ActiveLoad]="true" [paginate]="dataTable()" (controlPaginate)="paginate.emit($event)">
+<blade-table [rounded]="true" [headDivider]="true" [bodyYDivider]="true" [load]="entitiesCant()" [ActiveLoad]="true" [paginate]="dataTable()" (controlPaginate)="paginate($event)">
     <ng-container tableHead>
         <tr>
             <th>Nit</th>

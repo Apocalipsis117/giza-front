@@ -1,9 +1,9 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable, inject } from '@angular/core';
 import { queries } from '@helpers/index';
-import { ApartmentCitiesAPI, ApartmentCitiesAPP, CitiesOptionForm, TypeReturn } from '@interfaces/index';
-import { ApartmentCities, ApartmentCitiesOptions } from '@models/index';
-import { Observable, map } from 'rxjs';
+import { Apartment_APP, Apartment_ListResponse, FormControlOption, Municipality_APP, Municipality_ListResponse, TypeReturn } from '@interfaces/index';
+import { Apartment, OptionsControl } from '@models/index';
+import { Observable, map, tap } from 'rxjs';
 
 @Injectable({
     providedIn: 'root'
@@ -11,16 +11,32 @@ import { Observable, map } from 'rxjs';
 export class ApartmentCitiesService {
     private http = inject(HttpClient);
 
-    getAll(): Observable<ApartmentCitiesAPP[]>;
-    getAll(typeReturn: 'options'): Observable<CitiesOptionForm[]>;
-    /* query */
-    getAll(typeReturn: TypeReturn = null) {
+    apartaments(): Observable<Apartment_APP[]>;
+    apartaments(typeReturn: 'options'): Observable<FormControlOption[]>;
+    apartaments(typeReturn: TypeReturn = null) {
         const api = queries.api('departamentos/lista');
-        return this.http.get<ApartmentCitiesAPI[]>(api).pipe(
+        return this.http.get<Apartment_ListResponse>(api).pipe(
             map(data => {
-                if (typeReturn === 'options') return data.map(x => ApartmentCitiesOptions.setProperty(x));
-                return data.map(x => ApartmentCities.setProperty(x));
+                if (typeReturn === 'options') return data.data.map(x => OptionsControl.setProperty(x.id, x.nombre));
+                return data.data.map(x => Apartment.setProperty(x));
             })
+        );
+    }
+
+    municipalies(): Observable<Municipality_APP[]>;
+    municipalies(typeReturn: 'options'): Observable<FormControlOption[]>;
+    municipalies(typeReturn: TypeReturn = null) {
+        const api = queries.api('municipios/lista');
+        return this.http.get<Municipality_ListResponse>(api).pipe(
+            map(data => {
+                if (typeReturn === 'options') {
+                    return data.data.map(x => {
+                        const data = { apartamentID: 1 };
+                        return OptionsControl.setProperty(x.id, x.nombre, data);
+                    })
+                };
+                return data.data.map(x => Apartment.setProperty(x));
+            }),
         );
     }
 }

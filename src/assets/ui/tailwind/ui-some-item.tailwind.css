@@ -1,3 +1,0 @@
-.ui-some-item {
-    @apply flex flex-wrap items-center justify-center p-4 bg-[var(--color-50)] rounded-md;
-}

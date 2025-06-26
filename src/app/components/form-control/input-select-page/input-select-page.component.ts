@@ -1,7 +1,7 @@
 import { Component, forwardRef, input, signal } from '@angular/core';
 import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
 import { generator } from '@helpers/index';
-import { OptionsForm } from '@interfaces/index';
+import { FormControlOption } from '@interfaces/index';
 
 @Component({
     selector: 'input-select-page',
@@ -15,7 +15,7 @@ import { OptionsForm } from '@interfaces/index';
     templateUrl: './input-select-page.component.html'
 })
 export class InputSelectPageComponent implements ControlValueAccessor {
-    options = input<OptionsForm[]>([]);
+    options = input<FormControlOption[]>([]);
     currentValue = signal<number>(0);
     visible = false;
     idInput: string;

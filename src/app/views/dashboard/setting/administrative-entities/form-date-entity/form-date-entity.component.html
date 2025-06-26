@@ -1,66 +1,65 @@
 <form [formGroup]="form" class="space-y-4">
     <div class="d-grid items-end">
         <div class="col-span-3">
-            <input-panel-text setText="Nit" setIcon="icofont-ui-v-card" formControlName="taxId" />
+            <input-text setLabel="Nit" setIcon="icofont-ui-v-card" formControlName="taxId" />
         </div>
         <div class="col-span-3">
-            <input-panel-text setLabel="Código Entidad" formControlName="code" />
+            <input-text setLabel="Código Entidad" formControlName="code" />
         </div>
         <div class="col-span-6">
-            <input-panel-text setLabel="Nombre Entidad" formControlName="name" />
+            <input-text setLabel="Nombre Entidad" formControlName="name" />
         </div>
         <div class="col-span-3">
-            <input-panel-select setLabel="Departamento" [setOptions]="optionsDepartment()" formControlName="stateId" />
+            <input-select setLabel="Departamento" [setOptions]="optionsDepartment()" formControlName="departmentId" [emptyValue]="null" />
         </div>
         <div class="col-span-3">
-            <input-panel-select setLabel="Municipio" [setOptions]="optionsCities()" formControlName="cityId" [hiddenLoad]="true" />
+            <input-select setLabel="Municipio" [setOptions]="optionsCities()" formControlName="municipalityId" [emptyValue]="null" />
         </div>
         <div class="col-span-6">
-            <input-panel-text setLabel="Dirección administrativa" formControlName="address" />
+            <input-text setLabel="Dirección administrativa" formControlName="address" />
         </div>
         <div class="col-span-3">
-            <input-panel-text setLabel="Dirección radicación" formControlName="filingAddress" />
+            <input-text setLabel="Dirección radicación" formControlName="filingAddress" />
         </div>
         <div class="col-span-3">
-            <input-panel-text setType="tel" setLabel="Teléfono" formControlName="phone" />
+            <input-text setType="tel" setLabel="Teléfono" formControlName="phone" />
         </div>
         <div class="col-span-3">
-            <input-panel-text setType="email" setLabel="Correo electrónico" formControlName="email" />
+            <input-text setType="email" setLabel="Correo electrónico" formControlName="email" />
         </div>
         <div class="col-span-3">
-            <input-panel-select setLabel="régimen" [setOptions]="optionsRegime()" formControlName="regimeId" /><!--  -->
+            <input-select setLabel="régimen" [setOptions]="optionsRegime()" formControlName="regimeId" [emptyValue]="null" />
         </div>
         <div class="col-span-2">
-            <input-panel-text setType="number" setLabel="Long. autorización" formControlName="authorizationLength" />
-        </div>
-        <div class="col-span-2">
-            <input-panel-text setType="number" setLabel="N° copias" formControlName="hasCopies" />
+            <input-number setLabel="Long. autorización" formControlName="authorizationLength" />
         </div>
         <div class="col-span-4">
-            <input-panel-text setType="text" setLabel="Otros datos" formControlName="otherData" />
+            <input-text setLabel="Otros datos" formControlName="otherData" />
         </div>
+        <div class="col-span-3">
+            <input-text setType="email" setLabel="Correo Facturación Electrónica" formControlName="electronicBillingEmail" />
+        </div>
+        <!-- -->
     </div>
     <div class="block">
         <title-icon-section setTitle="Caracteristicas" setIcon="icofont-ui-check" setSize="sm" />
     </div>
     <div class="d-grid items-end">
         <div class="col-span-4">
-            <input-panel-checkbox typeCheck="switch" [clean]="true" setText="Rips Dígitos de verificación Nit" formControlName="ripsTaxIdVerification" />
+            <input-onoff ui="switch" setText="Requiere anexo 2 (atención inicial)" formControlName="requiresAnnex2" />
         </div>
         <div class="col-span-4">
-            <input-panel-checkbox typeCheck="switch" [clean]="true" setText="Requiere anexo 2 (atención inicial)" formControlName="requiresAnnex2" />
+            <input-onoff ui="switch" setText="SOAT" formControlName="soat" />
         </div>
         <div class="col-span-4">
-            <input-panel-checkbox typeCheck="switch" [clean]="true" setText="SOAT" formControlName="hasInsurance" />
+            <input-onoff ui="switch" setText="Activo" formControlName="status" />
         </div>
         <div class="col-span-4">
-            <input-panel-checkbox typeCheck="switch" [clean]="true" setText="Activo" formControlName="isActive" />
+            <input-onoff ui="switch" setText="Reporte resolución 256" formControlName="reportResolution256" />
         </div>
         <div class="col-span-4">
-            <input-panel-checkbox typeCheck="switch" [clean]="true" setText="Reporte resolución 256" value="1" (eventCheck)="eventCheck($event)" />
+            <input-onoff ui="switch" setText="Plantilla Resolucion 1552" formControlName="templateResolution1552" />
         </div>
-        <div class="col-span-4">
-            <input-panel-checkbox typeCheck="switch" [clean]="true" setText="Reporte resolución 1552" value="2" (eventCheck)="eventCheck($event)" />
-        </div>
+        <!-- -->
     </div>
 </form>

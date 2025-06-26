@@ -1,7 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable, inject } from '@angular/core';
 import { queries } from '@helpers/index';
-import { OptionsForm, OxigenRateAPI, OxigenRateAPI_PAGE, TypeReturn } from '@interfaces/index';
+import { FormControlOption, OxigenRateAPI, OxigenRateAPI_PAGE, TypeReturn } from '@interfaces/index';
 import { OxigenRateAPP, OxigenRateAPP_PAGE } from '@interfaces/app';
 import { OptionsControl, OxygenRate, OxygenRateDTO } from '@models/index';
 import { Observable, map } from 'rxjs';
@@ -24,7 +24,7 @@ export class OxygenRateService {
     }
 
     getAll(): Observable<OxigenRateAPP[]>;
-    getAll(typeReturn: 'options'): Observable<OptionsForm[]>;
+    getAll(typeReturn: 'options'): Observable<FormControlOption[]>;
     /* query */
     getAll(typeReturn: TypeReturn = null) {
         const api = queries.api(this.api.list);

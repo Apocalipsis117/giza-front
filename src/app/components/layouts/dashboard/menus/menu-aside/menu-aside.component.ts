@@ -3,6 +3,7 @@ import { CommonModule, NgClass } from '@angular/common';
 import { AppMenu, DataMenuAside } from '@interfaces/index';
 import { MenuAsideUlComponent } from '../menu-aside-ul/menu-aside-ul.component';
 import { AppMenuService, RxAppGisaService } from '@services/app';
+import { distinctUntilChanged } from 'rxjs';
 
 @Component({
     selector: 'menu-aside',
@@ -23,8 +24,10 @@ export class MenuAsideComponent implements OnInit {
         const data = this.appMenu$.menu;
         this.asideMenuData.set(data);
 
-        this.appGisa$.watchAppGisa.subscribe(value => {
-            this.menuUi.set(value.config.menu)
+        this.appGisa$.watchConfig.pipe(distinctUntilChanged((prev, curr) => prev.menu === curr.menu)).subscribe({
+            next: (value) => {
+                this.menuUi.set(value.menu)
+            }
         })
     }
 }

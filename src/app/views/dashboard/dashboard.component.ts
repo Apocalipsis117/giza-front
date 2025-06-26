@@ -9,6 +9,7 @@ import { MenuAsideComponent } from '@layouts/dashboard/menus/menu-aside/menu-asi
 import { TabsControllerComponent } from '@layouts/dashboard/tabs/tabs-controller/tabs-controller.component';
 import { RxAppGisaService } from '@services/app';
 import { Chart, registerables } from 'chart.js';
+import { ApisInitService } from 'src/app/core/services/api/apis-init.service';
 
 @Component({
     selector: 'app-dashboard',
@@ -27,6 +28,7 @@ import { Chart, registerables } from 'chart.js';
 export class DashboardComponent {
     private readonly platform = inject(PLATFORM_ID);
     private readonly appGisa = inject(RxAppGisaService);
+    private readonly apisInit$ = inject(ApisInitService);
     appColor = signal<AppColor>('default');
     appMode = signal<AppMode>('light');
     constructor() {
@@ -35,12 +37,15 @@ export class DashboardComponent {
         })
     }
     ngOnInit(): void {
-        this.appGisa.watchAppGisa.subscribe(value => {
-            const color = value.config.color;
-            const mode = value.config.mode;
-            this.appColor.set(color)
-            this.appMode.set(mode)
+        this.appGisa.watchConfig.subscribe({
+            next: (value) => {
+                const color = value.color;
+                const mode = value.mode;
+                this.appColor.set(color)
+                this.appMode.set(mode)
+            }
         })
+        this.apisInit$.initAPIS();
     }
 
     appTheme = computed(() => ({

@@ -1,6 +1,5 @@
 export * from './store/store.i';
 
-export * from './app/setting/administrative-entities.i';
 export * from './app/setting/assistace-serv.i';
 export * from './app/setting/institution.i';
 export * from './app/setting/cup.i';

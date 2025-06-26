@@ -4,7 +4,7 @@ import { InputPanelCheckboxComponent } from '@form-control/input-panel-checkbox/
 import { InputPanelSelectComponent } from '@form-control/input-panel-select/input-panel-select.component';
 import { InputPanelSwitchComponent } from '@form-control/input-panel-switch/input-panel-switch.component';
 import { InputPanelTextComponent } from '@form-control/input-panel-text/input-panel-text.component';
-import { OptionsForm } from '@interfaces/index';
+import { FormControlOption } from '@interfaces/index';
 import { BladeTableComponent } from '@layouts/dashboard/blades/blade-table/blade-table.component';
 import { RolesControlsService } from '../roles-controls.service';
 import { BarToolControllerService, SweetalertService } from '@services/app';
@@ -27,7 +27,7 @@ export class FormRolesComponent {
     swal = inject(SweetalertService);
     barToolService = inject(BarToolControllerService);
     fb = inject(FormBuilder);
-    cargosOptions = signal<OptionsForm[]>([]);
+    cargosOptions = signal<FormControlOption[]>([]);
 
     form = this.fb.group({
         cargo_id: ['', [Validators.required]],

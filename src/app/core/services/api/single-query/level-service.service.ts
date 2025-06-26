@@ -1,7 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable, inject } from '@angular/core';
 import { queries } from '@helpers/index';
-import { NamedEntityAPI, NamedEntityAPP, OptionsForm, TypeReturn } from '@interfaces/index';
+import { NamedEntityAPI, NamedEntityAPP, FormControlOption, TypeReturn } from '@interfaces/index';
 import { NamedEntity, OptionsControl } from '@models/index';
 import { Observable, map } from 'rxjs';
 
@@ -12,7 +12,7 @@ export class LevelServiceService {
     private http = inject(HttpClient);
 
     getAll(): Observable<NamedEntityAPP[]>;
-    getAll(typeReturn: 'options'): Observable<OptionsForm[]>;
+    getAll(typeReturn: 'options'): Observable<FormControlOption[]>;
     /* query */
     getAll(typeReturn: TypeReturn = null) {
         const api = queries.api('n-servicio/lista');

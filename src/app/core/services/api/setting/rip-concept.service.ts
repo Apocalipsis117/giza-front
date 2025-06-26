@@ -1,7 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable, inject } from '@angular/core';
 import { queries } from '@helpers/index';
-import { OptionsForm, RIPConceptAPI, RIPConceptAPP, RIPConceptDTO_APP, TypeReturn } from '@interfaces/index';
+import { FormControlOption, RIPConceptAPI, RIPConceptAPP, RIPConceptDTO_APP, TypeReturn } from '@interfaces/index';
 import { OptionsControl, RipConceptDTO, RipConcept } from '@models/index';
 import { Observable, map } from 'rxjs';
 
@@ -22,7 +22,7 @@ export class RipConceptService {
     }
 
     getAll(): Observable<RIPConceptAPP[]>;
-    getAll(typeReturn: 'options'): Observable<OptionsForm[]>;
+    getAll(typeReturn: 'options'): Observable<FormControlOption[]>;
     /* query */
     getAll(typeReturn: TypeReturn = null) {
         const api = queries.api(this.api.list);

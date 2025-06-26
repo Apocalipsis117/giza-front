@@ -13,3 +13,4 @@ export { domHelper } from './app/domHelper';
 export { uiEffect } from './app/uiEffect';
 export { eventHelper } from './app/eventHelper';
 export { formHelper } from './app/formHelper';
+export { apiHelper } from './app/apiHelper';

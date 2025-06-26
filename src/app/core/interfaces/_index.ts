@@ -4,7 +4,6 @@ export * from './api/role.i';
 export * from './api/legal-data.i';
 export * from './api/activity-vehicle.i';
 export * from './api/name-entity.i';
-export * from './api/apartment-cities.i';
 export * from './api/types.i';
 export * from './api/rip.i';
 export * from './api/services.i';
@@ -14,7 +13,6 @@ export * from './api/paginate.i';
 export * from './api/setting/diagnosis.i';
 export * from './api/setting/vehicles.i';
 export * from './api/setting/ips.i';
-export * from './api/setting/administrative-entities.i';
 export * from './api/setting/assistace-serv.i';
 export * from './api/setting/p-facturacion.i';
 export * from './api/setting/cup.i';
@@ -39,12 +37,16 @@ export * from './app/ips.i';
 export * from './app/activity-vehicle.i';
 export * from './app/service-level.i';
 export * from './app/name-entity.i';
-export * from './app/apartment-cities.i';
 export * from './app/types.i';
 export * from './app/rip.i';
 export * from './app/services.i';
 export * from './app/contract.i';
 export * from './app/cost-center.i';
+
+// INTERFACES
+export * from './setting/administrative-entities.i';
+export * from './auth/auth.i';
+export * from './single-query/apartment-cities.i';
 
 // fakes
 export * from './fakes/todo.interface';

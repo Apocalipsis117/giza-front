@@ -1,6 +1,6 @@
 import { Component, computed, inject, input, signal } from '@angular/core';
 import { FormGroup, ReactiveFormsModule } from '@angular/forms';
-import { IForm, OptionsForm } from '@interfaces/index';
+import { IForm, FormControlOption } from '@interfaces/index';
 // inputs
 import { InputPanelSelectComponent } from '@form-control/input-panel-select/input-panel-select.component';
 import { InputPanelTextComponent } from '@form-control/input-panel-text/input-panel-text.component';
@@ -23,9 +23,9 @@ export class FormRipconceptComponent {
     testServ = inject(TestService);
     typeService$ = inject(TypeServiceService);
     GroupSoat$ = inject(GroupSoatService);
-    options = signal<OptionsForm[]>([]);
-    optionsTypeServ = signal<OptionsForm[]>([]);
-    optionsGroupSoat = signal<OptionsForm[]>([]);
+    options = signal<FormControlOption[]>([]);
+    optionsTypeServ = signal<FormControlOption[]>([]);
+    optionsGroupSoat = signal<FormControlOption[]>([]);
 
     form = computed(() => this.setForm() as FormGroup);
 

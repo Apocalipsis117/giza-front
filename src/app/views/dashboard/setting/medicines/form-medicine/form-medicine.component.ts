@@ -6,7 +6,7 @@ import { InputPanelSelectComponent } from '@form-control/input-panel-select/inpu
 import { InputPanelTextComponent } from '@form-control/input-panel-text/input-panel-text.component';
 import { InputPanelTextareaComponent } from '@form-control/input-panel-textarea/input-panel-textarea.component';
 import { MedicineDTO_APP } from '@interfaces/app';
-import { IForm, OptionsForm } from '@interfaces/index';
+import { IForm, FormControlOption } from '@interfaces/index';
 import { TypeServiceService, PharmaceuticalFormService, TypeConcentrationService, TypeMedicineService, TypeMedicineUnitService, CostCenterService } from '@services/api';
 
 @Component({
@@ -30,13 +30,13 @@ export class FormMedicineComponent {
     pharmaFormServ = inject(PharmaceuticalFormService);
     costCenterServ = inject(CostCenterService);
     typeServiceServ = inject(TypeServiceService);
-    optionsTypeMedicine = signal<OptionsForm[]>([]);
-    optionsMedicineUnit = signal<OptionsForm[]>([]);
-    optionsConcentration = signal<OptionsForm[]>([]);
-    optionsScope = signal<OptionsForm[]>([]);
-    optionsPharmaForm = signal<OptionsForm[]>([]);
-    optionsCostcenter = signal<OptionsForm[]>([]);
-    optionsTypeServ = signal<OptionsForm[]>([]);
+    optionsTypeMedicine = signal<FormControlOption[]>([]);
+    optionsMedicineUnit = signal<FormControlOption[]>([]);
+    optionsConcentration = signal<FormControlOption[]>([]);
+    optionsScope = signal<FormControlOption[]>([]);
+    optionsPharmaForm = signal<FormControlOption[]>([]);
+    optionsCostcenter = signal<FormControlOption[]>([]);
+    optionsTypeServ = signal<FormControlOption[]>([]);
 
     form = computed(() => this.setForm() as FormGroup<IForm<MedicineDTO_APP>>);
 

@@ -1,7 +1,0 @@
-.ui-card {
-    @apply block shadow-md p-5 bg-white rounded-lg;
-}
-
-.ui-card-outline {
-    @apply border p-5 bg-white rounded-lg grid grid-cols-12 gap-3;
-}

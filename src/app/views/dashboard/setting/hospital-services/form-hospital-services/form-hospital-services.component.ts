@@ -3,7 +3,7 @@ import { FormGroup, ReactiveFormsModule } from '@angular/forms';
 import { InputPanelCheckboxComponent } from '@form-control/input-panel-checkbox/input-panel-checkbox.component';
 import { InputPanelSelectComponent } from '@form-control/input-panel-select/input-panel-select.component';
 import { InputPanelTextComponent } from '@form-control/input-panel-text/input-panel-text.component';
-import { HospitalServiceDTO_APP, IForm, OptionsForm } from '@interfaces/index';
+import { HospitalServiceDTO_APP, IForm, FormControlOption } from '@interfaces/index';
 import { CostCenterService, TypeAmbitService, TypeSexService } from '@services/api';
 import { TestService } from '@services/app';
 
@@ -24,10 +24,10 @@ export class FormHospitalServicesComponent {
     costcenterServ = inject(CostCenterService);
     genderServ = inject(TypeSexService);
     ambitServ = inject(TypeAmbitService);
-    options = signal<OptionsForm[]>([]);
-    optionsCentercost = signal<OptionsForm[]>([]);
-    optionsGender = signal<OptionsForm[]>([]);
-    optionsAmbit = signal<OptionsForm[]>([]);
+    options = signal<FormControlOption[]>([]);
+    optionsCentercost = signal<FormControlOption[]>([]);
+    optionsGender = signal<FormControlOption[]>([]);
+    optionsAmbit = signal<FormControlOption[]>([]);
 
     form = computed(() => this.setForm() as FormGroup);
 

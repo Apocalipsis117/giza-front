@@ -5,7 +5,7 @@ import { InputPanelCheckboxComponent } from '@form-control/input-panel-checkbox/
 import { InputPanelSelectComponent } from '@form-control/input-panel-select/input-panel-select.component';
 import { InputPanelTextComponent } from '@form-control/input-panel-text/input-panel-text.component';
 import { CupsDTO_APP } from '@interfaces/app';
-import { IForm, OptionsForm } from '@interfaces/index';
+import { IForm, FormControlOption } from '@interfaces/index';
 import { BladePanelOptionsComponent } from '@layouts/dashboard/blades/blade-panel-options/blade-panel-options.component';
 import { GroupQxService, RipConceptService, ServiceLevelService, ServicesService, TypeAmbitService, TypeBirthService, TypeSexService } from '@services/api';
 
@@ -32,13 +32,13 @@ export class FormCupsComponent {
     ripConceptServ = inject(RipConceptService);
     groupQxServ = inject(GroupQxService);
 
-    optionsLevels = signal<OptionsForm[]>([]);
-    optionsGender = signal<OptionsForm[]>([]);
-    optionsAmbit = signal<OptionsForm[]>([]);
-    optionsBirth = signal<OptionsForm[]>([]);
-    optionsServices = signal<OptionsForm[]>([]);
-    optionsRipConcept = signal<OptionsForm[]>([]);
-    optionsGroupqx = signal<OptionsForm[]>([]);
+    optionsLevels = signal<FormControlOption[]>([]);
+    optionsGender = signal<FormControlOption[]>([]);
+    optionsAmbit = signal<FormControlOption[]>([]);
+    optionsBirth = signal<FormControlOption[]>([]);
+    optionsServices = signal<FormControlOption[]>([]);
+    optionsRipConcept = signal<FormControlOption[]>([]);
+    optionsGroupqx = signal<FormControlOption[]>([]);
 
     form = computed(() => this.setForm() as FormGroup);
 

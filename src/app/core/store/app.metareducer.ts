@@ -1,7 +1,7 @@
 import { ActionReducer, MetaReducer } from '@ngrx/store';
 
 const PREFIX_STORAGE = 'gisa';
-const PERSISTED_KEYS = ['tabsController', 'share', 'appGisa'];
+const PERSISTED_KEYS = ['tabsController', 'share', 'appGisa', 'user'];
 
 class LocalStorageHelper {
     private prefix: string;

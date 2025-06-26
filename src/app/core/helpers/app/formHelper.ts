@@ -7,11 +7,11 @@ export const formHelper = {
         }
 
         const filteredItems = options.filter(item =>
-            item && typeof item === 'object' && 'name' in item && currentValue.includes(item.value)
+            item && typeof item === 'object' && 'name' in item && currentValue.includes(String(item.value))
         );
 
         return filteredItems.sort((a, b) =>
-            currentValue.indexOf(a.value) - currentValue.indexOf(b.value)
+            currentValue.indexOf(String(a.value)) - currentValue.indexOf(String(b.value))
         );
     },
     sortByName(options: FormControlOption[]): FormControlOption[] {

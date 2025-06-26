@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { queries } from '@helpers/index';
-import { OptionsForm } from '@interfaces/index';
+import { FormControlOption } from '@interfaces/index';
 import { Observable, Subject, delay, of, switchMap, throwError } from 'rxjs';
 
 @Injectable({
@@ -40,7 +40,7 @@ export class TestService {
         }).pipe(delay(1000));
     }
 
-    getOptions(type: 'options'): Observable<OptionsForm[]> {
+    getOptions(type: 'options'): Observable<FormControlOption[]> {
         return of([
             { value: 1, name: 'Option 1' },
             { value: 2, name: 'Option 2' },

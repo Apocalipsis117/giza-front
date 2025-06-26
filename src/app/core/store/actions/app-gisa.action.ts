@@ -1,17 +1,27 @@
 import { createAction, props } from '@ngrx/store';
-import { AppColor, AppMenu, AppMode } from '@interfaces/index';
+import { AppColor, AppMenu, AppMode, FormControlOption } from '@interfaces/index';
 
-export const action_color_appGisa = createAction(
-    '[appGisa] change color',
+export const action_appGisa_color = createAction(
+    '[appGisa] color',
     props<{ value: AppColor }>()
 );
 
-export const action_mode_appGisa = createAction(
-    '[appGisa] change mode',
+export const action_appGisa_mode = createAction(
+    '[appGisa] mode',
     props<{ value: AppMode }>()
 );
 
-export const action_menu_appGisa = createAction(
-    '[appGisa] change menu',
+export const action_appGisa_menu = createAction(
+    '[appGisa] menu',
     props<{ value: AppMenu }>()
+);
+
+export const action_appGisa_apartaments = createAction(
+    '[appGisa] apartaments',
+    props<{ data: FormControlOption[] }>()
+);
+
+export const action_appGisa_municipalies = createAction(
+    '[appGisa] municipalies',
+    props<{ data: FormControlOption[] }>()
 );

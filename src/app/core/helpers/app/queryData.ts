@@ -1,4 +1,4 @@
-import { Applang, CitiesOptionForm } from "@interfaces/index";
+import { Applang } from "@interfaces/index";
 
 const colorIndex = [
     {
@@ -101,14 +101,6 @@ export const queryData = {
         }
         else {
             return value;
-        }
-    },
-    cities(value: any, department: CitiesOptionForm[]) {
-        const apartment = department.find(x => x.value === value);
-        if (value && apartment) {
-            return apartment?.cities;
-        } else {
-            return [];
         }
     },
     getLangValue(obj: any[], options: { lang: Applang; key: string }) {

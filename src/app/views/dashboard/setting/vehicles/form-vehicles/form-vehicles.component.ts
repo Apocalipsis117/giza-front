@@ -4,7 +4,7 @@ import { InputPanelCheckboxComponent } from '@form-control/input-panel-checkbox/
 import { InputPanelSelectComponent } from '@form-control/input-panel-select/input-panel-select.component';
 import { InputPanelTextComponent } from '@form-control/input-panel-text/input-panel-text.component';
 import { InputPanelTextareaComponent } from '@form-control/input-panel-textarea/input-panel-textarea.component';
-import { IForm, OptionsForm, VehiclesTDO_APP } from '@interfaces/index';
+import { IForm, FormControlOption, VehiclesTDO_APP } from '@interfaces/index';
 import { QueryStaticService, TypeVehicleService } from '@services/api';
 
 @Component({
@@ -24,9 +24,9 @@ export class FormVehiclesComponent {
     typeVehicle = inject(TypeVehicleService);
     staticApi = inject(QueryStaticService);
 
-    optionsTypevehicles = signal<OptionsForm[]>([]);
-    optionsBrandsvehicles = signal<OptionsForm[]>([]);
-    optionsActivityVehicle = signal<OptionsForm[]>([]);
+    optionsTypevehicles = signal<FormControlOption[]>([]);
+    optionsBrandsvehicles = signal<FormControlOption[]>([]);
+    optionsActivityVehicle = signal<FormControlOption[]>([]);
 
     form = computed(() => this.setForm() as FormGroup);
 
@@ -38,7 +38,7 @@ export class FormVehiclesComponent {
 
     queryApiStatic() {
         this.staticApi.vehicleState().subscribe(data => {
-            const options: OptionsForm[] = data.map(x => x.optionForm);
+            const options: FormControlOption[] = data.map(x => x.optionForm);
             this.optionsActivityVehicle.set(options);
         })
     }

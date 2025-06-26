@@ -1,7 +1,7 @@
-import { OptionsForm } from "@interfaces/index";
+import { FormControlOption } from "@interfaces/index";
 
 export class OptionsControl {
-    static setProperty(value: number, name: string, data: any | null = null): OptionsForm {
+    static setProperty(value: number, name: string, data: any | null = null): FormControlOption {
         return new OptionsControl(value, name, data).option;
     }
     constructor(
@@ -10,7 +10,7 @@ export class OptionsControl {
         private data: any | null
     ) {}
 
-    get option(): OptionsForm {
+    get option(): FormControlOption {
         return {
             value: this.value,
             name: this.name,

@@ -1,6 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable, inject } from '@angular/core';
-import { OptionsForm, TypeReturn, TypeVehicleAPI, TypeVehicleAPP } from '@interfaces/index';
+import { FormControlOption, TypeReturn, TypeVehicleAPI, TypeVehicleAPP } from '@interfaces/index';
 import { NamedEntity, OptionsControl } from '@models/index';
 import { Observable, map, of } from 'rxjs';
 import brandsVehicles from '@local-data/app/brands-vehicles.json';
@@ -13,7 +13,7 @@ export class TypeVehicleService {
     private http = inject(HttpClient);
 
     getAll(): Observable<TypeVehicleAPP[]>;
-    getAll(typeReturn: 'options'): Observable<OptionsForm[]>;
+    getAll(typeReturn: 'options'): Observable<FormControlOption[]>;
     /* query */
     getAll(typeReturn: TypeReturn = null) {
         const api = queries.api('tipo-vehiculo/lista');
@@ -26,7 +26,7 @@ export class TypeVehicleService {
     }
 
     brands(): Observable<any[]>;
-    brands(typeReturn: 'options'): Observable<OptionsForm[]>;
+    brands(typeReturn: 'options'): Observable<FormControlOption[]>;
     /* query */
     brands(typeReturn: TypeReturn = null) {
         return of(brandsVehicles.data.brands).pipe(

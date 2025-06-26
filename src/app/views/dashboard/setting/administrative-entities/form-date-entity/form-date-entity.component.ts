@@ -1,25 +1,25 @@
-import { CommonModule } from '@angular/common';
 import { Component, inject, signal } from '@angular/core';
 import { FormBuilder, FormGroup, ReactiveFormsModule } from '@angular/forms';
-import { InputPanelCheckboxComponent } from '@form-control/input-panel-checkbox/input-panel-checkbox.component';
-import { InputPanelSelectComponent } from '@form-control/input-panel-select/input-panel-select.component';
-import { InputPanelTextComponent } from '@form-control/input-panel-text/input-panel-text.component';
 import { ngFormHelper, queryData } from '@helpers/index';
-import { AdministrativeEntitiesDTO_APP } from '@interfaces/app';
-import { CitiesOptionForm, IForm, OptionsForm } from '@interfaces/index';
+import { InputNumberComponent } from '@im-inputs/input-number/input-number.component';
+import { InputOnoffComponent } from '@im-inputs/input-onoff/input-onoff.component';
+import { InputSelectComponent } from '@im-inputs/input-select/input-select.component';
+import { InputTextComponent } from '@im-inputs/input-text/input-text.component';
+import { AdministrativeEntity_APPDTO, IForm, FormControlOption } from '@interfaces/index';
 import { TitleIconSectionComponent } from '@layouts/shared/title-icon-section/title-icon-section.component';
 import { ApartmentCitiesService, TypeRegimeService } from '@services/api';
+import { distinctUntilChanged } from 'rxjs';
 
 @Component({
     selector: 'form-date-entity',
     standalone: true,
     imports: [
-        CommonModule,
-        InputPanelTextComponent,
-        InputPanelCheckboxComponent,
-        InputPanelSelectComponent,
         ReactiveFormsModule,
-        TitleIconSectionComponent
+        TitleIconSectionComponent,
+        InputTextComponent,
+        InputSelectComponent,
+        InputOnoffComponent,
+        InputNumberComponent
     ],
     templateUrl: './form-date-entity.component.html'
 })
@@ -29,32 +29,31 @@ export class FormDateEntityComponent {
     private readonly typeRegime = inject(TypeRegimeService);
 
     resolutions = signal<string[]>([]);
-    optionsDepartment = signal<CitiesOptionForm[]>([]);
-    optionsCities = signal<OptionsForm[]>([]);
-    optionsRegime = signal<OptionsForm[]>([]);
+    optionsDepartment = signal<FormControlOption[]>([]);
+    optionsCities = signal<FormControlOption[]>([]);
+    optionsRegime = signal<FormControlOption[]>([]);
 
     form: FormGroup;
-    formCloneEntity: AdministrativeEntitiesDTO_APP;
-    formEntity: IForm<AdministrativeEntitiesDTO_APP> = {
-        code: [''], // int
+    formCloneEntity: AdministrativeEntity_APPDTO;
+    formEntity: IForm<AdministrativeEntity_APPDTO> = {
+        code: [''],
         name: [''],
-        taxId: [''],
         address: [''],
         filingAddress: [''],
         email: [''],
         electronicBillingEmail: [''],
-        hasInsurance: [false],
         phone: [''],
-        authorizationLength: [''], // int
-        hasCopies: [false],
-        ripsTaxIdVerification: [false],
+        otherData: [''],
+        authorizationLength: [NaN],
+        taxId: [null],
+        municipalityId: [null],
+        regimeId: [null],
+        departmentId: [null],
         requiresAnnex2: [false],
-        regimeId: [''], // int
-        stateId: [''], // int
-        cityId: [''], // int
-        resolution: [''],
-        isActive: [false],
-        otherData: ['']
+        soat: [false],
+        status: [true],
+        reportResolution256: [false],
+        templateResolution1552: [false]
     }
 
     constructor() {
@@ -63,32 +62,20 @@ export class FormDateEntityComponent {
     }
 
     ngOnInit(): void {
-        this.apartmentCities.getAll('options').subscribe(data => this.optionsDepartment.set(data));
+        this.apartmentCities.apartaments('options').subscribe(data => this.optionsDepartment.set(data));
         this.typeRegime.getAll('options').subscribe(data => this.optionsRegime.set(data));
-        this.changeApartment();
+        this.watchDepartamentId();
     }
 
     reset() {
         this.form.reset(this.formCloneEntity)
     }
 
-    changeApartment() {
-        this.form.get('stateId')!.valueChanges.subscribe(value => {
-            if (value) {
-                let cities = queryData.cities(value, this.optionsDepartment());
-                this.optionsCities.set(cities)
+    watchDepartamentId() {
+        this.form.get('departmentId')!.valueChanges.pipe(distinctUntilChanged()).subscribe({
+            next: (value) => {
+                console.log("value", value);
             }
         })
-    }
-
-    eventCheck(e: any) {
-        const value = e.data.value;
-        if (e.data.check) {
-            this.resolutions.update(x => [...x, value])
-        } else {
-            this.resolutions.update(x => [...x.filter(v => v !== value)])
-        }
-        const res = this.resolutions().join(',')
-        this.form.get('resolution')?.patchValue(res);
     }
 }

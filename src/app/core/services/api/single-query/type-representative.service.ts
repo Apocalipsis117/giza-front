@@ -1,7 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable, inject } from '@angular/core';
 import { queries } from '@helpers/index';
-import { OptionsForm, TypeRepresentativeAPI, TypeRepresentativeAPP, TypeReturn } from '@interfaces/index';
+import { FormControlOption, TypeRepresentativeAPI, TypeRepresentativeAPP, TypeReturn } from '@interfaces/index';
 import { OptionsControl, TypeRepresentative } from '@models/index';
 import { Observable, map } from 'rxjs';
 
@@ -12,7 +12,7 @@ export class TypeRepresentativeService {
     private http = inject(HttpClient);
 
     getAll(): Observable<TypeRepresentativeAPP[]>;
-    getAll(typeReturn: 'options'): Observable<OptionsForm[]>;
+    getAll(typeReturn: 'options'): Observable<FormControlOption[]>;
     /* query */
     getAll(typeReturn: TypeReturn = null) {
         const api = queries.api('tipo-rep-ips/lista');

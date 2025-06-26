@@ -1,7 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable, inject } from '@angular/core';
 import { queries } from '@helpers/index';
-import { CostCenterAPI, CostCenterAPP, CostCenterDTO_APP, CostCenterAPP_PAGE, CostCenterAPI_PAGE, OptionsForm, TypeReturn } from '@interfaces/index';
+import { CostCenterAPI, CostCenterAPP, CostCenterDTO_APP, CostCenterAPP_PAGE, CostCenterAPI_PAGE, FormControlOption, TypeReturn } from '@interfaces/index';
 import { CostCenter, CostCenterDTO, OptionsControl } from '@models/index';
 import { Observable, map } from 'rxjs';
 
@@ -23,7 +23,7 @@ export class CostCenterService {
     }
 
     getAll(): Observable<CostCenterAPP[]>;
-    getAll(typeReturn: 'options'): Observable<OptionsForm[]>;
+    getAll(typeReturn: 'options'): Observable<FormControlOption[]>;
     /* query */
     getAll(typeReturn: TypeReturn = null) {
         const api = queries.api(this.api.list);

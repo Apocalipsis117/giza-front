@@ -5,7 +5,7 @@ import { InputPanelImgComponent } from '@form-control/input-panel-img/input-pane
 import { InputPanelSelectComponent } from '@form-control/input-panel-select/input-panel-select.component';
 import { InputPanelTextComponent } from '@form-control/input-panel-text/input-panel-text.component';
 import { queryData } from '@helpers/index';
-import { BasicDataIpsDTO_APP, CitiesOptionForm, IForm, OptionsForm } from '@interfaces/index';
+import { BasicDataIpsDTO_APP, IForm, FormControlOption } from '@interfaces/index';
 import { ApartmentCitiesService, LevelIpsService, TypeDniIpsService } from '@services/api';
 import { LocalIpsService } from '../local-ips.service';
 @Component({
@@ -29,11 +29,11 @@ export class FormRegisterIpsOneComponent {
     typeDniIps$ = inject(TypeDniIpsService);
     loca$ = inject(LocalIpsService);
     countries$ = inject(ApartmentCitiesService);
-    optionsDepartments = signal<CitiesOptionForm[]>([]);
-    optionsCities = signal<OptionsForm[]>([]);
+    optionsDepartments = signal<FormControlOption[]>([]);
+    optionsCities = signal<FormControlOption[]>([]);
     // signal
-    optionslevelIps = signal<OptionsForm[]>([]);
-    optionsDniIps = signal<OptionsForm[]>([]);
+    optionslevelIps = signal<FormControlOption[]>([]);
+    optionsDniIps = signal<FormControlOption[]>([]);
     // computed
     form = computed(() => this.setForm() as FormGroup);
     logo = computed(() => this.setForm()!.get('ipsLogo'));
@@ -42,16 +42,15 @@ export class FormRegisterIpsOneComponent {
     ngOnInit(): void {
         this.levelIps$.getAll('options').subscribe(data => this.optionslevelIps.set(data));
         this.typeDniIps$.getAll('options').subscribe(data => this.optionsDniIps.set(data));
-        this.countries$.getAll('options').subscribe(data => this.optionsDepartments.set(data));
+        this.countries$.apartaments('options').subscribe(data => this.optionsDepartments.set(data));
         this.changeApartment();
         this.watchEventForm();
     }
 
     changeApartment() {
-        this.setForm()!.get('departmentId')!.valueChanges.subscribe(value => {
-            if (value) {
-                let cities = queryData.cities(value, this.optionsDepartments());
-                this.optionsCities.set(cities)
+        this.setForm()!.get('departmentId')!.valueChanges.subscribe({
+            next: (value) => {
+                console.log("value", value);
             }
         })
     }

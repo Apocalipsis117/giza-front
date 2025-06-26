@@ -1,10 +1,11 @@
-import { AppGisa, NavegationMenuAside } from "@interfaces/index";
+import { AppGisa, FormControlOption, Login_API, NavegationMenuAside } from "@interfaces/index";
 import { MenuShortcutShortcutMenu } from "@interfaces/index";
 
 export interface AppStore {
     tabsController: State_tabsController;
     share: State_share;
     appGisa: State_appGisa;
+    user: State_user;
 }
 
 export interface State_share {
@@ -19,4 +20,10 @@ export interface State_tabsController {
 
 export interface State_appGisa {
     config: AppGisa;
+    apartaments: FormControlOption[];
+    municipalies: FormControlOption[];
+}
+
+export interface State_user {
+    login: Login_API | null;
 }

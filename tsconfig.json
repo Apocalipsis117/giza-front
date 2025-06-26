@@ -81,6 +81,9 @@
             ],
             "@animations/index": [
                 "src/app/core/animations/_index.ts"
+            ],
+            "@im-inputs/*": [
+                "src/app/components/im-inputs/*"
             ]
         },
         "baseUrl": "./",

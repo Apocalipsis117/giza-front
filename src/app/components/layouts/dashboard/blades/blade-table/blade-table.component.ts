@@ -2,7 +2,7 @@ import { NgClass } from '@angular/common';
 import { Component, computed, input, output } from '@angular/core';
 import { FormControl, ReactiveFormsModule } from '@angular/forms';
 import { InputSelectPageComponent } from '@form-control/input-select-page/input-select-page.component';
-import { OptionsForm } from '@interfaces/index';
+import { FormControlOption } from '@interfaces/index';
 
 @Component({
     selector: 'blade-table',
@@ -19,22 +19,22 @@ export class BladeTableComponent {
     public readonly controlPaginate = output<any>();
     public paginate = input<any | null>(null);
     public activeSearch = input<boolean>(false);
-    public headDivider = input<boolean>(false);
+    public headDivider = input<boolean>(true);
     public bodyXDivider = input<boolean>(false);
-    public bodyYDivider = input<boolean>(false);
+    public bodyYDivider = input<boolean>(true);
     public hover = input<boolean>(false);
     public rounded = input<boolean>(false);
     public load = input<boolean>(false);
     public ActiveLoad = input<boolean>(false);
     public tableSize = input<string>('');
-    optionsSizePage: OptionsForm[] = [{ value: 5, name: '5' }, { value: 10, name: '10' }, { value: 15, name: '15' }, { value: 25, name: '25' }, { value: 50, name: '50' }];
+    optionsSizePage: FormControlOption[] = [{ value: 5, name: '5' }, { value: 10, name: '10' }, { value: 15, name: '15' }, { value: 25, name: '25' }, { value: 50, name: '50' }];
     controlSize = new FormControl(0);
     controlPage = new FormControl(0);
 
-    hdivider = computed(() => this.headDivider() ? 'divide-head' : '');
-    bxdivider = computed(() => this.bodyXDivider() ? 'divide-x-body' : '');
-    bydivider = computed(() => this.bodyYDivider() ? 'divide-y-body' : '');
-    trHover = computed(() => this.hover() ? 'table-hover' : '');
+    hdivider = computed(() => this.headDivider() ? 'head-divide' : '');
+    bxdivider = computed(() => this.bodyXDivider() ? 'body-divide-x' : '');
+    bydivider = computed(() => this.bodyYDivider() ? 'body-divide-y' : '');
+    trHover = computed(() => this.hover() ? 'tr-hover' : '');
     size = computed(() => this.tableSize() ? `table-${this.tableSize()}` : '');
     tableRounded = computed(() => this.rounded() ? 'rounded-lg overflow-hove' : '');
 
@@ -48,7 +48,7 @@ export class BladeTableComponent {
 
     paginateData = computed(() => {
         if (this.paginate()) {
-            const options: OptionsForm[] = [];
+            const options: FormControlOption[] = [];
             for (let i = 0; i < this.paginate().totalPages; i++) {
                 options.push({ value: i, name: `${i + 1}` });
             }

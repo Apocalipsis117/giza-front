@@ -3,7 +3,7 @@ import { FormGroup, ReactiveFormsModule } from '@angular/forms';
 import { InputPanelCheckboxComponent } from '@form-control/input-panel-checkbox/input-panel-checkbox.component';
 import { InputPanelSelectComponent } from '@form-control/input-panel-select/input-panel-select.component';
 import { InputPanelTextComponent } from '@form-control/input-panel-text/input-panel-text.component';
-import { CostCenterDTO_APP, IForm, OptionsForm } from '@interfaces/index';
+import { CostCenterDTO_APP, IForm, FormControlOption } from '@interfaces/index';
 import { TypeAreaService } from '@services/api';
 
 @Component({
@@ -20,7 +20,7 @@ import { TypeAreaService } from '@services/api';
 export class FormCostCenterComponent {
     setForm = input<FormGroup<IForm<CostCenterDTO_APP>>>();
     areaServ = inject(TypeAreaService);
-    optionsArea = signal<OptionsForm[]>([]);
+    optionsArea = signal<FormControlOption[]>([]);
 
     form = computed(() => this.setForm() as FormGroup);
 

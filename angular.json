@@ -32,7 +32,7 @@
                             }
                         ],
                         "styles": [
-                            "src/styles-xd.scss"
+                            "src/app-ui.scss"
                         ],
                         "scripts": []
                     },

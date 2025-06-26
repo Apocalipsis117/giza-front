@@ -1,5 +1,6 @@
-import { HttpErrorResponse, HttpInterceptorFn } from '@angular/common/http';
-import { catchError, throwError } from 'rxjs';
+import { HttpInterceptorFn } from '@angular/common/http';
+import { catchError } from 'rxjs';
+import { handleErrorResponse } from './httpHelper';
 
 export const interceptorContenttype: HttpInterceptorFn = (req, next) => {
     const clone = req.clone({
@@ -8,8 +9,4 @@ export const interceptorContenttype: HttpInterceptorFn = (req, next) => {
         }
     });
     return next(clone).pipe(catchError(handleErrorResponse));
-}
-
-function handleErrorResponse(error: HttpErrorResponse) {
-    return throwError(() => 'Error');
 }

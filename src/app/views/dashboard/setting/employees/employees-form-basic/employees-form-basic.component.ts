@@ -4,7 +4,7 @@ import { InputPanelCheckboxComponent } from '@form-control/input-panel-checkbox/
 import { InputPanelSelectComponent } from '@form-control/input-panel-select/input-panel-select.component';
 import { InputPanelTextComponent } from '@form-control/input-panel-text/input-panel-text.component';
 import { ngFormHelper, queryData } from '@helpers/index';
-import { CitiesOptionForm, EmployeesDTO_APP, IForm, OptionsForm } from '@interfaces/index';
+import { EmployeesDTO_APP, IForm, FormControlOption } from '@interfaces/index';
 import { ApartmentCitiesService, TypeJobtitleService } from '@services/api';
 
 @Component({
@@ -22,10 +22,10 @@ export class EmployeesFormBasicComponent {
     private readonly TypeJobtitle$ = inject(TypeJobtitleService);
     private readonly countries$ = inject(ApartmentCitiesService);
     private fb = inject(FormBuilder);
-    options = signal<OptionsForm[]>([]);
-    optionsDepartments = signal<CitiesOptionForm[]>([]);
-    optionsCities = signal<OptionsForm[]>([]);
-    optionsJobtitle = signal<OptionsForm[]>([]);
+    options = signal<FormControlOption[]>([]);
+    optionsDepartments = signal<FormControlOption[]>([]);
+    optionsCities = signal<FormControlOption[]>([]);
+    optionsJobtitle = signal<FormControlOption[]>([]);
     form!: FormGroup;
 
     formDataCLone: EmployeesDTO_APP;
@@ -51,16 +51,15 @@ export class EmployeesFormBasicComponent {
     }
 
     ngOnInit(): void {
-        this.countries$.getAll('options').subscribe(data => this.optionsDepartments.set(data));
+        this.countries$.apartaments('options').subscribe(data => this.optionsDepartments.set(data));
         this.TypeJobtitle$.getAll('options').subscribe(data => this.optionsJobtitle.set(data));
         this.changeApartment();
     }
 
     changeApartment() {
-        this.form.get('departmentId')!.valueChanges.subscribe(value => {
-            if (value) {
-                let cities = queryData.cities(value, this.optionsDepartments());
-                this.optionsCities.set(cities);
+        this.form.get('departmentId')!.valueChanges.subscribe({
+            next: (value) => {
+                console.log("value", value);
             }
         });
     }

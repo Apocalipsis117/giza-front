@@ -1,6 +1,6 @@
-import { FormControlOptionColor, OptionsForm } from "@interfaces/index";
+import { FormControlOptionColor, FormControlOption } from "@interfaces/index";
 
-export const optionsMode: OptionsForm[] = [
+export const optionsMode: FormControlOption[] = [
     {
         name: 'Oscuro',
         value: 'dark'
@@ -14,7 +14,7 @@ export const optionsMode: OptionsForm[] = [
         value: 'system'
     }
 ];
-export const optionsColor: OptionsForm[] = [
+export const optionsColor: FormControlOption[] = [
     {
         name: 'Predeterminado',
         value: 'default'

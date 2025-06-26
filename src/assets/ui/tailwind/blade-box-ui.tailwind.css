@@ -1,7 +1,0 @@
-.blade-box-ui {
-    @apply block p-4 shadow-md rounded-md bg-white space-y-4;
-}
-
-.dark-mode .blade-box-ui {
-    @apply bg-[var(--darkmode-700)];
-}

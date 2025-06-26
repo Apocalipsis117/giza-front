@@ -6,7 +6,7 @@ import { InputPanelSelectComponent } from '@form-control/input-panel-select/inpu
 import { InputPanelTextComponent } from '@form-control/input-panel-text/input-panel-text.component';
 import { InputPanelTextareaComponent } from '@form-control/input-panel-textarea/input-panel-textarea.component';
 import { InputPanelTimeComponent } from '@form-control/input-panel-time/input-panel-time.component';
-import { ContractDTO_APP, IForm, OptionsForm } from '@interfaces/index';
+import { ContractDTO_APP, IForm, FormControlOption } from '@interfaces/index';
 import { TitleIconSectionComponent } from '@layouts/shared/title-icon-section/title-icon-section.component';
 import { BenefitPlanService, LevelServiceService, OxygenRateService, TypeAttentionService, TypeModalityService, TypeRegimeService } from '@services/api';
 
@@ -33,12 +33,12 @@ export class FormContractsComponent {
     private readonly typeAttention$ = inject(TypeAttentionService);
     private readonly oxigenRate$ = inject(OxygenRateService);
     private readonly regimen$ = inject(TypeRegimeService);
-    optionsModality = signal<OptionsForm[]>([]);
-    optionsLevel = signal<OptionsForm[]>([]);
-    optionsBeneficies = signal<OptionsForm[]>([]);
-    optionsRegimen = signal<OptionsForm[]>([]);
-    optionsTypeAttention = signal<OptionsForm[]>([]);
-    optionsOxigenRate = signal<OptionsForm[]>([]);
+    optionsModality = signal<FormControlOption[]>([]);
+    optionsLevel = signal<FormControlOption[]>([]);
+    optionsBeneficies = signal<FormControlOption[]>([]);
+    optionsRegimen = signal<FormControlOption[]>([]);
+    optionsTypeAttention = signal<FormControlOption[]>([]);
+    optionsOxigenRate = signal<FormControlOption[]>([]);
 
     form = computed(() => this.setForm() as FormGroup);
 

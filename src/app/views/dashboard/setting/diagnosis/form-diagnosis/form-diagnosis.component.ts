@@ -4,7 +4,7 @@ import { InputPanelCheckboxComponent } from '@form-control/input-panel-checkbox/
 import { InputPanelSelectComponent } from '@form-control/input-panel-select/input-panel-select.component';
 import { InputPanelTextComponent } from '@form-control/input-panel-text/input-panel-text.component';
 import { DiagnosisDTO_APP } from '@interfaces/app';
-import { IForm, OptionsForm } from '@interfaces/index';
+import { IForm, FormControlOption } from '@interfaces/index';
 import { BladePanelOptionsComponent } from '@layouts/dashboard/blades/blade-panel-options/blade-panel-options.component';
 import { TestService } from '@services/app';
 
@@ -24,7 +24,7 @@ import { TestService } from '@services/app';
 export class FormDiagnosisComponent {
     setForm = input<FormGroup<IForm<DiagnosisDTO_APP>>>();
     testServ = inject(TestService);
-    options = signal<OptionsForm[]>([]);
+    options = signal<FormControlOption[]>([]);
 
     form = computed(() => this.setForm() as FormGroup);
 

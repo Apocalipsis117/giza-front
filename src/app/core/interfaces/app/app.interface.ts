@@ -203,10 +203,3 @@ export interface AppGisa {
     mode: AppMode;
     menu: AppMenu;
 }
-
-/* Form */
-export interface FormControlOption {
-    value: number | string;
-    name: string;
-    data?: any | null;
-}

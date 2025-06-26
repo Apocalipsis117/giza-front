@@ -1,6 +1,6 @@
 import { Component, computed, inject, signal } from '@angular/core';
 import { LocalAdministrativeEntitiesService } from '../local-administrative-entities.service';
-import { AdministrativeEntityAPP } from '@interfaces/app';
+import { AdministrativeEntity_APP } from '@interfaces/index';
 import { BlockSwitchStatusComponent } from '@layouts/shared/block-switch-status/block-switch-status.component';
 
 @Component({
@@ -11,7 +11,7 @@ import { BlockSwitchStatusComponent } from '@layouts/shared/block-switch-status/
 })
 export class TdetailAdministrativeEntityComponent {
     private readonly local$ = inject(LocalAdministrativeEntitiesService);
-    data = signal<AdministrativeEntityAPP | null>(null);
+    data = signal<AdministrativeEntity_APP | null>(null);
 
     ngOnInit(): void {
         this.local$.readEntity$.subscribe(data => {

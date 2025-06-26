@@ -1,7 +1,5 @@
-import { Component, inject, signal, viewChild } from '@angular/core';
+import { Component, inject, viewChild } from '@angular/core';
 import { DirectivesModule } from '@directive/module';
-import { queries } from '@helpers/index';
-import { AdministrativeEntitiesAPP_PAGE } from '@interfaces/app';
 import { ActionName, BarActions, tabsControls } from '@interfaces/index';
 import { BladeBoxPanelComponent } from '@layouts/dashboard/blades/blade-box-panel/blade-box-panel.component';
 import { BladePanelComponent } from '@layouts/dashboard/blades/blade-panel/blade-panel.component';
@@ -27,38 +25,29 @@ import { TdetailAdministrativeEntityComponent } from './tdetail-administrative-e
     ]
 })
 export class AdministrativeEntitiesComponent {
-    private readonly adminEntities$ = inject(AdministrativeEntitiesService);
     private readonly swal$ = inject(SweetalertService);
+    private readonly adminEntities$ = inject(AdministrativeEntitiesService);
     readonly tabController = viewChild('tabController', { read: BladeTabsHorizontalComponent});
     readonly formDateEntityRef = viewChild('formDateEntityRef', { read: FormDateEntityComponent});
     readonly table = viewChild('table', { read: TablePlatformEntityComponent});
-    administrativeEntities = signal<AdministrativeEntitiesAPP_PAGE | null>(null);
     actionsDetail: BarActions = {
         edit: true,
         delete: true,
         clean: true
     }
-    tabs: tabsControls[] = [{
-        active: true,
-        idConnect: 'add-entity',
-        label: 'Crear entidad'
-    },
-    {
-        active: false,
-        idConnect: 'add-platform',
-        label: 'Entidades'
-    }
+    tabs: tabsControls[] = [
+        {
+            active: true,
+            idConnect: 'add-entity',
+            label: 'Crear entidad'
+        },
+        {
+            active: false,
+            idConnect: 'add-platform',
+            label: 'Entidades'
+        }
     ];
 
-    paramPaginate = signal<any>(queries.paramsPage);
-
-    ngOnInit(): void {
-        this.queryAdministrativeEntities()
-    }
-
-    queryAdministrativeEntities() {
-        this.adminEntities$.getAllPage(this.paramPaginate()).subscribe(data => this.administrativeEntities.set(data))
-    }
 
     barAction(e: ActionName) {
         if (e === 'save') this.save();
@@ -75,7 +64,7 @@ export class AdministrativeEntitiesComponent {
                 complete: () => {
                     this.swal$.formSave('success');
                     this.formDateEntityRef()?.reset();
-                    this.queryAdministrativeEntities();
+                    this.table()?.queryAdministrativeEntities();
                     this.tabController()?.showTab(this.tabs[1].idConnect);
                 },
                 error: () => this.swal$.formSave('error')
@@ -87,10 +76,5 @@ export class AdministrativeEntitiesComponent {
 
     cleanTdetail() {
         this.table()?.clean();
-    }
-
-    paginate(e: any) {
-        this.paramPaginate.set(e);
-        this.queryAdministrativeEntities();
     }
 }

@@ -2,7 +2,7 @@ import { NgClass } from '@angular/common';
 import { Component, computed, forwardRef, input } from '@angular/core';
 import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
 import { generator } from '@helpers/index';
-import { OptionsForm, UiSize } from '@interfaces/index';
+import { FormControlOption, UiSize } from '@interfaces/index';
 
 @Component({
     selector: 'input-panel-select',
@@ -16,7 +16,7 @@ import { OptionsForm, UiSize } from '@interfaces/index';
     }]
 })
 export class InputPanelSelectComponent implements ControlValueAccessor {
-    setOptions = input<OptionsForm[]>([]);
+    setOptions = input<FormControlOption[]>([]);
     setLabel = input<string>('');
     setIcon = input<string>('');
     setText = input<string>('');
