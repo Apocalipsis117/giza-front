@@ -23,7 +23,8 @@ export class BarActionsComponent {
         add: false,
         save: false,
         cancel: false,
-        reset: false
+        reset: false,
+        update: false
     }
     actions: ItemAction[] = [
         {
@@ -63,10 +64,22 @@ export class BarActionsComponent {
             color: ''
         },
         {
+            action: 'update',
+            label: 'Actualizar',
+            icon: 'icofont-save',
+            color: 'theme-green'
+        },
+        {
             action: 'delete',
             label: 'Eliminar',
             icon: 'icofont-bin',
             color: 'theme-red'
+        },
+        {
+            action: 'return',
+            label: 'Retornar',
+            icon: 'icofont-spinner-alt-3',
+            color: 'theme-teal'
         }
     ];
 

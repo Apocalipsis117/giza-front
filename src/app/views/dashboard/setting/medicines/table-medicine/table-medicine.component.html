@@ -1,4 +1,4 @@
-<blade-table [headDivider]="true" [bodyYDivider]="true" [ActiveLoad]="true" [paginate]="dataTable()" (controlPaginate)="paginate.emit($event)" [load]="load()">
+<blade-table [headDivider]="true" [bodyYDivider]="true" (controlPaginate)="paginate.emit($event)">
     <ng-container tableHead>
         <tr>
             <th>Nombre</th>
@@ -17,7 +17,7 @@
                 </td>
                 <td>{{ item.medicineType!.name }}</td>
                 <td>{{ item.pharmaceuticalForm.name }}</td>
-                <td>{{ item.serviceTypes.name }}</td>
+                <td>none</td>
                 <td class="text-end">
                     <app-button setIcon="icofont-info-circle" setSize="sm" (action)="emit(item)" />
                 </td>

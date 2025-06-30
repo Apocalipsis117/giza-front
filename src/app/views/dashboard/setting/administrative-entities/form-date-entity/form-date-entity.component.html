@@ -1,7 +1,7 @@
 <form [formGroup]="form" class="space-y-4">
     <div class="d-grid items-end">
         <div class="col-span-3">
-            <input-text setLabel="Nit" setIcon="icofont-ui-v-card" formControlName="taxId" />
+            <input-text setLabel="Nit" setIcon="icofont-ui-v-card" formControlName="nit" />
         </div>
         <div class="col-span-3">
             <input-text setLabel="Código Entidad" formControlName="code" />
@@ -10,10 +10,10 @@
             <input-text setLabel="Nombre Entidad" formControlName="name" />
         </div>
         <div class="col-span-3">
-            <input-select setLabel="Departamento" [setOptions]="optionsDepartment()" formControlName="departmentId" [emptyValue]="null" />
+            <input-select-searh setLabel="Departamento" [setOptions]="optionsDepartment()" formControlName="departmentId" [emptyValue]="null" />
         </div>
         <div class="col-span-3">
-            <input-select setLabel="Municipio" [setOptions]="optionsCities()" formControlName="municipalityId" [emptyValue]="null" />
+            <input-select-searh setLabel="Municipio" [setOptions]="optionsMunicipalies()" formControlName="municipalityId" [emptyValue]="null" />
         </div>
         <div class="col-span-6">
             <input-text setLabel="Dirección administrativa" formControlName="address" />

@@ -1,5 +1,5 @@
 import { PageAPI, ResponseAPI } from "@interfaces/extend.i";
-import { TypeRegimeAPI, TypeRegimeAPP } from "@interfaces/index";
+import { Apartment_API, Apartment_APP, Municipality_API, Municipality_APP, TypeRegime_API, TypeRegime_APP } from "@interfaces/index";
 
 // entidades-administradoras
 
@@ -10,7 +10,7 @@ import { TypeRegimeAPI, TypeRegimeAPP } from "@interfaces/index";
  */
 
 export interface AdministrativeEntity_DTO {
-    codigo:                  string;
+    codigo:                  number;
     nombre:                  string;
     nit:                     string;
     direccion:               string;
@@ -42,17 +42,22 @@ export interface AdministrativeEntity_API {
     soat: boolean;
     estado: boolean;
     telefono: string;
+    otrosDatos: string;
     longitudAutorizacion: number;
     numCopias: boolean;
-    ripsVerificacionNit: boolean;
     requiereAnexo2: boolean;
     resolucion: string;
-    regimen: TypeRegimeAPI;
+    reporteResolucion256:    boolean;
+    plantillaResolucion1552: boolean;
+    regimen: TypeRegime_API;
+    municipio: Municipality_API;
+    departamento: Apartment_API;
 }
 
 export interface AdministrativeEntity_PageAPI extends PageAPI<AdministrativeEntity_API> {}
 export interface AdministrativeEntity_Response extends ResponseAPI<AdministrativeEntity_API> {}
 export interface AdministrativeEntity_ListResponse extends ResponseAPI<AdministrativeEntity_API[]> {}
+export interface AdministrativeEntity_PageResponse extends ResponseAPI<PageAPI<AdministrativeEntity_API>> {}
 
 
 /**
@@ -62,9 +67,9 @@ export interface AdministrativeEntity_ListResponse extends ResponseAPI<Administr
  */
 
 export interface AdministrativeEntity_APPDTO {
-    code: string;                // codigo
+    code: number;                // codigo
     name: string;                // nombre
-    taxId: string;               // nit
+    nit: string;               // nit
     address: string;             // direccion
     filingAddress: string;       // direccionRadicacion
     email: string;               // correo
@@ -86,20 +91,24 @@ export interface AdministrativeEntity_APP {
     id: number;
     code: number; // codigo
     name: string; // nombre
-    taxId: string; // nit
+    nit: string; // nit
     address: string; // direccion
     filingAddress: string; // direccionRadicacion
     email: string; // correo
     electronicBillingEmail: string; // correoFactuElect
-    hasInsurance: boolean; // soat
+    soat: boolean; // soat
     isActive: boolean; // estado
     phone: string; // telefono
     authorizationLength: number; // longitudAutorizacion
+    otherData: string;           // otrosDatos
     hasCopies: boolean; // numCopias
-    ripsTaxIdVerification: boolean; // ripsVerificacionNit
     requiresAnnex2: boolean; // requiereAnexo2
+    reportResolution256: boolean; // reporteResolucion256
+    templateResolution1552: boolean; // plantillaResolucion1552
     resolution: string; // resolucion
-    regime: TypeRegimeAPP; // regimen
+    regime: TypeRegime_APP; // regimen
+    departament: Apartment_APP;
+    municipaly: Municipality_APP;
 }
 
 export interface AdministrativeEntity_PageAPP extends PageAPI<AdministrativeEntity_APP> {}

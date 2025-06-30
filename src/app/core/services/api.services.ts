@@ -26,6 +26,8 @@ export { TypeSexService } from './api/single-query/type-sex.service';
 export { TypeRegimeService } from './api/single-query/type-regime.service';
 export { LevelIpsService } from './api/single-query/level-ips.service';
 export { TypeRepresentativeService } from './api/single-query/type-representative.service';
+export { TariffManualService } from './api/single-query/tariff-manual.service';
+export { TypeModeratePaymentService } from './api/single-query/type-moderate-payment.service';
 
 /**
  * Setting
@@ -47,3 +49,6 @@ export { ServicesService } from './api/setting/services.service';
 export { VehiclesService } from './api/setting/vehicles.service';
 export { AdministrativeEntitiesService } from './api/setting/administrative-entities.service';
 export { OxygenRateService } from './api/setting/oxygen-rate.service';
+export { ContractService } from './api/setting/contract.service';
+export { TariffMedicineService } from './api/setting/tariff-medicine.service';
+export { ManualTariffMedicineService } from './api/setting/manual-tariff-medicine.service';

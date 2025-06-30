@@ -19,7 +19,7 @@ import { FormControlOptionColor } from '@interfaces/index';
 export class InputColorsComponent {
     public setLabel = input<string>('');
     public setOptions = input<FormControlOptionColor[]>([]);
-    currentValue = signal<string | number>('');
+    currentValue = signal<string | number | null>('');
     id = 'radio-uuixxx';
 
     options = computed(() => this.setOptions().map(option => ({
@@ -39,7 +39,7 @@ export class InputColorsComponent {
         this.onTouch = fn;
     }
 
-    check(value: string | number) {
+    check(value: string | number | null) {
         this.currentValue.set(value);
         this.change();
     }

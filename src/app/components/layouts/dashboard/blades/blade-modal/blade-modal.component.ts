@@ -1,5 +1,6 @@
 import { NgClass } from '@angular/common';
 import { Component, ElementRef, afterNextRender, computed, input, viewChild } from '@angular/core';
+import { bsHelper } from '@helpers/app/bsHelper';
 import { UiSize } from '@interfaces/index';
 
 @Component({
@@ -34,6 +35,18 @@ export class BladeModalComponent {
                 el.setAttribute('data-bs-backdrop', 'static')
                 el.setAttribute('data-bs-keyboard', 'false')
             }
+        })
+    }
+
+    show() {
+        bsHelper.dialogAction(this.modal()?.nativeElement, {
+            action: 'show'
+        })
+    }
+
+    hide() {
+        bsHelper.dialogAction(this.modal()?.nativeElement, {
+            action: 'hide'
         })
     }
 }

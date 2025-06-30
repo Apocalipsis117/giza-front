@@ -1,4 +1,4 @@
-import { NamedEntityAPP, PaginateAPI, RIPConceptAPP, ServicesAPP } from "@interfaces/index";
+import { NamedEntityAPP, PaginateAPI, RIPConceptAPP } from "@interfaces/index";
 
 export interface CupsDTO_APP {
     code: number; // codigo
@@ -40,7 +40,7 @@ export interface CupsAPP {
     gender: NamedEntityAPP;
     level: NamedEntityAPP;
     ripsConcept: RIPConceptAPP;
-    serviceType: ServicesAPP;
+    serviceType: any;
     surgicalGroup: NamedEntityAPP;
     scope: NamedEntityAPP;
     birthType: NamedEntityAPP;

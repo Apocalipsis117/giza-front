@@ -8,6 +8,6 @@
                 <i [class]="setIcon()"></i>
             </label>
         }
-        <input type="number" [ngModel]="currentValue" (focus)="change()" (ngModelChange)="changeValue($event)" autocomplete="off" [id]="id">
+        <input class="form-control" type="number" [(ngModel)]="currentValue" (focus)="change()" (ngModelChange)="changeValue($event)" autocomplete="off" [id]="id">
     </div>
 </fieldset>

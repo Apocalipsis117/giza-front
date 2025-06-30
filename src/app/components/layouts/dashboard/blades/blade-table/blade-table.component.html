@@ -1,59 +1,30 @@
-<div class="blade-table-ui" [ngClass]="[tableRounded()]">
-    <!-- "table-responsive" -->
-    @if(ActiveLoad() && !load()) {
-    <div class="loader-progress"></div>
+<div class="block" [class]="[tableRounded()]">
+    @if(loadingData()) {
+        <div class="loader-progress"></div>
     }
-    <ng-content select="[tableActions]" />
-    @if(activeSearch()) {
-    <div class="table-ui-search">
-        <div class="table-search-content">
-            <i class="w-auto icofont-search-1 mr-3"></i>
-            <input type="search" class="outline-none grow">
+    @if(!hiddeHeader()) {
+        <div class="block border-b">
+            <ng-content select="[tableActions]" />
         </div>
-    </div>
     }
-    <table class="im-table" [ngClass]="[hdivider(), size(), bxdivider(), bydivider(), trHover()]">
+    <table class="im-table" [class]="[hdivider(), size(), bxdivider(), bydivider(), trHover()]">
         <thead class="sticky top-0">
             <ng-content select="[tableHead]" />
         </thead>
         <tbody>
-            <ng-content select="[tableBody]" />
+            @if(loadContent()) {
+                <ng-content select="[tableBody]" />
+            }
+            @else {
+                <tr>
+                    <td [attr.colspan]="colspan()">
+                        <p class="text-center">Bacio</p>
+                    </td>
+                </tr>
+            }
         </tbody>
     </table>
-    @if(ActiveLoad() && !load()) {
-    <div class="block p-3 text-center">
-        <div class="loader-text text-default-400" aria-valuetext="Cargando..."></div>
-    </div>
-    }
-    @if(paginateData()) {
-    <div class="p-2">
-        <small class="text-gray-400">Se encontraron un total de <b>{{ paginateData()!.quantity }}</b> registo{{ paginateData()!.letterPlural }}</small>
-    </div>
-    <form class="block w-full border-t">
-        <ul class="flex flex-wrap justify-between items-center p-2">
-            <li class="flex items-center gap-2">
-                <small>Ir a pagina:</small>
-                <input-select-page ngClass="inline-block" [options]="paginateData()!.options" [formControl]="controlPage" />
-                <button type="button" class="btn btn-blue-light btn-sm" (click)="emitControlPaginate()">
-                    <i class="icofont-arrow-right"></i>
-                </button>
-                <small>Elementos por pagina:</small>
-                <input-select-page ngClass="inline-block" [options]="optionsSizePage" [formControl]="controlSize" />
-            </li>
-            <li class="flex items-center gap-2">
-                <div class="text-gray-600">
-                    <small class="mr-2">Pagina {{ paginateData()!.page + 1 }} de {{ paginateData()!.pages }}</small>
-                </div>
-                <button type="button" class="btn btn-light btn-sm" (click)="prevPage()" [disabled]="paginateData()!.first">
-                    <i class="icofont-rounded-left mr-2"></i>
-                    Anterior
-                </button>
-                <button type="button" class="btn btn-light btn-sm" (click)="nextPage()" [disabled]="paginateData()!.last">
-                    Siguiente
-                    <i class="icofont-rounded-right ml-2"></i>
-                </button>
-            </li>
-        </ul>
-    </form>
+    @if(setData()) {
+        <panel-paginate [setPage]="setData()" (onPage)="onPage.emit($event)" />
     }
 </div>

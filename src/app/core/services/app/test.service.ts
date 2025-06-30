@@ -1,4 +1,5 @@
-import { Injectable } from '@angular/core';
+import { Injectable, signal } from '@angular/core';
+import { objectHelper } from '@helpers/app/queryData';
 import { queries } from '@helpers/index';
 import { FormControlOption } from '@interfaces/index';
 import { Observable, Subject, delay, of, switchMap, throwError } from 'rxjs';
@@ -7,10 +8,14 @@ import { Observable, Subject, delay, of, switchMap, throwError } from 'rxjs';
     providedIn: 'root'
 })
 export class TestService {
+    private data = signal<any | null>(null);
     private data$ = new Subject<any | null>();
     watchData = this.data$.asObservable();
 
     post<T>(data: T, status: number = 200): Observable<T> {
+        const current = objectHelper.hasValue(data as any);
+        console.log('empties', current.empties)
+        console.log('defined', current.defined)
         return of(null).pipe(
             delay(1000),
             switchMap(() => {
@@ -54,5 +59,6 @@ export class TestService {
 
     emit(data: any | null) {
         this.data$.next(data);
+        this.data.set(data);
     }
 }

@@ -2,9 +2,8 @@
  * API
  */
 
-import { CostCenterAPP, NamedEntityAPP } from "@interfaces/index";
+import { NamedEntityAPP } from "@interfaces/index";
 import { NamedEntityAPI } from "../name-entity.i";
-import { CostCenterAPI } from "./cost-center.i";
 
 export interface HospitalServiceDTO_API {
     nombre: string;
@@ -26,7 +25,7 @@ export interface HospitalServiceAPI {
     numCamas: number;
     sexo: NamedEntityAPI;
     ambito: NamedEntityAPI;
-    centroCosto: CostCenterAPI;
+    centroCosto: any;
 }
 
 
@@ -54,5 +53,5 @@ export interface HospitalServiceAPP {
     bedCount: number; // numCamas
     gender: NamedEntityAPP; // sexo
     scope: NamedEntityAPP; // ambito
-    costCenter: CostCenterAPP; // centroCosto
+    costCenter: any; // centroCosto
 }

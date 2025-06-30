@@ -20,6 +20,10 @@
         font-weight: 600;
         color: var(--color-400);
     }
+
+    &.ui-unborder {
+        border: none;
+    }
     .form-control,
     .form-select,
     .input-group-text,
@@ -53,11 +57,13 @@
         transition: 100ms ease-in-out;
         transition-property: opacity, visible, transform;
         transform: translateY(-10px);
+        display: none;
 
         &.active {
             opacity: 1;
             visibility: visible;
             transform: translateY(0);
+            display: block;
         }
 
         li {
@@ -132,8 +138,13 @@
     &.checkbox figure {
         border-radius: 4px;
         &::before {
-            font-family: 'Material Icons Round';
-            content: '\e876';
+            display: block;
+            width: 8px;
+            height: 12px;
+            border: 2px solid;
+            border-color: transparent #fff #fff transparent;
+            margin-bottom: 4px;
+            transform: rotate(35deg);
         }
     }
     &.radio figure {

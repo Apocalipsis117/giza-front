@@ -22,6 +22,7 @@ import { FormControlOption } from '@interfaces/index';
 export class InputSelectComponent {
     public readonly setLabel = input<string>('');
     public readonly emptyValue = input<'' | null>('');
+    public readonly setSize = input<'sm' | 'lg' | null>(null);
     public readonly setPlaceholder = input<string>('Seleccionar');
     public readonly setOptions = input([], { transform: (value: FormControlOption[]) => formHelper.sortByName(value) });
     currentValue = signal<string | number>('');
@@ -34,6 +35,7 @@ export class InputSelectComponent {
     ]));
 
     selected = computed(() => this.setOptions().find(value => value.value === this.currentValue()))
+    size = computed(() => this.setSize() ? `input-group-${this.setSize()}` : '')
 
     windowClick(e: any): void {
         const active = e.closest('#' + this.id) ? !this.visible() : false;

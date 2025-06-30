@@ -1,6 +1,6 @@
 import { CupsDTO_API, CupsAPI } from '@interfaces/index';
 import { CupsDTO_APP, CupsAPP } from '@interfaces/app';
-import { NamedEntity, RipConcept, Services } from '@models/index';
+import { NamedEntity, RipConcept, Service } from '@models/index';
 
 export class CupDTO {
     static setProperty(dataInput: CupsDTO_APP): string {
@@ -59,7 +59,7 @@ export class Cup {
             gender: NamedEntity.setProperty(this.dataInput.sexo),
             level: NamedEntity.setProperty(this.dataInput.nivel),
             ripsConcept: RipConcept.setProperty(this.dataInput.conceptoRips),
-            serviceType: Services.setProperty(this.dataInput.tipoServicios),
+            serviceType: Service.setProperty(this.dataInput.tipoServicios),
             surgicalGroup: NamedEntity.setProperty(this.dataInput.grupoQx),
             scope: NamedEntity.setProperty(this.dataInput.ambito),
             birthType: NamedEntity.setProperty(this.dataInput.tipoParto),

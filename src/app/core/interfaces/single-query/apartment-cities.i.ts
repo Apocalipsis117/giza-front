@@ -41,5 +41,5 @@ export interface Apartment_APP {
 export interface Municipality_APP {
     id: number;                          // id
     name: string;                        // nombre
-    department: Apartment_APP;           // departamento
+    department: Apartment_APP | null;           // departamento
 }

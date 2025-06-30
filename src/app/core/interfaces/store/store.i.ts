@@ -1,4 +1,4 @@
-import { AppGisa, FormControlOption, Login_API, NavegationMenuAside } from "@interfaces/index";
+import { AppGisa, DataAssociated, FormControlOption, Login_API, NavegationMenuAside } from "@interfaces/index";
 import { MenuShortcutShortcutMenu } from "@interfaces/index";
 
 export interface AppStore {
@@ -21,7 +21,7 @@ export interface State_tabsController {
 export interface State_appGisa {
     config: AppGisa;
     apartaments: FormControlOption[];
-    municipalies: FormControlOption[];
+    municipalies: FormControlOption<DataAssociated>[];
 }
 
 export interface State_user {

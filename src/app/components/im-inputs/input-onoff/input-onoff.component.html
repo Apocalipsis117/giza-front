@@ -1,16 +1,18 @@
-<fieldset class="im-fieldset">
+<fieldset class="im-fieldset" [class]="box()">
     @if(setLabel()) {
         <legend>{{ setLabel() }}</legend>
     }
     <div class="input-group">
         <span class="input-group-text">
             <span class="im-check" [class]="ui()">
-                <input type="checkbox" [checked]="currentValue()" (change)="check($event.target)" [id]="id">
+                <input type="checkbox" [disabled]="isDisabled()" [checked]="currentValue()" (change)="check($event.target)" [id]="id">
                 <figure></figure>
             </span>
         </span>
-        <label class="input-group-text" [for]="id">
-            {{ setText() }}
-        </label>
+        @if(setText()) {
+            <label class="input-group-text text-gray-400 select-none" [class]="text().cssActive" [for]="id">
+                {{ text().text }}
+            </label>
+        }
     </div>
 </fieldset>

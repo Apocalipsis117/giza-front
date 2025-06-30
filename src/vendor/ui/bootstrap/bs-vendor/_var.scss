@@ -27,12 +27,14 @@ $widths: (
     '12': 100%
 );
 
+$time-efect-fade: 150ms;
+
 /**
  * ===================================
  * modal
  */
 
-$modal-backdrop-bg: rgba(#000, .5);
+$modal-backdrop-bg: rgba(#B3B8E1, .25);
 $modal-backdrop-blur: 0px;
 
 /**
@@ -40,7 +42,7 @@ $modal-backdrop-blur: 0px;
  * offcanvas
  */
 
-$offcanvas-backdrop-bg: rgba(#000, .5);
+$offcanvas-backdrop-bg: rgba(#B3B8E1, .25);
 $offcanvas-backdrop-blur: 0px;
 
 $offcanvas-bg-color: #fff;

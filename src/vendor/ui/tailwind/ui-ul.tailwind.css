@@ -7,39 +7,13 @@
 }
 
 .ui-li.action-li {
-    user-select: none;
-    @apply hover:bg-[var(--color-50)] active:bg-[var(--color-100)] cursor-pointer;
+    @apply hover:bg-[var(--color-50)] active:bg-[var(--color-100)] cursor-pointer select-none;
 }
 
 .ui-li.action-hover {
-    user-select: none;
-    @apply hover:bg-[var(--color-50)];
+    @apply hover:bg-[var(--color-50)] select-none;
 }
 
 .ui-ul.ui-sm .ui-li {
     @apply p-[0.25rem] text-[0.9rem];
-}
-
-/* ul-list row  */
-.ul-list-row {
-    @apply divide-y border-b border-t;
-    > li {
-        @apply grid divide-x grid-cols-12;
-    }
-    > li > * {
-        @apply p-2;
-    }
-    small {
-        @apply text-slate-500;
-    }
-}
-
-.dark-mode .ul-list-row {
-    @apply divide-[var(--darkmode-500)];
-    > li {
-        @apply divide-[var(--darkmode-500)];
-    }
-    small {
-        @apply text-[var(--darkmode-400)];
-    }
 }

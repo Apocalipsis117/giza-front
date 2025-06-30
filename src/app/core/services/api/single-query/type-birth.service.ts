@@ -1,7 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable, inject } from '@angular/core';
 import { queries } from '@helpers/index';
-import { NamedEntityAPI, NamedEntityAPP, FormControlOption, TypeRegimeAPI, TypeReturn } from '@interfaces/index';
+import { NamedEntityAPI, NamedEntityAPP, FormControlOption, TypeReturn } from '@interfaces/index';
 import { NamedEntity, OptionsControl } from '@models/index';
 import { Observable, map } from 'rxjs';
 

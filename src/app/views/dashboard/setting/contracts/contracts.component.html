@@ -7,7 +7,7 @@
                         <article bsTabContent [idConnect]="tabsControls[0].idConnect" [isActive]="tabsControls[0].active">
                             <blade-box-panel ui="clean" [headerActive]="false" [padding]="true" [actionsActive]="true" (actionBar)="barAction($event)">
                                 <ng-container boxbody>
-                                    <form-contracts [setForm]="form" />
+                                    <form-contracts #formContractRef />
                                 </ng-container>
                             </blade-box-panel>
                         </article>
@@ -16,6 +16,13 @@
                         </article>
                     </ng-container>
                 </blade-tabs-horizontal>
+            </div>
+            <div class="col-span-4">
+                <blade-box-panel setTitle="Entidad" [padding]="true" [actionsActive]="true" [setActionsBar]="actionsDetail" (actionBar)="barAction($event)">
+                    <ng-container boxbody>
+                        <tdetail-contracts />
+                    </ng-container>
+                </blade-box-panel>
             </div>
         </div>
     </ng-container>

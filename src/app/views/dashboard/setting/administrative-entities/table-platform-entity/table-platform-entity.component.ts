@@ -27,18 +27,20 @@ export class TablePlatformEntityComponent {
     paramPaginate = signal<any>(queries.paramsPage);
     dataTable = signal<AdministrativeEntity_PageAPP | null>(null);
     tdSelected = signal<number>(-1);
+    load = signal<boolean>(false);
 
     entities = computed(() => this.dataTable() ? this.dataTable()?.content : []);
-    entitiesCant = computed(() => this.dataTable() ? this.dataTable()!.content.length > 0 : false);
 
     ngOnInit(): void {
         this.queryAdministrativeEntities()
     }
 
     queryAdministrativeEntities() {
+        this.load.set(true);
         this.adminEntities$.page(this.paramPaginate()).subscribe({
             next: (value) => {
                 this.dataTable.set(value)
+                this.load.set(false);
             }
         })
     }

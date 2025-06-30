@@ -9,8 +9,9 @@ export const apiHelper = {
      * @param options objeto con 'base' (endpoint) y 'params' (query params)
      * @returns string
      */
-    api(basePath: string, options: { path?: string, params?: QueryParams } = {}) {
-        const endpoint = [basePath, options.path].filter(Boolean).join('/');
+    api(basePath: string, options: { path?: string | number, params?: QueryParams } = {}) {
+        const pathString = String(options.path);
+        const endpoint = [basePath, pathString].filter(Boolean).join('/');
         const query = options.params ? this.objectToQueryString(options.params) : '';
         return `${environment.API.main}${endpoint}${query}`;
     },

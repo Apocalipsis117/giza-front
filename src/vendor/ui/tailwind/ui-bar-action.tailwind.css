@@ -5,16 +5,19 @@
         button {
             @apply block rounded-md active:bg-blue-100 hover:bg-blue-50 p-1 text-default-500;
             &.theme-teal {
-                @apply active:bg-teal-100 hover:bg-teal-50 p-1 text-teal-400;
+                @apply active:bg-teal-100 hover:bg-teal-50 text-teal-400;
             }
             &.theme-green {
-                @apply active:bg-green-100 hover:bg-green-50 p-1 text-green-400;
+                @apply active:bg-green-100 hover:bg-green-50 text-green-400;
             }
             &.theme-cyan {
-                @apply active:bg-cyan-100 hover:bg-cyan-50 p-1 text-cyan-400;
+                @apply active:bg-cyan-100 hover:bg-cyan-50 text-cyan-400;
             }
             &.theme-red {
-                @apply active:bg-red-100 hover:bg-red-50 p-1 text-red-400;
+                @apply active:bg-red-100 hover:bg-red-50 text-red-400;
+            }
+            &.theme-orange {
+                @apply active:bg-orange-100 hover:bg-orange-50 text-orange-400;
             }
             > i {
                 @apply mr-[8px] inline-block scale-125;

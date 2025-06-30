@@ -1,4 +1,4 @@
-import { ServiceLevelAPP, TypeHistoryAPP, PaginateAPI, NamedEntityAPP } from "@interfaces/index";
+import { ServiceLevelAPP, PaginateAPI, NamedEntityAPP } from "@interfaces/index";
 
 export interface AssistanceServDTO_APP {
     name: string; // nombre
@@ -27,7 +27,7 @@ export interface AssistanceServiceAPP {
     specialist: boolean; // especialista
     doctor: boolean; // medico
     creationDate: number;  // fechaCreacion
-    historyType: TypeHistoryAPP; // tipoHistoria
+    historyType: any; // tipoHistoria
     serviceType: NamedEntityAPP; // tipoServicio
     serviceLevel: ServiceLevelAPP; // nivelServicio
 }

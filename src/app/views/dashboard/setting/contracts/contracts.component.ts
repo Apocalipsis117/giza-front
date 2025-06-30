@@ -1,16 +1,15 @@
 import { CommonModule } from '@angular/common';
-import { Component, inject, viewChild } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { Component, DestroyRef, inject, viewChild } from '@angular/core';
 import { DirectivesModule } from '@directive/module';
-import { ngFormHelper } from '@helpers/index';
-import { ActionName, ContractDTO_APP, IForm } from '@interfaces/index';
+import { ActionName, BarActions } from '@interfaces/index';
 import { BladeBoxPanelComponent } from '@layouts/dashboard/blades/blade-box-panel/blade-box-panel.component';
 import { BladePanelComponent } from '@layouts/dashboard/blades/blade-panel/blade-panel.component';
 import { BladeTabsHorizontalComponent } from '@layouts/dashboard/blades/blade-tabs-horizontal/blade-tabs-horizontal.component';
-import { ContractDTO } from '@models/index';
+import { ContractService } from '@services/api';
 import { SweetalertService, TestService } from '@services/app';
 import { FormContractsComponent } from './form-contracts/form-contracts.component';
 import { TableContractsComponent } from './table-contracts/table-contracts.component';
+import { TdetailContractsComponent } from './tdetail-contracts/tdetail-contracts.component';
 
 @Component({
     selector: 'app-contracts',
@@ -23,15 +22,26 @@ import { TableContractsComponent } from './table-contracts/table-contracts.compo
         FormContractsComponent,
         BladeTabsHorizontalComponent,
         DirectivesModule,
-        TableContractsComponent
+        TableContractsComponent,
+        TdetailContractsComponent
     ]
 })
 export class ContractsComponent {
-    readonly tabController = viewChild('tabController', { read: BladeTabsHorizontalComponent})
-    private readonly testServ = inject(TestService);
+    private readonly destroyRef = inject(DestroyRef);
+    private readonly contract$ = inject(ContractService);
     private swal = inject(SweetalertService);
-    private fb = inject(FormBuilder);
-    form: FormGroup;
+    readonly tabController = viewChild('tabController', { read: BladeTabsHorizontalComponent})
+    readonly formContractRef = viewChild('formContractRef', { read: FormContractsComponent})
+    private readonly testServ = inject(TestService);
+    actionsDetail: BarActions = {
+        edit: true,
+        delete: true,
+        clean: true
+    }
+    actionsUpdate: BarActions = {
+        update: true,
+        return: true
+    }
     tabsControls = [
         {
             idConnect: 'contractParams',
@@ -45,64 +55,26 @@ export class ContractsComponent {
         }
     ]
 
-    contractFormClone: ContractDTO_APP;
-    contractForm: IForm<ContractDTO_APP> = {
-        contractNumber: ['', Validators.required],
-        contractName: [''],
-        startDate: [''],
-        endDate: [''],
-        upc: [''],
-        isActive: [true],
-        billingInvoice: [''],
-        observation: [''],
-        groupBilling: [false],
-        outpatientAuthorization: [false],
-        hospitalizationAuthorization: [false],
-        emergencyAuthorization: [false],
-        rightsVerification: [false],
-        multivitamins: [false],
-        soatCoverage: [false],
-        copayment: [false],
-        administratorId: [''],
-        benefitPlanId: [''],
-        tariffManualId: [''],
-        medicationTariffId: [''],
-        materialsTariffId: [''],
-        transfersTariffId: [''],
-        oxygenTariffId: [''],
-        careTypeId: [''],
-        levelId: ['']
-    }
-
-    constructor() {
-        this.form = this.fb.group(this.contractForm);
-        this.contractFormClone = ngFormHelper.unboxProperties(this.contractForm)
-    }
-
     barAction(e: ActionName) {
         if (e === 'save') this.save();
-        else if (e === 'reset') this.reset();
+        else if (e === 'reset') this.formContractRef()?.reset();;
     }
 
     save() {
-        if(this.form.valid) {
+        const form = this.formContractRef()?.form;
+        if(form?.valid && form) {
             this.swal.loading();
-            this.testServ.post(ContractDTO.setProperty(this.form.value)).subscribe({
+            this.testServ.post(form.value).subscribe({
                 next: (data) => {
-                    console.log("data", data);
                     this.swal.formSave('success');
-                    this.reset();
-                    this.showTab(1);
+                    // this.formContractRef()?.reset();
+                    // this.showTab(1);
                 },
                 error: () => this.swal.formSave('error')
             });
         } else {
             this.swal.formSave('warning');
         }
-    }
-
-    reset() {
-        this.form.reset(this.contractFormClone);
     }
 
     showTab(id: number) {

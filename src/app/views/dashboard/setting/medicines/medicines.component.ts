@@ -2,8 +2,7 @@ import { Component, inject, signal, viewChild } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { DirectivesModule } from '@directive/module';
 import { ngFormHelper, queries } from '@helpers/index';
-import { MedicineAPP_PAGE, MedicineDTO_APP } from '@interfaces/app';
-import { ActionName, BarActions, IForm, tabsControls } from '@interfaces/index';
+import { ActionName, BarActions, IForm, Medicine_APPDTO, Medicine_PageAPP, MedicineRateManual_APPDTO, tabsControls } from '@interfaces/index';
 import { BladeBoxPanelComponent } from '@layouts/dashboard/blades/blade-box-panel/blade-box-panel.component';
 import { BladeBoxTitleComponent } from '@layouts/dashboard/blades/blade-box-title/blade-box-title.component';
 import { BladePanelComponent } from '@layouts/dashboard/blades/blade-panel/blade-panel.component';
@@ -39,7 +38,7 @@ export class MedicinesComponent {
     medicineServ = inject(MedicineService);
     swal = inject(SweetalertService);
     fb = inject(FormBuilder);
-    medicineData = signal<MedicineAPP_PAGE | null>(null);
+    medicineData = signal<Medicine_PageAPP | null>(null);
     paramPaginate = signal<any>(queries.paramsPage);
     actionssBar: BarActions = {
         edit: true,
@@ -61,27 +60,29 @@ export class MedicinesComponent {
     form!: FormGroup;
 
     formMedicineCLone: any;
-    formMedicine: IForm<MedicineDTO_APP> = {
+    formMedicine: IForm<Medicine_APPDTO> = {
         code: [''],
         name: [''],
         atc: [''],
-        cum: [''],
-        consCum: [''],
+        cum: [NaN],
+        cumConsecutive: [''],
         cumName: [''],
         referenceUnit: [''],
-        consecutive: [''],
         otherName: [''],
         adverseEffect: [''],
         contraindications: [''],
         interactionIncompatibility: [''],
         liquid: [false],
         status: [false],
-        medicationTypeId: [0],
-        measurementUnitId: [0],
-        concentrationId: [0],
-        pharmaceuticalFormId: [0],
-        costCenterId: [0],
-        serviceTypeId: [0]
+        medicineTypeId: [null],
+        unitOfMeasureId: [null],
+        concentrationId: [null],
+        pharmaceuticalFormId: [null],
+        costCenterId: [null],
+        serviceTypeId: [null],
+        administrationRouteIds: [[] as number[]],
+        medicineGroupIds: [[] as number[]],
+        medicineManualTariffMed: [[] as MedicineRateManual_APPDTO[]]
     }
 
     constructor() {

@@ -1,15 +1,6 @@
-<div
-    class="modal"
-    [ngClass]="fade()"
-    [id]="idConnect()"
-    tabindex="-1"
-    aria-hidden="true"
->
-    <div
-        class="modal-dialog p-5"
-        [ngClass]="[modalSize(), scrollable(), modalCenter(), fullscreen()]"
-    >
-        <div class="modal-content rounded-xl box-shadow-super" #modal>
+<div class="modal" [ngClass]="fade()" [id]="idConnect()" tabindex="-1" aria-hidden="true" #modal>
+    <div class="modal-dialog p-5" [ngClass]="[modalSize(), scrollable(), modalCenter(), fullscreen()]">
+        <div class="modal-content rounded-xl box-shadow-super">
             @if(!hideHeader()) {
                 <div class="modal-header">
                     <div class="flex w-full p-5 pb-4">

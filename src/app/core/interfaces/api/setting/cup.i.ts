@@ -1,4 +1,4 @@
-import { NamedEntityAPI, PaginateAPI, RIPConceptAPI, ServicesAPI } from "@interfaces/index";
+import { NamedEntityAPI, PaginateAPI, RIPConceptAPI } from "@interfaces/index";
 
 export interface CupsDTO_API {
     codigo: number;
@@ -39,7 +39,7 @@ export interface CupsAPI {
     sexo: NamedEntityAPI;
     nivel: NamedEntityAPI;
     conceptoRips: RIPConceptAPI;
-    tipoServicios: ServicesAPI;
+    tipoServicios: any;
     grupoQx: NamedEntityAPI;
     ambito: NamedEntityAPI;
     tipoParto: NamedEntityAPI;

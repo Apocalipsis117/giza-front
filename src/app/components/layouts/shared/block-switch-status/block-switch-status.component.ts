@@ -1,12 +1,14 @@
 import { Component, input } from '@angular/core';
-import { SwitchStatusComponent } from '../switch-status/switch-status.component';
+import { FormsModule } from '@angular/forms';
+import { InputOnoffComponent } from '@im-inputs/input-onoff/input-onoff.component';
 
 @Component({
     selector: 'block-switch-status',
     standalone: true,
     templateUrl: './block-switch-status.component.html',
     imports: [
-        SwitchStatusComponent
+        InputOnoffComponent,
+        FormsModule
     ]
 })
 export class BlockSwitchStatusComponent {

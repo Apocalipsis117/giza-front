@@ -3,8 +3,7 @@ import { FormGroup, ReactiveFormsModule } from '@angular/forms';
 import { InputPanelCheckboxComponent } from '@form-control/input-panel-checkbox/input-panel-checkbox.component';
 import { InputPanelSelectComponent } from '@form-control/input-panel-select/input-panel-select.component';
 import { InputPanelTextComponent } from '@form-control/input-panel-text/input-panel-text.component';
-import { IForm, FormControlOption } from '@interfaces/index';
-import { OxygenRateDTO_APP } from '@interfaces/app';
+import { IForm, FormControlOption, OxygenRate_APPDTO } from '@interfaces/index';
 import { MedicineService } from '@services/api';
 
 @Component({
@@ -19,7 +18,7 @@ import { MedicineService } from '@services/api';
     templateUrl: './form-oxygen-rate.component.html'
 })
 export class FormOxygenRateComponent {
-    public setForm = input<FormGroup<IForm<OxygenRateDTO_APP>>>();
+    public setForm = input<FormGroup<IForm<OxygenRate_APPDTO>>>();
 
     form = computed(() => this.setForm() as FormGroup);
     medicineServ = inject(MedicineService);

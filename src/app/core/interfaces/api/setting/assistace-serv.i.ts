@@ -1,4 +1,4 @@
-import { NamedEntityAPI, PaginateAPI, TypeHistoryAPI } from "@interfaces/index";
+import { NamedEntityAPI, PaginateAPI } from "@interfaces/index";
 
 export interface AssistanceServ_DTO {
     nombre: string;
@@ -27,7 +27,7 @@ export interface AssistanceServiceAPI {
     especialista: boolean;
     medico: boolean;
     fechaCreacion: number;
-    tipoHistoria: TypeHistoryAPI;
+    tipoHistoria: any; // @TODO
     tipoServicio: NamedEntityAPI;
     nivelServicio: NamedEntityAPI;
 }

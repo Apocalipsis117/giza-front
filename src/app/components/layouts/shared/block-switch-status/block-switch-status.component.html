@@ -2,5 +2,7 @@
     <div>
         <ng-content></ng-content>
     </div>
-    <div class="float-right"><switch-status [active]="active()" /></div>
+    <div class="float-right">
+        <input-onoff ui="switch" [isDisabled]="true" boxUi="unborder" [ngModel]="active()" />
+    </div>
 </div>

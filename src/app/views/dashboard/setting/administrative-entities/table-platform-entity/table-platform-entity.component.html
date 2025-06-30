@@ -1,4 +1,4 @@
-<blade-table [rounded]="true" [headDivider]="true" [bodyYDivider]="true" [load]="entitiesCant()" [ActiveLoad]="true" [paginate]="dataTable()" (controlPaginate)="paginate($event)">
+<blade-table [rounded]="true" [setData]="dataTable()" [colspan]="5" (onPage)="paginate($event)" [loadingData]="load()">
     <ng-container tableHead>
         <tr>
             <th>Nit</th>
@@ -11,7 +11,7 @@
     <ng-container tableBody>
         @for(entity of entities(); track entity.id) {
             <tr TrSelected [idx]="tdSelected()" [id]="entity.id">
-                <td class="text-end">{{ entity.taxId }}</td>
+                <td class="text-end">{{ entity.nit }}</td>
                 <td>
                     <p class="font-bold">{{ entity.name }}</p>
                     <a [href]="'mailto:' + entity.email" class="text-gray-400 text-sm">{{ entity.email }}</a>

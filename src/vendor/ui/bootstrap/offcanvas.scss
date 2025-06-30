@@ -13,7 +13,7 @@
     max-width: 100%;
     visibility: hidden;
     background-color: var(--offcanvas-bg-color);
-    transition: transform 0.3s ease-in-out;
+    transition: transform $time-efect-fade ease-in-out;
     &.offcanvas {
         &-end,
         &-start {

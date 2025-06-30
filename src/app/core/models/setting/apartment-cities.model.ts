@@ -17,13 +17,13 @@ export class Apartment {
 
 export class Municipaly {
     static setProperty(data: Municipality_API) {
-        return new Apartment(data).model;
+        return new Municipaly(data).model;
     }
     constructor(public data: Municipality_API) {}
 
     get model(): Municipality_APP {
         return {
-            department: Apartment.setProperty(this.data.departamento),
+            department: this.data.departamento ? Apartment.setProperty(this.data.departamento) : null,
             id: this.data.id,
             name: this.data.nombre
         }

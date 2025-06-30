@@ -1,6 +1,6 @@
-<article class="ui-collapse-block" [ngClass]="[uiDisabled(), boxUi()!.box]">
-    <button class="collapse-btn" type="button" bsCollapseBtn setRole="collapse" [idConnect]="idConnect()" [isActive]="isActive()" [disabled]="disableCollapse()">
-        <title-icon-section [setIcon]="icon()" [setLabel]="setLabel()" [setTitle]="setTitle()" [setSize]="setTitleSize()" />
+<article class="ui-collapse-block" [class]="[uiDisabled(), boxUi()!.box]">
+    <button class="collapse-btn" type="button" bsCollapseBtn setRole="collapse" [idConnect]="idConnect()" [isActive]="isActive()" [disabled]="disableCollapse()" (click)="onCollapse.emit(idConnect())">
+        <title-icon-section setColor="dark" [setIcon]="icon()" [setLabel]="setLabel()" [setTitle]="setTitle()" [setSize]="setTitleSize()" />
     </button>
     <section class="collapse" bsCollapseContent [idConnect]="idConnect()" [idParent]="idParent()" [isActive]="isActive()">
         <div class="collapse-body">

@@ -3,7 +3,7 @@
         @if(setLabel()) {
             <legend>{{ setLabel() }}</legend>
         }
-        <div class="input-group">
+        <div class="input-group" [class]="size()">
             <label class="input-group-text" [for]="id">
                 <i class="icofont-rounded-down"></i>
             </label>

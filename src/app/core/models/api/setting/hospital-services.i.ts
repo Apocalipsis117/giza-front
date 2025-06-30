@@ -1,6 +1,5 @@
 import { HospitalServiceAPI, HospitalServiceAPP, HospitalServiceDTO_API, HospitalServiceDTO_APP } from "@interfaces/index";
-import { CostCenter } from "./cost-center.model";
-import { NamedEntity } from "@models/index";
+import { CostCenter, NamedEntity } from "@models/index";
 
 export class HoospitalServiceDTO {
     static setProperty(dataInput: HospitalServiceDTO_APP): string {

@@ -1,4 +1,4 @@
-<blade-table [ActiveLoad]="true" [headDivider]="true" [bodyYDivider]="true" [load]="list().length > 0" [paginate]="data()" (controlPaginate)="paginate.emit($event)">
+<blade-table [headDivider]="true" [bodyYDivider]="true">
     <ng-container tableHead>
         <tr>
             <th>Nombre</th>
@@ -12,7 +12,7 @@
         @for(oxigen of list(); track oxigen.id) {
             <tr TrSelected [idx]="tdSelected()" [id]="oxigen.id">
                 <td>{{ oxigen.name }}</td>
-                <td>{{ oxigen.medication.name }}</td>
+                <td>queso</td>
                 <td class="text-right">$ {{ oxigen.value }}</td>
                 <td class="text-center">
                     <badge-status [setStatus]="oxigen.status"/>

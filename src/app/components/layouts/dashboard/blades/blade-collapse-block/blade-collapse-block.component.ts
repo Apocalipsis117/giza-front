@@ -1,5 +1,4 @@
-import { NgClass } from '@angular/common';
-import { Component, computed, input } from '@angular/core';
+import { Component, computed, input, output } from '@angular/core';
 import { DirectivesModule } from '@directive/module';
 import { domHelper } from '@helpers/index';
 import { UiSize } from '@interfaces/index';
@@ -10,13 +9,13 @@ import { TitleIconSectionComponent } from '@layouts/shared/title-icon-section/ti
     standalone: true,
     imports: [
         TitleIconSectionComponent,
-        DirectivesModule,
-        NgClass
+        DirectivesModule
     ],
     templateUrl: './blade-collapse-block.component.html'
 })
 export class BladeCollapseBlockComponent {
     public idConnect = input.required<string>();
+    public onCollapse = output<string>();
     public setTitle = input<string>('Titulo?');
     public setLabel = input<string | undefined>('');
     public setTitleSize = input<UiSize>(null);

@@ -1,18 +1,18 @@
 import { Component, ElementRef, Input, ViewChild, computed, input, output } from '@angular/core';
-import { CommonModule } from '@angular/common';
-import { BtnToggle, UiSize } from '@interfaces/index';
 import { DirectivesModule } from '@directive/module';
+import { BtnToggle, UiSize } from '@interfaces/index';
 
 @Component({
     selector: 'app-button',
     standalone: true,
-    imports: [CommonModule, DirectivesModule],
+    imports: [DirectivesModule],
     templateUrl: './button.component.html'
 })
 export class ButtonComponent {
     @ViewChild('button') button!: ElementRef;
     public action = output<any>();
     public setIcon = input<string>('');
+    public full = input<boolean>(false);
     public setTitle = input<string>('');
     public setSize = input<UiSize>(null);
     public setActive = input<boolean>(false);
@@ -34,6 +34,7 @@ export class ButtonComponent {
     active = computed(() => this.setActive() ? 'active' : '')
     buttonSize = computed(() => this.setSize() ? `btn-${this.setSize()}` : '')
     marginIconText = computed(() => this.setIcon() && this.setTitle() ? 'ml-3' : '')
+    width = computed(() => this.full() ? 'w-full' : '')
 
     ngAfterViewInit(): void {
         if (this.formConnect && this.setType === 'submit') {

@@ -11,7 +11,7 @@
                                 </ng-container>
                             </blade-box-panel>
                         </article>
-                        <article bsTabContent [idConnect]="tabs[1].idConnect" [isActive]="tabs[1].active">
+                        <article class="pb-3" bsTabContent [idConnect]="tabs[1].idConnect" [isActive]="tabs[1].active">
                             <table-platform-entity #table />
                         </article>
                     </ng-container>
@@ -27,3 +27,16 @@
         </div>
     </ng-container>
 </blade-panel>
+
+<blade-dialog idConnect="admin-entity-update" setSize="xl" [hideFooter]="true" #dialogUpdate [activeFade]="false">
+    <ng-container dialogHeader>
+        <card-basic-text setTitle="Actualizar Entidad" />
+    </ng-container>
+    <ng-container dialogBody>
+        <blade-box-panel ui="clean" [padding]="true" [actionsActive]="true" [setActionsBar]="actionsUpdate" [headerActive]="false" (actionBar)="barAction($event)">
+            <ng-container boxbody>
+                <form-date-entity #formDateEntityUpdate />
+            </ng-container>
+        </blade-box-panel>
+    </ng-container>
+</blade-dialog>

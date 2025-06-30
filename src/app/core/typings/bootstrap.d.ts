@@ -13,6 +13,10 @@ declare global {
             new(element: HTMLElement, toggleOptions?: BsDropdownToggleOptions, menuOptions?: BsDropdownMenuOptions, options?: BsDropdownOptions): BsDropdownInstance;
             getInstance: (element: HTMLElement) => BsDropdownInstance | null;
         };
+        Offcanvas: {
+            new(element: HTMLElement, options?: BsOffcanvasOptions): BsOffcanvasInstance;
+            getInstance: (element: HTMLElement) => BsOffcanvasInstance | null;
+        };
     }
 
     const bootstrap: Bootstrap;
@@ -99,4 +103,25 @@ export interface BsAlertOptions {
 export interface BsAlertInstance {
     close: () => void;
     dismiss: () => void;
+}
+
+// offcanvas
+
+export interface BsOptionsOffcanvas {
+    action?: 'show' | 'hide' | 'toggle';
+    backdrop?: boolean;
+    keyboard?: boolean;
+    scroll?: boolean;
+}
+
+export interface BsOffcanvasOptions {
+    backdrop?: boolean;
+    keyboard?: boolean;
+    scroll?: boolean;
+}
+
+export interface BsOffcanvasInstance {
+    show: () => void;
+    hide: () => void;
+    toggle: () => void;
 }

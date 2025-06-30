@@ -1,15 +1,15 @@
 import { Injectable } from '@angular/core';
-import { OxigenRateAPP } from '@interfaces/app';
+import { OxygenRate_APP } from '@interfaces/index';
 import { Subject } from 'rxjs';
 
 @Injectable({
     providedIn: 'root'
 })
 export class LocalOxygenRateService {
-    private oxigenRate$ = new Subject<OxigenRateAPP | null>();
+    private oxigenRate$ = new Subject<OxygenRate_APP | null>();
     oxigenRate = this.oxigenRate$.asObservable();
 
-    emit(data: OxigenRateAPP | null) {
+    emit(data: OxygenRate_APP | null) {
         this.oxigenRate$.next(data);
     }
 }

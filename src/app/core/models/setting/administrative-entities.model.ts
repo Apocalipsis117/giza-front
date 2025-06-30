@@ -1,5 +1,5 @@
 import { AdministrativeEntity_DTO, AdministrativeEntity_API, AdministrativeEntity_APP, AdministrativeEntity_APPDTO } from '@interfaces/index';
-import { TypeRegime } from '@models/index';
+import { Apartment, Municipaly, TypeRegime } from '@models/index';
 
 export class AdministrativeEntityDTO {
     static setProperty(input: AdministrativeEntity_APPDTO): string {
@@ -12,7 +12,7 @@ export class AdministrativeEntityDTO {
         const data: AdministrativeEntity_DTO = {
             codigo: this.input.code,
             nombre: this.input.name,
-            nit: this.input.taxId,
+            nit: this.input.nit,
             direccion: this.input.address,
             direccionRadicacion: this.input.filingAddress,
             correo: this.input.email,
@@ -53,12 +53,16 @@ export class AdministrativeEntity {
             isActive: this.input.estado,
             name: this.input.nombre,
             phone: this.input.telefono,
-            taxId: this.input.nit,
-            hasInsurance: this.input.soat,
+            nit: this.input.nit,
+            soat: this.input.soat,
             requiresAnnex2: this.input.requiereAnexo2,
             resolution: this.input.resolucion,
-            ripsTaxIdVerification: this.input.ripsVerificacionNit,
-            regime: TypeRegime.setProperty(this.input.regimen)
+            regime: TypeRegime.setProperty(this.input.regimen),
+            otherData: this.input.otrosDatos,
+            departament: Apartment.setProperty(this.input.departamento),
+            municipaly: Municipaly.setProperty(this.input.municipio),
+            reportResolution256: this.input.reporteResolucion256,
+            templateResolution1552: this.input.plantillaResolucion1552
         }
     }
 

@@ -1,34 +1,58 @@
 @if(data()) {
-    <div class="d-grid">
-        <div class="col-span-full mb-2 text-xl">{{ value().name }}</div>
-        <ul class="col-span-full ul-list-row">
+    <div class="ui-detail">
+        <div class="detail-titles">
+            <h2>{{ value().name }}</h2>
+            <ul>
+                <li><b>NIT:</b> {{ value().nit }}</li>
+                <li><b>Telefono:</b> {{ value().phone }}</li>
+                <li><b>Email:</b> {{ value().email }}</li>
+            </ul>
+        </div>
+        <ul class="detail-ul">
             <li>
                 <div class="col-span-4">
-                    <small>Codigo</small>
-                    <div>{{ value().code }}</div>
+                    <small>Departamento</small>
+                    <div>{{ value().departmanet }}</div>
                 </div>
                 <div class="col-span-4">
-                    <small>Nit</small>
-                    <div>{{ value().taxId }}</div>
+                    <small>Municipio</small>
+                    <div>{{ value().municipaly }}</div>
                 </div>
                 <div class="col-span-4">
-                    <small>regimen</small>
+                    <small>Regimen</small>
                     <div>{{ value().regimeName }}</div>
                 </div>
             </li>
             <li>
-                <div class="col-span-6">
-                    <small>Direccion</small>
+                <div class="col-span-5">
+                    <small>Dirección administrativa</small>
                     <div>{{ value().address }}</div>
                 </div>
-                <div class="col-span-6">
+                <div class="col-span-5">
                     <small>Direccion de radicado</small>
                     <div>{{ value().filingAddress }}</div>
                 </div>
+                <div class="col-span-2">
+                    <small>Código</small>
+                    <div>{{ value().code }}</div>
+                </div>
+            </li>
+            <li>
+                <div class="col-span-6">
+                    <small>Long. autorización</small>
+                    <div>{{ value().length }}</div>
+                </div>
+                <div class="col-span-6">
+                    <small>Long. autorización</small>
+                    <div>{{ value().emailF }}</div>
+                </div>
             </li>
         </ul>
-        <div class="col-span-full font-bold"><i class="icofont-settings mr-2"></i> Caracteristicas</div>
-        <ul class="col-span-full divide-y">
+        <div class="detail-title">
+            <i class="icofont-settings"></i>
+            <span>Caracteristicas</span>
+        </div>
+        <ul class="detail-items">
             <li>
                 <block-switch-status [active]="value().isActive">Activo</block-switch-status>
             </li>
@@ -36,13 +60,16 @@
                 <block-switch-status [active]="value().hasInsurance">Soat</block-switch-status>
             </li>
             <li>
-                <block-switch-status [active]="value().ripsTaxIdVerification">Rips Dígitos de verificacion Nit</block-switch-status>
+                <block-switch-status [active]="value().requiresAnnex2">Requiere anexo 2 (atención inicial)</block-switch-status>
             </li>
             <li>
-                <block-switch-status [active]="value().requiresAnnex2">Requiere anexo 2 (atención inicial)</block-switch-status>
+                <block-switch-status [active]="value().requiresAnnex2">Plantilla resolucion 1445</block-switch-status>
+            </li>
+            <li>
+                <block-switch-status [active]="value().reportResolution256">Reporte resolución 256</block-switch-status>
             </li>
         </ul>
     </div>
 } @else {
-    Seleciona entidad
+    <select-some-item />
 }

@@ -1,8 +1,8 @@
 <button
     [type]="setType"
-    class="btn w-full relative overflow-hidden rounded-md"
+    class="btn relative overflow-hidden rounded-md"
     [disabled]="isDisabled"
-    [ngClass]="[buttonSize(), color(), active()]"
+    [class]="[buttonSize(), color(), active(), width()]"
     (click)="emit()"
     BtnBsToggle
     [setRole]="setRole"
@@ -11,9 +11,9 @@
     #button
 >
     @if (setIcon()) {
-        <i [ngClass]="setIcon()"></i>
+        <i [class]="setIcon()"></i>
     }
     @if (setTitle()) {
-        <span [ngClass]="[marginIconText()]">{{ setTitle() }}</span>
+        <span [class]="[marginIconText()]">{{ setTitle() }}</span>
     }
 </button>

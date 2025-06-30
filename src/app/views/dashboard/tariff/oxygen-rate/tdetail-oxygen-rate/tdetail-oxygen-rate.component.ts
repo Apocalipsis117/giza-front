@@ -1,5 +1,5 @@
 import { Component, computed, inject, signal } from '@angular/core';
-import { OxigenRateAPP } from '@interfaces/app';
+import { OxygenRate_APP } from '@interfaces/index';
 import { SelectSomeItemComponent } from '@layouts/dashboard/ux/select-some-item/select-some-item.component';
 import { LocalOxygenRateService } from '../local-oxygen-rate.service';
 
@@ -12,7 +12,7 @@ import { LocalOxygenRateService } from '../local-oxygen-rate.service';
     templateUrl: './tdetail-oxygen-rate.component.html'
 })
 export class TdetailOxygenRateComponent {
-    oxigenRate = signal<OxigenRateAPP | null>(null);
+    oxigenRate = signal<OxygenRate_APP | null>(null);
     localServ = inject(LocalOxygenRateService);
 
     ngOnInit(): void {
@@ -22,13 +22,13 @@ export class TdetailOxygenRateComponent {
     oxigenRateData = computed(() => {
         return {
             title: this.oxigenRate()!.name,
-            medicineName: this.oxigenRate()!.medication.name,
+            medicineName: 'queso',
             value: this.oxigenRate()!.value,
-            medicineArea: this.oxigenRate()!.medication.costCenter.area?.name,
-            medicineCenterCost: this.oxigenRate()!.medication.costCenter.name,
-            medicineType: this.oxigenRate()!.medication ? this.oxigenRate()!.medication!.medicineType!.name : '',
-            pharmaceuticalForm: this.oxigenRate()!.medication.pharmaceuticalForm.name,
-            serviceTypes: this.oxigenRate()!.medication.serviceTypes.name
+            medicineArea: 'queso',
+            medicineCenterCost: 'queso',
+            medicineType: 'queso',
+            pharmaceuticalForm: 'queso',
+            serviceTypes: 'queso'
         }
     })
 }

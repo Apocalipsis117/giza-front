@@ -13,7 +13,7 @@ export class TitleIconSectionComponent {
     public setIcon = input<string>('');
     public setLabel = input<string | undefined>('');
     public setSize = input<UiSize>(null);
-    public setColor = input<ColorsTailwind>('gray');
+    public setColor = input<ColorsTailwind>('neutral');
 
     color = computed(() => `text-${this.setColor()}-400`)
 

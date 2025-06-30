@@ -1,5 +1,6 @@
+/*overflow-hidden*/
 .ui-collapse-block {
-    @apply border rounded-lg overflow-hidden;
+    @apply border rounded-lg mb-2;
 }
 
 .ui-collapse-block .collapse-btn {

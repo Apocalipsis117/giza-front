@@ -4,8 +4,8 @@ import { ButtonComponent } from '@layouts/shared/button/button.component';
 import { DirectivesModule } from '@directive/module';
 import { PipesModule } from '@pipes/module';
 import { NgClass } from '@angular/common';
-import { MedicineAPP_PAGE } from '@interfaces/app';
 import { LocalMedicineService } from '../local-medicine.service';
+import { Medicine_PageAPP } from '@interfaces/index';
 
 @Component({
     selector: 'table-medicine',
@@ -22,7 +22,7 @@ import { LocalMedicineService } from '../local-medicine.service';
 export class TableMedicineComponent {
     paginate = output<any>();
     localServ = inject(LocalMedicineService);
-    dataTable = input<MedicineAPP_PAGE | null>(null);
+    dataTable = input<Medicine_PageAPP | null>(null);
     tdSelected = signal<number>(-1);
 
     list = computed(() => this.dataTable() ? this.dataTable()!.content : []);

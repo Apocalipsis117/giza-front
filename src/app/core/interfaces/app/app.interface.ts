@@ -84,6 +84,13 @@ export interface ActionsBtnsAside {
     icon: string;
 };
 
+/* btn steps */
+export interface StepAction {
+    action: string;
+    label: string;
+    text?: string;
+};
+
 /* menu tools bar */
 export interface ToolBarActions {
     data: DataToolBarActions;
@@ -170,13 +177,15 @@ export interface OutputData {
 /* panel-action */
 export type ActionName = keyof BarActions;
 export interface BarActions {
-    edit?: boolean,
-    delete?: boolean,
-    add?: boolean,
-    save?: boolean,
-    cancel?: boolean
+    edit?: boolean;
+    delete?: boolean;
+    update?: boolean;
+    add?: boolean;
+    save?: boolean;
+    cancel?: boolean;
     reset?: boolean;
     clean?: boolean;
+    return?: boolean;
 }
 
 export interface ItemAction {
@@ -197,6 +206,7 @@ export type anyAPP_PAGE = any;
 export type AppColor = 'default' | 'teal';
 export type AppMode = 'dark' | 'light' | 'system';
 export type AppMenu = 'menu-aside' | 'menu-icons' | 'menu-hide';
+export type im_uiSize = 'xm' | 'sm' | 'base' | 'md' | 'lg' | 'xl';
 
 export interface AppGisa {
     color: AppColor;

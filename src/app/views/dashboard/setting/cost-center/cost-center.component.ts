@@ -1,7 +1,7 @@
 import { Component, inject, signal } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { ngFormHelper, queries } from '@helpers/index';
-import { ActionName, CostCenterAPP_PAGE, CostCenterDTO_APP, IForm } from '@interfaces/index';
+import { ActionName, CostCenter_PageAPP, CostCenter_APPDTO, IForm } from '@interfaces/index';
 import { BladeBoxPanelComponent } from '@layouts/dashboard/blades/blade-box-panel/blade-box-panel.component';
 import { BladePanelComponent } from '@layouts/dashboard/blades/blade-panel/blade-panel.component';
 import { NoteComponent } from '@layouts/shared/note/note.component';
@@ -26,11 +26,11 @@ export class CostCenterComponent {
     swal = inject(SweetalertService);
     centerCost = inject(CostCenterService);
     fb = inject(FormBuilder);
-    costCenterList = signal<CostCenterAPP_PAGE | null>(null);
+    costCenterList = signal<CostCenter_PageAPP | null>(null);
     form: FormGroup;
 
-    costCenterFormClone: CostCenterDTO_APP;
-    costCenterForm: IForm<CostCenterDTO_APP> = {
+    costCenterFormClone: CostCenter_APPDTO;
+    costCenterForm: IForm<CostCenter_APPDTO> = {
         areaId: [''],
         accountingAccount: [''],
         status: [true],

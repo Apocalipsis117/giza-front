@@ -1,11 +1,26 @@
 import { Injectable } from '@angular/core';
 import { swalOptions } from '@helpers/index';
-import Swal, { SweetAlertIcon } from 'sweetalert2';
+import Swal, { SweetAlertIcon, SweetAlertOptions, SweetAlertPosition } from 'sweetalert2';
 
 @Injectable({
     providedIn: 'root'
 })
 export class SweetalertService {
+    private assets = {
+        btnTextConfirm: '<i class="mir mi-check"></i> Comfirmar',
+        btnTextCancel: 'Cancelar',
+    }
+    private ui: SweetAlertOptions = {
+        customClass: {
+            container: 'sweetalert-custom',
+            title: 'sw-title',
+            htmlContainer: 'sw-content',
+            confirmButton: 'sw-btn-confirm',
+            closeButton: 'sw-btn-close',
+            cancelButton: 'sw-btn-cancel',
+            popup: 'sw-dialog'
+        }
+    }
 
     alertSimpleConfirm(message: string) {
         return Swal.fire(swalOptions.confirmAction(message));
@@ -44,4 +59,37 @@ export class SweetalertService {
         }
         this.alertSimple(message[type], type);
     }
+
+    toastConfirm(icon: SweetAlertIcon = 'info', setOptions: SwaOptionsSmall | null = null) {
+        const options: SwaOptionsSmall = {
+            position: 'top',
+            ...setOptions
+        }
+        return Swal.fire({
+            ...options,
+            icon,
+            showCancelButton: true,
+            confirmButtonText: this.assets.btnTextConfirm,
+            cancelButtonText: this.assets.btnTextCancel,
+            showConfirmButton: true,
+            toast: true,
+            ...this.ui
+        });
+    }
+}
+
+export interface SwaOptionsSmall {
+    title?: string;
+    text?: string;
+    position?: SweetAlertPosition;
+}
+export interface SwaOptionsAlert {
+    title?: string;
+    text?: string;
+    position?: SweetAlertPosition;
+}
+export interface SwaOptionsCheckConfirm {
+    title?: string;
+    placeholder?: string;
+    textInvalid?: string;
 }

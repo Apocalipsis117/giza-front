@@ -116,3 +116,33 @@ export const queryData = {
         return 'text-default-600';
     }
 }
+
+type GenericObject = Record<string, any>;
+export const objectHelper = {
+    /**
+     * Separa propiedades entre vacías y definidas.
+     * Considera vacíos: '', null, undefined, NaN, [], false
+     */
+    hasValue<T extends GenericObject>(data: T): { empties: Partial<T>, defined: Partial<T> } {
+        const empties: Partial<T> = {};
+        const defined: Partial<T> = {};
+
+        Object.entries(data).forEach(([key, value]) => {
+            const isEmpty =
+                value === null ||
+                value === undefined ||
+                value === '' ||
+                value === false ||
+                (typeof value === 'number' && isNaN(value)) ||
+                (Array.isArray(value) && value.length === 0);
+
+            if (isEmpty) {
+                empties[key as keyof T] = value;
+            } else {
+                defined[key as keyof T] = value;
+            }
+        });
+
+        return { empties, defined };
+    }
+};

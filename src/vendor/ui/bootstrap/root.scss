@@ -1,10 +1,12 @@
+@use 'bs-vendor/index' as *;
+
 // estandars de bootstrap
 .collapse:not(.show) {
     display: none;
 }
 
 .fade {
-    transition: opacity 0.15s linear;
+    transition: opacity $time-efect-fade linear;
 }
 
 .fade:not(.show) {

@@ -1,10 +1,9 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable, inject } from '@angular/core';
-import { queries } from '@helpers/index';
-import { FormControlOption, OxigenRateAPI, OxigenRateAPI_PAGE, TypeReturn } from '@interfaces/index';
-import { OxigenRateAPP, OxigenRateAPP_PAGE } from '@interfaces/app';
+import { apiHelper } from '@helpers/index';
+import { FormControlOption, OxygenRate_APP, OxygenRate_ListResponse, OxygenRate_PageAPP, OxygenRate_PageResponse, TypeReturn } from '@interfaces/index';
 import { OptionsControl, OxygenRate, OxygenRateDTO } from '@models/index';
-import { Observable, map } from 'rxjs';
+import { Observable, catchError, map, of } from 'rxjs';
 
 @Injectable({
     providedIn: 'root'
@@ -12,36 +11,44 @@ import { Observable, map } from 'rxjs';
 export class OxygenRateService {
     private http = inject(HttpClient);
     private api = {
-        save: 'tarifa-oxigeno/save',
-        list: 'tarifa-oxigeno/lista',
-        page: 'tarifa-oxigeno/page',
+        base: 'config/tarifa-oxigeno',
+        save: 'save',
+        list: 'lista',
+        page: 'page',
     }
 
     post(data: any) {
-        const api = queries.api(this.api.save);
-        const dataPost = OxygenRateDTO.setProperty(data);
-        return this.http.post(api, dataPost);
+        const api = apiHelper.api(this.api.base, {
+            path: this.api.save
+        });
+        const json = OxygenRateDTO.setProperty(data);
+        return this.http.post(api, json);
     }
 
-    getAll(): Observable<OxigenRateAPP[]>;
-    getAll(typeReturn: 'options'): Observable<FormControlOption[]>;
-    /* query */
-    getAll(typeReturn: TypeReturn = null) {
-        const api = queries.api(this.api.list);
-        return this.http.get<OxigenRateAPI[]>(api).pipe(
+    list(): Observable<OxygenRate_APP[]>;
+    list(typeReturn: 'options'): Observable<FormControlOption[]>;
+    list(typeReturn: TypeReturn = null) {
+        const api = apiHelper.api(this.api.base, {
+            path: this.api.list
+        });
+        return this.http.get<OxygenRate_ListResponse>(api).pipe(
             map(data => {
-                if (typeReturn === 'options') return data.map(x => OptionsControl.setProperty(x.id, x.nombre));
-                return data.map(x => OxygenRate.setProperty(x));
-            })
+                if (typeReturn === 'options') return data.data.map(x => OptionsControl.setProperty(x.id, x.nombre));
+                return data.data.map(x => OxygenRate.setProperty(x));
+            }),
+            catchError(() => of([]))
         )
     }
 
-    getAllPage(paramValue: any = null): Observable<OxigenRateAPP_PAGE> {
-        const api = queries.api(this.api.page, paramValue);
-        return this.http.get<OxigenRateAPI_PAGE>(api).pipe(
+    page(paramValue: any = null): Observable<OxygenRate_PageAPP> {
+        const api = apiHelper.api(this.api.base, {
+            path: this.api.list,
+            params: paramValue
+        });
+        return this.http.get<OxygenRate_PageResponse>(api).pipe(
             map(data => ({
-                ...data,
-                content: data.content.map(item => OxygenRate.setProperty(item))
+                ...data.data,
+                content: data.data.content.map(item => OxygenRate.setProperty(item))
             }))
         )
     }

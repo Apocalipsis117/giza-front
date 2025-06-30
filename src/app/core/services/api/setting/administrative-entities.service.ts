@@ -1,10 +1,10 @@
 import { HttpClient } from '@angular/common/http';
-import { Injectable, inject } from '@angular/core';
+import { inject, Injectable } from '@angular/core';
 import { apiHelper } from '@helpers/index';
-import { PathNameAPI } from '@interfaces/extend.i';
-import { AdministrativeEntity_PageAPI, AdministrativeEntity_API, AdministrativeEntity_APPDTO, AdministrativeEntity_Response } from '@interfaces/index';
-import { AdministrativeEntity, AdministrativeEntityDTO } from '@models/index';
-import { map } from 'rxjs';
+import { PathNameAPI, ResponseAPI } from '@interfaces/extend.i';
+import { AdministrativeEntity_APP, AdministrativeEntity_APPDTO, AdministrativeEntity_ListResponse, AdministrativeEntity_PageResponse, AdministrativeEntity_Response, FormControlOption, TypeReturn } from '@interfaces/index';
+import { AdministrativeEntity, AdministrativeEntityDTO, OptionsControl } from '@models/index';
+import { catchError, map, Observable, of } from 'rxjs';
 
 @Injectable({
     providedIn: 'root'
@@ -12,7 +12,7 @@ import { map } from 'rxjs';
 export class AdministrativeEntitiesService {
     private http = inject(HttpClient);
     private api: PathNameAPI = {
-        base: 'entidades-administradoras',
+        base: 'config/entidades-administradoras',
         save: 'save',
         list: 'lista',
         page: 'page',
@@ -23,7 +23,34 @@ export class AdministrativeEntitiesService {
             path: this.api.save
         });
         const values = AdministrativeEntityDTO.setProperty(data);
-        return this.http.post(api, values)
+        return this.http.post<AdministrativeEntity_Response>(api, values).pipe(
+            map(data => AdministrativeEntity.setProperty(data.data))
+        )
+    }
+
+    update(id: number, data: AdministrativeEntity_APPDTO) {
+        const api = apiHelper.api(this.api.base, {
+            path: id
+        });
+        const values = AdministrativeEntityDTO.setProperty(data);
+        return this.http.put<AdministrativeEntity_Response>(api, values).pipe(
+            map(data => AdministrativeEntity.setProperty(data.data))
+        )
+    }
+
+    list(): Observable<AdministrativeEntity_APP[]>;
+    list(typeReturn: 'options'): Observable<FormControlOption[]>;
+    list(typeReturn: TypeReturn = null) {
+        const api = apiHelper.api(this.api.base, {
+            path: this.api.list
+        });
+        return this.http.get<AdministrativeEntity_ListResponse>(api).pipe(
+            map(data => {
+                if (typeReturn === 'options') return data.data.map(x => OptionsControl.setProperty(x.id, x.nombre));
+                return data.data.map(x => AdministrativeEntity.setProperty(x));
+            }),
+            catchError(() => of([]))
+        )
     }
 
     page(paramValue: any = null) {
@@ -31,29 +58,27 @@ export class AdministrativeEntitiesService {
             path: this.api.page,
             params: paramValue
         });
-        return this.http.get<AdministrativeEntity_PageAPI>(api).pipe(
+        return this.http.get<AdministrativeEntity_PageResponse>(api).pipe(
             map(data => ({
-                ...data,
-                content: data.content.map(item => AdministrativeEntity.setProperty(item))
+                ...data.data,
+                content: data.data.content.map(item => AdministrativeEntity.setProperty(item))
             }))
         )
     }
 
-    getBy(uuid: string) {
+    getBy(uuid: number) {
         const api = apiHelper.api(this.api.base, {
             path: uuid
         });
-        return this.http.get<AdministrativeEntity_API>(api).pipe(
-            map(data =>  AdministrativeEntity.setProperty(data))
+        return this.http.get<AdministrativeEntity_Response>(api).pipe(
+            map(data =>  AdministrativeEntity.setProperty(data.data))
         )
     }
 
-    delete(uuid: string) {
+    delete(uuid: number) {
         const api = apiHelper.api(this.api.base, {
             path: uuid
         });
-        return this.http.delete<AdministrativeEntity_Response>(api).pipe(
-            map(data =>  AdministrativeEntity.setProperty(data.data))
-        )
+        return this.http.delete<ResponseAPI<string>>(api)
     }
 }

@@ -1,13 +1,15 @@
 import { Component, inject, signal } from '@angular/core';
 import { FormBuilder, FormGroup, ReactiveFormsModule } from '@angular/forms';
-import { ngFormHelper, queryData } from '@helpers/index';
+import { ngFormHelper, utilieHelper } from '@helpers/index';
 import { InputNumberComponent } from '@im-inputs/input-number/input-number.component';
 import { InputOnoffComponent } from '@im-inputs/input-onoff/input-onoff.component';
+import { InputSelectSearhComponent } from '@im-inputs/input-select-searh/input-select-searh.component';
 import { InputSelectComponent } from '@im-inputs/input-select/input-select.component';
 import { InputTextComponent } from '@im-inputs/input-text/input-text.component';
-import { AdministrativeEntity_APPDTO, IForm, FormControlOption } from '@interfaces/index';
+import { AdministrativeEntity_APPDTO, DataAssociated, FormControlOption, FormGroupTyped, IForm } from '@interfaces/index';
 import { TitleIconSectionComponent } from '@layouts/shared/title-icon-section/title-icon-section.component';
-import { ApartmentCitiesService, TypeRegimeService } from '@services/api';
+import { TypeRegimeService } from '@services/api';
+import { RxAppGisaService } from '@services/app';
 import { distinctUntilChanged } from 'rxjs';
 
 @Component({
@@ -19,18 +21,20 @@ import { distinctUntilChanged } from 'rxjs';
         InputTextComponent,
         InputSelectComponent,
         InputOnoffComponent,
-        InputNumberComponent
+        InputNumberComponent,
+        InputSelectSearhComponent
     ],
     templateUrl: './form-date-entity.component.html'
 })
 export class FormDateEntityComponent {
     private readonly fb = inject(FormBuilder);
-    private readonly apartmentCities = inject(ApartmentCitiesService);
+    private readonly app$ = inject(RxAppGisaService);
     private readonly typeRegime = inject(TypeRegimeService);
 
+    municipalies = signal<FormControlOption<DataAssociated>[]>([]);
     resolutions = signal<string[]>([]);
     optionsDepartment = signal<FormControlOption[]>([]);
-    optionsCities = signal<FormControlOption[]>([]);
+    optionsMunicipalies = signal<FormControlOption[]>([]);
     optionsRegime = signal<FormControlOption[]>([]);
 
     form: FormGroup;
@@ -45,7 +49,7 @@ export class FormDateEntityComponent {
         phone: [''],
         otherData: [''],
         authorizationLength: [NaN],
-        taxId: [null],
+        nit: [''],
         municipalityId: [null],
         regimeId: [null],
         departmentId: [null],
@@ -61,9 +65,20 @@ export class FormDateEntityComponent {
         this.formCloneEntity = ngFormHelper.unboxProperties(this.formEntity);
     }
 
+    get control() {
+        return this.form.controls as FormGroupTyped<AdministrativeEntity_APPDTO>;
+    }
+
     ngOnInit(): void {
-        this.apartmentCities.apartaments('options').subscribe(data => this.optionsDepartment.set(data));
-        this.typeRegime.getAll('options').subscribe(data => this.optionsRegime.set(data));
+        this.app$.watchCountries.subscribe({
+            next: (value) => {
+                const depart = utilieHelper.cloneValue(value.apartaments);
+                const cities = utilieHelper.cloneValue(value.minicipalies);
+                this.optionsDepartment.set(depart);
+                this.municipalies.set(cities);
+            }
+        });
+        this.typeRegime.list('options').subscribe(data => this.optionsRegime.set(data));
         this.watchDepartamentId();
     }
 
@@ -74,7 +89,10 @@ export class FormDateEntityComponent {
     watchDepartamentId() {
         this.form.get('departmentId')!.valueChanges.pipe(distinctUntilChanged()).subscribe({
             next: (value) => {
-                console.log("value", value);
+                this.control['municipalityId'].patchValue(null);
+                const municipalies = this.municipalies();
+                const asociated = municipalies.filter(x => x.data?.id === value);
+                this.optionsMunicipalies.set(asociated);
             }
         })
     }

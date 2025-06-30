@@ -5,8 +5,7 @@ import { InputPanelCheckboxComponent } from '@form-control/input-panel-checkbox/
 import { InputPanelSelectComponent } from '@form-control/input-panel-select/input-panel-select.component';
 import { InputPanelTextComponent } from '@form-control/input-panel-text/input-panel-text.component';
 import { InputPanelTextareaComponent } from '@form-control/input-panel-textarea/input-panel-textarea.component';
-import { MedicineDTO_APP } from '@interfaces/app';
-import { IForm, FormControlOption } from '@interfaces/index';
+import { IForm, FormControlOption, Medicine_APPDTO } from '@interfaces/index';
 import { TypeServiceService, PharmaceuticalFormService, TypeConcentrationService, TypeMedicineService, TypeMedicineUnitService, CostCenterService } from '@services/api';
 
 @Component({
@@ -38,7 +37,7 @@ export class FormMedicineComponent {
     optionsCostcenter = signal<FormControlOption[]>([]);
     optionsTypeServ = signal<FormControlOption[]>([]);
 
-    form = computed(() => this.setForm() as FormGroup<IForm<MedicineDTO_APP>>);
+    form = computed(() => this.setForm() as FormGroup<IForm<Medicine_APPDTO>>);
 
     ngOnInit(): void {
         this.medicineServ.getAll('options').subscribe(data => this.optionsTypeMedicine.set(data));

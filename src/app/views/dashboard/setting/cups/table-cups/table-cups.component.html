@@ -1,10 +1,6 @@
 <blade-table
     [bodyYDivider]="true"
     [headDivider]="true"
-    [ActiveLoad]="true"
-    [paginate]="dataTable()"
-    (controlPaginate)="paginate.emit($event)"
-    [load]="load()"
 >
     <ng-container tableHead>
         <tr>

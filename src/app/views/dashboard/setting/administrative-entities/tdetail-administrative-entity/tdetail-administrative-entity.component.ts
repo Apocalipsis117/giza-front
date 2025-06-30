@@ -1,13 +1,17 @@
-import { Component, computed, inject, signal } from '@angular/core';
+import { Component, computed, inject, output, signal } from '@angular/core';
 import { LocalAdministrativeEntitiesService } from '../local-administrative-entities.service';
 import { AdministrativeEntity_APP } from '@interfaces/index';
 import { BlockSwitchStatusComponent } from '@layouts/shared/block-switch-status/block-switch-status.component';
+import { SelectSomeItemComponent } from '@layouts/dashboard/ux/select-some-item/select-some-item.component';
 
 @Component({
     selector: 'tdetail-administrative-entity',
     standalone: true,
     templateUrl: './tdetail-administrative-entity.component.html',
-    imports: [BlockSwitchStatusComponent]
+    imports: [
+        BlockSwitchStatusComponent,
+        SelectSomeItemComponent
+    ]
 })
 export class TdetailAdministrativeEntityComponent {
     private readonly local$ = inject(LocalAdministrativeEntitiesService);
@@ -23,14 +27,21 @@ export class TdetailAdministrativeEntityComponent {
         return {
             name: this.data()!.name,
             code: this.data()!.code,
-            taxId: this.data()!.taxId,
+            nit: this.data()!.nit,
             regimeName: this.data()!.regime.name,
             address: this.data()!.address,
             filingAddress: this.data()!.filingAddress,
             isActive: this.data()!.isActive,
-            hasInsurance: this.data()!.hasInsurance,
-            ripsTaxIdVerification: this.data()!.ripsTaxIdVerification,
-            requiresAnnex2: this.data()!.requiresAnnex2
+            hasInsurance: this.data()!.soat,
+            requiresAnnex2: this.data()!.requiresAnnex2,
+            reportResolution256: this.data()!.reportResolution256,
+            templateResolution1552: this.data()!.templateResolution1552,
+            municipaly: this.data()!.municipaly.name,
+            departmanet: this.data()!.departament.name,
+            phone: this.data()!.phone,
+            length: this.data()!.authorizationLength,
+            email: this.data()!.email,
+            emailF: this.data()!.electronicBillingEmail
         }
     })
 }

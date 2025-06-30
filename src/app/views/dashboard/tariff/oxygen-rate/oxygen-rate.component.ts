@@ -1,8 +1,7 @@
 import { Component, ViewChild, inject, signal } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { ngFormHelper, queries } from '@helpers/index';
-import { OxigenRateAPP_PAGE, OxygenRateDTO_APP } from '@interfaces/app';
-import { ActionName, BarActions, IForm } from '@interfaces/index';
+import { ActionName, BarActions, IForm, OxygenRate_APPDTO, OxygenRate_PageAPP } from '@interfaces/index';
 import { BladeBoxPanelComponent } from '@layouts/dashboard/blades/blade-box-panel/blade-box-panel.component';
 import { BladePanelComponent } from '@layouts/dashboard/blades/blade-panel/blade-panel.component';
 import { NoteComponent } from '@layouts/shared/note/note.component';
@@ -30,16 +29,16 @@ export class OxygenRateComponent {
     fb = inject(FormBuilder);
     oxigenServ = inject(OxygenRateService);
     swal = inject(SweetalertService);
-    oxigenRate = signal<OxigenRateAPP_PAGE | null>(null);
+    oxigenRate = signal<OxygenRate_PageAPP | null>(null);
     form: FormGroup;
     barActions: BarActions = {
         edit: true,
         delete: true,
         clean: true
     }
-    oxygenFormClone: OxygenRateDTO_APP;
-    oxygenForm: IForm<OxygenRateDTO_APP> = {
-        medicationId: [''], // id
+    oxygenFormClone: OxygenRate_APPDTO;
+    oxygenForm: IForm<OxygenRate_APPDTO> = {
+        medicineId: [''],
         name: [''],
         status: [true],
         value: [''] // int
@@ -56,7 +55,7 @@ export class OxygenRateComponent {
     }
 
     queryOxigenrates() {
-        this.oxigenServ.getAllPage(this.paramPaginate()).subscribe(data => this.oxigenRate.set(data));
+        this.oxigenServ.page(this.paramPaginate()).subscribe(data => this.oxigenRate.set(data));
     }
 
     barAction(value: ActionName) {
