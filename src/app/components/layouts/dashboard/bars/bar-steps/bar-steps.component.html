@@ -1,0 +1,15 @@
+<div class="tw-steps">
+    <ol>
+        @for (item of setSteps(); track index; let index = $index) {
+            <li [class]="{ 'active' : active() === setSteps()[index].action}" (click)="emit(item)">
+                <span>
+                    {{ index + 1 }}
+                </span>
+                <span>
+                    <h3 class="font-medium leading-tight">{{ item.label }}</h3>
+                    <p class="text-sm">{{ item.text }}</p>
+                </span>
+            </li>
+        }
+    </ol>
+</div>

@@ -1,0 +1,27 @@
+<div class="modal ui-modal" [ngClass]="fade()" [id]="idConnect()" tabindex="-1" aria-hidden="true" #dialog>
+    <div class="modal-dialog" [ngClass]="[modalSize(), scrollable(), modalCenter(), fullScreen()]">
+        <div class="modal-content">
+            @if(!hideheader()) {
+                <div class="modal-header flex gap-5 items-center p-5 border-b border-gray-100">
+                    <div class="flex-grow basis-0">
+                        <ng-content select="[dialogHeader]"></ng-content>
+                    </div>
+                    <button type="button" class="bloq-icon size-iv ui-circle border shadow-md" data-bs-dismiss="modal" (click)="onClose.emit(true)">
+                        <i class="icofont-close"></i>
+                    </button>
+                </div>
+            }
+            <div class="modal-body">
+                <ng-content select="[dialogBody]"></ng-content>
+            </div>
+            @if(!hideFooter()) {
+                <div class="modal-footer p-5 flex gap-4 items-center justify-end">
+                    <div class="w-auto">
+                        <ng-content select="[dialogFooter]"></ng-content>
+                    </div>
+                    <button type="button" class="btn btn-default" data-bs-dismiss="modal" (click)="onClose.emit(true)">cerrar</button>
+                </div>
+            }
+        </div>
+    </div>
+</div>

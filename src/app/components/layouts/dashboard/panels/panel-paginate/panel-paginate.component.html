@@ -1,0 +1,32 @@
+@if(setPage()) {
+<section class="flex justify-between border-t pt-4">
+    <div class="flex items-center gap-4 text-gray-400 text-sm">
+        <p>Pagina <span class="text-gray-700">{{ setPage()!.pageNumber + 1 }}</span> de <span class="text-gray-700">{{ setPage()!.totalPages }}</span></p>
+        <p>Elementos <span class="text-gray-700">{{ totalElements() }}</span>.</p>
+    </div>
+    <div class="inline-flex gap-2 items-center">
+        <p class="text-sm text-gray-400">Elemento por pagina</p>
+        <div class="w-[80px]">
+            <input-select setSize="sm" setPlaceholder="Selecc.." [(ngModel)]="size" (change)="onPageSizeChange()" [setOptions]="pageSizeOptions" />
+        </div>
+        <button
+        class="btn btn-sm rounded-md btn-sweet-default"
+        [disabled]="setPage()!.pageNumber === 0"
+        (click)="navigateToPage(setPage()!.pageNumber - 1)">
+        Anterior
+        </button>
+        <button
+        class="btn btn-sm rounded-md btn-sweet-default"
+        [disabled]="setPage()!.last"
+        (click)="navigateToPage(setPage()!.pageNumber + 1)">
+        Siguiente
+        </button>
+        <div class="w-[80px]">
+            <input type="number" class="form-control form-control-sm" [(ngModel)]="pageGo">
+        </div>
+        <button
+        [disabled]="!pageGo()"
+        class="btn !px-4 btn-sm rounded-md btn-sweet-default" (click)="go()">Ir</button>
+    </div>
+</section>
+}

@@ -1,0 +1,26 @@
+<div [id]="idContainer" class="im-select">
+    <fieldset class="im-fieldset">
+        @if(setLabel()) {
+            <legend>{{ setLabel() }}</legend>
+        }
+        <div class="input-group">
+            <label class="input-group-text" [for]="id">
+                <i class="icofont-rounded-down"></i>
+            </label>
+            <input class="form-control" type="text" [value]="selected()?.name" readonly [id]="id" (focus)="changeInput()" [placeholder]="setPlaceholder()">
+        </div>
+    </fieldset>
+    <ul [class]="{ 'active': visible() }">
+        <li class="filter">
+            <div class="input-group input-group-sm">
+              <span class="input-group-text" id="basic-addon1">
+                  <i class="icofont-search-1"></i>
+              </span>
+                <input class="form-control" type="text" [(ngModel)]="searchValue" autocomplete="off" #inputSearch>
+            </div>
+        </li>
+        @for(option of options(); track option.value) {
+            <li [ariaValueText]="option.value" (click)="select(option.value)">{{ option.name }}</li>
+        }
+    </ul>
+</div>

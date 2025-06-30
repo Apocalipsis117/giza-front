@@ -1,0 +1,16 @@
+<fieldset class="im-fieldset">
+    @if(setLabel()) {
+        <legend>{{ setLabel() }}</legend>
+    }
+    <div class="input-group">
+        @if(setIcon()) {
+            <label class="input-group-text" [for]="id">
+                <i [class]="setIcon()"></i>
+            </label>
+        }
+        <input [type]="setType()" class="form-control" [id]="id" [(ngModel)]="currentValue" (change)="changeInput()" (focus)="changeInput()">
+        <button class="btn btn-sm" type="button" (click)="setTimeNow()">
+            <i class="icofont-clock-time"></i>
+        </button>
+    </div>
+</fieldset>

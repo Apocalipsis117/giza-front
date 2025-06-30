@@ -1,0 +1,38 @@
+.tw-steps {
+    background-color: var(--color-50);
+    @apply block p-3 rounded-lg;
+
+    ol {
+        @apply items-center w-full gap-3 sm:flex rtl:space-x-reverse;
+    }
+
+    li {
+        @apply min-w-[200px] border flex items-center space-x-2.5 rtl:space-x-reverse p-2 rounded-md text-gray-500 dark:text-gray-400 select-none cursor-pointer;
+        span:first-child {
+            @apply border border-gray-500 dark:border-gray-400;
+        }
+
+        &.active {
+            @apply bg-blue-500 text-white border-blue-500;
+
+            span:first-child {
+                @apply border-white;
+            }
+        }
+
+
+        span:first-child {
+            @apply flex items-center justify-center w-8 h-8 rounded-full shrink-0;
+        }
+
+        span:last-child {
+            h3 {
+                @apply font-medium leading-tight;
+            }
+
+            p {
+                @apply text-sm;
+            }
+        }
+    }
+}

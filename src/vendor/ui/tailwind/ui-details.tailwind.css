@@ -1,0 +1,51 @@
+.ui-detail {
+    @apply grid gap-4 grid-cols-12;
+}
+
+.detail-titles {
+    @apply col-span-full;
+    h2 {
+        @apply text-xl mb-2;
+    }
+    li {
+        b {
+            @apply font-semibold text-gray-400 mr-2;
+        }
+    }
+}
+
+.detail-title {
+    @apply text-base font-semibold flex flex-wrap gap-2 col-span-full items-center;
+}
+
+.detail-items {
+    @apply col-span-full divide-y;
+    li {
+        @apply py-1;
+    }
+}
+
+/* ul-list row  */
+.detail-ul,
+.ul-list-row {
+    @apply divide-y border-b border-t col-span-full;
+    > li {
+        @apply grid divide-x grid-cols-12;
+    }
+    > li > * {
+        @apply p-2;
+    }
+    small {
+        @apply text-slate-500;
+    }
+}
+
+.dark-mode .ul-list-row {
+    @apply divide-[var(--darkmode-500)];
+    > li {
+        @apply divide-[var(--darkmode-500)];
+    }
+    small {
+        @apply text-[var(--darkmode-400)];
+    }
+}
