@@ -55,6 +55,7 @@ export class FormContractsComponent {
     optionsAdminEntities = signal<FormControlOption[]>([]);
     optionsManualTariffMedicine = signal<FormControlOption[]>([]);
     optionsTypeModeratePayment = signal<FormControlOption[]>([]);
+    stepActive = signal<string | number>('');
     steps: StepAction[] = [
         {
             action: 'collapse-one',
@@ -63,7 +64,7 @@ export class FormContractsComponent {
         },
         {
             action: 'collapse-two',
-            label: 'Paso 3',
+            label: 'Paso 2',
             text: 'Parametros'
         },
         {
@@ -72,7 +73,6 @@ export class FormContractsComponent {
             text: 'Tarifa y/o Programas de Atención'
         }
     ];
-    stepActive = signal<string | number>('');
     collapseControl: tabsControls[] = [
         {
             active: true,
@@ -95,10 +95,10 @@ export class FormContractsComponent {
     ]
     onoffText: [string, string] = ['Habilitar', 'Habilitado'];
     private fb = inject(FormBuilder);
-    form: FormGroup;
 
+    form: FormGroup;
     contractFormClone: Contract_APPDTO;
-    contractForm: IForm<Contract_APPDTO> = {
+    contractControls: IForm<Contract_APPDTO> = {
         code: [NaN],
         contractNumber: [''],// ok
         contractName: [''],// ok
@@ -132,8 +132,8 @@ export class FormContractsComponent {
     }
 
     constructor() {
-        this.form = this.fb.group(this.contractForm);
-        this.contractFormClone = ngFormHelper.unboxProperties(this.contractForm);
+        this.form = this.fb.group(this.contractControls);
+        this.contractFormClone = ngFormHelper.unboxProperties(this.contractControls);
         // init step
         const stepActive = this.steps[0].action;
         this.stepActive.set(stepActive);

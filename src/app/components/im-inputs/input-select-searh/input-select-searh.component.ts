@@ -1,6 +1,6 @@
-import { Component, computed, ElementRef, forwardRef, input, signal, viewChild } from '@angular/core';
+import { Component, computed, effect, ElementRef, forwardRef, input, signal, viewChild } from '@angular/core';
 import { FormsModule, NG_VALUE_ACCESSOR } from '@angular/forms';
-import { compareHelper, formHelper, generator } from '@helpers/index';
+import { arrayControlHelper, compareHelper, formHelper, generator } from '@helpers/index';
 import { FormControlOption } from '@interfaces/index';
 
 @Component({
@@ -31,6 +31,7 @@ export class InputSelectSearhComponent {
     visible = signal<boolean>(false);
     id = generator.uuid('input');
     idContainer = this.id + 'container';
+    currentIndex = signal<number>(-1);
 
     options = computed(() => {
         const options = [
@@ -76,5 +77,15 @@ export class InputSelectSearhComponent {
     clean() {
         this.visible.set(false);
         this.searchValue.set('');
+    }
+
+    onKeydown(event: KeyboardEvent) {
+        arrayControlHelper.handleSelectKeyboardNav(event, {
+            options: this.options(),
+            currentIndex: this.currentIndex(),
+            setCurrentIndex: idx => this.currentIndex.set(idx),
+            onSelect: option => this.select(option.value),
+            resetOnOtherKeys: true
+        })
     }
 }

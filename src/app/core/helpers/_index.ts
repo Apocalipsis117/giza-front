@@ -17,3 +17,4 @@ export { formHelper } from './app/formHelper';
 export { apiHelper } from './app/apiHelper';
 export { utilieHelper } from './app/utilieHelper';
 export { dateHelper } from './app/dateHelper';
+export { arrayControlHelper } from './app/arrayControlHelper';

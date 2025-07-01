@@ -1,6 +1,6 @@
-import { Component, computed, forwardRef, input, signal } from '@angular/core';
+import { Component, computed, effect, ElementRef, forwardRef, input, QueryList, signal, viewChild, viewChildren } from '@angular/core';
 import { FormsModule, NG_VALUE_ACCESSOR } from '@angular/forms';
-import { formHelper, generator } from '@helpers/index';
+import { arrayControlHelper, formHelper, generator } from '@helpers/index';
 import { FormControlOption } from '@interfaces/index';
 
 @Component({
@@ -20,6 +20,8 @@ import { FormControlOption } from '@interfaces/index';
     }
 })
 export class InputSelectComponent {
+    optionsList = viewChild<ElementRef<HTMLUListElement>>('optionsList');
+    optionItems = viewChildren<ElementRef<HTMLLIElement>>('optionItem');
     public readonly setLabel = input<string>('');
     public readonly emptyValue = input<'' | null>('');
     public readonly setSize = input<'sm' | 'lg' | null>(null);
@@ -27,7 +29,18 @@ export class InputSelectComponent {
     public readonly setOptions = input([], { transform: (value: FormControlOption[]) => formHelper.sortByName(value) });
     currentValue = signal<string | number>('');
     visible = signal<boolean>(false);
+    currentIndex = signal<number>(-1);
     id = generator.uuid('input');
+
+    constructor() {
+        effect(() => {
+            const idx = this.currentIndex();
+            const items = this.optionItems();
+            if (idx >= 0 && idx < items.length) {
+                items[idx]?.nativeElement.scrollIntoView({ block: 'nearest', behavior: 'smooth' });
+            }
+        });
+    }
 
     options = computed(() => ([
         { value: this.emptyValue(), name: this.setPlaceholder(), data: null },
@@ -60,5 +73,18 @@ export class InputSelectComponent {
     change() {
         this.onTouch();
         this.onChange(this.currentValue());
+    }
+
+    onKeydown(event: KeyboardEvent) {
+        arrayControlHelper.handleSelectKeyboardNav(event, {
+            options: this.options(),
+            currentIndex: this.currentIndex(),
+            setCurrentIndex: idx => this.currentIndex.set(idx),
+            onSelect: option => {
+                this.visible.set(false),
+                    this.changeInput(option.value)
+            },
+            resetOnOtherKeys: true
+        })
     }
 }

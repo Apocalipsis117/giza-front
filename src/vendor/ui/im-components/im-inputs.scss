@@ -77,6 +77,9 @@
             top: 0;
             background-color: colors.$colorWhite;
         }
+        li.active {
+            background-color: var(--color-50);
+        }
         li:not(li.filter) + li {
             border-top: 1px solid rgb(0 0 0 / .1);
             cursor: pointer;
