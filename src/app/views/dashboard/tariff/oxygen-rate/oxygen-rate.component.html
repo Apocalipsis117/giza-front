@@ -5,14 +5,14 @@
                 <div class="w-full">
                     <blade-box-panel setTitle="Tarifa de oxigeno" [padding]="true" (actionBar)="barAction($event)" [actionsActive]="true">
                         <ng-container boxbody>
-                            <form-oxygen-rate [setForm]="form" />
+                            <form-oxygen-rate #form />
                         </ng-container>
                     </blade-box-panel>
                 </div>
                 <div class="w-full">
                     <blade-box-panel setTitle="Tarifas de oxigenos">
                         <ng-container boxbody>
-                            <table-oxygen-rate [data]="oxigenRate()" (paginate)="paginate($event)" #table />
+                            <table-oxygen-rate #table />
                         </ng-container>
                     </blade-box-panel>
                 </div>

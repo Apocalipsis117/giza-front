@@ -1,16 +1,16 @@
-<form [formGroup]="form()">
+<form [formGroup]="form">
     <div class="d-grid items-end">
         <div class="col-span-3">
-            <input-panel-text setLabel="Nombre" />
+            <input-text setLabel="Nombre" formControlName="name" />
         </div>
         <div class="col-span-4">
-            <input-panel-select [setOptions]="optionsMedicine()" setLabel="Codigo de medicamento" />
+            <input-select-searh [setOptions]="optionsMedicine()" setLabel="Medicamento" formControlName="medicineId" />
         </div>
         <div class="col-span-3">
-            <input-panel-text setIcon="icofont-dollar" setLabel="Valor" setType="number" />
+            <input-text setIcon="icofont-dollar" setLabel="Valor" setType="number" formControlName="value" />
         </div>
         <div class="col-span-2">
-            <input-panel-checkbox setText="Estado" typeCheck="switch" [clean]="true" />
+            <input-onoff setText="Estado" typeCheck="switch" formControlName="status" />
         </div>
     </div>
 </form>

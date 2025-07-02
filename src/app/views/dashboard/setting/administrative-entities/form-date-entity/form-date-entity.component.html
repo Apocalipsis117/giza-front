@@ -1,43 +1,43 @@
 <form [formGroup]="form" class="space-y-4">
     <div class="d-grid items-end">
         <div class="col-span-3">
-            <input-text setLabel="Nit" setIcon="icofont-ui-v-card" formControlName="nit" />
+            <input-text setLabel="NIT" formControlName="nit" [setValidate]="control['nit']" #validate />
         </div>
         <div class="col-span-3">
-            <input-text setLabel="Código Entidad" formControlName="code" />
+            <input-number setLabel="Código" formControlName="code" [setValidate]="control['code']" #validate />
         </div>
         <div class="col-span-6">
-            <input-text setLabel="Nombre Entidad" formControlName="name" />
+            <input-text setLabel="Nombre" formControlName="name" [setValidate]="control['name']" #validate />
         </div>
         <div class="col-span-3">
-            <input-select-searh setLabel="Departamento" [setOptions]="optionsDepartment()" formControlName="departmentId" [emptyValue]="null" />
+            <input-select-searh setLabel="Departamento" formControlName="departmentId" [setOptions]="optionsDepartment()" />
         </div>
         <div class="col-span-3">
-            <input-select-searh setLabel="Municipio" [setOptions]="optionsMunicipalies()" formControlName="municipalityId" [emptyValue]="null" />
+            <input-select-searh setLabel="Municipio" formControlName="municipalityId" [setOptions]="municipalies()" />
         </div>
         <div class="col-span-6">
-            <input-text setLabel="Dirección administrativa" formControlName="address" />
+            <input-text setLabel="Dirección" formControlName="address" [setValidate]="control['address']" #validate />
         </div>
         <div class="col-span-3">
-            <input-text setLabel="Dirección radicación" formControlName="filingAddress" />
+            <input-text setLabel="Dirección de Radicación" [setValidate]="control['filingAddress']" formControlName="filingAddress" #validate />
         </div>
         <div class="col-span-3">
-            <input-text setType="tel" setLabel="Teléfono" formControlName="phone" />
+            <input-text setLabel="Teléfono" formControlName="phone" />
         </div>
         <div class="col-span-3">
-            <input-text setType="email" setLabel="Correo electrónico" formControlName="email" />
+            <input-text setLabel="Correo" formControlName="email" />
         </div>
         <div class="col-span-3">
-            <input-select setLabel="régimen" [setOptions]="optionsRegime()" formControlName="regimeId" [emptyValue]="null" />
+            <input-select setLabel="Régimen" formControlName="regimeId" [setOptions]="optionsRegime()" />
         </div>
         <div class="col-span-2">
-            <input-number setLabel="Long. autorización" formControlName="authorizationLength" />
+            <input-number setLabel="Lon. Autorización" formControlName="authorizationLength" />
         </div>
         <div class="col-span-4">
-            <input-text setLabel="Otros datos" formControlName="otherData" />
+            <input-text setLabel="Otros Datos" formControlName="otherData" />
         </div>
         <div class="col-span-3">
-            <input-text setType="email" setLabel="Correo Facturación Electrónica" formControlName="electronicBillingEmail" />
+            <input-text setLabel="Correo Facturación Electrónica" formControlName="electronicBillingEmail" />
         </div>
         <!-- -->
     </div>
@@ -46,20 +46,19 @@
     </div>
     <div class="d-grid items-end">
         <div class="col-span-4">
-            <input-onoff ui="switch" setText="Requiere anexo 2 (atención inicial)" formControlName="requiresAnnex2" />
+            <input-onoff setText="Requiere Anexo 2" formControlName="requiresAnnex2" />
         </div>
         <div class="col-span-4">
-            <input-onoff ui="switch" setText="SOAT" formControlName="soat" />
+            <input-onoff setText="SOAT" formControlName="soat" />
         </div>
         <div class="col-span-4">
-            <input-onoff ui="switch" setText="Activo" formControlName="status" />
+            <input-onoff setText="Estado" formControlName="status" />
         </div>
         <div class="col-span-4">
-            <input-onoff ui="switch" setText="Reporte resolución 256" formControlName="reportResolution256" />
+            <input-onoff setText="Reporte Resolución 256" formControlName="reportResolution256" />
         </div>
         <div class="col-span-4">
-            <input-onoff ui="switch" setText="Plantilla Resolucion 1552" formControlName="templateResolution1552" />
+            <input-onoff setText="Plantilla Resolución 1552" formControlName="templateResolution1552" />
         </div>
-        <!-- -->
     </div>
 </form>

@@ -43,7 +43,7 @@ export class FormCupsComponent {
     form = computed(() => this.setForm() as FormGroup);
 
     ngOnInit(): void {
-        this.levelServ.getAll('options').subscribe(data => this.optionsLevels.set(data));
+        this.levelServ.list('options').subscribe(data => this.optionsLevels.set(data));
         this.genderServ.getAll('options').subscribe(data => this.optionsGender.set(data));
         this.ambitServ.getAll('options').subscribe(data => this.optionsAmbit.set(data));
         this.birthServ.getAll('options').subscribe(data => this.optionsBirth.set(data));

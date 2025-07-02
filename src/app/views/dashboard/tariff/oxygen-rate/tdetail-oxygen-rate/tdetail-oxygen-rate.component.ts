@@ -13,10 +13,10 @@ import { LocalOxygenRateService } from '../local-oxygen-rate.service';
 })
 export class TdetailOxygenRateComponent {
     oxigenRate = signal<OxygenRate_APP | null>(null);
-    localServ = inject(LocalOxygenRateService);
+    local$ = inject(LocalOxygenRateService);
 
     ngOnInit(): void {
-        this.localServ.oxigenRate.subscribe(data => this.oxigenRate.set(data));
+        this.local$.oxigenRate.subscribe(data => this.oxigenRate.set(data));
     }
 
     oxigenRateData = computed(() => {

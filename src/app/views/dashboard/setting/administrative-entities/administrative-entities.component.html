@@ -7,7 +7,7 @@
                         <article bsTabContent [idConnect]="tabs[0].idConnect" [isActive]="tabs[0].active">
                             <blade-box-panel [headerActive]="false" [padding]="true" ui="clean" [actionsActive]="true" (actionBar)="barAction($event)">
                                 <ng-container boxbody>
-                                    <form-date-entity #formDateEntityRef />
+                                    <form-date-entity #formCreate />
                                 </ng-container>
                             </blade-box-panel>
                         </article>
@@ -35,7 +35,7 @@
     <ng-container dialogBody>
         <blade-box-panel ui="clean" [padding]="true" [actionsActive]="true" [setActionsBar]="actionsUpdate" [headerActive]="false" (actionBar)="barAction($event)">
             <ng-container boxbody>
-                <form-date-entity #formDateEntityUpdate />
+                <form-date-entity #formUpdate />
             </ng-container>
         </blade-box-panel>
     </ng-container>

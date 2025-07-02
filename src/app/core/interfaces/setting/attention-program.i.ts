@@ -39,23 +39,23 @@ export interface AttentionProgram_Response extends ResponseAPI<AttentionProgram_
  * ---------------------------
  */
 export interface AttentionProgram_APPDTO {
-    name: string; // nombre
-    shortName: string; // nombreCorto
-    minAge: string; // edadMin
-    maxAge: string; // edadMax
-    genderId: number; // sexoId
+    name:          string; // nombre
+    shortName:     string; // nombreCorto
+    minAge:        string; // edadMin
+    maxAge:        string; // edadMax
+    genderId:      number; // sexoId
     historyTypeId: number; // tipoHistoriaId
-    costCenterId: number; // centroCostoId
+    costCenterId:  number; // centroCostoId
 }
 export interface AttentionProgram_APP {
-    id: number; // id
-    name: string; // nombre
-    shortName: string; // nombreCorto
-    minAge: string; // edadMin
-    maxAge: string; // edadMax
-    gender: Gender_APP; // sexo
+    id:          number; // id
+    name:        string; // nombre
+    shortName:   string; // nombreCorto
+    minAge:      string; // edadMin
+    maxAge:      string; // edadMax
+    gender:      Gender_APP; // sexo
     historyType: TypeHistory_APP; // tipoHistoria
-    costCenter: CostCenter_APP; // centroCosto
+    costCenter:  CostCenter_APP; // centroCosto
 }
 
 export interface AttentionProgram_PageAPP extends PageAPI<AttentionProgram_APP> {}

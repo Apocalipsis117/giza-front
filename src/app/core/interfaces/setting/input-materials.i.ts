@@ -38,21 +38,21 @@ export interface InputMaterials_Response extends ResponseAPI<InputMaterials_API>
  * ---------------------------
  */
 export interface InputMaterials_APP {
-    id: number; // id
-    name: string; // nombre
-    code: string; // codigo
-    status: boolean; // estado
-    billable: boolean; // facturable
-    ripsConcept: NameIdEntity_API; // conceptoRips
-    materialClassification: MaterialClassification_APP; // clasificacionMat
+    id:                          number; // id
+    name:                        string; // nombre
+    code:                        string; // codigo
+    status:                      boolean; // estado
+    billable:                    boolean; // facturable
+    ripsConcept:                 NameIdEntity_API; // conceptoRips
+    materialClassification:      MaterialClassification_APP; // clasificacionMat
     manualInputMaterialsTariffs: NameStateEntity_APP[]; // manualTarifaMaterialesIns
 }
 export interface InputMaterials_APPDTO {
-    name: string; // nombre
-    status: boolean; // estado
-    billable: boolean; // facturable
-    ripsConceptId: number; // conceptoRipsId
-    materialClassificationId: number; // clasificacionMatId
+    name:                          string; // nombre
+    status:                        boolean; // estado
+    billable:                      boolean; // facturable
+    ripsConceptId:                 number; // conceptoRipsId
+    materialClassificationId:      number; // clasificacionMatId
     manualInputMaterialsTariffIds: number[]; // manualTarifaMaterialesInsIds
 }
 

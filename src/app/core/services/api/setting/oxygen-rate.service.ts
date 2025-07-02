@@ -3,7 +3,7 @@ import { Injectable, inject } from '@angular/core';
 import { apiHelper } from '@helpers/index';
 import { FormControlOption, OxygenRate_APP, OxygenRate_ListResponse, OxygenRate_PageAPP, OxygenRate_PageResponse, TypeReturn } from '@interfaces/index';
 import { OptionsControl, OxygenRate, OxygenRateDTO } from '@models/index';
-import { Observable, catchError, map, of } from 'rxjs';
+import { Observable, catchError, map, of, tap } from 'rxjs';
 
 @Injectable({
     providedIn: 'root'
@@ -42,10 +42,13 @@ export class OxygenRateService {
 
     page(paramValue: any = null): Observable<OxygenRate_PageAPP> {
         const api = apiHelper.api(this.api.base, {
-            path: this.api.list,
+            path: this.api.page,
             params: paramValue
         });
         return this.http.get<OxygenRate_PageResponse>(api).pipe(
+            tap(x => {
+                console.log(x)
+            }),
             map(data => ({
                 ...data.data,
                 content: data.data.content.map(item => OxygenRate.setProperty(item))

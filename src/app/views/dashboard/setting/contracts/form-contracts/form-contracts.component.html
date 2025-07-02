@@ -26,10 +26,10 @@
                                 <input-text setLabel="Numero de contrato" formControlName="contractNumber" />
                             </div>
                             <div class="col-span-3">
-                                <input-select setLabel="Modalidad" [setOptions]="optionsModality()" [emptyValue]="null" />
+                                <input-select setLabel="Modalidad" [setOptions]="optionsModality()" [emptyValue]="null" formControlName="modalityId" />
                             </div>
                             <div class="col-span-4">
-                                <input-select setLabel="Regimen" [setOptions]="optionsRegimen()" [emptyValue]="null" />
+                                <input-select setLabel="Regimen" [setOptions]="optionsRegimen()" [emptyValue]="null" formControlName="regimeId" />
                             </div>
                             <div class="col-span-4">
                                 <input-number setType="number" setLabel="Vr. U.P.C" formControlName="upc" />

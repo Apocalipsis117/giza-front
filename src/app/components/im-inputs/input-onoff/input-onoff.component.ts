@@ -18,7 +18,7 @@ export class InputOnoffComponent {
     public readonly boxUi = input<'unborder' | null>(null);
     public setLabel = input<string>('');
     public isDisabled = input<boolean>(false);
-    public setText = input<string | [string, string]>('');
+    public setText = input<string | [string, string]>(['Habilitar', 'Habilitado']);
     currentValue = signal<boolean>(false);
     id = generator.uuid('input');
 

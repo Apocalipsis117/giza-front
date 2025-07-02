@@ -1,4 +1,4 @@
-import { Component, inject, signal } from '@angular/core';
+import { Component, inject, signal, viewChildren } from '@angular/core';
 import { FormBuilder, FormGroup, ReactiveFormsModule } from '@angular/forms';
 import { ngFormHelper, utilieHelper } from '@helpers/index';
 import { InputNumberComponent } from '@im-inputs/input-number/input-number.component';
@@ -10,6 +10,7 @@ import { AdministrativeEntity_APPDTO, DataAssociated, FormControlOption, FormGro
 import { TitleIconSectionComponent } from '@layouts/shared/title-icon-section/title-icon-section.component';
 import { TypeRegimeService } from '@services/api';
 import { RxAppGisaService } from '@services/app';
+import { ValidateStringEmpty } from '@valid-control/index';
 import { distinctUntilChanged } from 'rxjs';
 
 @Component({
@@ -27,12 +28,12 @@ import { distinctUntilChanged } from 'rxjs';
     templateUrl: './form-date-entity.component.html'
 })
 export class FormDateEntityComponent {
+    private validates = viewChildren('validate');
     private readonly fb = inject(FormBuilder);
     private readonly app$ = inject(RxAppGisaService);
     private readonly typeRegime = inject(TypeRegimeService);
 
     municipalies = signal<FormControlOption<DataAssociated>[]>([]);
-    resolutions = signal<string[]>([]);
     optionsDepartment = signal<FormControlOption[]>([]);
     optionsMunicipalies = signal<FormControlOption[]>([]);
     optionsRegime = signal<FormControlOption[]>([]);
@@ -40,16 +41,16 @@ export class FormDateEntityComponent {
     form: FormGroup;
     formCloneEntity: AdministrativeEntity_APPDTO;
     formEntity: IForm<AdministrativeEntity_APPDTO> = {
-        code: [''],
-        name: [''],
-        address: [''],
-        filingAddress: [''],
+        code: ['', [ValidateStringEmpty()]],
+        name: ['', [ValidateStringEmpty()]],
+        address: ['', [ValidateStringEmpty()]],
+        filingAddress: ['', [ValidateStringEmpty()]],
         email: [''],
         electronicBillingEmail: [''],
         phone: [''],
         otherData: [''],
         authorizationLength: [NaN],
-        nit: [''],
+        nit: ['', [ValidateStringEmpty()]],
         municipalityId: [null],
         regimeId: [null],
         departmentId: [null],
@@ -83,7 +84,9 @@ export class FormDateEntityComponent {
     }
 
     reset() {
-        this.form.reset(this.formCloneEntity)
+        this.form.reset(this.formCloneEntity);
+        this.form.clearValidators();
+        this.form.updateValueAndValidity();
     }
 
     watchDepartamentId() {
@@ -95,5 +98,18 @@ export class FormDateEntityComponent {
                 this.optionsMunicipalies.set(asociated);
             }
         })
+    }
+
+    validate() {
+        this.validates()?.forEach((x: any) => x.validate())
+    }
+
+    markAlltouched() {
+        this.form?.markAllAsTouched();
+        this.validate();
+    }
+
+    setValues(values: AdministrativeEntity_APPDTO) {
+        this.form.setValue(values);
     }
 }

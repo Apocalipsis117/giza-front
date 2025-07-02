@@ -1,5 +1,5 @@
 @if(setPage()) {
-<section class="flex justify-between border-t pt-4">
+<section class="flex justify-between">
     <div class="flex items-center gap-4 text-gray-400 text-sm">
         <p>Pagina <span class="text-gray-700">{{ setPage()!.pageNumber + 1 }}</span> de <span class="text-gray-700">{{ setPage()!.totalPages }}</span></p>
         <p>Elementos <span class="text-gray-700">{{ totalElements() }}</span>.</p>
@@ -7,7 +7,11 @@
     <div class="inline-flex gap-2 items-center">
         <p class="text-sm text-gray-400">Elemento por pagina</p>
         <div class="w-[80px]">
-            <input-select setSize="sm" setPlaceholder="Selecc.." [(ngModel)]="size" (change)="onPageSizeChange()" [setOptions]="pageSizeOptions" />
+            <select class="form-control form-control-sm" [(ngModel)]="size" (change)="onPageSizeChange()" >
+                @for (item of pageSizeOptions; track index; let index = $index) {
+                    <option [value]="item.value">{{ item.name }}</option>
+                }
+            </select>
         </div>
         <button
         class="btn btn-sm rounded-md btn-sweet-default"

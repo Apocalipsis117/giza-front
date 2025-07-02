@@ -3,6 +3,7 @@ import { AdministrativeEntity } from "./administrative-entities.model";
 import { NameIdEntity, NameStateEntity } from "../single-query/name-entity.m";
 import { OxygenRate } from "./oxygen-rate.model";
 import { AttentionProgram } from "./attention-program.m";
+import { TypeRegime } from "@models/index";
 
 export class ContractDTO {
     static setProperty(input: Contract_APPDTO): string {
@@ -41,7 +42,9 @@ export class ContractDTO {
             numUsuariosAdicionales: this.input.additionalUsersNumber,
             programasAtencionId: this.input.attentionProgramsId,
             tipoPagoModeradoId: this.input.moderatePaymentTypeId,
-            valorContrato: this.input.contractValue
+            valorContrato: this.input.contractValue,
+            modalidadId: this.input.modalityId,
+            regimenId: this.input.regimeId
         };
 
         return JSON.stringify(data);
@@ -86,7 +89,9 @@ export class Contract {
             tariffManual: NameStateEntity.setProperty(this.input.manualTarifiario),
             transfersTariff: NameStateEntity.setProperty(this.input.mtarifaTraslados),
             upc: this.input.upc,
-            uuid: this.input.uuid
+            uuid: this.input.uuid,
+            modality: NameIdEntity.setProperty(this.input.modalidad),
+            regimen: TypeRegime.setProperty(this.input.regimen)
         };
     }
 

@@ -84,6 +84,9 @@
             ],
             "@im-inputs/*": [
                 "src/app/components/im-inputs/*"
+            ],
+            "@valid-control/index": [
+                "src/app/core/validators/_index.ts"
             ]
         },
         "baseUrl": "./",

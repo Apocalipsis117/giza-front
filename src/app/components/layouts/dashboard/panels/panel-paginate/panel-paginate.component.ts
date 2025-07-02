@@ -1,6 +1,5 @@
 import { Component, computed, inject, input, output, signal } from '@angular/core';
 import { FormsModule } from '@angular/forms';
-import { InputSelectComponent } from '@im-inputs/input-select/input-select.component';
 import { PageAPI } from '@interfaces/extend.i';
 import { FormControlOption } from '@interfaces/index';
 import { SweetalertService } from '@services/app';
@@ -9,8 +8,7 @@ import { SweetalertService } from '@services/app';
     standalone: true,
     selector: 'panel-paginate',
     imports: [
-        FormsModule,
-        InputSelectComponent
+        FormsModule
     ],
     templateUrl: './panel-paginate.component.html'
 })

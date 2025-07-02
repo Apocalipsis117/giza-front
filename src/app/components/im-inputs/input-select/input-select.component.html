@@ -1,5 +1,5 @@
 <div class="im-select">
-    <fieldset class="im-fieldset">
+    <fieldset class="im-fieldset" [class.invalid]="error()">
         @if(setLabel()) {
             <legend>{{ setLabel() }}</legend>
         }
@@ -7,7 +7,15 @@
             <label class="input-group-text" [for]="id">
                 <i class="icofont-rounded-down"></i>
             </label>
-            <input class="form-control" type="text" [id]="id" [value]="selected()?.name" readonly [placeholder]="setPlaceholder()" (focus)="change()" (keydown)="onKeydown($event)">
+            <input class="form-control" type="text" [id]="id" [value]="selected()?.name" readonly [placeholder]="setPlaceholder()" (keydown)="onKeydown($event)" (blur)="blur()">
+            @if(error()) {
+                <div class="input-group-text">
+                    <span class="message-error">
+                        <i class="icofont-info-circle"></i>
+                        <span>{{ error() }}</span>
+                    </span>
+                </div>
+            }
         </div>
     </fieldset>
     <ul [class]="{ 'active': visible() }" #optionsList>

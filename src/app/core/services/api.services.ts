@@ -19,7 +19,7 @@ export { TypeConcentrationService } from './api/single-query/type-concentration.
 export { TypeDniIpsService } from './api/single-query/type-dni-ips.service';
 export { TypeHistoryService } from './api/single-query/type-history.service';
 export { TypeJobtitleService } from './api/single-query/type-jobtitle.service';
-export { TypeMedicineUnitService } from './api/single-query/type-medicine-unit.service';
+export { TypeUnitMeasurementService } from './api/single-query/type-unit-measurement.service';
 export { TypeMedicineService } from './api/single-query/type-medicine.service';
 export { TypeModalityService } from './api/single-query/type-modality.service';
 export { TypeSexService } from './api/single-query/type-sex.service';
@@ -32,7 +32,6 @@ export { TypeModeratePaymentService } from './api/single-query/type-moderate-pay
 /**
  * Setting
  */
-export { AssistanceServService } from './api/setting/assistance-serv.service';
 export { CostCenterService } from './api/setting/cost-center.service';
 export { CupService } from './api/setting/cup.service';
 export { DiagnosisService } from './api/setting/diagnosis.service';
@@ -50,5 +49,6 @@ export { VehiclesService } from './api/setting/vehicles.service';
 export { AdministrativeEntitiesService } from './api/setting/administrative-entities.service';
 export { OxygenRateService } from './api/setting/oxygen-rate.service';
 export { ContractService } from './api/setting/contract.service';
-export { TariffMedicineService } from './api/setting/tariff-medicine.service';
+export { MedicineRateService } from './api/setting/medicine-rate.service';
 export { ManualTariffMedicineService } from './api/setting/manual-tariff-medicine.service';
+export { HealthcareServicesService } from './api/setting/healthcare-services.service';

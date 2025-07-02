@@ -31,7 +31,7 @@ export class FormRipconceptComponent {
 
     ngOnInit(): void {
         this.testServ.getOptions('options').subscribe(data => this.options.set(data));
-        this.typeService$.getAll('options').subscribe(data => this.optionsTypeServ.set(data));
+        this.typeService$.list('options').subscribe(data => this.optionsTypeServ.set(data));
         this.GroupSoat$.getAll('options').subscribe(data => this.optionsGroupSoat.set(data));
     }
 }

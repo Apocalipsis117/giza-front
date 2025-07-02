@@ -18,13 +18,20 @@
             @else {
                 <tr>
                     <td [attr.colspan]="colspan()">
-                        <p class="text-center">Bacio</p>
+                        <div class="block p-2 text-center">
+                            <div class="block w-full border rounded-md bg-[var(--color-50)] border-dashed p-3 text-[var(--color-400)]">
+                                <i class="icofont-document-folder text-4xl"></i>
+                                <p class="text-sm">Sin resultados</p>
+                            </div>
+                        </div>
                     </td>
                 </tr>
             }
         </tbody>
     </table>
     @if(setData()) {
-        <panel-paginate [setPage]="setData()" (onPage)="onPage.emit($event)" />
+        <div class="block p-4 border-t">
+            <panel-paginate [setPage]="setData()" (onPage)="onPage.emit($event)" />
+        </div>
     }
 </div>

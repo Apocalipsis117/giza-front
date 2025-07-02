@@ -9,7 +9,7 @@
                                 <div class="block">
                                     <blade-box-panel setTitle="Nuevo" [padding]="true" [actionsActive]="true" (actionBar)="barAction($event)" [headerActive]="false" ui="clean">
                                         <ng-container boxbody>
-                                            <form-medicine [setForm]="form" />
+                                            <form-medicine #formMedicine />
                                         </ng-container>
                                     </blade-box-panel>
                                 </div>

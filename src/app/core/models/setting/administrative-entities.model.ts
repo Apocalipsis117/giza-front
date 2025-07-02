@@ -21,14 +21,13 @@ export class AdministrativeEntityDTO {
             estado: this.input.status,
             telefono: this.input.phone,
             longitudAutorizacion: this.input.authorizationLength,
-            // reviced
             municipioId: this.input.municipalityId,
             departamentoId: this.input.departmentId,
-            regimenId: this.input.regimeId,
             requiereAnexo2: this.input.requiresAnnex2,
             otrosDatos: this.input.otherData,
             plantillaResolucion1552: this.input.reportResolution256,
-            reporteResolucion256: this.input.reportResolution256
+            reporteResolucion256: this.input.reportResolution256,
+            regimenId: this.input.regimeId
         };
         return JSON.stringify(data);
     }
@@ -48,21 +47,19 @@ export class AdministrativeEntity {
             electronicBillingEmail: this.input.correoFactuElect,
             email: this.input.correo,
             filingAddress: this.input.direccionRadicacion,
-            hasCopies: this.input.numCopias,
             id: this.input.id,
-            isActive: this.input.estado,
             name: this.input.nombre,
             phone: this.input.telefono,
             nit: this.input.nit,
             soat: this.input.soat,
             requiresAnnex2: this.input.requiereAnexo2,
-            resolution: this.input.resolucion,
             regime: TypeRegime.setProperty(this.input.regimen),
             otherData: this.input.otrosDatos,
-            departament: Apartment.setProperty(this.input.departamento),
-            municipaly: Municipaly.setProperty(this.input.municipio),
+            department: Apartment.setProperty(this.input.departamento),
+            municipality: Municipaly.setProperty(this.input.municipio),
             reportResolution256: this.input.reporteResolucion256,
-            templateResolution1552: this.input.plantillaResolucion1552
+            templateResolution1552: this.input.plantillaResolucion1552,
+            status: this.input.estado
         }
     }
 

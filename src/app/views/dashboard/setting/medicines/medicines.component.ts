@@ -1,8 +1,7 @@
 import { Component, inject, signal, viewChild } from '@angular/core';
-import { FormBuilder, FormGroup } from '@angular/forms';
 import { DirectivesModule } from '@directive/module';
-import { ngFormHelper, queries } from '@helpers/index';
-import { ActionName, BarActions, IForm, Medicine_APPDTO, Medicine_PageAPP, MedicineRateManual_APPDTO, tabsControls } from '@interfaces/index';
+import { queries } from '@helpers/index';
+import { ActionName, BarActions, Medicine_PageAPP, tabsControls } from '@interfaces/index';
 import { BladeBoxPanelComponent } from '@layouts/dashboard/blades/blade-box-panel/blade-box-panel.component';
 import { BladeBoxTitleComponent } from '@layouts/dashboard/blades/blade-box-title/blade-box-title.component';
 import { BladePanelComponent } from '@layouts/dashboard/blades/blade-panel/blade-panel.component';
@@ -33,11 +32,11 @@ import { TdetailMedicineComponent } from './tdetail-medicine/tdetail-medicine.co
     ]
 })
 export class MedicinesComponent {
+    readonly formMedicine = viewChild('formMedicine', { read: FormMedicineComponent});
     readonly tabController = viewChild('tabController', { read: BladeTabsHorizontalComponent});
     readonly table = viewChild('table', { read: TableMedicineComponent});
     medicineServ = inject(MedicineService);
     swal = inject(SweetalertService);
-    fb = inject(FormBuilder);
     medicineData = signal<Medicine_PageAPP | null>(null);
     paramPaginate = signal<any>(queries.paramsPage);
     actionssBar: BarActions = {
@@ -57,59 +56,32 @@ export class MedicinesComponent {
             label: 'Lista'
         }
     ];
-    form!: FormGroup;
-
-    formMedicineCLone: any;
-    formMedicine: IForm<Medicine_APPDTO> = {
-        code: [''],
-        name: [''],
-        atc: [''],
-        cum: [NaN],
-        cumConsecutive: [''],
-        cumName: [''],
-        referenceUnit: [''],
-        otherName: [''],
-        adverseEffect: [''],
-        contraindications: [''],
-        interactionIncompatibility: [''],
-        liquid: [false],
-        status: [false],
-        medicineTypeId: [null],
-        unitOfMeasureId: [null],
-        concentrationId: [null],
-        pharmaceuticalFormId: [null],
-        costCenterId: [null],
-        serviceTypeId: [null],
-        administrationRouteIds: [[] as number[]],
-        medicineGroupIds: [[] as number[]],
-        medicineManualTariffMed: [[] as MedicineRateManual_APPDTO[]]
-    }
-
-    constructor() {
-        this.form = this.fb.group(this.formMedicine);
-        this.formMedicineCLone = ngFormHelper.unboxProperties(this.formMedicine)
-    }
     ngOnInit(): void {
         this.queryMedicine();
     }
 
     barAction(e: ActionName) {
         if (e === 'save') this.save();
-        else if (e === 'reset') this.reset();
+        else if (e === 'reset') this.formMedicine()?.reset();
         else if (e === 'clean') this.table()?.clean();
     }
 
     queryMedicine() {
-        this.medicineServ.getAllPage(this.paramPaginate()).subscribe(data => this.medicineData.set(data))
+        this.medicineServ.page(this.paramPaginate()).subscribe({
+            next: (value) => {
+                this.medicineData.set(value)
+            }
+        })
     }
 
     save() {
-        if (this.form.valid) {
+        const form = this.formMedicine()?.form;
+        if (form?.valid) {
             this.swal.loading();
-            this.medicineServ.post(this.form.value).subscribe({
+            this.medicineServ.post(form.value).subscribe({
                 next: () => {
                     this.swal.formSave('success');
-                    this.reset();
+                    this.formMedicine()?.reset();
                     this.showTab(1);
                 },
                 error: () => this.swal.formSave('error')
@@ -117,10 +89,6 @@ export class MedicinesComponent {
         } else {
             this.swal.formSave('warning');
         }
-    }
-
-    reset() {
-        this.form.reset(this.formMedicineCLone);
     }
 
     showTab(id: number) {

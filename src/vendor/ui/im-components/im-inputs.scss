@@ -22,7 +22,14 @@
     }
 
     &.ui-unborder {
-        border: none;
+        border-color: transparent;
+    }
+    &.invalid {
+        border-color: map.get(colors.$color-red, '200');
+        background-color: map.get(colors.$color-red, '50');
+        legend {
+            color: map.get(colors.$color-red, '400');
+        }
     }
     .form-control,
     .form-select,
@@ -31,6 +38,45 @@
         background-color: transparent;
         border: none;
         outline: none !important;
+    }
+
+    .message-error {
+        display: inline-block;
+        position: relative;
+        i {
+            font-size: 1.1rem;
+            color: map.get(colors.$color-red, '400');
+        }
+        span {
+            position: absolute;
+            top: 100%;
+            background-color: #000;
+            color: #fff;
+            box-shadow: shadow_i();
+            z-index: 3;
+            padding: 5px 10px;
+            left: 50%;
+            transform: translateX(-50%);
+            border-radius: 4px;
+            max-width: 200px;
+            margin-top: .2rem;
+            font-size: .8rem;
+            display: none;
+            &::before {
+                content: '';
+                display: block;
+                position: absolute;
+                top: -5px;
+                height: 10px;
+                width: 10px;
+                transform: rotate(45deg);
+                background-color: #000;
+                left: calc(50% - 5px);
+            }
+        }
+    }
+    &:hover .message-error span {
+        display: block;
     }
 }
 

@@ -34,22 +34,22 @@ export interface Service_Response extends ResponseAPI<Service_API> {}
  * ---------------------------
  */
 export interface Service_APP {
-    id: number; // id
-    name: string; // nombre
-    status: boolean; // estado
+    id:            number; // id
+    name:          string; // nombre
+    status:        boolean; // estado
     operatingRoom: boolean; // quirofano
-    serviceOrder: boolean; // ordenServicio
-    order: string; // orden
-    orderImpl: string; // ordenImpl
+    serviceOrder:  boolean; // ordenServicio
+    order:         string; // orden
+    orderImpl:     string; // ordenImpl
 }
 
 export interface Service_APPDTO {
-    name: string; // nombre
-    status: boolean; // estado
+    name:          string; // nombre
+    status:        boolean; // estado
     operatingRoom: boolean; // quirofano
-    serviceOrder: boolean; // ordenServicio
-    order: string; // orden
-    orderImpl: string; // ordenImpl
+    serviceOrder:  boolean; // ordenServicio
+    order:         string; // orden
+    orderImpl:     string; // ordenImpl
 }
 
 export interface Service_PageAPP extends PageAPI<Service_APP> {}

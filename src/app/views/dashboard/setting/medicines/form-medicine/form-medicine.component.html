@@ -1,64 +1,69 @@
-<form [formGroup]="form()">
+<form [formGroup]="form">
     <div class="grid grid-cols-12 gap-x-3 gap-y-1 items-end">
-        <div class="col-span-3">
-            <input-panel-text setLabel="Codigo" setType="number" formControlName="code" />
+        <div class="col-span-2">
+            <input-text setLabel="Código" formControlName="code" />
         </div>
-        <div class="col-span-6">
-            <input-panel-text setLabel="Nombre" formControlName="name" />
-        </div>
-        <div class="col-span-3">
-            <input-panel-text setLabel="ATC" formControlName="atc" />
-        </div>
-        <div class="col-span-3">
-            <input-panel-select [setOptions]="optionsTypeMedicine()" setLabel="Tipo de medicamento" formControlName="medicationTypeId" />
-        </div>
-        <div class="col-span-3">
-            <input-panel-select [setOptions]="optionsMedicineUnit()" setLabel="Unidad de medicina" formControlName="measurementUnitId" />
-        </div>
-        <div class="col-span-3">
-            <input-panel-select [setOptions]="optionsConcentration()" setLabel="Concentración" formControlName="concentrationId" />
-        </div>
-        <div class="col-span-3">
-            <input-panel-select [setOptions]="optionsPharmaForm()" setLabel="Formula farmaceutica" formControlName="pharmaceuticalFormId" />
+        <div class="col-span-10">
+            <input-text setLabel="Nombre" formControlName="name" />
         </div>
         <div class="col-span-2">
-            <input-panel-text setLabel="Unidad de referencia" formControlName="referenceUnit" />
+            <input-text setLabel="ATC" formControlName="atc" />
+        </div>
+        <div class="col-span-4">
+            <input-select setLabel="Grupos de Medicamento" formControlName="medicineGroupIds" />
         </div>
         <div class="col-span-3">
-            <input-panel-select [setOptions]="optionsCostcenter()" setLabel="Centro de costo" formControlName="costCenterId" />
-        </div>
-        <div class="col-span-2">
-            <input-panel-text setLabel="Consecutivo" formControlName="consecutive" />
+            <input-select setLabel="Tipo de Medicamento" formControlName="medicineTypeId" />
         </div>
         <div class="col-span-3">
-            <input-panel-text setLabel="Cum" formControlName="cum" />
-        </div>
-        <div class="col-span-2">
-            <input-panel-text setLabel="Coste cum" formControlName="consCum" />
-        </div>
-        <div class="col-span-4">
-            <input-panel-text setLabel="Nombre cum" formControlName="cumName" />
-        </div>
-        <div class="col-span-4">
-            <input-panel-text setLabel="Otro nombre" formControlName="otherName" />
-        </div>
-        <div class="col-span-2">
-            <input-panel-checkbox setText="Liquido" [clean]="true" typeCheck="switch" formControlName="liquid" />
-        </div>
-        <div class="col-span-2">
-            <input-panel-checkbox setText="Activo" [clean]="true" typeCheck="switch" formControlName="status" />
-        </div>
-        <div class="col-span-4">
-            <input-panel-textarea setLabel="Efectos adversos" formControlName="adverseEffect" />
-        </div>
-        <div class="col-span-4">
-            <input-panel-textarea setLabel="Contraindicacion" formControlName="contraindications" />
-        </div>
-        <div class="col-span-4">
-            <input-panel-textarea setLabel="Interaccion incompatibilidad" formControlName="interactionIncompatibility" />
+            <input-select setLabel="Unidad de Medida" formControlName="unitOfMeasureId" />
         </div>
         <div class="col-span-3">
-            <input-panel-select [setOptions]="optionsTypeServ()" setLabel="Tipo de servicio" formControlName="serviceTypeId" />
+            <input-select setLabel="Concentración" formControlName="concentrationId" />
+        </div>
+        <div class="col-span-3">
+            <input-select setLabel="Forma Farmacéutica" formControlName="pharmaceuticalFormId" />
+        </div>
+        <div class="col-span-3">
+            <input-text setLabel="Unidad de Referencia" formControlName="referenceUnit" />
+        </div>
+        <div class="col-span-3">
+            <input-select setLabel="Centro de Costo" formControlName="costCenterId" />
+        </div>
+        <div class="col-span-3">
+            <input-number setLabel="CUM" formControlName="cum" />
+        </div>
+        <div class="col-span-2">
+            <input-text setLabel="Consecutivo CUM" formControlName="cumConsecutive" />
+        </div>
+        <div class="col-span-7">
+            <input-text setLabel="Nombre CUM" formControlName="cumName" />
+        </div>
+        <div class="col-span-4">
+            <input-text setLabel="Otro Nombre" formControlName="otherName" />
+        </div>
+        <div class="col-span-2">
+            <input-onoff setLabel="Estado" formControlName="status" />
+        </div>
+        <div class="col-span-3">
+            <input-select setLabel="Tipo de Servicio" formControlName="serviceTypeId" />
+        </div>
+        <div class="col-span-3">
+            <input-select setLabel="Vías de Administración" formControlName="administrationRouteIds" />
+        </div>
+        <div class="col-span-4">
+            <input-textarea setLabel="Efecto Adverso" formControlName="adverseEffect" />
+        </div>
+        <div class="col-span-4">
+            <input-textarea setLabel="Contraindicacion" formControlName="contraindications" />
+        </div>
+        <div class="col-span-4">
+            <input-textarea setLabel="Interacción/Incompatibilidad" formControlName="interactionIncompatibility" />
         </div>
     </div>
 </form>
+<!-- 
+
+
+
+ -->

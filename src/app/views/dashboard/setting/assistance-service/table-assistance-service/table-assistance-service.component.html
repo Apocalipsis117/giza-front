@@ -1,9 +1,9 @@
-<blade-table [bodyYDivider]="true" [headDivider]="true">
+<blade-table [colspan]="6" [setData]="data()" [loadingData]="load()" (onPage)="paginate($event)">
     <ng-container tableHead>
         <tr>
             <th>Nombre</th>
-            <th>Tipo de historia</th>
             <th>Codigo indicativo</th>
+            <th>Tipo de historia</th>
             <th>Tipo servicio</th>
             <th>Nivel servicio</th>
             <th>Acciones</th>
@@ -13,12 +13,12 @@
         @for(assistance of list(); track assistance.id; let idx = $index) {
         <tr  TrSelected [idx]="tdSelected()" [id]="assistance.id">
             <td>{{ assistance.name }}</td>
-            <td>{{ assistance.historyType.name }}</td>
             <td>{{ assistance.indicatorCode }}</td>
+            <td>{{ assistance.historyType.name }}</td>
             <td>{{ assistance.serviceType.name }}</td>
             <td>{{ assistance.serviceLevel.name }}</td>
             <td class="text-right">
-                <app-button (action)="emitAssistance(assistance)" setIcon="icofont-info-circle" setSize="sm" />
+                <app-button (action)="emit(assistance)" setIcon="icofont-info-circle" setSize="sm" />
             </td>
         </tr>
         }

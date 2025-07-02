@@ -1,47 +1,69 @@
 import { HttpClient } from '@angular/common/http';
-import { Injectable, inject } from '@angular/core';
-import { queries } from '@helpers/index';
-import { Medicine_API, Medicine_PageResponse, FormControlOption, TypeReturn, Medicine_PageAPP, Medicine_APP, Medicine_APPDTO } from '@interfaces/index';
+import { inject, Injectable } from '@angular/core';
+import { apiHelper } from '@helpers/index';
+import { PathNameAPI, ResponseAPI } from '@interfaces/extend.i';
+import { Medicine_APP, Medicine_APPDTO, Medicine_ListResponse, Medicine_PageResponse, Medicine_Response, FormControlOption, TypeReturn } from '@interfaces/index';
 import { Medicine, MedicineDTO, OptionsControl } from '@models/index';
-import { Observable, map } from 'rxjs';
+import { Observable, catchError, map, of } from 'rxjs';
 
-@Injectable({
-    providedIn: 'root'
-})
+@Injectable({ providedIn: 'root' })
 export class MedicineService {
     private http = inject(HttpClient);
-    private api = {
-        save: 'medicamento/save',
-        list: 'medicamento/lista',
-        page: 'medicamento/page'
-    }
+    private api: PathNameAPI = {
+        base: 'config/medicamento',
+        save: 'save',
+        list: 'lista',
+        page: 'page',
+    };
 
     post(data: Medicine_APPDTO) {
-        const api = queries.api(this.api.save);
-        const dataPost = MedicineDTO.setProperty(data);
-        return this.http.post(api, dataPost);
-    }
-
-    getAll(): Observable<Medicine_APP[]>;
-    getAll(typeReturn: 'options'): Observable<FormControlOption[]>;
-    /* query */
-    getAll(typeReturn: TypeReturn = null) {
-        const api = queries.api(this.api.list);
-        return this.http.get<Medicine_API[]>(api).pipe(
-            map(data => {
-                if (typeReturn === 'options') return data.map(x => OptionsControl.setProperty(x.id, x.nombre));
-                return data.map(x => Medicine.setProperty(x));
-            })
+        const api = apiHelper.api(this.api.base, { path: this.api.save });
+        const values = MedicineDTO.setProperty(data);
+        return this.http.post<Medicine_Response>(api, values).pipe(
+            map(res => Medicine.setProperty(res.data))
         );
     }
 
-    getAllPage(paramValue: any = null): Observable<Medicine_PageAPP> {
-        const api = queries.api(this.api.page, paramValue);
+    update(id: number, data: Medicine_APPDTO) {
+        const api = apiHelper.api(this.api.base, { path: id });
+        const values = MedicineDTO.setProperty(data);
+        return this.http.put<Medicine_Response>(api, values).pipe(
+            map(res => Medicine.setProperty(res.data))
+        );
+    }
+
+    list(): Observable<Medicine_APP[]>;
+    list(typeReturn: 'options'): Observable<FormControlOption[]>;
+    list(typeReturn: TypeReturn = null) {
+        const api = apiHelper.api(this.api.base, { path: this.api.list });
+        return this.http.get<Medicine_ListResponse>(api).pipe(
+            map(res => {
+                if (typeReturn === 'options') return res.data.map(x => OptionsControl.setProperty(x.id, x.nombre));
+                return res.data.map(x => Medicine.setProperty(x));
+            }),
+            catchError(() => of([]))
+        );
+    }
+
+    page(paramValue: any = null) {
+        const api = apiHelper.api(this.api.base, { path: this.api.page, params: paramValue });
         return this.http.get<Medicine_PageResponse>(api).pipe(
-            map(data => ({
-                ...data.data,
-                content: data.data.content.map(item => Medicine.setProperty(item))
+            map(res => ({
+                ...res.data,
+                content: res.data.content.map(item => Medicine.setProperty(item))
             }))
-        )
+        );
+    }
+
+    getBy(id: number) {
+        const api = apiHelper.api(this.api.base, { path: id });
+        return this.http.get<Medicine_Response>(api).pipe(
+            map(res => Medicine.setProperty(res.data))
+        );
+    }
+
+    delete(id: number) {
+        const api = apiHelper.api(this.api.base, { path: id });
+        return this.http.delete<ResponseAPI<string>>(api);
     }
 }

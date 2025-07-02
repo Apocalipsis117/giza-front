@@ -1,6 +1,6 @@
 import { Component, computed, effect, ElementRef, forwardRef, input, QueryList, signal, viewChild, viewChildren } from '@angular/core';
-import { FormsModule, NG_VALUE_ACCESSOR } from '@angular/forms';
-import { arrayControlHelper, formHelper, generator } from '@helpers/index';
+import { AbstractControl, FormsModule, NG_VALUE_ACCESSOR } from '@angular/forms';
+import { arrayControlHelper, formHelper, generator, ngFormHelper } from '@helpers/index';
 import { FormControlOption } from '@interfaces/index';
 
 @Component({
@@ -20,10 +20,11 @@ import { FormControlOption } from '@interfaces/index';
     }
 })
 export class InputSelectComponent {
+    public setValidate = input<AbstractControl | null>(null);
     optionsList = viewChild<ElementRef<HTMLUListElement>>('optionsList');
     optionItems = viewChildren<ElementRef<HTMLLIElement>>('optionItem');
     public readonly setLabel = input<string>('');
-    public readonly emptyValue = input<'' | null>('');
+    public readonly emptyValue = input<'' | null>(null);
     public readonly setSize = input<'sm' | 'lg' | null>(null);
     public readonly setPlaceholder = input<string>('Seleccionar');
     public readonly setOptions = input([], { transform: (value: FormControlOption[]) => formHelper.sortByName(value) });
@@ -31,6 +32,11 @@ export class InputSelectComponent {
     visible = signal<boolean>(false);
     currentIndex = signal<number>(-1);
     id = generator.uuid('input');
+    error = signal<string | null>(null);
+
+    validate() {
+        ngFormHelper.validate(this.setValidate(), this.error);
+    }
 
     constructor() {
         effect(() => {
@@ -57,6 +63,7 @@ export class InputSelectComponent {
 
     writeValue(obj: any): void {
         this.currentValue.set(obj || '');
+        this.error.set(null);
     }
     onChange = (_: any) => {};
     registerOnChange(fn: any): void {
@@ -71,8 +78,13 @@ export class InputSelectComponent {
         this.change();
     }
     change() {
-        this.onTouch();
         this.onChange(this.currentValue());
+        this.validate();
+    }
+
+    blur() {
+        this.onTouch();
+        this.validate();
     }
 
     onKeydown(event: KeyboardEvent) {

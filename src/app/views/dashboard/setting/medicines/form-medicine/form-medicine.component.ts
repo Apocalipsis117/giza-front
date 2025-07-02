@@ -1,34 +1,37 @@
 import { CommonModule } from '@angular/common';
-import { Component, computed, inject, input, signal } from '@angular/core';
-import { FormGroup, ReactiveFormsModule } from '@angular/forms';
-import { InputPanelCheckboxComponent } from '@form-control/input-panel-checkbox/input-panel-checkbox.component';
-import { InputPanelSelectComponent } from '@form-control/input-panel-select/input-panel-select.component';
-import { InputPanelTextComponent } from '@form-control/input-panel-text/input-panel-text.component';
-import { InputPanelTextareaComponent } from '@form-control/input-panel-textarea/input-panel-textarea.component';
-import { IForm, FormControlOption, Medicine_APPDTO } from '@interfaces/index';
-import { TypeServiceService, PharmaceuticalFormService, TypeConcentrationService, TypeMedicineService, TypeMedicineUnitService, CostCenterService } from '@services/api';
+import { Component, inject, signal } from '@angular/core';
+import { FormBuilder, FormGroup, ReactiveFormsModule } from '@angular/forms';
+import { ngFormHelper } from '@helpers/index';
+import { InputNumberComponent } from '@im-inputs/input-number/input-number.component';
+import { InputOnoffComponent } from '@im-inputs/input-onoff/input-onoff.component';
+import { InputSelectComponent } from '@im-inputs/input-select/input-select.component';
+import { InputTextComponent } from '@im-inputs/input-text/input-text.component';
+import { InputTextareaComponent } from '@im-inputs/input-textarea/input-textarea.component';
+import { FormControlOption, IForm, Medicine_APPDTO, MedicineRateManual_APPDTO } from '@interfaces/index';
+import { CostCenterService, PharmaceuticalFormService, TypeConcentrationService, TypeMedicineService, TypeServiceService, TypeUnitMeasurementService } from '@services/api';
+import { forkJoin } from 'rxjs';
 
 @Component({
     selector: 'form-medicine',
     standalone: true,
     imports: [
         CommonModule,
-        InputPanelSelectComponent,
-        InputPanelTextComponent,
-        InputPanelCheckboxComponent,
-        InputPanelTextareaComponent,
+        InputTextareaComponent,
+        InputOnoffComponent,
+        InputTextComponent,
+        InputNumberComponent,
+        InputSelectComponent,
         ReactiveFormsModule
     ],
     templateUrl: './form-medicine.component.html'
 })
 export class FormMedicineComponent {
-    setForm = input<FormGroup>();
-    medicineServ = inject(TypeMedicineService);
-    medicineUnitServ = inject(TypeMedicineUnitService);
-    concentrationServ = inject(TypeConcentrationService);
-    pharmaFormServ = inject(PharmaceuticalFormService);
-    costCenterServ = inject(CostCenterService);
-    typeServiceServ = inject(TypeServiceService);
+    private readonly typeMedicine$ = inject(TypeMedicineService);
+    private readonly TypeUnitMeasurement$ = inject(TypeUnitMeasurementService);
+    private readonly concentrationServ = inject(TypeConcentrationService);
+    private readonly pharmaFormServ = inject(PharmaceuticalFormService);
+    private readonly costCenterServ = inject(CostCenterService);
+    private readonly typeServiceServ = inject(TypeServiceService);
     optionsTypeMedicine = signal<FormControlOption[]>([]);
     optionsMedicineUnit = signal<FormControlOption[]>([]);
     optionsConcentration = signal<FormControlOption[]>([]);
@@ -36,16 +39,64 @@ export class FormMedicineComponent {
     optionsPharmaForm = signal<FormControlOption[]>([]);
     optionsCostcenter = signal<FormControlOption[]>([]);
     optionsTypeServ = signal<FormControlOption[]>([]);
+    fb = inject(FormBuilder);
 
-    form = computed(() => this.setForm() as FormGroup<IForm<Medicine_APPDTO>>);
+    form!: FormGroup;
+    formMedicineCLone: any;
+    formMedicine: IForm<Medicine_APPDTO> = {
+        code: [''],
+        name: [''],
+        atc: [''],
+        cum: [NaN],
+        cumConsecutive: [''],
+        cumName: [''],
+        referenceUnit: [''],
+        otherName: [''],
+        adverseEffect: [''],
+        contraindications: [''],
+        interactionIncompatibility: [''],
+        liquid: [false],
+        status: [false],
+        medicineTypeId: [null],
+        unitOfMeasureId: [null],
+        concentrationId: [null],
+        pharmaceuticalFormId: [null],
+        costCenterId: [null],
+        serviceTypeId: [null],
+        administrationRouteIds: [[] as number[]],
+        medicineGroupIds: [[] as number[]],
+        medicineManualTariffMed: [[] as MedicineRateManual_APPDTO[]]
+    }
+
+    constructor() {
+        this.form = this.fb.group(this.formMedicine);
+        this.formMedicineCLone = ngFormHelper.unboxProperties(this.formMedicine)
+    }
 
     ngOnInit(): void {
-        this.medicineServ.getAll('options').subscribe(data => this.optionsTypeMedicine.set(data));
-        this.medicineUnitServ.getAll('options').subscribe(data => this.optionsMedicineUnit.set(data));
-        this.concentrationServ.getAll('options').subscribe(data => this.optionsConcentration.set(data));
-        this.pharmaFormServ.getAll('options').subscribe(data => this.optionsPharmaForm.set(data));
-        this.pharmaFormServ.getAll('options').subscribe(data => this.optionsPharmaForm.set(data));
-        this.costCenterServ.getAll('options').subscribe(data => this.optionsCostcenter.set(data));
-        this.typeServiceServ.getAll('options').subscribe(data => this.optionsTypeServ.set(data));
+        const obs = forkJoin({
+            typeMedicine: this.typeMedicine$.list('options'),
+            medicineUnit: this.TypeUnitMeasurement$.list('options'),
+            concentration: this.concentrationServ.getAll('options'),
+            pharmaForm: this.pharmaFormServ.getAll('options'),
+            costCenter: this.costCenterServ.getAll('options'),
+            typeService: this.typeServiceServ.list('options'),
+        });
+
+        obs.subscribe({
+            next: (value) => {
+                this.optionsTypeMedicine.set(value.typeMedicine);
+                this.optionsMedicineUnit.set(value.medicineUnit);
+                this.optionsConcentration.set(value.concentration);
+                this.optionsPharmaForm.set(value.pharmaForm);
+                this.optionsCostcenter.set(value.costCenter);
+                this.optionsTypeServ.set(value.typeService);
+            }
+        });
     }
+
+    reset() {
+        this.form.reset(this.formMedicineCLone);
+    }
+
 }

@@ -1,6 +1,6 @@
 import { Component, forwardRef, input, signal } from '@angular/core';
-import { FormsModule, NG_VALUE_ACCESSOR } from '@angular/forms';
-import { generator } from '@helpers/index';
+import { AbstractControl, FormsModule, NG_VALUE_ACCESSOR } from '@angular/forms';
+import { generator, ngFormHelper } from '@helpers/index';
 
 @Component({
     selector: 'input-text',
@@ -16,15 +16,22 @@ import { generator } from '@helpers/index';
     }]
 })
 export class InputTextComponent {
+    public setValidate = input<AbstractControl | null>(null);
     public readonly setIcon = input<string>('');
     public readonly setLabel = input<string>('');
     public readonly setPlaceholder = input<string>('');
     public readonly setType = input<string>('text');
     currentValue = signal<string | number>('');
     id = generator.uuid('input');
+    error = signal<string | null>(null);
+
+    validate() {
+        ngFormHelper.validate(this.setValidate(), this.error);
+    }
 
     writeValue(obj: any): void {
         this.currentValue.set(obj || '');
+        this.error.set(null);
     }
     onChange = (_: any) => {};
     registerOnChange(fn: any): void {
@@ -37,7 +44,12 @@ export class InputTextComponent {
     change() {
         const value = this.setType() === 'number' ? Number(this.currentValue()) : this.currentValue();
         this.currentValue.set(value);
-        this.onTouch();
         this.onChange(this.currentValue());
+        this.validate();
+    }
+
+    blur() {
+        this.onTouch();
+        this.validate();
     }
 }

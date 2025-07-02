@@ -3,7 +3,6 @@ export { _ModelCargo } from './app/cargo.model';
 export { ModelRole } from './app/role.model';
 
 // app
-export * from './api/setting/assistance-serv.model';
 export * from './api/setting/cup.model';
 export * from './api/setting/diagnosis.model';
 export * from './api/setting/hospital-services.i';
@@ -31,7 +30,8 @@ export * from './setting/medicine.model';
 export * from './setting/oxygen-rate.model';
 export * from './setting/service.m';
 export * from './setting/attention-program.m';
-export * from './setting/tariff-medicine.m';
+export * from './setting/medicine-rate.m';
+export * from './setting/healthcare-services.m';
 
 // single-query
 export * from './single-query/types-regime.m';

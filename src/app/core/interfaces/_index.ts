@@ -9,7 +9,6 @@ export * from './api/role.i';
 export * from './api/types.i';
 
 // setting
-export * from './api/setting/assistace-serv.i';
 export * from './api/setting/cup.i';
 export * from './api/setting/diagnosis.i';
 export * from './api/setting/employees.i';
@@ -43,18 +42,21 @@ export * from './setting/administrative-entities.i';
 export * from './setting/attention-program.i';
 export * from './setting/contract.i';
 export * from './setting/cost-center.i';
-export * from './setting/input-materials-rate.i';
 export * from './setting/input-materials.i';
 export * from './setting/medicine.i';
-export * from './setting/oxygen-rate.i';
 export * from './setting/service.i';
-export * from './setting/medicine-rate-manual.i';
-export * from './setting/tariff-medicine.i';
+export * from "./setting/healthcare-services.i";
+
+// rate
+export * from './rate/input-materials-rate.i';
+export * from './rate/medicine-rate-manual.i';
+export * from './rate/oxygen-rate.i';
+export * from './rate/tariff-medicine.i';
+
 
 // single-query
 export * from './single-query/apartment-cities.i';
 export * from './single-query/basics-entity.i';
-export * from './single-query/type-regime.i';
 export * from './single-query/gender.i';
 export * from './single-query/material-classification.i';
 export * from './single-query/type-history.i';

@@ -1,4 +1,4 @@
-<fieldset class="im-fieldset">
+<fieldset class="im-fieldset" [class.invalid]="error()">
     @if(setLabel()) {
         <legend>{{ setLabel() }}</legend>
     }
@@ -8,6 +8,14 @@
                 <i [class]="setIcon()"></i>
             </label>
         }
-        <input class="form-control" [type]="setType()" [(ngModel)]="currentValue" (input)="change()" (paste)="change()" (focus)="change()" [id]="id">
+        <input class="form-control" [type]="setType()" [(ngModel)]="currentValue" (input)="change()" (paste)="change()" (focus)="change()" [id]="id" (blur)="blur()">
+        @if(error()) {
+            <div class="input-group-text">
+                <span class="message-error">
+                    <i class="icofont-info-circle"></i>
+                    <span>{{ error() }}</span>
+                </span>
+            </div>
+        }
     </div>
 </fieldset>

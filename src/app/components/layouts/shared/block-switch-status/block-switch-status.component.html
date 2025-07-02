@@ -1,8 +1,11 @@
-<div class="flex justify-between items-center">
-    <div>
+<div class="flex items-center gap-3">
+    <div class="w-auto">
+        <i class="text-2xl" [class]="[check().icon, check().color]"></i>
+    </div>
+    <div class="grow basis-0">
         <ng-content></ng-content>
     </div>
-    <div class="float-right">
-        <input-onoff ui="switch" [isDisabled]="true" boxUi="unborder" [ngModel]="active()" />
+    <div class="flex items-center gap-2 float-right" [class]="check().color">
+        <span>{{ check().label }}</span>
     </div>
 </div>

@@ -1,30 +1,51 @@
-import { Component, Input, computed, inject, input, signal } from '@angular/core';
-import { FormGroup, ReactiveFormsModule } from '@angular/forms';
-import { InputPanelCheckboxComponent } from '@form-control/input-panel-checkbox/input-panel-checkbox.component';
-import { InputPanelSelectComponent } from '@form-control/input-panel-select/input-panel-select.component';
-import { InputPanelTextComponent } from '@form-control/input-panel-text/input-panel-text.component';
-import { IForm, FormControlOption, OxygenRate_APPDTO } from '@interfaces/index';
+import { Component, inject, signal } from '@angular/core';
+import { FormBuilder, FormGroup, ReactiveFormsModule } from '@angular/forms';
+import { ngFormHelper } from '@helpers/index';
+import { InputOnoffComponent } from '@im-inputs/input-onoff/input-onoff.component';
+import { InputSelectSearhComponent } from '@im-inputs/input-select-searh/input-select-searh.component';
+import { InputTextComponent } from '@im-inputs/input-text/input-text.component';
+import { FormControlOption, IForm, OxygenRate_APPDTO } from '@interfaces/index';
 import { MedicineService } from '@services/api';
 
 @Component({
     selector: 'form-oxygen-rate',
     standalone: true,
     imports: [
-        InputPanelTextComponent,
-        InputPanelCheckboxComponent,
-        InputPanelSelectComponent,
-        ReactiveFormsModule
+        ReactiveFormsModule,
+        InputTextComponent,
+        InputSelectSearhComponent,
+        InputOnoffComponent
     ],
     templateUrl: './form-oxygen-rate.component.html'
 })
 export class FormOxygenRateComponent {
-    public setForm = input<FormGroup<IForm<OxygenRate_APPDTO>>>();
-
-    form = computed(() => this.setForm() as FormGroup);
-    medicineServ = inject(MedicineService);
+    fb              = inject(FormBuilder);
+    medicineServ    = inject(MedicineService);
     optionsMedicine = signal<FormControlOption[]>([]);
 
+    form: FormGroup;
+    formClone: OxygenRate_APPDTO;
+    formControls: IForm<OxygenRate_APPDTO> = {
+        medicineId: [null],
+        name:       [''],
+        status:     [true],
+        value:      [''] // int
+    }
+
+    constructor() {
+        this.form = this.fb.group(this.formControls);
+        this.formClone = ngFormHelper.unboxProperties(this.formControls)
+    }
+
     ngOnInit(): void {
-        this.medicineServ.getAll('options').subscribe(data => this.optionsMedicine.set(data));
+        this.medicineServ.list('options').subscribe({
+            next: (value) => {
+                this.optionsMedicine.set(value)
+            }
+        });
+    }
+
+    reset() {
+        this.form.reset(this.formClone);
     }
 }

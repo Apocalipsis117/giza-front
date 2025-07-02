@@ -1,4 +1,5 @@
 import { Route } from '@angular/router';
+import { UnsavedChangesGuard } from 'src/app/core/guards/unsave-changes.g';
 
 export const routers: Route[] = [{
     path: '',
@@ -6,7 +7,8 @@ export const routers: Route[] = [{
 },
 {
     path: 'assistance-service',
-    loadComponent: () => import('./assistance-service/assistance-service.component').then(c => c.AssistanceServiceComponent)
+    loadComponent: () => import('./assistance-service/assistance-service.component').then(c => c.AssistanceServiceComponent),
+    canDeactivate: [UnsavedChangesGuard]
 },
 {
     path: 'ips',

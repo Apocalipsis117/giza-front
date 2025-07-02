@@ -36,8 +36,8 @@ export class AdministrativeEntitiesComponent {
     private readonly local$ = inject(LocalAdministrativeEntitiesService);
     readonly tabController = viewChild('tabController', { read: BladeTabsHorizontalComponent});
     readonly dialogUpdate = viewChild('dialogUpdate', { read: BladeDialogComponent});
-    readonly formDateEntityRef = viewChild('formDateEntityRef', { read: FormDateEntityComponent});
-    readonly formDateEntityUpdate = viewChild('formDateEntityUpdate', { read: FormDateEntityComponent});
+    readonly formCreate = viewChild('formCreate', { read: FormDateEntityComponent});
+    readonly formUpdate = viewChild('formUpdate', { read: FormDateEntityComponent});
     readonly table = viewChild('table', { read: TablePlatformEntityComponent});
     actionsDetail: BarActions = {
         edit: true,
@@ -71,7 +71,7 @@ export class AdministrativeEntitiesComponent {
     barAction(e: ActionName) {
         const data = this.local$.getEntity();
         if (e === 'save') this.save();
-        else if (e === 'reset') this.formDateEntityRef()?.reset();
+        else if (e === 'reset') this.formCreate()?.reset();
         else if (e === 'clean') this.cleanTdetail();
         else if (e === 'edit') {
             if(data) {
@@ -92,7 +92,7 @@ export class AdministrativeEntitiesComponent {
     }
 
     save() {
-        const form = this.formDateEntityRef()?.form;
+        const form = this.formCreate()?.form;
         if (form?.valid) {
             this.swal$.loading();
             this.adminEntities$.post(form.value).subscribe({
@@ -101,19 +101,20 @@ export class AdministrativeEntitiesComponent {
                 },
                 complete: () => {
                     this.swal$.formSave('success');
-                    this.formDateEntityRef()?.reset();
+                    this.formCreate()?.reset();
                     this.table()?.queryAdministrativeEntities();
                     this.tabController()?.showTab(this.tabs[1].idConnect);
                 },
                 error: () => this.swal$.formSave('error')
             })
         } else {
-            this.swal$.formSave('warning')
+            this.swal$.formSave('warning');
+            this.formCreate()?.markAlltouched();
         }
     }
 
     update() {
-        const form = this.formDateEntityUpdate()?.form;
+        const form = this.formUpdate()?.form;
         if (form?.valid) {
             this.swal$.loading();
             const data = this.local$.getEntity();
@@ -130,7 +131,8 @@ export class AdministrativeEntitiesComponent {
                 error: () => this.swal$.formSave('error')
             })
         } else {
-            this.swal$.formSave('warning')
+            this.swal$.formSave('warning');
+            this.formUpdate()?.markAlltouched();
         }
     }
 
@@ -169,11 +171,11 @@ export class AdministrativeEntitiesComponent {
                 address: data.address,
                 authorizationLength: data.authorizationLength,
                 code: data.code,
-                departmentId: data.departament.id,
+                departmentId: data.department.id,
                 electronicBillingEmail: data.electronicBillingEmail,
                 email: data.email,
                 filingAddress: data.filingAddress,
-                municipalityId: data.municipaly.id,
+                municipalityId: data.municipality.id,
                 name: data.name,
                 nit: data.nit,
                 otherData: data.otherData,
@@ -182,10 +184,10 @@ export class AdministrativeEntitiesComponent {
                 reportResolution256: data.reportResolution256,
                 requiresAnnex2: data.requiresAnnex2,
                 soat: data.soat,
-                status: data.isActive,
+                status: data.status,
                 templateResolution1552: data.templateResolution1552
             }
-            this.formDateEntityUpdate()?.form.patchValue(values)
+            this.formUpdate()?.setValues(values);
         }
     }
 }

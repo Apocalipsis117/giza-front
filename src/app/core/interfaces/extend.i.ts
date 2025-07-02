@@ -15,11 +15,18 @@ export interface PageDataAPI {
     last:          boolean;
 }
 
-export interface ResponseAPI<T> {
-    data: T;
+interface Response {
     status: number;
     statusName: string;
     message: string;
+}
+
+export interface ResponseAPI<T> extends Response {
+    data: T;
+}
+
+export interface ResponsePAGE_API<T> extends Response {
+    data: PageAPI<T>;
 }
 
 /**

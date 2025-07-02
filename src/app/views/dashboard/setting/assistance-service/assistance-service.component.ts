@@ -1,17 +1,16 @@
 import { CommonModule } from '@angular/common';
-import { Component, inject, signal, viewChild } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { ngFormHelper, queries } from '@helpers/index';
-import { AssistanceServDTO_APP, AssistanceServiceAPP_PAGE } from '@interfaces/app';
-import { ActionName, BarActions, IForm } from '@interfaces/index';
+import { Component, DestroyRef, inject, viewChild } from '@angular/core';
+import { ActionName, BarActions, HealthcareServices_APP, HealthcareServices_APPDTO } from '@interfaces/index';
 import { BladeBoxPanelComponent } from '@layouts/dashboard/blades/blade-box-panel/blade-box-panel.component';
 import { BladePanelComponent } from '@layouts/dashboard/blades/blade-panel/blade-panel.component';
-import { NoteComponent } from '@layouts/shared/note/note.component';
-import { AssistanceServService } from '@services/api';
+import { HealthcareServicesService } from '@services/api';
 import { SweetalertService } from '@services/app';
 import { FormAssistanceServiceComponent } from './form-assistance-service/form-assistance-service.component';
 import { TableAssistanceServiceComponent } from './table-assistance-service/table-assistance-service.component';
 import { TdetailAssistanceServiceComponent } from './tdetail-assistance-service/tdetail-assistance-service.component';
+import { LocalAssistanceServiceService } from './local-assistance-service.service';
+import { BladeDialogComponent } from '@layouts/dashboard/blades/blade-dialog/blade-dialog.component';
+import { CardBasicTextComponent } from '@layouts/dashboard/cards/card-basic-text/card-basic-text.component';
 
 @Component({
     selector: 'app-assistance-service',
@@ -23,86 +22,165 @@ import { TdetailAssistanceServiceComponent } from './tdetail-assistance-service/
         BladeBoxPanelComponent,
         TableAssistanceServiceComponent,
         FormAssistanceServiceComponent,
+        BladeDialogComponent,
         TdetailAssistanceServiceComponent,
-        NoteComponent
+        CardBasicTextComponent
     ]
 })
 export class AssistanceServiceComponent {
+    private readonly destroyRef = inject(DestroyRef);
     readonly table = viewChild('table', { read: TableAssistanceServiceComponent });
-    private readonly asisstanceService$ = inject(AssistanceServService);
+    readonly form = viewChild('form', { read: FormAssistanceServiceComponent });
+    readonly formUpdate = viewChild('formUpdate', { read: FormAssistanceServiceComponent });
+    readonly dialogUpdate = viewChild('dialogUpdate', { read: BladeDialogComponent });
+    private readonly HealthcareServices$ = inject(HealthcareServicesService);
+    private readonly local$ = inject(LocalAssistanceServiceService);
     private swal = inject(SweetalertService);
-    private fb = inject(FormBuilder);
-    asisstances = signal<AssistanceServiceAPP_PAGE | null>(null);
     actionsBar: BarActions = {
         edit: true,
         delete: true,
         clean: true
     };
-
-    form!: FormGroup;
-    formAssistanceCLone: AssistanceServDTO_APP;
-    formAssistance: IForm<AssistanceServDTO_APP> = {
-        name: ['', Validators.required],
-        activeInstitution: [false],
-        appointments: [false],
-        doctor: [false],
-        historyTypeId: [''],
-        indicatorCode: [''],
-        opportunityDays: ['', Validators.required],
-        receive: [false],
-        serviceLevelId: [''],
-        serviceTypeId: [''],
-        specialist: [false],
-        surgeryRequired: [false]
-    };
-    paramPaginate = signal<any>(queries.paramsPage);
+    actionsUpdate: BarActions = {
+        update: true,
+        return: true
+    }
 
     constructor() {
-        this.form = this.fb.group(this.formAssistance);
-        this.formAssistanceCLone = ngFormHelper.unboxProperties(this.formAssistance);
+        this.destroyRef.onDestroy(() => {
+            this.local$.assistanceServEmit(null);
+        })
     }
 
-    ngOnInit(): void {
-        this.queryAssistaces();
-    }
-
-    queryAssistaces() {
-        this.asisstanceService$.getAllPage(this.paramPaginate()).subscribe(data => this.asisstances.set(data));
+    canGoOut(): Promise<boolean> | boolean {
+        if (this.form()?.form.dirty) {
+            return this.swal.alertSimpleConfirm('Tiene datos sin guardar. ¿Seguro de que quiere salir?')
+                .then((result) => {
+                    return result.isConfirmed;
+                });
+        }
+        return true;
     }
 
     barAction(e: ActionName) {
+        const data = this.local$.getEntity();
         if (e === 'save') this.save();
-        else if (e === 'reset') this.reset();
+        else if (e === 'reset') this.form()?.reset();
         else if (e === 'clean') this.cleanTdetail();
+        else if (e === 'edit') {
+            if (data) {
+                this.dataEdit(data);
+                this.dialogUpdate()?.show();
+            } else {
+                this.swal.alertSimple('Debe seleccionar una Entidad', 'info');
+            }
+        }
+        else if (e === 'delete') {
+            this.deleteAlert(data);
+        }
+        else if (e === 'update') this.update();
+        else if (e === 'return') {
+            this.dataEdit(data)
+            this.swal.alertSimple('Valores originales cargados.', 'success');
+        }
     }
 
     save() {
-        if (this.form.valid) {
+        const form = this.form()?.form;
+        if (form?.valid) {
             this.swal.loading();
-            this.asisstanceService$.post(this.form.value).subscribe({
-                next: () => {
+            this.HealthcareServices$.post(form.value).subscribe({
+                next: (value) => {
+                    this.local$.assistanceServEmit(value);
+                },
+                complete: () => {
                     this.swal.formSave('success');
-                    this.queryAssistaces();
-                    this.reset();
+                    this.table()?.queryAssistaces();
+                    this.form()?.reset();
                 },
                 error: () => this.swal.formSave('error')
             });
         } else {
             this.swal.formSave('warning');
+            form?.markAllAsTouched();
+            this.form()?.validate();
         }
     }
 
-    reset() {
-        this.form.reset(this.formAssistanceCLone);
+    update() {
+        const form = this.formUpdate()?.form;
+        if (form?.valid) {
+            this.swal.loading();
+            const data = this.local$.getEntity();
+            this.HealthcareServices$.update(data!.id, form.value).subscribe({
+                next: (value) => {
+                    this.local$.assistanceServEmit(value);
+                },
+                complete: () => {
+                    this.dialogUpdate()?.hide();
+                    this.swal.formSave('success');
+                    this.table()?.queryAssistaces();
+                },
+                error: () => this.swal.formSave('error')
+            })
+        } else {
+            this.swal.formSave('warning');
+            form?.markAllAsTouched();
+            this.formUpdate()?.validate();
+        }
+    }
+
+    deleteAlert(data: HealthcareServices_APP | null) {
+        if (data) {
+            this.swal.toastConfirm('warning', {
+                text: 'Seguro que desea elimina ' + data.name,
+                title: 'Confirmar'
+            }).then(value => {
+                if (value.isConfirmed) {
+                    this.delete(data);
+                }
+            })
+        }
+    }
+
+    delete(data: HealthcareServices_APP) {
+        this.swal.loading();
+        this.HealthcareServices$.delete(data.id).subscribe({
+            next: () => {
+                const text = data.name + ' ha sido liminado';
+                this.swal.alertSimple(text, 'success');
+                this.table()?.queryAssistaces();
+                this.local$.assistanceServEmit(null);
+            }
+        });
     }
 
     cleanTdetail() {
         this.table()?.clean();
     }
 
-    paginate(e: any) {
-        this.paramPaginate.set(e);
-        this.queryAssistaces();
+    dataEdit(data: HealthcareServices_APP | null) {
+        if (data) {
+            const values: HealthcareServices_APPDTO = {
+                appointments: data.appointments,
+                consultations: data.consultations,
+                doctor: data.doctor,
+                historyTypeId: data.historyType.id,
+                indicatorCode: data.indicatorCode,
+                institutionActive: data.institutionActive,
+                medicines: data.medicines,
+                name: data.name,
+                opportunityDays: data.opportunityDays,
+                otherServices: data.otherServices,
+                procedures: data.procedures,
+                receive: data.receive,
+                serviceLevelId: data.serviceLevel.id,
+                serviceTypeId: data.serviceType.id,
+                specialists: data.specialists,
+                surgery: data.surgery
+            }
+            this.formUpdate()?.form.patchValue(values)
+        }
     }
 
 }

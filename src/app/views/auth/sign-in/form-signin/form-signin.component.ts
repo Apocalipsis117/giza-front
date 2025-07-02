@@ -28,8 +28,8 @@ export class FormSigninComponent {
     form: FormGroup;
     formClone: Login_DTO;
     formControls: IForm<Login_DTO> = {
-        password: [''],
-        username: ['']
+        username: ['CrowDev'],
+        password: ['12345'],
     }
 
     constructor() {
