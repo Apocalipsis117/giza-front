@@ -3,22 +3,22 @@
         <div class="d-grid gap-3">
             <div class="col-span-8 space-y-3">
                 <div class="block">
-                    <blade-box-panel setTitle="Nuevo" [padding]="true" [actionsActive]="true" (actionBar)="barAction($event)">
+                    <blade-box-panel setTitle="Nuevo Servicio" [padding]="true" [actionsActive]="true" (actionBar)="barAction($event)">
                         <ng-container boxbody>
-                            <form-hospital-services [setForm]="form" />
+                            <form-hospital-services #formCreate />
                         </ng-container>
                     </blade-box-panel>
                 </div>
                 <div class="block">
                     <blade-box-panel setTitle="Servicios hospitalarios">
                         <ng-container boxbody>
-                            <table-hospital-services [dataTable]="hospitalServList()" #table />
+                            <table-hospital-services #table />
                         </ng-container>
                     </blade-box-panel>
                 </div>
             </div>
             <div class="col-span-4">
-                <blade-box-panel [padding]="true" setTitle="Servicio hospitalario" [actionsActive]="true" (actionBar)="barAction($event)" [setActionsBar]="actionDetail">
+                <blade-box-panel setTitle="Servicio Hospitalario" [padding]="true" [actionsActive]="true" [setActionsBar]="actionsBar" (actionBar)="barAction($event)">
                     <ng-container boxbody>
                         <tdetail-hospital-services />
                     </ng-container>
@@ -27,3 +27,16 @@
         </div>
     </ng-container>
 </blade-panel>
+
+<blade-dialog idConnect="form-update" setSize="xl" [hideFooter]="true" #dialogUpdate [activeFade]="false">
+    <ng-container dialogHeader>
+        <card-basic-text setTitle="Actualizar Entidad" />
+    </ng-container>
+    <ng-container dialogBody>
+        <blade-box-panel ui="clean" [padding]="true" [actionsActive]="true" [setActionsBar]="actionsUpdate" [headerActive]="false" (actionBar)="barAction($event)">
+            <ng-container boxbody>
+                <form-hospital-services #formUpdate />
+            </ng-container>
+        </blade-box-panel>
+    </ng-container>
+</blade-dialog>

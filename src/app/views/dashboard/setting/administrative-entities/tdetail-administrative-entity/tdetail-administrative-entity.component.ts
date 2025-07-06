@@ -1,8 +1,8 @@
-import { Component, computed, inject, output, signal } from '@angular/core';
-import { LocalAdministrativeEntitiesService } from '../local-administrative-entities.service';
+import { Component, computed, inject, signal } from '@angular/core';
 import { AdministrativeEntity_APP } from '@interfaces/index';
-import { BlockSwitchStatusComponent } from '@layouts/shared/block-switch-status/block-switch-status.component';
 import { SelectSomeItemComponent } from '@layouts/dashboard/ux/select-some-item/select-some-item.component';
+import { BlockSwitchStatusComponent } from '@layouts/shared/block-switch-status/block-switch-status.component';
+import { LocalAdministrativeEntitiesService } from '../local-administrative-entities.service';
 
 @Component({
     selector: 'tdetail-administrative-entity',

@@ -43,6 +43,7 @@ export class InputNumberComponent {
     }
 
     changeValue(value: any) {
+        console.log("value", value);
         value ? this.currentValue.set(value) : this.currentValue.set(NaN);
         this.change()
     }

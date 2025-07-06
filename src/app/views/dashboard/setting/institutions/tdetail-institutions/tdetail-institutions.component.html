@@ -1,24 +1,54 @@
-<div class="d-grid">
-    <div class="col-span-full mb-2 text-xl">Title main</div>
-    <ul class="col-span-full ul-list-row">
-        <li>
-            <div class="col-span-6">
-                <small>Title</small>
-                <div>---</div>
-            </div>
-            <div class="col-span-6">
-                <small>Title</small>
-                <div>---</div>
-            </div>
-        </li>
-    </ul>
-    <div class="col-span-full font-bold"><i class="icofont-settings mr-2"></i> Opciones</div>
-    <ul class="col-span-full divide-y">
-        <li>
-            <block-switch-status [active]="true">Title</block-switch-status>
-        </li>
-        <li>
-            <block-switch-status [active]="true">Title</block-switch-status>
-        </li>
-    </ul>
-</div>
+@if(data()) {
+    <div class="ui-detail">
+        <div class="detail-titles">
+            <h2>{{ value().name }}</h2>
+            <ul>
+                <li><b>Código de Habitación:</b> {{ value().roomCode }}</li>
+            </ul>
+        </div>
+        <ul class="detail-ul">
+            <li>
+                <div class="col-span-6">
+                    <small>Departamento</small>
+                    <div>{{ value().department }}</div>
+                </div>
+                <div class="col-span-6">
+                    <small>Municipio</small>
+                    <div>{{ value().municipality }}</div>
+                </div>
+            </li>
+            <li>
+                <div class="col-span-6">
+                    <small>Dirección</small>
+                    <div>{{ value().address }}</div>
+                </div>
+                <div class="col-span-6">
+                    <small>Télefono</small>
+                    <div>{{ value().phone }}</div>
+                </div>
+            </li>
+            <li>
+                <div class="col-span-3">
+                    <small>Naturaleza Jurídica</small>
+                    <div>{{ value().legalNature }}</div>
+                </div>
+                <div class="col-span-6">
+                    <small>Tipo de Remisión</small>
+                    <div>{{ value().referralType }}</div>
+                </div>
+                <div class="col-span-3">
+                    <small>N. Complejidad</small>
+                    <div>{{ value().complexityLevel }}</div>
+                </div>
+            </li>
+            <li>
+                <div class="col-span-full">
+                    <small>Correo</small>
+                    <div>{{ value().email }}</div>
+                </div>
+            </li>
+        </ul>
+    </div>
+} @else {
+    <select-some-item />
+}

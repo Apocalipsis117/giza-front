@@ -1,5 +1,5 @@
 <div [id]="idContainer" class="im-select">
-    <fieldset class="im-fieldset">
+    <fieldset class="im-fieldset" [class.invalid]="error()">
         @if(setLabel()) {
             <legend>{{ setLabel() }}</legend>
         }
@@ -7,7 +7,15 @@
             <label class="input-group-text" [for]="id">
                 <i class="icofont-rounded-down"></i>
             </label>
-            <input class="form-control" type="text" [value]="selected()?.name" readonly [id]="id" (focus)="changeInput()" [placeholder]="setPlaceholder()">
+            <input class="form-control" type="text" [value]="selected()?.name" readonly [id]="id" (blur)="blur()" [placeholder]="setPlaceholder()">
+            @if(error()) {
+                <div class="input-group-text">
+                    <span class="message-error">
+                        <i class="icofont-info-circle"></i>
+                        <span>{{ error() }}</span>
+                    </span>
+                </div>
+            }
         </div>
     </fieldset>
     <ul [class]="{ 'active': visible() }">
@@ -16,11 +24,13 @@
               <span class="input-group-text" id="basic-addon1">
                   <i class="icofont-search-1"></i>
               </span>
-                <input class="form-control" type="text" [(ngModel)]="searchValue" autocomplete="off" (keydown)="onKeydown($event)" #inputSearch>
+              <input class="form-control" type="text" [(ngModel)]="searchValue" autocomplete="off" (keydown)="onKeydown($event)" #inputSearch>
             </div>
         </li>
         @for(option of options(); let i = $index; track option.value) {
-            <li [class.active]="i === currentIndex()" [ariaValueText]="option.value" (click)="select(option.value)">{{ option.name }}</li>
+            <li [class.active]="i === currentIndex()" [ariaValueText]="option.value" (click)="select(option.value)" #optionItem>
+                {{ option.name }}
+            </li>
         }
     </ul>
 </div>

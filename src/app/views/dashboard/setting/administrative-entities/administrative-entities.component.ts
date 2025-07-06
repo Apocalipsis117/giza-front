@@ -67,6 +67,9 @@ export class AdministrativeEntitiesComponent {
         })
     }
 
+    canGoOut(): Promise<boolean> | boolean {
+        return this.swal$.canOutup(this.formCreate()?.form.dirty)
+    }
 
     barAction(e: ActionName) {
         const data = this.local$.getEntity();
@@ -91,7 +94,11 @@ export class AdministrativeEntitiesComponent {
         }
     }
 
-    save() {
+    private showTab(id: number) {
+        this.tabController()?.showTab(this.tabs[id].idConnect);
+    }
+
+    private save() {
         const form = this.formCreate()?.form;
         if (form?.valid) {
             this.swal$.loading();
@@ -103,7 +110,7 @@ export class AdministrativeEntitiesComponent {
                     this.swal$.formSave('success');
                     this.formCreate()?.reset();
                     this.table()?.queryAdministrativeEntities();
-                    this.tabController()?.showTab(this.tabs[1].idConnect);
+                    this.showTab(1);
                 },
                 error: () => this.swal$.formSave('error')
             })
@@ -113,7 +120,7 @@ export class AdministrativeEntitiesComponent {
         }
     }
 
-    update() {
+    private update() {
         const form = this.formUpdate()?.form;
         if (form?.valid) {
             this.swal$.loading();
@@ -126,7 +133,7 @@ export class AdministrativeEntitiesComponent {
                     this.dialogUpdate()?.hide();
                     this.swal$.formSave('success');
                     this.table()?.queryAdministrativeEntities();
-                    this.tabController()?.showTab(this.tabs[1].idConnect);
+                    this.showTab(1);
                 },
                 error: () => this.swal$.formSave('error')
             })
@@ -136,7 +143,7 @@ export class AdministrativeEntitiesComponent {
         }
     }
 
-    deleteAlert(data: AdministrativeEntity_APP | null) {
+    private deleteAlert(data: AdministrativeEntity_APP | null) {
         if(data) {
             this.swal$.toastConfirm('warning', {
                 text: 'Seguro que desea elimina ' + data.name,
@@ -149,7 +156,7 @@ export class AdministrativeEntitiesComponent {
         }
     }
 
-    delete(data: AdministrativeEntity_APP) {
+    private delete(data: AdministrativeEntity_APP) {
         this.swal$.loading();
         this.adminEntities$.delete(data.id).subscribe({
             next: () => {
@@ -161,11 +168,11 @@ export class AdministrativeEntitiesComponent {
         });
     }
 
-    cleanTdetail() {
+    private cleanTdetail() {
         this.table()?.clean();
     }
 
-    dataEdit(data: AdministrativeEntity_APP | null) {
+    private dataEdit(data: AdministrativeEntity_APP | null) {
         if(data) {
             const values: AdministrativeEntity_APPDTO = {
                 address: data.address,

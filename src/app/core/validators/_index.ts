@@ -15,6 +15,14 @@ export function ValidateNumberEmpty(message = 'Campo requerido'): ValidatorFn {
     };
 }
 
+export function ValidateLettersOnly(message = 'Solo letras permitidas'): ValidatorFn {
+    const lettersRegex = /^[a-zA-ZáéíóúüñÑÁÉÍÓÚÜ\s]+$/;
+    return (control: AbstractControl): ValidationErrors | null => {
+        const value = control.value;
+        return (typeof value === 'string' && lettersRegex.test(value)) ? null : { message };
+    };
+}
+
 export function ValidateStringEmpty(message = 'Campo requerido'): ValidatorFn {
     return (control: AbstractControl): ValidationErrors | null => {
         const value = control.value;

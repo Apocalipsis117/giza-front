@@ -1,0 +1,11 @@
+<form [formGroup]="form">
+    <div class="d-grid">
+        <div class="col-span-full">
+            <input-text setLabel="Nombre de diagnostico"/>
+        </div>
+        <div class="co-span-full">
+            <input-select-add [setOptions]="optionsDiagnosis()" formControlName="diagnosisIds" />
+        </div>
+    </div>
+</form>
+s

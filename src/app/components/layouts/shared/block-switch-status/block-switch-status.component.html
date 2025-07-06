@@ -2,7 +2,7 @@
     <div class="w-auto">
         <i class="text-2xl" [class]="[check().icon, check().color]"></i>
     </div>
-    <div class="grow basis-0">
+    <div class="grow basis-0" [class]="[check().font, check().textColor]">
         <ng-content></ng-content>
     </div>
     <div class="flex items-center gap-2 float-right" [class]="check().color">

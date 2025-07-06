@@ -1,22 +1,24 @@
-<blade-table [headDivider]="true" [bodyYDivider]="true">
+<blade-table [rounded]="true" [setData]="dataTable()" [colspan]="5" (onPage)="paginate($event)" [loadingData]="load()">
     <ng-container tableHead>
         <tr>
-            <th>head</th>
-            <th>head</th>
-            <th>head</th>
-            <th>head</th>
+            <th>Codigo</th>
+            <th>Nombre Habitación</th>
+            <th>Teléfono</th>
+            <th>Departamento y Municipio</th>
             <th class="text-end">Accion</th>
         </tr>
     </ng-container>
     <ng-container tableBody>
-        <tr>
-            <td>body</td>
-            <td>body</td>
-            <td>body</td>
-            <td>body</td>
-            <td class="text-end">
-                <app-button setIcon="icofont-info-circle" setSize="sm" />
-            </td>
-        </tr>
+        @for(entity of entities(); track entity.id) {
+            <tr TrSelected [idx]="tdSelected()" [id]="entity.id">
+                <td>{{ entity.roomCode }}</td>
+                <td>{{ entity.name }}</td>
+                <td>{{ entity.phone }}</td>
+                <td>{{ `${entity.department.name} ${entity.municipality.name}` }}</td>
+                <td class="text-end">
+                    <app-button setIcon="icofont-info-circle" setSize="sm" (action)="emit(entity)" />
+                </td>
+            </tr>
+        }
     </ng-container>
 </blade-table>

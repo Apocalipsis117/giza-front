@@ -79,7 +79,7 @@ export class FormMedicineComponent {
             medicineUnit: this.TypeUnitMeasurement$.list('options'),
             concentration: this.concentrationServ.getAll('options'),
             pharmaForm: this.pharmaFormServ.getAll('options'),
-            costCenter: this.costCenterServ.getAll('options'),
+            costCenter: this.costCenterServ.list('options'),
             typeService: this.typeServiceServ.list('options'),
         });
 

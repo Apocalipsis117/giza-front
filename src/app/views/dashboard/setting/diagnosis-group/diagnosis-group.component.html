@@ -1,0 +1,22 @@
+<blade-panel section="setting" titleSection="Grupos diagnosticos">
+    <ng-container panels>
+        <div class="d-grid">
+            <div class="col-span-6">
+                <div class="mb-3">
+                    <blade-box-panel [padding]="true" setTitle="Insumo">
+                        <ng-container boxbody>
+                            <form-diagnosis-group />
+                        </ng-container>
+                    </blade-box-panel>
+                </div>
+                <div>
+                    <blade-box-panel setTitle="Insumos">
+                        <ng-container boxbody>
+                            <table-diagnosis-group/>
+                        </ng-container>
+                    </blade-box-panel>
+                </div>
+            </div>
+        </div>
+    </ng-container>
+</blade-panel>

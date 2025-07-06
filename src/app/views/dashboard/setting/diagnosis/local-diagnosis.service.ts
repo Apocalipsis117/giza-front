@@ -1,15 +1,17 @@
-import { Injectable } from '@angular/core';
-import { DiagnosisAPP } from '@interfaces/app';
+import { Injectable, signal } from '@angular/core';
+import { Diagnosis_APP } from '@interfaces/index';
 import { Subject } from 'rxjs';
 
 @Injectable({
     providedIn: 'root'
 })
 export class LocalDiagnosisService {
-    private data$ = new Subject<DiagnosisAPP | null>();
-    watchData = this.data$.asObservable();
+    getEntity = signal<Diagnosis_APP|null>(null);
+    private readEntity = new Subject<Diagnosis_APP | null>();
+    readEntity$ = this.readEntity.asObservable();
 
-    emitDiagnosis(data: DiagnosisAPP | null) {
-        this.data$.next(data);
+    entityEmit(data: Diagnosis_APP | null) {
+        this.readEntity.next(data);
+        this.getEntity.set(data);
     }
 }

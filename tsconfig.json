@@ -37,9 +37,6 @@
             "@interfaces/app": [
                 "src/app/core/interfaces/app.interfaces.ts"
             ],
-            "@interfaces/api": [
-                "src/app/core/interfaces/api.interfaces.ts"
-            ],
             "@interfaces/*": [
                 "src/app/core/interfaces/*"
             ],

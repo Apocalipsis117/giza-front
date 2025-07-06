@@ -9,12 +9,12 @@ import { NameIdEntity_API, NameIdEntity_APP, NameStateEntity_API, NameStateEntit
 import { AdministrativeEntity_API, AdministrativeEntity_APP } from "./administrative-entities.i";
 import { AttentionProgram_API, AttentionProgram_APP } from "./attention-program.i";
 
-export interface Contract_DTO {
+interface Base_API {
     codigo:                     number;
     numContrato:                string;
-    nombreContrato:             string;
     fechaInicio:                Date;
     fechaFin:                   Date;
+    nombreContrato:             string;
     upc:                        number;
     vigente:                    boolean;
     numUsuariosAdicionales:     string;
@@ -29,6 +29,9 @@ export interface Contract_DTO {
     multivitaminicos:           boolean;
     soat:                       boolean;
     copago:                     boolean;
+}
+
+export interface Contract_DTO extends Base_API {
     entidadesAdministradorasId: number;
     planBeneficioId:            number;
     manualTarifiarioId:         number;
@@ -44,27 +47,8 @@ export interface Contract_DTO {
     modalidadId:                number;
 }
 
-export interface Contract_API {
+export interface Contract_API extends Base_API {
     uuid:                     string;
-    codigo:                   number;
-    numContrato:              string;
-    nombreContrato:           string;
-    fechaInicio:              Date;
-    fechaFin:                 Date;
-    upc:                      number;
-    vigente:                  boolean;
-    numUsuariosAdicionales:   string;
-    valorContrato:            number;
-    cuentaCobroFactura:       string;
-    observacion:              string;
-    facturacioGrupal:         boolean;
-    autambulatorio:           boolean;
-    autHospitalizacion:       boolean;
-    autUrgencia:              boolean;
-    verificacionDerechos:     boolean;
-    multivitaminicos:         boolean;
-    soat:                     boolean;
-    copago:                   boolean;
     entidadesAdministradoras: AdministrativeEntity_API;
     planBeneficio:            NameIdEntity_API;
     manualTarifiario:         NameStateEntity_API;
@@ -91,7 +75,7 @@ export interface Contract_Response extends ResponseAPI<Contract_API> {}
  * ---------------------------
  */
 
-export interface Contract_APPDTO {
+interface Base_APP {
     code:                         number; // codigo
     contractNumber:               string; // numContrato
     contractName:                 string; // nombreContrato
@@ -111,6 +95,9 @@ export interface Contract_APPDTO {
     multivitamins:                boolean; // multivitaminicos
     soat:                         boolean; // soat
     copayment:                    boolean; // copago
+}
+
+export interface Contract_APPDTO extends Base_APP {
     administratorEntitiesId:      number; // entidadesAdministradorasId
     benefitPlanId:                number; // planBeneficioId
     tariffManualId:               number; // manualTarifiarioId
@@ -125,27 +112,8 @@ export interface Contract_APPDTO {
     regimeId:                     number;
     modalityId:                   number;
 }
-export interface Contract_APP {
+export interface Contract_APP extends Base_APP {
     uuid:                         string; // uuid
-    code:                         number; // codigo
-    contractNumber:               string; // numContrato
-    contractName:                 string; // nombreContrato
-    startDate:                    Date; // fechaInicio
-    endDate:                      Date; // fechaFin
-    upc:                          number; // upc
-    active:                       boolean; // vigente
-    additionalUsersNumber:        string; // numUsuariosAdicionales
-    contractValue:                number; // valorContrato
-    invoiceAccount:               string; // cuentaCobroFactura
-    observation:                  string; // observacion
-    groupBilling:                 boolean; // facturacioGrupal
-    outpatientAuthorization:      boolean; // autambulatorio
-    hospitalizationAuthorization: boolean; // autHospitalizacion
-    emergencyAuthorization:       boolean; // autUrgencia
-    rightsVerification:           boolean; // verificacionDerechos
-    multivitamins:                boolean; // multivitaminicos
-    soat:                         boolean; // soat
-    copayment:                    boolean; // copago
     administratorEntities:        AdministrativeEntity_APP; // entidadesAdministradoras
     benefitPlan:                  NameIdEntity_APP; // planBeneficio
     tariffManual:                 NameStateEntity_APP; // manualTarifiario

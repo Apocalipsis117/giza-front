@@ -3,7 +3,8 @@ import { State_tabsController } from '@interfaces/app'; // interface del estado 
 import * as actions from '@actions/tabs-contoller.action'; // acciones
 
 const state: State_tabsController = {
-    tabs: []
+    tabs: [],
+    tabCurrent_uuid: null // pendiente para idea de activacion en vista
 }
 export const reducer_tabsController = createReducer(
     state,

@@ -2,16 +2,16 @@
     <ng-container panels>
         <div class="d-grid">
             <div class="col-span-4">
-                <blade-box-panel setTitle="Costos" [padding]="true" [actionsActive]="true" (actionBar)="actionForm($event)">
+                <blade-box-panel setTitle="Nuevo Costos" [padding]="true" (actionBar)="barAction($event)" [actionsActive]="true">
                     <ng-container boxbody>
-                        <form-cost-center [setForm]="form" />
+                        <form-cost-center #formCreate />
                     </ng-container>
                 </blade-box-panel>
             </div>
             <div class="col-span-8">
                 <blade-box-panel setTitle="Costos">
                     <ng-container boxbody>
-                        <table-cost-center [data]="costCenterList()" (paginate)="paginate($event)" />
+                        <table-cost-center (onTable)="onTable($event)" #table />
                     </ng-container>
                 </blade-box-panel>
             </div>
@@ -19,13 +19,15 @@
     </ng-container>
 </blade-panel>
 
-<!-- note -->
-<app-note>
-<ng-container noteBody>
-❓validaciones
-❓Paginar lista
-❓Buscador por nombre
-✅ post
-✅ getList
-</ng-container>
-</app-note>
+<blade-dialog idConnect="centercost-update" setSize="md" [hideFooter]="true" #dialogUpdate [activeFade]="false">
+    <ng-container dialogHeader>
+        <card-basic-text setTitle="Actualizar Entidad" />
+    </ng-container>
+    <ng-container dialogBody>
+        <blade-box-panel ui="clean" [padding]="true" [actionsActive]="true" [setActionsBar]="actionsUpdate" [headerActive]="false" (actionBar)="barAction($event)">
+            <ng-container boxbody>
+                <form-cost-center #formUpdate />
+            </ng-container>
+        </blade-box-panel>
+    </ng-container>
+</blade-dialog>

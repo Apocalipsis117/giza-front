@@ -1,4 +1,3 @@
-import { NgClass } from '@angular/common';
 import { Component, computed, inject, input, signal } from '@angular/core';
 import { Router } from '@angular/router';
 import { MenuShortcutShortcutMenu } from '@interfaces/index';
@@ -8,7 +7,6 @@ import { take } from 'rxjs';
 @Component({
     selector: 'btn-tab-controller',
     standalone: true,
-    imports: [NgClass],
     templateUrl: './btn-tab-controller.component.html'
 })
 export class BtnTabControllerComponent {
@@ -27,9 +25,11 @@ export class BtnTabControllerComponent {
 
     deleteTab() {
         this.tabsController.deleteTab(this.data().uuid);
-        this.tabsController.getTabs.pipe(take(1)).subscribe(tabs => {
-            if(tabs.length === 0) {
-                this.router.navigate(['/dashboard/panel/general']);
+        this.tabsController.getTabs.pipe(take(1)).subscribe({
+            next: (tabs) => {
+                if(tabs.length === 0) {
+                    this.router.navigate(['/dashboard/panel/general']);
+                }
             }
         })
     }

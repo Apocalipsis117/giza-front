@@ -220,7 +220,7 @@
             },
             {
                 "uuid": "fa18c073-c400-408b-a895-9cea74fedf6f",
-                "path": "/dashboard/setting/diagnostic-group",
+                "path": "/dashboard/setting/diagnosis-group",
                 "icon": "icofont-heart-beat",
                 "color": "text-emerald-400",
                 "display": [

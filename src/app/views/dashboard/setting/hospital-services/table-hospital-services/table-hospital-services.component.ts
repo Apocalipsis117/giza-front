@@ -1,8 +1,10 @@
-import { Component, computed, inject, input, signal } from '@angular/core';
+import { Component, computed, inject, signal } from '@angular/core';
 import { DirectivesModule } from '@directive/module';
-import { HospitalServiceAPP } from '@interfaces/index';
+import { queries } from '@helpers/index';
+import { HospitalService_APP, HospitalService_PageAPP } from '@interfaces/index';
 import { BladeTableComponent } from '@layouts/dashboard/blades/blade-table/blade-table.component';
 import { ButtonComponent } from '@layouts/shared/button/button.component';
+import { HospitalServService } from '@services/api';
 import { LocalHospitalServService } from '../local-hospital-serv.service';
 
 @Component({
@@ -16,19 +18,41 @@ import { LocalHospitalServService } from '../local-hospital-serv.service';
     templateUrl: './table-hospital-services.component.html'
 })
 export class TableHospitalServicesComponent {
-    localServ = inject(LocalHospitalServService);
-    dataTable = input<HospitalServiceAPP[]>([]);
+    private readonly HospitalServ$ = inject(HospitalServService);
+    private readonly local$ = inject(LocalHospitalServService);
     tdSelected = signal<number>(-1);
+    load = signal<boolean>(false);
+    paramPaginate = signal<any>(queries.paramsPage);
+    data = signal<HospitalService_PageAPP | null>(null);
 
-    load = computed(() => this.dataTable().length > 0);
+    ngOnInit(): void {
+        this.queryAssistaces();
+    }
 
-    emit(data: HospitalServiceAPP) {
-        this.tdSelected.set(data.id);
-        this.localServ.emit(data);
+    list = computed(() => this.data() ? this.data()!.content : []);
+
+    queryAssistaces() {
+        this.load.set(true);
+        this.HospitalServ$.page(this.paramPaginate()).subscribe({
+            next: (value) => {
+                this.data.set(value);
+                this.load.set(false);
+            }
+        });
+    }
+
+    emit(item: HospitalService_APP) {
+        this.tdSelected.set(item.id);
+        this.local$.assistanceServEmit(item);
     }
 
     clean() {
         this.tdSelected.set(-1);
-        this.localServ.emit(null);
+        this.local$.assistanceServEmit(null);
+    }
+
+    paginate(e: any) {
+        this.paramPaginate.set(e);
+        this.queryAssistaces();
     }
 }

@@ -6,16 +6,16 @@ import { Directive, ElementRef, inject, input } from '@angular/core';
 })
 export class TrSelectedDirective {
     private readonly elRef = inject(ElementRef);
-    id = input.required<number>();
-    idx = input.required<number>();
+    id = input.required<number | string | null>();
+    idx = input.required<number | string | null>();
     el: any;
 
     ngOnChanges() {
         if (this.el) {
             if (this.idx() === this.id()) {
-                this.el.classList.add('bg-default-200')
+                this.el.classList.add('bg-[var(--color-100)]')
             } else {
-                this.el.classList.remove('bg-default-200')
+                this.el.classList.remove('bg-[var(--color-100)]')
             }
         }
     }

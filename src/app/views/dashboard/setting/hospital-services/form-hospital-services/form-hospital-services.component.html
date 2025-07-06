@@ -1,28 +1,28 @@
-<form [formGroup]="form()">
+<form [formGroup]="form">
     <div class="d-grid items-end">
         <div class="col-span-4">
-            <input-panel-text setLabel="Nombre del servicio" formControlName="name" />
+            <input-text setLabel="Nombre" formControlName="name" [setValidate]="control['name']" #validate />
         </div>
         <div class="col-span-4">
-            <input-panel-select [setOptions]="optionsAmbit()" setLabel="Ambito" formControlName="scopeId" />
+            <input-select setLabel="Ámbito" formControlName="scopeId" [setOptions]="optionsTypeAmbit()" [setValidate]="control['scopeId']" #validate />
         </div>
         <div class="col-span-4">
-            <input-panel-select [setOptions]="optionsGender()" setLabel="Sexo" formControlName="genderId" />
+            <input-select setLabel="Sexo" formControlName="genderId" [setOptions]="optionsGender()" [setValidate]="control['genderId']" #validate />
         </div>
         <div class="col-span-2">
-            <input-panel-text setType="number" setLabel="Numero de camas" setIcon="icofont-bed" formControlName="bedCount" />
+            <input-number setLabel="Número de Camas" formControlName="bedCount" [setValidate]="control['bedCount']" #validate />
         </div>
         <div class="col-span-2">
-            <input-panel-text setType="number" setLabel="Edad min" formControlName="minAge" />
+            <input-text setLabel="Edad Mínima" formControlName="minAge" [setValidate]="control['minAge']" #validate />
         </div>
         <div class="col-span-2">
-            <input-panel-text setType="number" setLabel="Edad max" formControlName="maxAge" />
+            <input-text setLabel="Edad Máxima" formControlName="maxAge" [setValidate]="control['maxAge']" #validate />
         </div>
         <div class="col-span-4">
-            <input-panel-select [setOptions]="optionsCentercost()" setLabel="Centro de costos" formControlName="costCenterId" />
+            <input-select setLabel="Centro de Costo" formControlName="costCenterId" [setOptions]="optionsCostCenter()" [setValidate]="control['costCenterId']" #validate />
         </div>
         <div class="col-span-2">
-            <input-panel-checkbox setText="Estado" [clean]="true" typeCheck="switch" formControlName="isActive" />
+            <input-onoff setLabel="Estado" formControlName="status" />
         </div>
     </div>
 </form>

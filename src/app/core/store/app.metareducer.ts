@@ -13,20 +13,20 @@ class LocalStorageHelper {
     }
 
     saveStateToLocalStorage(state: any): void {
-        if (typeof localStorage === 'undefined') return;
+        if (typeof sessionStorage === 'undefined') return;
 
         this.keys.forEach((key) => {
             if (state[key] !== undefined) {
-                localStorage.setItem(`${this.prefix}_${key}`, JSON.stringify(state[key]));
+                sessionStorage.setItem(`${this.prefix}_${key}`, JSON.stringify(state[key]));
             }
         });
     }
 
     loadStateFromLocalStorage(): any {
-        if (typeof localStorage === 'undefined') return {};
+        if (typeof sessionStorage === 'undefined') return {};
 
         return this.keys.reduce((acc: any, key) => {
-            const savedState = localStorage.getItem(`${this.prefix}_${key}`);
+            const savedState = sessionStorage.getItem(`${this.prefix}_${key}`);
             if (savedState) {
                 acc[key] = JSON.parse(savedState);
             }

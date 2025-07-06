@@ -2,24 +2,32 @@
     <ng-container panels>
         <div class="d-grid">
             <div class="col-span-4">
-                <blade-box-panel setTitle="Vehiculo" [padding]="true" (actionBar)="barAction($event)" [actionsActive]="true">
+                <blade-box-panel setTitle="Vehiculo" [padding]="true" [actionsActive]="true"  (actionBar)="barAction($event)" >
                     <ng-container boxbody>
-                        <form-vehicles [setForm]="form" />
+                        <form-vehicles #formCreate />
                     </ng-container>
                 </blade-box-panel>
             </div>
             <div class="col-span-8">
                 <blade-box-panel setTitle="Vehiculos">
                     <ng-container boxbody>
-                        <table-vehicles [vehicles]="vehicles()" />
+                        <table-vehicles (onTable)="onTable($event)" #table />
                     </ng-container>
                 </blade-box-panel>
             </div>
         </div>
     </ng-container>
 </blade-panel>
-<app-note>
-    <ng-container noteBody>
-# vehicle
+
+<blade-dialog idConnect="vehicle-update" setSize="md" [hideFooter]="true" [activeFade]="false" #dialogUpdate>
+    <ng-container dialogHeader>
+        <card-basic-text setTitle="Actualizar Entidad" />
     </ng-container>
-</app-note>
+    <ng-container dialogBody>
+        <blade-box-panel ui="clean" [padding]="true" [actionsActive]="true" [setActionsBar]="actionsUpdate" [headerActive]="false" (actionBar)="barAction($event)">
+            <ng-container boxbody>
+                <form-vehicles #formUpdate />
+            </ng-container>
+        </blade-box-panel>
+    </ng-container>
+</blade-dialog>

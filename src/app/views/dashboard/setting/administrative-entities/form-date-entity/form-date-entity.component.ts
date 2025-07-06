@@ -10,7 +10,7 @@ import { AdministrativeEntity_APPDTO, DataAssociated, FormControlOption, FormGro
 import { TitleIconSectionComponent } from '@layouts/shared/title-icon-section/title-icon-section.component';
 import { TypeRegimeService } from '@services/api';
 import { RxAppGisaService } from '@services/app';
-import { ValidateStringEmpty } from '@valid-control/index';
+import { ValidateLettersOnly, ValidateNumberEmpty, ValidateStringEmpty } from '@valid-control/index';
 import { distinctUntilChanged } from 'rxjs';
 
 @Component({
@@ -41,8 +41,8 @@ export class FormDateEntityComponent {
     form: FormGroup;
     formCloneEntity: AdministrativeEntity_APPDTO;
     formEntity: IForm<AdministrativeEntity_APPDTO> = {
-        code: ['', [ValidateStringEmpty()]],
-        name: ['', [ValidateStringEmpty()]],
+        code: [NaN, [ValidateNumberEmpty()]],
+        name: ['', [ValidateStringEmpty(), ValidateLettersOnly()]],
         address: ['', [ValidateStringEmpty()]],
         filingAddress: ['', [ValidateStringEmpty()]],
         email: [''],

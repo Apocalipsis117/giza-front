@@ -16,6 +16,7 @@ export interface State_share {
 
 export interface State_tabsController {
     tabs: MenuShortcutShortcutMenu[];
+    tabCurrent_uuid: string | null;
 }
 
 export interface State_appGisa {

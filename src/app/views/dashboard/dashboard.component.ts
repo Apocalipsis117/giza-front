@@ -39,10 +39,8 @@ export class DashboardComponent {
     ngOnInit(): void {
         this.appGisa.watchConfig.subscribe({
             next: (value) => {
-                const color = value.color;
-                const mode = value.mode;
-                this.appColor.set(color)
-                this.appMode.set(mode)
+                this.appColor.set(value.color)
+                this.appMode.set(value.mode)
             }
         })
         this.apisInit$.initAPIS();

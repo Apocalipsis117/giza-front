@@ -1,15 +1,17 @@
-import { Injectable } from '@angular/core';
-import { HospitalServiceAPP } from '@interfaces/index';
+import { Injectable, signal } from '@angular/core';
+import { HospitalService_APP } from '@interfaces/index';
 import { Subject } from 'rxjs';
 
 @Injectable({
     providedIn: 'root'
 })
 export class LocalHospitalServService {
-    private hospitalServ$ = new Subject<HospitalServiceAPP | null>();
-    hospitalServ = this.hospitalServ$.asObservable();
+    getEntity = signal<HospitalService_APP|null>(null);
+    private assistanceServSubject = new Subject<HospitalService_APP | null>();
+    assistanceServ = this.assistanceServSubject.asObservable();
 
-    emit(data: HospitalServiceAPP | null) {
-        this.hospitalServ$.next(data);
+    assistanceServEmit(data: HospitalService_APP | null) {
+        this.assistanceServSubject.next(data);
+        this.getEntity.set(data);
     }
 }

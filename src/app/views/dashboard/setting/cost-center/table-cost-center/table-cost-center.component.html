@@ -1,22 +1,33 @@
-<blade-table [headDivider]="true" [bodyYDivider]="true">
+<blade-table [setData]="dataTable()" [colspan]="5" (onPage)="paginate($event)" [loadingData]="load()">
+    <ng-container tableCols>
+        <col width="100">
+        <col>
+        <col width="100">
+    </ng-container>
     <ng-container tableHead>
         <tr>
             <th>Nombre centro de costo</th>
             <th>Cuenta contable</th>
             <th>Area</th>
             <th>Estado</th>
+            <th class="text-end" width="120">Accion</th>
         </tr>
     </ng-container>
     <ng-container tableBody>
-        @for(cost of list(); track cost.id) {
-            <tr>
-                <td>{{ cost.name }}</td>
-                <td>{{ cost.accountingAccount }}</td>
-                <td>{{ cost.area?.name }}</td>
-                <td>
-                    <badge-status [setStatus]="cost.status" />
-                </td>
-            </tr>
+        @for(entity of entities(); track entity.id) {
+        <tr TrSelected [idx]="tdSelected()" [id]="entity.id">
+            <td>{{ entity.name }}</td>
+            <td>{{ entity.accountingAccount }}</td>
+            <td>{{ entity.area?.name }}</td>
+            <td>
+                <badge-status [setStatus]="entity.status" />
+            </td>
+            <td class="text-end">
+                <div class="inline-flex gap-2">
+                    <btns-action [enableActions]="{ edit: true, delete: true }" [data]="entity" (onBtn)="onBtn($event)" />
+                </div>
+            </td>
+        </tr>
         }
     </ng-container>
 </blade-table>

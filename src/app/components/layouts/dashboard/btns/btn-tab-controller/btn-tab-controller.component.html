@@ -1,8 +1,8 @@
-<div class="li-tab-controller" [ngClass]="value().active">
+<div class="li-tab-controller" [class]="value().active">
     <div class="li-body rounded-t-md">
         <div class="btns-tab-group overflow-hidden rounded-md">
             <button type="button" [disabled]="value().active" class="btn-tab-controller" (click)="toGo()">
-                <!-- <i [ngClass]="value().icon" class="mr-2"></i> -->
+                <!-- <i [class]="value().icon" class="mr-2"></i> -->
                 <span>{{ value().display }}</span>
             </button>
             <div class="h-[34px] p-1">

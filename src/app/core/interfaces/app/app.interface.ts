@@ -165,7 +165,7 @@ export interface ItemListApp {
 
 
 /* tipo de return */
-export type TypeReturn = 'options' | null;
+export type TypeReturn = 'options' | 'options2' | null;
 
 
 /* output Data */
@@ -186,6 +186,7 @@ export interface BarActions {
     reset?: boolean;
     clean?: boolean;
     return?: boolean;
+    read?: boolean;
 }
 
 export interface ItemAction {
@@ -193,6 +194,25 @@ export interface ItemAction {
     label: string;
     icon: string;
     color: string;
+}
+
+/* btns-table-action */
+export type ActionNameBtns = keyof BtnsActions;
+export interface BtnsActions {
+    edit?: boolean;
+    delete?: boolean;
+    read?: boolean;
+}
+
+export interface BtnAction {
+    action: ActionNameBtns;
+    icon: string;
+    color: ColorsTailwind;
+}
+
+export interface onBtn<T> {
+    action: ActionNameBtns;
+    value: T;
 }
 
 export type UiBoxpanel = 'clean' | 'default' | 'white' | 'gentle';

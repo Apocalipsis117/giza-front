@@ -3,16 +3,16 @@
         <div class="d-grid">
             <div class="col-span-6">
                 <div class="mb-3">
-                    <blade-box-panel [padding]="true" setTitle="Insumo">
+                <blade-box-panel setTitle="Nuevo evento" [padding]="true" [actionsActive]="true"  (actionBar)="barAction($event)" >
                         <ng-container boxbody>
-                            form
+                            <form-adverse-events #formCreate />
                         </ng-container>
                     </blade-box-panel>
                 </div>
-                <div>
-                    <blade-box-panel setTitle="Insumos">
+                <div class="mb-3">
+                    <blade-box-panel setTitle="Eventos">
                         <ng-container boxbody>
-                            table
+                            <table-adverse-events (onTable)="onTable($event)" #table />
                         </ng-container>
                     </blade-box-panel>
                 </div>
@@ -20,3 +20,16 @@
         </div>
     </ng-container>
 </blade-panel>
+
+<blade-dialog idConnect="vehicle-update" setSize="md" [hideFooter]="true" [activeFade]="false" #dialogUpdate>
+    <ng-container dialogHeader>
+        <card-basic-text setTitle="Actualizar Eventos" />
+    </ng-container>
+    <ng-container dialogBody>
+        <blade-box-panel ui="clean" [padding]="true" [actionsActive]="true" [setActionsBar]="actionsUpdate" [headerActive]="false" (actionBar)="barAction($event)">
+            <ng-container boxbody>
+                <form-adverse-events #formUpdate/>
+            </ng-container>
+        </blade-box-panel>
+    </ng-container>
+</blade-dialog>

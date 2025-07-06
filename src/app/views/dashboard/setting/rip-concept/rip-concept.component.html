@@ -4,17 +4,30 @@
             <div class="col-span-4">
                 <blade-box-panel setTitle="Nuevo" [padding]="true" [actionsActive]="true" (actionBar)="barAction($event)">
                     <ng-container boxbody>
-                        <form-ripconcept [setForm]="form" />
+                        <form-ripconcept #formCreate />
                     </ng-container>
                 </blade-box-panel>
             </div>
             <div class="col-span-8">
                 <blade-box-panel setTitle="Conceptos">
                     <ng-container boxbody>
-                        <table-ripconcept [dataTable]="ripsList()" />
+                        <table-ripconcept #table (onTable)="onTable($event)" />
                     </ng-container>
                 </blade-box-panel>
             </div>
         </div>
     </ng-container>
 </blade-panel>
+
+<blade-dialog idConnect="rip-concept-update" setSize="md" [hideFooter]="true" #dialogUpdate [activeFade]="false">
+    <ng-container dialogHeader>
+        <card-basic-text setTitle="Actualizar Entidad" />
+    </ng-container>
+    <ng-container dialogBody>
+        <blade-box-panel ui="clean" [padding]="true" [actionsActive]="true" [setActionsBar]="actionsUpdate" [headerActive]="false" (actionBar)="barAction($event)">
+            <ng-container boxbody>
+                <form-ripconcept #formUpdate />
+            </ng-container>
+        </blade-box-panel>
+    </ng-container>
+</blade-dialog>

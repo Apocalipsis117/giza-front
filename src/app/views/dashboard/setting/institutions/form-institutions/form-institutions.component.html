@@ -1,45 +1,32 @@
-<form class="d-grid" [formGroup]="form()"><!--  -->
-    <div class="col-span-3">
-        <input-panel-text setLabel="Codigo" formControlName="code" />
-    </div>
-    <div class="col-span-3">
-        <input-panel-text setLabel="Codigo habitación" formControlName="roomCode" />
-    </div>
-    <div class="col-span-6">
-        <input-panel-text setLabel="Nombre" formControlName="name" />
-    </div>
-    <div class="col-span-4">
-        <input-panel-text setLabel="Direccion" formControlName="address" />
-    </div>
-    <div class="col-span-3">
-        <input-panel-text setLabel="Telefono" formControlName="phone" />
+<form class="d-grid" [formGroup]="form">
+    <div class="col-span-2">
+        <input-text setLabel="Código de Habitación" formControlName="roomCode" [setValidate]="control['roomCode']" #validate />
     </div>
     <div class="col-span-5">
-        <input-panel-text setLabel="Correo" formControlName="email" />
+        <input-text setLabel="Nombre" formControlName="name" [setValidate]="control['name']" #validate />
+    </div>
+    <div class="col-span-5">
+        <input-text setLabel="Dirección" formControlName="address" />
+    </div>
+    <div class="col-span-3">
+        <input-text setLabel="Teléfono" setIcon="icofont-ui-call" formControlName="phone" />
+    </div>
+    <div class="col-span-5">
+        <input-text setLabel="Correo" setIcon="icofont-envelope" formControlName="email" />
     </div>
     <div class="col-span-4">
-        <input-panel-select [setOptions]="optionsDepartments()" setLabel="departamento" formControlName="departmentId" />
+        <input-select-searh setLabel="Departamento" formControlName="departmentId" [setOptions]="optionsDepartment()" [setValidate]="control['departmentId']" #validate />
     </div>
     <div class="col-span-4">
-        <input-panel-select [setOptions]="optionsCities()" setLabel="municipio" [hiddenLoad]="true" formControlName="cityId" />
+        <input-select-searh setLabel="Municipio" formControlName="municipalityId" [setOptions]="optionsMunicipalies()" [setValidate]="control['municipalityId']" #validate />
     </div>
     <div class="col-span-4">
-        <input-panel-select [setOptions]="optionsLegalNature()" setLabel="Naturaleza Juridica" formControlName="legalNatureId" />
+        <input-select setLabel="Naturaleza Jurídica" formControlName="legalNatureId" [setOptions]="optionsLegalNature()" [setValidate]="control['legalNatureId']" #validate />
     </div>
     <div class="col-span-4">
-        <input-panel-select [setOptions]="optionsLevelComplexity()" setLabel="Nivel de complejidad" formControlName="complexityLevelId" />
+        <input-select setLabel="Nivel de Complejidad" formControlName="complexityLevelId" [setOptions]="optionsLevelComplexity()" [setValidate]="control['complexityLevelId']" #validate />
     </div>
-    <div class="col-span-8">
-        <blade-panel-options>
-            <ng-container optionsBody>
-            <div class="col-span-4">
-                <input-panel-checkbox setSize="sm" setText="A remitir" typeCheck="switch" [clean]="true" formControlName="toRefer" />
-            </div>
-            <div class="col-span-4">
-                <input-panel-checkbox setSize="sm" setText="Que Remite" typeCheck="switch" [clean]="true" formControlName="whoRefer" />
-            </div>
-            </ng-container>
-        </blade-panel-options>
+    <div class="col-span-4">
+        <input-select setLabel="Tipo de Remisión" formControlName="referralTypeId" [setOptions]="optionsTypeReferral()" [setValidate]="control['referralTypeId']" #validate />
     </div>
-    <!--  -->
 </form>

@@ -1,25 +1,25 @@
-<form [formGroup]="form()">
+<form [formGroup]="form">
     <div class="d-grid">
         <div class="col-span-4">
-            <input-panel-select [setOptions]="optionsBrandsvehicles()" setLabel="Marca" formControlName="brand" />
+            <input-text setLabel="Marca" formControlName="brand" [setValidate]="control['brand']" #validate />
         </div>
         <div class="col-span-8">
-            <input-panel-text setLabel="Modelo" formControlName="model" />
+            <input-text setLabel="Modelo" formControlName="model" [setValidate]="control['model']" #validate />
         </div>
         <div class="col-span-full">
-            <input-panel-select [setOptions]="optionsTypevehicles()" setLabel="Tipo de vehiculo" formControlName="vehicleTypeId" setIcon="icofont-police-car-alt-2" />
+            <input-select setLabel="Tipo de Vehículo" formControlName="vehicleTypeId" [setOptions]="optionsTypevehicles()" [setValidate]="control['vehicleTypeId']" #validate />
         </div>
         <div class="col-span-6">
-            <input-panel-text setLabel="Placa" formControlName="licensePlate" />
+            <input-text setLabel="Placa" formControlName="plate" [setValidate]="control['plate']" #validate />
         </div>
         <div class="col-span-6">
-            <input-panel-checkbox setLabel="Estado" setText="Activo" typeCheck="switch" [clean]="true" formControlName="status" />
+            <input-onoff setLabel="Estado" formControlName="status" />
         </div>
         <div class="col-span-full">
-            <input-panel-select [setOptions]="optionsActivityVehicle()" setLabel="Actividad" formControlName="activityId" />
+            <input-select setLabel="Actividad" formControlName="activityId" [setOptions]="optionsActivity()" [setValidate]="control['activityId']" #validate />
         </div>
         <div class="col-span-12 mb-3">
-            <input-panel-textarea setLabel="Descripción" formControlName="description" />
+            <input-textarea setLabel="Descripción" formControlName="description" />
         </div>
     </div>
 </form>

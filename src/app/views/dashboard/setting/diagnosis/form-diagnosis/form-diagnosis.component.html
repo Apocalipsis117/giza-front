@@ -1,43 +1,46 @@
-<form [formGroup]="form()">
+<form [formGroup]="form">
     <div class="d-grid items-end">
         <div class="col-span-3">
-            <input-panel-text setType="text" setLabel="Codigo" formControlName="code" />
+            <input-text setLabel="Código" formControlName="code" />
         </div>
         <div class="col-span-5">
-            <input-panel-text setType="text" setLabel="Nombre del diagnostico" formControlName="name" />
+            <input-text setLabel="Nombre" formControlName="name" [setValidate]="control['name']" #validate />
         </div>
         <div class="col-span-2">
-            <input-panel-text setType="number" setLabel="Edad min" formControlName="minAge" />
+            <input-text setLabel="Edad Mínima" formControlName="minAge" [setValidate]="control['minAge']" #validate />
         </div>
         <div class="col-span-2">
-            <input-panel-text setType="number" setLabel="Edad max" formControlName="maxAge" />
+            <input-text setLabel="Edad Máxima" formControlName="maxAge" [setValidate]="control['maxAge']" #validate />
         </div>
         <div class="col-span-3">
-            <input-panel-select [setOptions]="options()" setLabel="Sexo" formControlName="genderId" />
+            <input-select setLabel="Sexo" [setOptions]="optionsGenders()" formControlName="genderId" [setValidate]="control['genderId']" #validate />
         </div>
         <div class="col-span-3">
-            <input-panel-select [setOptions]="options()" setLabel="Capitulo diagnostico" formControlName="diagnosisChapterId" />
+            <input-select setLabel="Capítulo Diagnóstico" [setOptions]="optionsCharters()" formControlName="chapterId" [setValidate]="control['chapterId']" #validate />
         </div>
         <div class="col-span-3">
-            <input-panel-select [setOptions]="options()" setLabel="categoria diagnostico" formControlName="diagnosisCategoryId" />
+            <input-select setLabel="Categoría Diagnóstico" [setOptions]="optionsCategories()" formControlName="categoryId" [setValidate]="control['categoryId']" #validate />
         </div>
         <div class="col-span-3">
-            <input-panel-select [setOptions]="options()" setLabel="subcategoía diagnostico" formControlName="diagnosisSubcategoryId" />
+            <input-select setLabel="Subcategoría Diagnóstico" [setOptions]="optionsSubcategories()" formControlName="subCategoryId" [setValidate]="control['subCategoryId']" #validate />
         </div>
         <div class="col-span-full">
             <blade-panel-options display="flex">
                 <ng-container optionsBody>
                     <div class="grow">
-                        <input-panel-checkbox setSize="sm" [clean]="true" typeCheck="switch" setText="Notificar" formControlName="notify" />
+                        <input-onoff setLabel="Notificar" formControlName="notify" />
                     </div>
                     <div class="grow">
-                        <input-panel-checkbox setSize="sm" [clean]="true" typeCheck="switch" setText="Hospitalizacion" formControlName="hospitalization" />
+                        <input-onoff setLabel="Procedimiento" formControlName="procedure" />
                     </div>
                     <div class="grow">
-                        <input-panel-checkbox setSize="sm" [clean]="true" typeCheck="switch" setText="Común" formControlName="common" />
+                        <input-onoff setLabel="Hospitalización" formControlName="hospitalization" />
                     </div>
                     <div class="grow">
-                        <input-panel-checkbox setSize="sm" [clean]="true" typeCheck="switch" setText="Vigente" formControlName="active" />
+                        <input-onoff setLabel="Común" formControlName="common" />
+                    </div>
+                    <div class="grow">
+                        <input-onoff setLabel="Vigente" formControlName="active" />
                     </div>
                 </ng-container>
             </blade-panel-options>

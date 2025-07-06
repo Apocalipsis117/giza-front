@@ -18,7 +18,7 @@
             }
         </div>
     </fieldset>
-    <ul [class]="{ 'active': visible() }" #optionsList>
+    <ul [class]="{ 'active': visible() }">
         @for(option of options(); let i = $index; track option.value) {
             <li #optionItem [class.active]="i === currentIndex()" [title]="option.name" [ariaValueText]="option.value" (click)="changeInput(option.value)">{{ option.name }}</li>
         }

@@ -1,6 +1,6 @@
-import { Component, computed, effect, ElementRef, forwardRef, input, signal, viewChild } from '@angular/core';
-import { FormsModule, NG_VALUE_ACCESSOR } from '@angular/forms';
-import { arrayControlHelper, compareHelper, formHelper, generator } from '@helpers/index';
+import { Component, computed, effect, ElementRef, forwardRef, input, signal, viewChild, viewChildren } from '@angular/core';
+import { AbstractControl, FormsModule, NG_VALUE_ACCESSOR } from '@angular/forms';
+import { arrayControlHelper, compareHelper, formHelper, generator, ngFormHelper } from '@helpers/index';
 import { FormControlOption } from '@interfaces/index';
 
 @Component({
@@ -20,6 +20,8 @@ import { FormControlOption } from '@interfaces/index';
     }
 })
 export class InputSelectSearhComponent {
+    optionItems = viewChildren<ElementRef<HTMLLIElement>>('optionItem');
+    public setValidate = input<AbstractControl | null>(null);
     public readonly emptyValue = input<'' | null>('');
     public readonly setPlaceholder = input<string>('Seleccionar');
     public readonly setLabel = input<string>('');
@@ -32,6 +34,21 @@ export class InputSelectSearhComponent {
     id = generator.uuid('input');
     idContainer = this.id + 'container';
     currentIndex = signal<number>(-1);
+    error = signal<string | null>(null);
+
+    constructor() {
+        effect(() => {
+            const idx = this.currentIndex();
+            const items = this.optionItems();
+            if (idx >= 0 && idx < items.length) {
+                items[idx]?.nativeElement.scrollIntoView({ block: 'nearest', behavior: 'smooth' });
+            }
+        });
+    }
+
+    validate() {
+        ngFormHelper.validate(this.setValidate(), this.error);
+    }
 
     options = computed(() => {
         const options = [
@@ -54,6 +71,7 @@ export class InputSelectSearhComponent {
 
     writeValue(obj: any): void {
         this.currentValue.set(obj || '');
+        this.error.set(null);
     }
     onChange = (_: any) => {};
     registerOnChange(fn: any): void {
@@ -64,8 +82,8 @@ export class InputSelectSearhComponent {
         this.onTouch = fn;
     }
     changeInput() {
-        this.onTouch();
         this.onChange(this.currentValue());
+        this.validate();
     }
 
     select(value: string | number | null) {
@@ -77,6 +95,11 @@ export class InputSelectSearhComponent {
     clean() {
         this.visible.set(false);
         this.searchValue.set('');
+    }
+
+    blur() {
+        this.onTouch();
+        this.validate();
     }
 
     onKeydown(event: KeyboardEvent) {

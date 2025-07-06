@@ -1,33 +1,37 @@
-<blade-table [headDivider]="true" [bodyYDivider]="true">
-    <ng-container tableCols>
-        <col width="100">
-        <col>
-        <col width="100">
-    </ng-container>
+<blade-table [setData]="dataTable()" [colspan]="7" (onPage)="paginate($event)" [loadingData]="load()">
     <ng-container tableHead>
         <tr>
-            <th width="150">Modelo</th>
+            <th width="150">Auto</th>
+            <th width="100">Placa</th>
             <th width="150">Tipo</th>
-            <th width="150">Placa</th>
             <th width="250">Descripcion</th>
-            <th width="150">Actividad</th>
-            <th width="120">Estado</th>
+            <th width="160">Actividad</th>
+            <th width="80">Estado</th>
             <th class="text-end" width="120">Accion</th>
         </tr>
     </ng-container>
     <ng-container tableBody>
-        @for(vehicle of vehicles(); track vehicle.id) {
-        <tr>
-            <td>{{ vehicle.model }}</td>
-            <td>{{ vehicle.vehicleType.name }}</td>
-            <td>{{ vehicle.licensePlate }}</td>
-            <td>{{ vehicle.description }}</td>
-            <td>{{ vehicle.activity.name }}</td>
+        @for(entity of entities(); track entity.uuid) {
+        <tr TrSelected [idx]="tdSelected()" [id]="entity.uuid">
             <td>
-                <badge-status [setStatus]="vehicle.status" />
+                <p class="uppercase font-bold">{{ entity.brand }}</p>
+                <p class="text-sm"><span class="text-gray-400">MODELO:</span> {{ entity.model }}</p>
+            </td>
+            <td>
+                <div class="bg-yellow-200 rounded-md p-1 px-2 font-semibold text-center">
+                    {{ entity.plate }}
+                </div>
+            </td>
+            <td>{{ entity.vehicleType.name }}</td>
+            <td>{{ entity.description }}</td>
+            <td>{{ entity.activity.name }}</td>
+            <td>
+                <badge-status [setStatus]="entity.status" />
             </td>
             <td class="text-end">
-                <app-button setIcon="icofont-ui-edit" setSize="sm" />
+                <div class="inline-flex gap-2">
+                    <btns-action [enableActions]="{ edit: true, delete: true }" [data]="entity" (onBtn)="onBtn($event)" />
+                </div>
             </td>
         </tr>
         }

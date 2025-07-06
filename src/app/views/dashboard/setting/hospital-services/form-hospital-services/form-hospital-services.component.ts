@@ -1,40 +1,82 @@
-import { Component, computed, inject, input, signal } from '@angular/core';
-import { FormGroup, ReactiveFormsModule } from '@angular/forms';
-import { InputPanelCheckboxComponent } from '@form-control/input-panel-checkbox/input-panel-checkbox.component';
-import { InputPanelSelectComponent } from '@form-control/input-panel-select/input-panel-select.component';
-import { InputPanelTextComponent } from '@form-control/input-panel-text/input-panel-text.component';
-import { HospitalServiceDTO_APP, IForm, FormControlOption } from '@interfaces/index';
-import { CostCenterService, TypeAmbitService, TypeSexService } from '@services/api';
-import { TestService } from '@services/app';
+import { Component, inject, signal, viewChildren } from '@angular/core';
+import { FormBuilder, FormGroup, ReactiveFormsModule } from '@angular/forms';
+import { ngFormHelper } from '@helpers/index';
+import { InputNumberComponent } from '@im-inputs/input-number/input-number.component';
+import { InputOnoffComponent } from '@im-inputs/input-onoff/input-onoff.component';
+import { InputSelectComponent } from '@im-inputs/input-select/input-select.component';
+import { InputTextComponent } from '@im-inputs/input-text/input-text.component';
+import { FormControlOption, FormGroupTyped, HospitalService_APPDTO, IForm } from '@interfaces/index';
+import { CostCenterService, TypeAmbitService, TypeGenderService } from '@services/api';
+import { ValidateNumberEmpty, ValidateStringEmpty, ValidStrict } from '@valid-control/index';
+import { forkJoin } from 'rxjs';
 
 @Component({
     selector: 'form-hospital-services',
     standalone: true,
     imports: [
-        InputPanelTextComponent,
-        InputPanelSelectComponent,
-        InputPanelCheckboxComponent,
+        InputTextComponent,
+        InputOnoffComponent,
+        InputSelectComponent,
+        InputNumberComponent,
         ReactiveFormsModule
     ],
     templateUrl: './form-hospital-services.component.html'
 })
 export class FormHospitalServicesComponent {
-    setForm = input<FormGroup<IForm<HospitalServiceDTO_APP>>>();
-    testServ = inject(TestService);
-    costcenterServ = inject(CostCenterService);
-    genderServ = inject(TypeSexService);
-    ambitServ = inject(TypeAmbitService);
-    options = signal<FormControlOption[]>([]);
-    optionsCentercost = signal<FormControlOption[]>([]);
+    private validates = viewChildren('validate');
+    private readonly gender$ = inject(TypeGenderService);
+    private readonly TypeAmbit$ = inject(TypeAmbitService);
+    private readonly CostCenter$ = inject(CostCenterService);
     optionsGender = signal<FormControlOption[]>([]);
-    optionsAmbit = signal<FormControlOption[]>([]);
+    optionsTypeAmbit = signal<FormControlOption[]>([]);
+    optionsCostCenter = signal<FormControlOption[]>([]);
+    private fb = inject(FormBuilder);
 
-    form = computed(() => this.setForm() as FormGroup);
+    form!: FormGroup;
+    formCLone: HospitalService_APPDTO;
+    formAssistance: IForm<HospitalService_APPDTO> = {
+        name: ['', [ValidateStringEmpty()]],
+        minAge: ['', [ValidateStringEmpty()]],
+        maxAge: ['', [ValidateStringEmpty()]],
+        status: [true],
+        bedCount: [NaN, [ValidateNumberEmpty()]],
+        genderId: [null, [ValidStrict()]],
+        scopeId: [null, [ValidStrict()]],
+        costCenterId: [null, [ValidStrict()]]
+    };
+
+    constructor() {
+        this.form = this.fb.group(this.formAssistance);
+        this.formCLone = ngFormHelper.unboxProperties(this.formAssistance);
+    }
+
+    get control() {
+        return this.form.controls as FormGroupTyped<HospitalService_APPDTO>;
+    }
 
     ngOnInit(): void {
-        this.testServ.getOptions('options').subscribe(data => this.options.set(data));
-        this.costcenterServ.getAll('options').subscribe(data => this.optionsCentercost.set(data));
-        this.genderServ.getAll('options').subscribe(data => this.optionsGender.set(data));
-        this.ambitServ.getAll('options').subscribe(data => this.optionsAmbit.set(data));
+        const obs = forkJoin({
+            gender: this.gender$.list('options'),
+            typeAmbit: this.TypeAmbit$.list('options'),
+            costCenter: this.CostCenter$.list('options'),
+        });
+
+        obs.subscribe({
+            next: (value) => {
+                this.optionsGender.set(value.gender);
+                this.optionsTypeAmbit.set(value.typeAmbit);
+                this.optionsCostCenter.set(value.costCenter);
+            }
+        });
+    }
+
+    reset() {
+        this.form.reset(this.formCLone);
+        this.form.clearValidators();
+        this.form.updateValueAndValidity();
+    }
+
+    validate() {
+        this.validates()?.forEach((x: any) => x.validate())
     }
 }

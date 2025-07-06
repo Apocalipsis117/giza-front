@@ -1,9 +1,8 @@
 import { Component, computed, inject, signal } from '@angular/core';
-import { DiagnosisAPP } from '@interfaces/app';
 import { SelectSomeItemComponent } from '@layouts/dashboard/ux/select-some-item/select-some-item.component';
 import { BlockSwitchStatusComponent } from '@layouts/shared/block-switch-status/block-switch-status.component';
 import { LocalDiagnosisService } from '../local-diagnosis.service';
-import { BadgeStatusComponent } from '@layouts/shared/badge-status/badge-status.component';
+import { Diagnosis_APP } from '@interfaces/index';
 
 @Component({
     selector: 'tdetail-diagnosis',
@@ -11,16 +10,20 @@ import { BadgeStatusComponent } from '@layouts/shared/badge-status/badge-status.
     imports: [
         BlockSwitchStatusComponent,
         SelectSomeItemComponent,
-        BadgeStatusComponent
+        BlockSwitchStatusComponent
     ],
     templateUrl: './tdetail-diagnosis.component.html'
 })
 export class TdetailDiagnosisComponent {
-    data = signal<DiagnosisAPP | null>(null);
+    data = signal<Diagnosis_APP | null>(null);
     localServ = inject(LocalDiagnosisService);
 
     ngOnInit(): void {
-        this.localServ.watchData.subscribe(data => this.data.set(data));
+        this.localServ.readEntity$.subscribe({
+            next: (value) => {
+                this.data.set(value)
+            }
+        });
     }
 
     value = computed(() => {
@@ -34,10 +37,13 @@ export class TdetailDiagnosisComponent {
             hospitalization: this.data()!.hospitalization,
             common: this.data()!.common,
             active: this.data()!.active,
-            genderName: this.data()!.gender.name,
-            categoryName: this.data()!.diagnosisCategory.name,
-            categoryRange: this.data()!.diagnosisCategory.range,
-            charterName: this.data()!.diagnosisCategory.diagnosisChapter.name
+            categoryName: this.data()!.category.name,
+            categoryRange: this.data()!.category.range,
+            chapter: this.data()!.chapter.name,
+            chapterRange: this.data()!.chapter.range,
+            gender: this.data()!.gender.name,
+            subCategory: this.data()!.subCategory.name,
+            subCategoryRabge: this.data()!.subCategory.range,
         }
     });
 }

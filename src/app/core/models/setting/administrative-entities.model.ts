@@ -9,25 +9,26 @@ export class AdministrativeEntityDTO {
     constructor(public input: AdministrativeEntity_APPDTO) {}
 
     get data(): string {
+        const _ = this.input;
         const data: AdministrativeEntity_DTO = {
-            codigo: this.input.code,
-            nombre: this.input.name,
-            nit: this.input.nit,
-            direccion: this.input.address,
-            direccionRadicacion: this.input.filingAddress,
-            correo: this.input.email,
-            correoFactuElect: this.input.electronicBillingEmail,
-            soat: this.input.soat,
-            estado: this.input.status,
-            telefono: this.input.phone,
-            longitudAutorizacion: this.input.authorizationLength,
-            municipioId: this.input.municipalityId,
-            departamentoId: this.input.departmentId,
-            requiereAnexo2: this.input.requiresAnnex2,
-            otrosDatos: this.input.otherData,
-            plantillaResolucion1552: this.input.reportResolution256,
-            reporteResolucion256: this.input.reportResolution256,
-            regimenId: this.input.regimeId
+            codigo: _.code,
+            nombre: _.name,
+            nit: _.nit,
+            direccion: _.address,
+            direccionRadicacion: _.filingAddress,
+            correo: _.email,
+            correoFactuElect: _.electronicBillingEmail,
+            soat: _.soat,
+            estado: _.status,
+            telefono: _.phone,
+            longitudAutorizacion: _.authorizationLength,
+            municipioId: _.municipalityId,
+            departamentoId: _.departmentId,
+            requiereAnexo2: _.requiresAnnex2,
+            otrosDatos: _.otherData,
+            plantillaResolucion1552: _.reportResolution256,
+            reporteResolucion256: _.reportResolution256,
+            regimenId: _.regimeId
         };
         return JSON.stringify(data);
     }
@@ -40,26 +41,27 @@ export class AdministrativeEntity {
     constructor(public input: AdministrativeEntity_API) {}
 
     get data(): AdministrativeEntity_APP {
+        const _ = this.input;
         return {
-            address: this.input.direccion,
-            authorizationLength: this.input.longitudAutorizacion,
-            code: this.input.codigo,
-            electronicBillingEmail: this.input.correoFactuElect,
-            email: this.input.correo,
-            filingAddress: this.input.direccionRadicacion,
-            id: this.input.id,
-            name: this.input.nombre,
-            phone: this.input.telefono,
-            nit: this.input.nit,
-            soat: this.input.soat,
-            requiresAnnex2: this.input.requiereAnexo2,
-            regime: TypeRegime.setProperty(this.input.regimen),
-            otherData: this.input.otrosDatos,
-            department: Apartment.setProperty(this.input.departamento),
-            municipality: Municipaly.setProperty(this.input.municipio),
-            reportResolution256: this.input.reporteResolucion256,
-            templateResolution1552: this.input.plantillaResolucion1552,
-            status: this.input.estado
+            address: _.direccion,
+            authorizationLength: _.longitudAutorizacion,
+            code: _.codigo,
+            electronicBillingEmail: _.correoFactuElect,
+            email: _.correo,
+            filingAddress: _.direccionRadicacion,
+            id: _.id,
+            name: _.nombre,
+            phone: _.telefono,
+            nit: _.nit,
+            soat: _.soat,
+            requiresAnnex2: _.requiereAnexo2,
+            regime: TypeRegime.setProperty(_.regimen),
+            otherData: _.otrosDatos,
+            department: Apartment.setProperty(_.departamento),
+            municipality: Municipaly.setProperty(_.municipio),
+            reportResolution256: _.reporteResolucion256,
+            templateResolution1552: _.plantillaResolucion1552,
+            status: _.estado
         }
     }
 

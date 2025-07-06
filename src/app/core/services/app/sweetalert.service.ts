@@ -76,6 +76,16 @@ export class SweetalertService {
             ...this.ui
         });
     }
+
+    canOutup(can: boolean | undefined) {
+        if (can) {
+            return this.alertSimpleConfirm('Tiene datos sin guardar. ¿Seguro de que quiere salir?')
+                .then((result) => {
+                    return result.isConfirmed;
+                });
+        }
+        return true;
+    }
 }
 
 export interface SwaOptionsSmall {

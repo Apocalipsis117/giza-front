@@ -28,15 +28,18 @@ export const routers: Route[] = [{
 },
 {
     path: 'vehicles',
-    loadComponent: () => import('./vehicles/vehicles.component').then(c => c.VehiclesComponent)
+    loadComponent: () => import('./vehicles/vehicles.component').then(c => c.VehiclesComponent),
+    canDeactivate: [UnsavedChangesGuard]
 },
 {
     path: 'administrative-entities',
-    loadComponent: () => import('./administrative-entities/administrative-entities.component').then(c => c.AdministrativeEntitiesComponent)
+    loadComponent: () => import('./administrative-entities/administrative-entities.component').then(c => c.AdministrativeEntitiesComponent),
+    canDeactivate: [UnsavedChangesGuard]
 },
 {
     path: 'institutions',
-    loadComponent: () => import('./institutions/institutions.component').then(c => c.InstitutionsComponent)
+    loadComponent: () => import('./institutions/institutions.component').then(c => c.InstitutionsComponent),
+    canDeactivate: [UnsavedChangesGuard]
 },
 {
     path: 'cups-group',
@@ -59,8 +62,8 @@ export const routers: Route[] = [{
     loadComponent: () => import('./adverse-events/adverse-events.component').then(c => c.AdverseEventsComponent)
 },
 {
-    path: 'diagnostic-group',
-    loadComponent: () => import('./diagnostic-group/diagnostic-group.component').then(c => c.DiagnosticGroupComponent)
+    path: 'diagnosis-group',
+    loadComponent: () => import('./diagnosis-group/diagnosis-group.component').then(c => c.DiagnosisGroupComponent)
 },
 {
     path: 'cost-center',
@@ -68,7 +71,8 @@ export const routers: Route[] = [{
 },
 {
     path: 'hospital-services',
-    loadComponent: () => import('./hospital-services/hospital-services.component').then(c => c.HospitalServicesComponent)
+    loadComponent: () => import('./hospital-services/hospital-services.component').then(c => c.HospitalServicesComponent),
+    canDeactivate: [UnsavedChangesGuard]
 },
 {
     path: 'employees',

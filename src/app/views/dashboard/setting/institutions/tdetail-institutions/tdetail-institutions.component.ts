@@ -1,14 +1,38 @@
-import { Component } from '@angular/core';
-import { BlockSwitchStatusComponent } from '@layouts/shared/block-switch-status/block-switch-status.component';
+import { Component, computed, inject, signal } from '@angular/core';
+import { Institutions_APP, Institutions_Detail } from '@interfaces/index';
+import { SelectSomeItemComponent } from '@layouts/dashboard/ux/select-some-item/select-some-item.component';
+import { LocalInstitutionsService } from '../local-institutions.service';
 
 @Component({
     selector: 'tdetail-institutions',
     standalone: true,
     imports: [
-        BlockSwitchStatusComponent
+        SelectSomeItemComponent
     ],
     templateUrl: './tdetail-institutions.component.html'
 })
 export class TdetailInstitutionsComponent {
+    private readonly local$ = inject(LocalInstitutionsService);
+    data = signal<Institutions_APP | null>(null);
 
+    ngOnInit(): void {
+        this.local$.readEntity$.subscribe(data => {
+            this.data.set(data);
+        })
+    }
+
+    value = computed((): Institutions_Detail => {
+        return {
+            name: this.data()!.name,
+            roomCode: this.data()!.roomCode,
+            address: this.data()!.address,
+            phone: this.data()!.phone,
+            email: this.data()!.email,
+            complexityLevel: this.data()!.complexityLevel.name,
+            department: this.data()!.department.name,
+            legalNature: this.data()!.legalNature.name,
+            municipality: this.data()!.municipality.name,
+            referralType: this.data()!.referralType.name,
+        }
+    })
 }

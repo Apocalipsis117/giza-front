@@ -1,14 +1,15 @@
-import { Component, ViewChild, inject, signal } from '@angular/core';
-import { FormBuilder, FormGroup } from '@angular/forms';
-import { ngFormHelper, queries } from '@helpers/index';
-import { DiagnosisAPP_PAGE, DiagnosisDTO_APP } from '@interfaces/app';
-import { ActionName, BarActions, IForm } from '@interfaces/index';
+import { Component, DestroyRef, inject, viewChild } from '@angular/core';
+import { DirectivesModule } from '@directive/module';
+import { ActionName, BarActions, Diagnosis_APP, Diagnosis_APPDTO, tabsControls } from '@interfaces/index';
 import { BladeBoxPanelComponent } from '@layouts/dashboard/blades/blade-box-panel/blade-box-panel.component';
+import { BladeDialogComponent } from '@layouts/dashboard/blades/blade-dialog/blade-dialog.component';
 import { BladePanelComponent } from '@layouts/dashboard/blades/blade-panel/blade-panel.component';
-import { NoteComponent } from '@layouts/shared/note/note.component';
+import { BladeTabsHorizontalComponent } from '@layouts/dashboard/blades/blade-tabs-horizontal/blade-tabs-horizontal.component';
+import { CardBasicTextComponent } from '@layouts/dashboard/cards/card-basic-text/card-basic-text.component';
 import { DiagnosisService } from '@services/api';
 import { SweetalertService } from '@services/app';
 import { FormDiagnosisComponent } from './form-diagnosis/form-diagnosis.component';
+import { LocalDiagnosisService } from './local-diagnosis.service';
 import { TableDiagnosisComponent } from './table-diagnosis/table-diagnosis.component';
 import { TdetailDiagnosisComponent } from './tdetail-diagnosis/tdetail-diagnosis.component';
 
@@ -18,89 +19,177 @@ import { TdetailDiagnosisComponent } from './tdetail-diagnosis/tdetail-diagnosis
     imports: [
         BladePanelComponent,
         BladeBoxPanelComponent,
-        NoteComponent,
+        DirectivesModule,
         TdetailDiagnosisComponent,
         TableDiagnosisComponent,
+        CardBasicTextComponent,
+        BladeTabsHorizontalComponent,
+        BladeDialogComponent,
         FormDiagnosisComponent
     ],
     templateUrl: './diagnosis.component.html'
 })
 export class DiagnosisComponent {
-    @ViewChild('table') table!: TableDiagnosisComponent;
-    diagnosis$ = inject(DiagnosisService);
-    swal = inject(SweetalertService);
-    fb = inject(FormBuilder);
-    diagnosis = signal<DiagnosisAPP_PAGE | null>(null);
-    paramPaginate = signal<any>(queries.paramsPage);
-    form!: FormGroup;
-    actionsTdetail: BarActions = {
+    private readonly destroyRef = inject(DestroyRef);
+    private readonly swal$ = inject(SweetalertService);
+    private readonly diagnosis$ = inject(DiagnosisService);
+    private readonly local$ = inject(LocalDiagnosisService);
+    readonly tabController = viewChild('tabController', { read: BladeTabsHorizontalComponent});
+    readonly dialogUpdate = viewChild('dialogUpdate', { read: BladeDialogComponent});
+    readonly formCreate = viewChild('formCreate', { read: FormDiagnosisComponent});
+    readonly formUpdate = viewChild('formUpdate', { read: FormDiagnosisComponent});
+    readonly table = viewChild('table', { read: TableDiagnosisComponent});
+    actionsDetail: BarActions = {
+        edit: true,
         delete: true,
-        clean: true,
-        edit: true
+        clean: true
     }
-
-    formDiagnosiCLone: DiagnosisDTO_APP;
-    formDiagnosi: IForm<DiagnosisDTO_APP> = {
-        active: [false],
-        code: [''],
-        common: [false],
-        diagnosisCategoryId: [''],
-        diagnosisChapterId: [''],
-        diagnosisSubcategoryId: [''],
-        genderId: [''],
-        hospitalization: [false],
-        maxAge: [''],
-        minAge: [''],
-        name: [''],
-        notify: [false],
-        procedure: [false]
+    actionsUpdate: BarActions = {
+        update: true,
+        return: true
     }
+    tabs: tabsControls[] = [
+        {
+            active: true,
+            idConnect: 'add-entity',
+            label: 'Crear entidad'
+        },
+        {
+            active: false,
+            idConnect: 'add-platform',
+            label: 'Entidades'
+        }
+    ];
 
     constructor() {
-        this.form = this.fb.group(this.formDiagnosi);
-        this.formDiagnosiCLone = ngFormHelper.unboxProperties(this.formDiagnosi)
+        this.destroyRef.onDestroy(() => {
+            this.local$.entityEmit(null);
+        })
     }
 
-    ngOnInit(): void {
-        this.queryDiagnosis();
-    }
-
-    queryDiagnosis() {
-        this.diagnosis$.getAllPage(this.paramPaginate()).subscribe(data => this.diagnosis.set(data))
+    canGoOut(): Promise<boolean> | boolean {
+        return this.swal$.canOutup(this.formCreate()?.form.dirty)
     }
 
     barAction(e: ActionName) {
+        const data = this.local$.getEntity();
         if (e === 'save') this.save();
-        else if (e === 'reset') this.reset();
+        else if (e === 'reset') this.formCreate()?.reset();
         else if (e === 'clean') this.cleanTdetail();
-    }
-
-    save() {
-        if (this.form.valid) {
-            this.swal.loading();
-            this.diagnosis$.post(this.form.value).subscribe({
-                next: (data) => {
-                    console.info("data", data);
-                    this.swal.formSave('success');
-                    this.reset();
-                },
-                error: () => this.swal.formSave('error')
-            });
-        } else {
-            this.swal.formSave('warning');
+        else if (e === 'edit') {
+            if(data) {
+                this.dataEdit(data);
+                this.dialogUpdate()?.show();
+            } else {
+                this.swal$.alertSimple('Debe seleccionar una Entidad', 'info');
+            }
+        }
+        else if (e === 'delete') {
+            this.deleteAlert(data);
+        }
+        else if (e === 'update') this.update();
+        else if (e === 'return') {
+            this.dataEdit(data)
+            this.swal$.alertSimple('Valores originales cargados.', 'success');
         }
     }
 
-    reset() {
-        this.form.reset(this.formDiagnosiCLone);
+    private showTab(id: number) {
+        this.tabController()?.showTab(this.tabs[id].idConnect);
     }
 
-    paginate(e: any) {
-        this.paramPaginate.set(e);
-        this.queryDiagnosis();
+    private save() {
+        const form = this.formCreate()?.form;
+        if (form?.valid) {
+            this.swal$.loading();
+            this.diagnosis$.post(form.value).subscribe({
+                next: (value) => {
+                    this.local$.entityEmit(value);
+                },
+                complete: () => {
+                    this.swal$.formSave('success');
+                    this.formCreate()?.reset();
+                    this.table()?.queryAdministrativeEntities();
+                    this.showTab(1);
+                },
+                error: () => this.swal$.formSave('error')
+            })
+        } else {
+            this.swal$.formSave('warning');
+            this.formCreate()?.markAlltouched();
+        }
     }
 
-    cleanTdetail() {
-        this.table.clean();
+    private update() {
+        const form = this.formUpdate()?.form;
+        if (form?.valid) {
+            this.swal$.loading();
+            const data = this.local$.getEntity();
+            this.diagnosis$.update(data!.id, form.value).subscribe({
+                next: (value) => {
+                    this.local$.entityEmit(value);
+                },
+                complete: () => {
+                    this.dialogUpdate()?.hide();
+                    this.swal$.formSave('success');
+                    this.table()?.queryAdministrativeEntities();
+                    this.showTab(1);
+                },
+                error: () => this.swal$.formSave('error')
+            })
+        } else {
+            this.swal$.formSave('warning');
+            this.formUpdate()?.markAlltouched();
+        }
+    }
+
+    private deleteAlert(data: Diagnosis_APP | null) {
+        if(data) {
+            this.swal$.toastConfirm('warning', {
+                text: 'Seguro que desea elimina ' + data.name,
+                title: 'Confirmar'
+            }).then(value => {
+                if(value.isConfirmed) {
+                    this.delete(data);
+                }
+            })
+        }
+    }
+
+    private delete(data: Diagnosis_APP) {
+        this.swal$.loading();
+        this.diagnosis$.delete(data.id).subscribe({
+            next: () => {
+                const text = data.name + ' ha sido liminado';
+                this.swal$.alertSimple(text, 'success');
+                this.table()?.queryAdministrativeEntities();
+                this.local$.entityEmit(null);
+            }
+        });
+    }
+
+    private cleanTdetail() {
+        this.table()?.clean();
+    }
+
+    private dataEdit(data: Diagnosis_APP | null) {
+        if(data) {
+            const values: Diagnosis_APPDTO = {
+                active: data.active,
+                categoryId: data.category.id,
+                chapterId: data.chapter.id,
+                code: data.code,
+                common: data.common,
+                genderId: data.gender.id,
+                hospitalization: data.hospitalization,
+                maxAge: data.maxAge,
+                minAge: data.minAge,
+                name: data.name,
+                notify: data.notify,
+                procedure: data.procedure,
+                subCategoryId: data.subCategory.id
+            }
+            this.formUpdate()?.setValues(values);
+        }
     }
 }

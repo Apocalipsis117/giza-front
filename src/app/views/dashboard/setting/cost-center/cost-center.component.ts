@@ -1,10 +1,9 @@
-import { Component, inject, signal } from '@angular/core';
-import { FormBuilder, FormGroup } from '@angular/forms';
-import { ngFormHelper, queries } from '@helpers/index';
-import { ActionName, CostCenter_PageAPP, CostCenter_APPDTO, IForm } from '@interfaces/index';
+import { Component, inject, signal, viewChild } from '@angular/core';
+import { BarActions, CostCenter_APP, CostCenter_APPDTO, onBtn } from '@interfaces/index';
 import { BladeBoxPanelComponent } from '@layouts/dashboard/blades/blade-box-panel/blade-box-panel.component';
+import { BladeDialogComponent } from '@layouts/dashboard/blades/blade-dialog/blade-dialog.component';
 import { BladePanelComponent } from '@layouts/dashboard/blades/blade-panel/blade-panel.component';
-import { NoteComponent } from '@layouts/shared/note/note.component';
+import { CardBasicTextComponent } from '@layouts/dashboard/cards/card-basic-text/card-basic-text.component';
 import { CostCenterService } from '@services/api';
 import { SweetalertService } from '@services/app';
 import { FormCostCenterComponent } from './form-cost-center/form-cost-center.component';
@@ -18,74 +17,122 @@ import { TableCostCenterComponent } from './table-cost-center/table-cost-center.
         BladeBoxPanelComponent,
         TableCostCenterComponent,
         FormCostCenterComponent,
-        NoteComponent
+        BladeDialogComponent,
+        CardBasicTextComponent
     ],
     templateUrl: './cost-center.component.html'
 })
 export class CostCenterComponent {
-    swal = inject(SweetalertService);
-    centerCost = inject(CostCenterService);
-    fb = inject(FormBuilder);
-    costCenterList = signal<CostCenter_PageAPP | null>(null);
-    form: FormGroup;
-
-    costCenterFormClone: CostCenter_APPDTO;
-    costCenterForm: IForm<CostCenter_APPDTO> = {
-        areaId: [''],
-        accountingAccount: [''],
-        status: [true],
-        name: ['']
+    private readonly costCenter$ = inject(CostCenterService);
+    private readonly swal$ = inject(SweetalertService);
+    readonly formCreate = viewChild('formCreate', { read: FormCostCenterComponent});
+    readonly formUpdate = viewChild('formUpdate', { read: FormCostCenterComponent});
+    readonly dialogUpdate = viewChild('dialogUpdate', { read: BladeDialogComponent});
+    readonly table = viewChild('table', { read: TableCostCenterComponent});
+    vehicle = signal<CostCenter_APP|null>(null);
+    actionsUpdate: BarActions = {
+        update: true,
+        return: true
     }
 
-    paramPaginate = signal<any>(queries.paramsPage);
-
-    constructor() {
-        this.form = this.fb.group(this.costCenterForm);
-        this.costCenterFormClone = ngFormHelper.unboxProperties(this.costCenterForm);
-    }
-    ngOnInit(): void {
-        this.queryCostCenterList();
-    }
-
-    queryCostCenterList() {
-        this.centerCost.getAllPage(this.paramPaginate()).subscribe({
-            next: data => {
-                this.costCenterList.set(data);
-            },
-            error: () => console.log('error')
-        })
-    }
-
-    actionForm(event: ActionName) {
-        if (event === 'save') this.save();
-        else if (event === 'reset') this.reset();
-    }
-
-    save() {
-        if (this.form.valid) {
-            this.swal.loading();
-            this.centerCost.post(this.form.value).subscribe({
-                next: () => {
-                    this.swal.formSave('success');
-                    this.reset();
-                    this.queryCostCenterList();
-                },
-                error: () => this.swal.formSave('error')
-            });
-        } else {
-            this.swal.formSave('warning');
+    barAction(e: string) {
+        if (e === 'save') this.save();
+        else if (e === 'reset') this.formCreate()?.reset();
+        else if (e === 'update') this.update();
+        else if (e === 'return') {
+            this.dataEdit()
+            this.swal$.alertSimple('Valores originales cargados.', 'success');
         }
     }
 
-    reset() {
-        this.form.reset(this.costCenterFormClone)
+    canGoOut(): Promise<boolean> | boolean {
+        return this.swal$.canOutup(this.formCreate()?.form.dirty)
     }
 
-    paginate(e: any) {
-        this.paramPaginate.set(e);
-        this.queryCostCenterList();
+    private save() {
+        const form = this.formCreate()?.form;
+        if(form?.valid) {
+            this.swal$.loading();
+            this.costCenter$.post(form.value).subscribe({
+                next: (data) => {
+                    this.table()?.queryVehicleList();
+                    this.swal$.formSave('success');
+                    this.formCreate()?.reset();
+                },
+                error: () => this.swal$.formSave('error')
+            });
+        } else {
+            this.swal$.formSave('warning');
+            this.formCreate()?.markAlltouched();
+        }
     }
 
+    private deleteAlert(data: CostCenter_APP | null) {
+        if(data) {
+            this.swal$.toastConfirm('warning', {
+                text: 'Seguro que desea elimina ' + `${data.name}`,
+                title: 'Confirmar'
+            }).then(value => {
+                if(value.isConfirmed) {
+                    this.delete(data);
+                }
+            })
+        }
+    }
+
+    private delete(data: CostCenter_APP) {
+        this.swal$.loading();
+        this.costCenter$.delete(data.id).subscribe({
+            next: () => {
+                const text = `${data.name}` + ' ha sido liminado';
+                this.swal$.alertSimple(text, 'success');
+                this.table()?.queryVehicleList();
+            }
+        });
+    }
+
+    private update() {
+        const form = this.formUpdate()?.form;
+        if (form?.valid) {
+            this.swal$.loading();
+            this.costCenter$.update(this.vehicle()!.id, form.value).subscribe({
+                complete: () => {
+                    this.dialogUpdate()?.hide();
+                    this.swal$.formSave('success');
+                    this.table()?.queryVehicleList();
+                },
+                error: () => this.swal$.formSave('error')
+            })
+        } else {
+            this.swal$.formSave('warning');
+            this.formUpdate()?.markAlltouched();
+        }
+    }
+
+    onTable(event: onBtn<CostCenter_APP>) {
+        const action = event.action;
+        if(action === 'edit') {
+            this.vehicle.set(event.value);
+            this.dialogUpdate()?.show();
+            this.dataEdit();
+        }
+        else if(action === 'delete') {
+            this.deleteAlert(event.value);
+        }
+    }
+
+    dataEdit() {
+        const data = this.vehicle()
+        if(data) {
+            const values: CostCenter_APPDTO = {
+                accountingAccount: data.accountingAccount,
+                areaId: data.area!.id,
+                name: data.name,
+                status: data.status
+            }
+            this.formUpdate()?.setValues(values);
+        }
+    }
 }
 
 

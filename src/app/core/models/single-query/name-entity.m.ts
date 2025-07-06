@@ -1,14 +1,13 @@
-import { NameIdEntity_API, NameIdEntity_APP, NameStateEntity_API, NameStateEntity_APP, NameStateEntity_APPDTO, NameStateEntity_DTO } from "@interfaces/index";
+import { NameIdEntity_API, NameIdEntity_APP, NameIdEntity_APPDTO, NameIdEntity_DTO, NameStateEntity_API, NameStateEntity_APP, NameStateEntity_APPDTO, NameStateEntity_DTO } from "@interfaces/index";
 
 export class NameIdEntityDTO {
-    static setProperty(input: NameIdEntity_APP) {
+    static setProperty(input: NameIdEntity_APPDTO) {
         return new NameIdEntityDTO(input).data;
     }
-    constructor(public input: NameIdEntity_APP) {}
+    constructor(public input: NameIdEntity_APPDTO) {}
 
     get data() {
-        const data: NameIdEntity_API = {
-            id: this.input.id,
+        const data: NameIdEntity_DTO = {
             nombre: this.input.name
         }
         return JSON.stringify(data);

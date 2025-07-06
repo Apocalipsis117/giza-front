@@ -7,7 +7,7 @@ import { InputPanelTextComponent } from '@form-control/input-panel-text/input-pa
 import { CupsDTO_APP } from '@interfaces/app';
 import { IForm, FormControlOption } from '@interfaces/index';
 import { BladePanelOptionsComponent } from '@layouts/dashboard/blades/blade-panel-options/blade-panel-options.component';
-import { GroupQxService, RipConceptService, ServiceLevelService, ServicesService, TypeAmbitService, TypeBirthService, TypeSexService } from '@services/api';
+import { GroupQxService, RipConceptService, ServiceLevelService, ServicesService, TypeAmbitService, TypeBirthService, TypeGenderService } from '@services/api';
 
 @Component({
     selector: 'form-cups',
@@ -25,7 +25,7 @@ import { GroupQxService, RipConceptService, ServiceLevelService, ServicesService
 export class FormCupsComponent {
     public setForm = input<FormGroup<IForm<CupsDTO_APP>>>();
     levelServ = inject(ServiceLevelService);
-    genderServ = inject(TypeSexService);
+    genderServ = inject(TypeGenderService);
     ambitServ = inject(TypeAmbitService);
     birthServ = inject(TypeBirthService);
     servicesServ = inject(ServicesService);
@@ -44,10 +44,10 @@ export class FormCupsComponent {
 
     ngOnInit(): void {
         this.levelServ.list('options').subscribe(data => this.optionsLevels.set(data));
-        this.genderServ.getAll('options').subscribe(data => this.optionsGender.set(data));
-        this.ambitServ.getAll('options').subscribe(data => this.optionsAmbit.set(data));
+        this.genderServ.list('options').subscribe(data => this.optionsGender.set(data));
+        this.ambitServ.list('options').subscribe(data => this.optionsAmbit.set(data));
         this.birthServ.getAll('options').subscribe(data => this.optionsBirth.set(data));
-        this.ripConceptServ.getAll('options').subscribe(data => this.optionsRipConcept.set(data));
+        this.ripConceptServ.list('options').subscribe(data => this.optionsRipConcept.set(data));
         this.servicesServ.getAll('options').subscribe(data => this.optionsServices.set(data));
         this.groupQxServ.getAll('options').subscribe(data => this.optionsGroupqx.set(data));
     }

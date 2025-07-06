@@ -1,11 +1,11 @@
 import { FormControlOption } from "@interfaces/index";
 
 export class OptionsControl {
-    static setProperty(value: number, name: string, data: any | null = null): FormControlOption {
+    static setProperty(value: number | string, name: string, data: any | null = null): FormControlOption {
         return new OptionsControl(value, name, data).option;
     }
     constructor(
-        private value: number,
+        private value: number | string,
         private name: string,
         private data: any | null
     ) {}

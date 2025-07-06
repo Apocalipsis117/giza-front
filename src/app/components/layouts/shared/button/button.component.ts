@@ -1,6 +1,6 @@
 import { Component, ElementRef, Input, ViewChild, computed, input, output } from '@angular/core';
 import { DirectivesModule } from '@directive/module';
-import { BtnToggle, UiSize } from '@interfaces/index';
+import { BtnToggle, ColorsTailwind, UiSize } from '@interfaces/index';
 
 @Component({
     selector: 'app-button',
@@ -16,7 +16,7 @@ export class ButtonComponent {
     public setTitle = input<string>('');
     public setSize = input<UiSize>(null);
     public setActive = input<boolean>(false);
-    public setColor = input<'yellow' | 'blue' | 'red' | 'gray' | 'green' | null>(null);
+    public setColor = input<ColorsTailwind| null>(null);
     public ui = input<'outline' | 'gentle' | 'outlight' | 'sweet' | null>(null);
     @Input() setAction: string = 'click';
     @Input() isDisabled: boolean = false;

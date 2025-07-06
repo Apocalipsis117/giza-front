@@ -30,7 +30,7 @@ import { CardBasicTextComponent } from '@layouts/dashboard/cards/card-basic-text
 export class AssistanceServiceComponent {
     private readonly destroyRef = inject(DestroyRef);
     readonly table = viewChild('table', { read: TableAssistanceServiceComponent });
-    readonly form = viewChild('form', { read: FormAssistanceServiceComponent });
+    readonly formCreate = viewChild('formCreate', { read: FormAssistanceServiceComponent });
     readonly formUpdate = viewChild('formUpdate', { read: FormAssistanceServiceComponent });
     readonly dialogUpdate = viewChild('dialogUpdate', { read: BladeDialogComponent });
     private readonly HealthcareServices$ = inject(HealthcareServicesService);
@@ -53,19 +53,13 @@ export class AssistanceServiceComponent {
     }
 
     canGoOut(): Promise<boolean> | boolean {
-        if (this.form()?.form.dirty) {
-            return this.swal.alertSimpleConfirm('Tiene datos sin guardar. ¿Seguro de que quiere salir?')
-                .then((result) => {
-                    return result.isConfirmed;
-                });
-        }
-        return true;
+        return this.swal.canOutup(this.formCreate()?.form.dirty)
     }
 
     barAction(e: ActionName) {
         const data = this.local$.getEntity();
         if (e === 'save') this.save();
-        else if (e === 'reset') this.form()?.reset();
+        else if (e === 'reset') this.formCreate()?.reset();
         else if (e === 'clean') this.cleanTdetail();
         else if (e === 'edit') {
             if (data) {
@@ -86,7 +80,7 @@ export class AssistanceServiceComponent {
     }
 
     save() {
-        const form = this.form()?.form;
+        const form = this.formCreate()?.form;
         if (form?.valid) {
             this.swal.loading();
             this.HealthcareServices$.post(form.value).subscribe({
@@ -96,14 +90,14 @@ export class AssistanceServiceComponent {
                 complete: () => {
                     this.swal.formSave('success');
                     this.table()?.queryAssistaces();
-                    this.form()?.reset();
+                    this.formCreate()?.reset();
                 },
                 error: () => this.swal.formSave('error')
             });
         } else {
             this.swal.formSave('warning');
             form?.markAllAsTouched();
-            this.form()?.validate();
+            this.formCreate()?.validate();
         }
     }
 

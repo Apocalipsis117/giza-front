@@ -1,0 +1,41 @@
+<div>
+  @if(setLabel()) {
+    <label>{{ setLabel() }}</label>
+  }
+  <div style="display:flex; gap:2rem;">
+    <!-- Lista A: disponibles -->
+    <div>
+      <strong>Lista A (disponibles)</strong>
+      <input type="search" [(ngModel)]="searchA" [placeholder]="setPlaceholder()" />
+      <button type="button" (click)="addAll()" [disabled]="!available().length">Agregar todos &gt;&gt;</button>
+      <ul>
+        @for(option of available(); track option.value) {
+          <li>
+            {{ option.name }} {{ option.value }}
+            <button type="button" (click)="add(option.value)">Agregar &gt;&gt;</button>
+          </li>
+        }
+        @if(!available().length) {
+            <li><em>No hay disponibles</em></li>
+        }
+      </ul>
+    </div>
+    <!-- Lista B: agregados -->
+    <div>
+      <strong>Lista B (agregados)</strong>
+      <input type="search" [(ngModel)]="searchB" [placeholder]="setPlaceholder()" />
+      <button type="button" (click)="removeAll()" [disabled]="!added().length">&lt;&lt; Quitar todos</button>
+      <ul>
+        @for(option of added(); track option.value) {
+          <li>
+            {{ option.name }}
+            <button type="button" (click)="remove(option.value)">&lt;&lt; Quitar</button>
+          </li>
+        }
+        @if(!added().length) {
+            <li><em>No hay agregados</em></li>
+        }
+      </ul>
+    </div>
+  </div>
+</div>

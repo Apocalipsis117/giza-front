@@ -1,4 +1,4 @@
-import { Component, computed, effect, ElementRef, forwardRef, input, QueryList, signal, viewChild, viewChildren } from '@angular/core';
+import { Component, computed, effect, ElementRef, forwardRef, input, signal, viewChildren } from '@angular/core';
 import { AbstractControl, FormsModule, NG_VALUE_ACCESSOR } from '@angular/forms';
 import { arrayControlHelper, formHelper, generator, ngFormHelper } from '@helpers/index';
 import { FormControlOption } from '@interfaces/index';
@@ -21,7 +21,6 @@ import { FormControlOption } from '@interfaces/index';
 })
 export class InputSelectComponent {
     public setValidate = input<AbstractControl | null>(null);
-    optionsList = viewChild<ElementRef<HTMLUListElement>>('optionsList');
     optionItems = viewChildren<ElementRef<HTMLLIElement>>('optionItem');
     public readonly setLabel = input<string>('');
     public readonly emptyValue = input<'' | null>(null);
@@ -94,7 +93,7 @@ export class InputSelectComponent {
             setCurrentIndex: idx => this.currentIndex.set(idx),
             onSelect: option => {
                 this.visible.set(false),
-                    this.changeInput(option.value)
+                this.changeInput(option.value)
             },
             resetOnOtherKeys: true
         })

@@ -1,39 +1,33 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable, inject } from '@angular/core';
-import { FormControlOption, TypeReturn, TypeVehicleAPI, TypeVehicleAPP } from '@interfaces/index';
-import { NamedEntity, OptionsControl } from '@models/index';
-import { Observable, map, of } from 'rxjs';
-import brandsVehicles from '@local-data/app/brands-vehicles.json';
-import { queries } from '@helpers/index';
+import { apiHelper } from '@helpers/index';
+import { PathNameAPI, ResponseAPI } from '@interfaces/extend.i';
+import { FormControlOption, NameIdEntity_API, NameIdEntity_APP, TypeReturn } from '@interfaces/index';
+import { OptionsControl } from '@models/index';
+import { catchError, map, Observable, of } from 'rxjs';
+import { NameIdEntity } from 'src/app/core/models/single-query/name-entity.m';
 
 @Injectable({
     providedIn: 'root'
 })
 export class TypeVehicleService {
     private http = inject(HttpClient);
+    private api: PathNameAPI = {
+        base: 'tipo-vehiculo',
+        list: 'lista',
+    };
 
-    getAll(): Observable<TypeVehicleAPP[]>;
-    getAll(typeReturn: 'options'): Observable<FormControlOption[]>;
-    /* query */
-    getAll(typeReturn: TypeReturn = null) {
-        const api = queries.api('tipo-vehiculo/lista');
-        return this.http.get<TypeVehicleAPI[]>(api).pipe(
-            map(data => {
-                if (typeReturn === 'options') return data.map(x => OptionsControl.setProperty(x.id, x.nombre));
-                return data.map(x => NamedEntity.setProperty(x));
-            })
+    list(): Observable<NameIdEntity_APP[]>;
+    list(typeReturn: 'options'): Observable<FormControlOption[]>;
+    list(typeReturn: TypeReturn = null) {
+        const api = apiHelper.api(this.api.base, { path: this.api.list });
+        return this.http.get<ResponseAPI<NameIdEntity_API[]>>(api).pipe(
+            map(res => {
+                if (typeReturn === 'options') return res.data.map(x => OptionsControl.setProperty(x.id, x.nombre));
+                return res.data.map(x => NameIdEntity.setProperty(x));
+            }),
+            catchError(() => of([]))
         );
     }
 
-    brands(): Observable<any[]>;
-    brands(typeReturn: 'options'): Observable<FormControlOption[]>;
-    /* query */
-    brands(typeReturn: TypeReturn = null) {
-        return of(brandsVehicles.data.brands).pipe(
-            map(data => {
-                if (typeReturn === 'options') return data.map(x => OptionsControl.setProperty(x.id, x.name));
-                return data;
-            })
-        );
-    }
 }

@@ -1,0 +1,7 @@
+<ul class="inline-flex gap-1">
+    @for(action of listActions(); track action.action) {
+        <li>
+            <app-button setSize="sm" (action)="emitAction(action.action)" ui="sweet" [setColor]="action.color" [setIcon]="action.icon" />
+        </li>
+    }
+</ul>

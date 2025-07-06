@@ -1,22 +1,27 @@
-<blade-table [headDivider]="true" [bodyYDivider]="true">
+<blade-table [colspan]="6" [setData]="data()" [loadingData]="load()" (onPage)="paginate($event)">
     <ng-container tableHead>
         <tr>
             <th>Nombre</th>
             <th>Ambito</th>
-            <th>Sexo</th>
-            <th class="text-end">Accion</th>
+            <th width="280">Sexo</th>
+            <th>N° de camas</th>
+            <th width="200" class="text-end">Accion</th>
         </tr>
     </ng-container>
     <ng-container tableBody>
-        @for(item of dataTable(); track item.id) {
-            <tr TrSelected [idx]="tdSelected()" [id]="item.id">
-                <td>{{ item.name }}</td>
-                <td>{{ item.scope.name }}</td>
-                <td>{{ item.gender.name }}</td>
-                <td class="text-end">
-                    <app-button setIcon="icofont-info-circle" setSize="sm" (action)="emit(item)" />
-                </td>
-            </tr>
+        @for(entity of list(); track entity.id; let idx = $index) {
+        <tr  TrSelected [idx]="tdSelected()" [id]="entity.id">
+            <td>{{ entity.name }}</td>
+            <td>{{ entity.scope.name }}</td>
+            <td>
+                <p>{{ entity.gender.name }}</p>
+                <small class="text-gray-400">Edad min: {{ entity.minAge }} ~ max: {{ entity.maxAge }}</small>
+            </td>
+            <td>{{ entity.bedCount }}</td>
+            <td class="text-end">
+                <app-button setIcon="icofont-info-circle" setSize="sm" (action)="emit(entity)" />
+            </td>
+        </tr>
         }
     </ng-container>
 </blade-table>

@@ -3,9 +3,6 @@
  * @param T[] - Type of the content
  * example: PageAPI<User>
  */
-export interface PageAPI<T> extends PageDataAPI {
-    content: T[];
-}
 
 export interface PageDataAPI {
     pageNumber:    number;
@@ -13,6 +10,9 @@ export interface PageDataAPI {
     totalElements: number;
     totalPages:    number;
     last:          boolean;
+}
+export interface PageAPI<T> extends PageDataAPI {
+    content: T[];
 }
 
 interface Response {

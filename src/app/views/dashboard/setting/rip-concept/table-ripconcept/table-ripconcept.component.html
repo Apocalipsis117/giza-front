@@ -1,23 +1,22 @@
-<blade-table [headDivider]="true" [bodyYDivider]="true">
-    <ng-container tableCols>
-        <!-- <col> -->
-    </ng-container>
+<blade-table [setData]="dataTable()" [colspan]="4" (onPage)="paginate($event)" [loadingData]="load()">
     <ng-container tableHead>
         <tr>
             <th>Nombre</th>
             <th>Tipo de servicio</th>
             <th>Grupo Soat</th>
-            <th class="text-end">Accion</th>
+            <th width="120" class="text-end">Accion</th>
         </tr>
     </ng-container>
     <ng-container tableBody>
-        @for(item of dataTable(); track item.id) {
-            <tr>
-                <td>{{ item.name }}</td>
-                <td>{{ item.typeService?.name }}</td>
-                <td>{{ item.groupSoat?.name }}</td>
+        @for(entity of entities(); track entity.id) {
+            <tr TrSelected [idx]="tdSelected()" [id]="entity.id">
+                <td>{{ entity.name }}</td>
+                <td>{{ entity.serviceType.name }}</td>
+                <td>{{ entity.soatGroup.name }}</td>
                 <td class="text-end">
-                    <app-button setIcon="icofont-info-circle" setSize="sm" />
+                    <div class="inline-flex gap-2">
+                        <btns-action [enableActions]="{ edit: true, delete: true }" [data]="entity" (onBtn)="onBtn($event)" />
+                    </div>
                 </td>
             </tr>
         }

@@ -7,9 +7,13 @@
     h2 {
         @apply text-xl mb-2;
     }
+}
+
+.detail-ul li > div,
+.detail-titles {
     li {
         b {
-            @apply font-semibold text-gray-400 mr-2;
+            @apply font-semibold text-gray-400 mr-2 text-sm;
         }
     }
 }
@@ -36,7 +40,7 @@
         @apply p-2;
     }
     small {
-        @apply text-slate-500;
+        @apply text-slate-400;
     }
 }
 
