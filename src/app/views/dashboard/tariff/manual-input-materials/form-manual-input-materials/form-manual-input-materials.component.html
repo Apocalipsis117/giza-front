@@ -1,0 +1,10 @@
+<form [formGroup]="form">
+    <div class="d-grid">
+        <div class="col-span-9">
+            <input-text setLabel="Nombre concepto" formControlName="name" [setValidate]="control['name']" #validate />
+        </div>
+        <div class="col-span-3">
+            <input-onoff setLabel="Estado" formControlName="state" />
+        </div>
+    </div>
+</form>

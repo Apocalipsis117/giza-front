@@ -1,0 +1,35 @@
+<blade-panel section="setting">
+    <ng-container panels>
+        <div class="d-grid">
+            <div class="col-span-6">
+                <div class="mb-3">
+                <blade-box-panel setTitle="Nuevo Manual tarifa e insumo" [padding]="true" [actionsActive]="true"  (actionBar)="barAction($event)" >
+                        <ng-container boxbody>
+                            <form-manual-input-materials #formCreate />
+                        </ng-container>
+                    </blade-box-panel>
+                </div>
+                <div class="mb-3">
+                    <blade-box-panel setTitle="Manuales tarifa e insumo">
+                        <ng-container boxbody>
+                            <table-manual-input-materials (onTable)="onTable($event)" #table />
+                        </ng-container>
+                    </blade-box-panel>
+                </div>
+            </div>
+        </div>
+    </ng-container>
+</blade-panel>
+
+<blade-dialog idConnect="vehicle-update" setSize="lg" [hideFooter]="true" [activeFade]="false" #dialogUpdate>
+    <ng-container dialogHeader>
+        <card-basic-text setTitle="Actualizar Manual tarifa e insumo" />
+    </ng-container>
+    <ng-container dialogBody>
+        <blade-box-panel ui="clean" [padding]="true" [actionsActive]="true" [setActionsBar]="actionsUpdate" [headerActive]="false" (actionBar)="barAction($event)">
+            <ng-container boxbody>
+                <form-manual-input-materials #formUpdate/>
+            </ng-container>
+        </blade-box-panel>
+    </ng-container>
+</blade-dialog>

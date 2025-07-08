@@ -34,16 +34,17 @@ export * from './setting/administrative-entities.i';
 export * from './setting/attention-program.i';
 export * from './setting/contract.i';
 export * from './setting/cost-center.i';
-export * from './setting/input-materials.i';
-export * from './setting/medicine.i';
-export * from './setting/service.i';
-export * from "./setting/healthcare-services.i";
-export * from "./setting/vehicle.i";
-export * from "./setting/institutions.i";
-export * from "./setting/diagnosis.i";
-export * from "./setting/hospital-services.i";
-export * from "./setting/rip-concept.i";
 export * from "./setting/diagnosis-group.i";
+export * from "./setting/diagnosis.i";
+export * from "./setting/healthcare-services.i";
+export * from "./setting/hospital-services.i";
+export * from './setting/input-materials.i';
+export * from "./setting/institutions.i";
+export * from './setting/medicine.i';
+export * from "./setting/rip-concept.i";
+export * from './setting/service.i';
+export * from "./setting/vehicle.i";
+export * from "./setting/procedure-pyp.i";
 
 // rate
 export * from './rate/input-materials-rate.i';
@@ -53,15 +54,16 @@ export * from './rate/tariff-medicine.i';
 
 
 // single-query
+export * from './single-query/activity.i';
 export * from './single-query/apartment-cities.i';
+export * from './single-query/classification-materials.i';
 export * from './single-query/entity-id.i';
-export * from './single-query/entity-uuid.i';
 export * from './single-query/entity-state.i';
+export * from './single-query/entity-uuid.i';
 export * from './single-query/gender.i';
 export * from './single-query/material-classification.i';
 export * from './single-query/type-history.i';
 export * from './single-query/type-regime.i';
-export * from './single-query/activity.i';
 
 // fakes
 export * from './fakes/todo.interface';

@@ -1,41 +1,71 @@
-<div>
-  @if(setLabel()) {
-    <label>{{ setLabel() }}</label>
-  }
-  <div style="display:flex; gap:2rem;">
-    <!-- Lista A: disponibles -->
-    <div>
-      <strong>Lista A (disponibles)</strong>
-      <input type="search" [(ngModel)]="searchA" [placeholder]="setPlaceholder()" />
-      <button type="button" (click)="addAll()" [disabled]="!available().length">Agregar todos &gt;&gt;</button>
-      <ul>
+<fieldset class="im-select-add" [class.invalid]="error()">
+    @if(setLabel()) {
+        <legend>{{ setLabel() }}</legend>
+    }
+    <section>
+        <header>
+            <strong>Disponibles</strong>
+            <div class="input-group input-group-sm">
+                <div class="input-group-text">
+                    <i class="icofont-filter"></i>
+                </div>
+                <input class="form-control" type="search" [(ngModel)]="searchA" [placeholder]="setPlaceholder()" />
+                <button class="btn btn-sweet-default" type="button" (click)="addAll()" [disabled]="!available().length">
+                    <span>Agregar todos</span>
+                    <i class="icofont-rounded-right"></i>
+                </button>
+            </div>
+        </header>
+        <ul>
         @for(option of available(); track option.value) {
-          <li>
-            {{ option.name }} {{ option.value }}
-            <button type="button" (click)="add(option.value)">Agregar &gt;&gt;</button>
-          </li>
+            <li>
+                <span class="cursor-pointer" (click)="onSelect.emit(option.value)">{{ option.name }}</span>
+                <button type="button" (click)="add(option.value)">
+                    <i class="icofont-plus"></i>
+                </button>
+            </li>
         }
-        @if(!available().length) {
-            <li><em>No hay disponibles</em></li>
+        @empty {
+            <li class="empty">
+                <p>No hay disponibles</p>
+            </li>
         }
-      </ul>
-    </div>
-    <!-- Lista B: agregados -->
-    <div>
-      <strong>Lista B (agregados)</strong>
-      <input type="search" [(ngModel)]="searchB" [placeholder]="setPlaceholder()" />
-      <button type="button" (click)="removeAll()" [disabled]="!added().length">&lt;&lt; Quitar todos</button>
-      <ul>
+        </ul>
+    </section>
+    <section class="add">
+        <header>
+            <strong>Agregados</strong>
+            <div class="input-group input-group-sm">
+                <div class="input-group-text">
+                    <i class="icofont-filter"></i>
+                </div>
+                <input class="form-control" type="search" [(ngModel)]="searchB" [placeholder]="setPlaceholder()" />
+                <button class="btn btn-sweet-red" type="button" (click)="removeAll()" [disabled]="!added().length">
+                    <i class="icofont-rounded-left"></i>
+                    <span>Quitar todos</span>
+                </button>
+            </div>
+        </header>
+        <ul>
         @for(option of added(); track option.value) {
-          <li>
-            {{ option.name }}
-            <button type="button" (click)="remove(option.value)">&lt;&lt; Quitar</button>
-          </li>
+            <li>
+                <span class="cursor-pointer" (click)="onSelect.emit(option.value)">{{ option.name }}</span>
+                <button type="button" (click)="remove(option.value)">
+                    <i class="icofont-close"></i>
+                </button>
+            </li>
         }
-        @if(!added().length) {
-            <li><em>No hay agregados</em></li>
+        @empty {
+            <li class="empty">
+                <p>No hay agregados</p>
+            </li>
         }
-      </ul>
-    </div>
-  </div>
-</div>
+        </ul>
+    </section>
+    @if(error()) {
+        <span class="message-error">
+            <i class="icofont-info-circle"></i>
+            <span>{{ error() }}</span>
+        </span>
+    }
+</fieldset>

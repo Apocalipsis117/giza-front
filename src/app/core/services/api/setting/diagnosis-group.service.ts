@@ -4,7 +4,7 @@ import { apiHelper } from '@helpers/index';
 import { PathNameAPI, ResponseAPI } from '@interfaces/extend.i';
 import { DiagnosisGroup_APP, DiagnosisGroup_APPDTO, DiagnosisGroup_ListResponse, DiagnosisGroup_PageResponse, DiagnosisGroup_Response, FormControlOption, TypeReturn } from '@interfaces/index';
 import { DiagnosisGroup, DiagnosisGroupDTO, OptionsControl } from '@models/index';
-import { Observable, catchError, map, of } from 'rxjs';
+import { catchError, map, Observable, of } from 'rxjs';
 
 
 @Injectable({ providedIn: 'root' })

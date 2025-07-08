@@ -1,6 +1,5 @@
 import { Injectable, signal } from '@angular/core';
 import { objectHelper } from '@helpers/app/queryData';
-import { queries } from '@helpers/index';
 import { FormControlOption } from '@interfaces/index';
 import { Observable, Subject, delay, of, switchMap, throwError } from 'rxjs';
 
@@ -33,8 +32,6 @@ export class TestService {
     }
 
     getAllPage(paramValue: any | null = null) {
-        const api = queries.api('http:example/page', paramValue);
-        console.log("api", api);
         return of({
             data: [
                 { id: 1, name: 'Cost Center 1' },

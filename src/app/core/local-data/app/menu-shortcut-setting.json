@@ -63,18 +63,6 @@
                 ]
             },
             {
-                "uuid": "c8508808-0fbf-4e66-b8b3-06c0766e7d90",
-                "path": "",
-                "icon": "icofont-ui-social-link",
-                "color": "text-cyan-400",
-                "display": [
-                    {
-                        "lang": "es",
-                        "title": "Tegnología PyP"
-                    }
-                ]
-            },
-            {
                 "uuid": "a63eccb1-e011-40cb-8842-5465587c1ed9",
                 "path": "/dashboard/setting/contracts",
                 "icon": "icofont-handshake-deal",
@@ -136,13 +124,13 @@
             },
             {
                 "uuid": "86907ef9-d785-4f33-86bd-3c27ebfb6140",
-                "path": "",
+                "path": "/dashboard/setting/procedure-pyp",
                 "icon": "icofont-ui-social-link",
                 "color": "text-pink-400",
                 "display": [
                     {
                         "lang": "es",
-                        "title": "Programa PyP"
+                        "title": "Procedimiento PyP"
                     }
                 ]
             },
@@ -172,7 +160,7 @@
             },
             {
                 "uuid": "e347f95f-41a8-4d4d-bd3e-8f96260bb25d",
-                "path": "",
+                "path": "/dashboard/setting/input-materials",
                 "icon": "icofont-dropbox",
                 "color": "text-amber-400",
                 "display": [

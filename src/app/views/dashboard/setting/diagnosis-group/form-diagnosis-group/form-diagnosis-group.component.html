@@ -1,11 +1,19 @@
 <form [formGroup]="form">
     <div class="d-grid">
         <div class="col-span-full">
-            <input-text setLabel="Nombre de diagnostico"/>
+            <input-text setLabel="Nombre del grupo" formControlName="name" [setValidate]="control['name']" #validate />
         </div>
-        <div class="co-span-full">
-            <input-select-add [setOptions]="optionsDiagnosis()" formControlName="diagnosisIds" />
+        <div class="col-span-full">
+            <input-select-add (onSelect)="queryByIndex($event)" setLabel="Grupo diagnostico" [setOptions]="optionsDiagnosis()" formControlName="diagnosisIds" [setValidate]="control['diagnosisIds']" #validate />
         </div>
     </div>
 </form>
-s
+
+
+<blade-dialog idConnect="dialog-detail" setSize="md" [hideFooter]="true" #dialogDetail [activeFade]="false">
+    <ng-container dialogBody>
+        <div class="block p-5">
+            <tdetail-diagnosis [data]="diagnosis()" />
+        </div>
+    </ng-container>
+</blade-dialog>

@@ -1,0 +1,33 @@
+<blade-panel>
+    <ng-container panels>
+        <div class="d-grid">
+            <div class="col-span-4">
+                <blade-box-panel setTitle="Nuevo Procedimiento" [padding]="true" [actionsActive]="true"  (actionBar)="barAction($event)" >
+                    <ng-container boxbody>
+                        <form-procedure-pyp #formCreate />
+                    </ng-container>
+                </blade-box-panel>
+            </div>
+            <div class="col-span-8">
+                <blade-box-panel setTitle="Procedimientos PyP">
+                    <ng-container boxbody>
+                        <table-procedure-pyp (onTable)="onTable($event)" #table />
+                    </ng-container>
+                </blade-box-panel>
+            </div>
+        </div>
+    </ng-container>
+</blade-panel>
+
+<blade-dialog idConnect="vehicle-update" setSize="md" [hideFooter]="true" [activeFade]="false" #dialogUpdate>
+    <ng-container dialogHeader>
+        <card-basic-text setTitle="Actualizar Procedimiento PyP" />
+    </ng-container>
+    <ng-container dialogBody>
+        <blade-box-panel ui="clean" [padding]="true" [actionsActive]="true" [setActionsBar]="actionsUpdate" [headerActive]="false" (actionBar)="barAction($event)">
+            <ng-container boxbody>
+                <form-procedure-pyp #formUpdate />
+            </ng-container>
+        </blade-box-panel>
+    </ng-container>
+</blade-dialog>

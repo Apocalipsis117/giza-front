@@ -23,6 +23,17 @@ export function ValidateLettersOnly(message = 'Solo letras permitidas'): Validat
     };
 }
 
+export function ValidateParagraphText(message = 'Caracteres no permitidos en el texto'): ValidatorFn {
+    // Incluye letras, espacios, acentos, ñ, puntuación básica, saltos de línea y comas
+    const paragraphRegex = /^[a-zA-ZáéíóúüñÑÁÉÍÓÚÜ0-9\s,.;:¡!¿?"'’()\-—–…]+$/m;
+    return (control: AbstractControl): ValidationErrors | null => {
+        const value = control.value;
+        return (typeof value === 'string' && paragraphRegex.test(value))
+            ? null
+            : { message };
+    };
+}
+
 export function ValidateStringEmpty(message = 'Campo requerido'): ValidatorFn {
     return (control: AbstractControl): ValidationErrors | null => {
         const value = control.value;

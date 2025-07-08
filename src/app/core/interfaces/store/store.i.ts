@@ -6,6 +6,7 @@ export interface AppStore {
     share: State_share;
     appGisa: State_appGisa;
     user: State_user;
+    diagnosis: State_diagnosisGroup;
 }
 
 export interface State_share {
@@ -27,4 +28,8 @@ export interface State_appGisa {
 
 export interface State_user {
     login: Login_API | null;
+}
+
+export interface State_diagnosisGroup {
+    options: FormControlOption[];
 }

@@ -60,6 +60,18 @@
                         "title": "Tarifas Materiales e insumo"
                     }
                 ]
+            },
+            {
+                "uuid": "8dda1f6c-bae8-46f9-a4db-b128ba2b5888",
+                "path": "/dashboard/tariff/manual-input-materials",
+                "icon": "icofont-bricks",
+                "color": "text-cyan-400",
+                "display": [
+                    {
+                        "lang": "es",
+                        "title": "Manual Tarifas Materiales e insumo"
+                    }
+                ]
             }
         ]
     }

@@ -1,4 +1,4 @@
-import { Component, computed, inject, signal } from '@angular/core';
+import { Component, computed, inject, input, signal } from '@angular/core';
 import { SelectSomeItemComponent } from '@layouts/dashboard/ux/select-some-item/select-some-item.component';
 import { BlockSwitchStatusComponent } from '@layouts/shared/block-switch-status/block-switch-status.component';
 import { LocalDiagnosisService } from '../local-diagnosis.service';
@@ -15,16 +15,16 @@ import { Diagnosis_APP } from '@interfaces/index';
     templateUrl: './tdetail-diagnosis.component.html'
 })
 export class TdetailDiagnosisComponent {
-    data = signal<Diagnosis_APP | null>(null);
+    data = input<Diagnosis_APP | null>(null);
     localServ = inject(LocalDiagnosisService);
 
-    ngOnInit(): void {
+    /*ngOnInit(): void {
         this.localServ.readEntity$.subscribe({
             next: (value) => {
                 this.data.set(value)
             }
         });
-    }
+    }*/
 
     value = computed(() => {
         return {

@@ -13,6 +13,7 @@ export { AppPatientProfileService } from './app/app-patient-profile.service';
 export { BarToolControllerService } from './app/bar-tool-controller.service';
 export { SweetalertService } from './app/sweetalert.service';
 export { TestService } from './app/test.service';
+export { EntityFormHelperService } from './app/entity-form-helper.service';
 
 /**
  * Rx state

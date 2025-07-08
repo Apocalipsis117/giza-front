@@ -36,12 +36,6 @@ export interface FormControlOption<T = any> {
     data?: T;
 }
 
-export interface FormControlOption2<T = any> {
-    value: number | '' | string;
-    name: string;
-    data?: T;
-}
-
 export interface DataAssociated {
     uuid?: string | null;
     id?: number | null;

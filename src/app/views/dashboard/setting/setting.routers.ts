@@ -85,5 +85,13 @@ export const routers: Route[] = [{
 {
     path: 'diagnosis',
     loadComponent: () => import('./diagnosis/diagnosis.component').then(c => c.DiagnosisComponent)
+},
+{
+    path: 'input-materials',
+    loadComponent: () => import('./input-materials/input-materials.component').then(c => c.InputMaterialsComponent)
+},
+{
+    path: 'procedure-pyp',
+    loadComponent: () => import('./procedure-pyp/procedure-pyp.component').then(c => c.ProcedurePypComponent)
 }
 ];

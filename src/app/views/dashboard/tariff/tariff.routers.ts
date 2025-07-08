@@ -24,4 +24,8 @@ export const routers: Route[] = [{
     path: 'tariff-manual',
     loadComponent: () => import('./tariff-manual/tariff-manual.component').then(c => c.TariffManualComponent)
 },
+{
+    path: 'manual-input-materials',
+    loadComponent: () => import('./manual-input-materials/manual-input-materials.component').then(c => c.ManualInputMaterialsComponent)
+},
 ];

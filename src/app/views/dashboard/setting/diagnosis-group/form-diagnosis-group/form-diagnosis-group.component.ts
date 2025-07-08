@@ -1,11 +1,15 @@
-import { Component, inject, signal, viewChildren } from '@angular/core';
+import { Component, inject, signal, viewChild, viewChildren } from '@angular/core';
 import { FormBuilder, FormGroup, ReactiveFormsModule } from '@angular/forms';
 import { ngFormHelper } from '@helpers/index';
 import { InputSelectAddComponent } from '@im-inputs/input-select-add/input-select-add.component';
 import { InputTextComponent } from '@im-inputs/input-text/input-text.component';
-import { DiagnosisGroup_APPDTO, FormControlOption2, FormGroupTyped, IForm } from '@interfaces/index';
+import { Diagnosis_APP, DiagnosisGroup_APPDTO, FormControlOption, FormGroupTyped, IForm } from '@interfaces/index';
+import { BladeDialogComponent } from '@layouts/dashboard/blades/blade-dialog/blade-dialog.component';
 import { DiagnosisService } from '@services/api';
+import { ValidateArrayEmpty, ValidateStringEmpty } from '@valid-control/index';
 import { forkJoin } from 'rxjs';
+import { TdetailDiagnosisComponent } from '../../diagnosis/tdetail-diagnosis/tdetail-diagnosis.component';
+import { SweetalertService } from '@services/app';
 
 @Component({
     selector: 'form-diagnosis-group',
@@ -13,21 +17,26 @@ import { forkJoin } from 'rxjs';
     imports: [
         InputTextComponent,
         InputSelectAddComponent,
-        ReactiveFormsModule
+        ReactiveFormsModule,
+        BladeDialogComponent,
+        TdetailDiagnosisComponent
     ],
     templateUrl: './form-diagnosis-group.component.html'
 })
 export class FormDiagnosisGroupComponent {
     private validates = viewChildren('validate');
+    readonly dialogDetail = viewChild('dialogDetail', { read: BladeDialogComponent});
+    private readonly swa$ = inject(SweetalertService);
     private readonly fb = inject(FormBuilder);
     private readonly Diagnosis$ = inject(DiagnosisService);
-    optionsDiagnosis = signal<FormControlOption2[]>([]);
+    optionsDiagnosis = signal<FormControlOption[]>([]);
+    diagnosis = signal<Diagnosis_APP|null>(null);
 
     form: FormGroup;
     formClone: DiagnosisGroup_APPDTO;
     formValues: IForm<DiagnosisGroup_APPDTO> = {
-        diagnosisIds: [[] as string[]],
-        name: ['']
+        diagnosisIds: [[] as string[], [ValidateArrayEmpty()]],
+        name: ['', [ValidateStringEmpty()]]
     }
 
     constructor() {
@@ -45,7 +54,7 @@ export class FormDiagnosisGroupComponent {
 
     queryApiStatic() {
         const obs = forkJoin({
-            diagnosis: this.Diagnosis$.list('options2'),
+            diagnosis: this.Diagnosis$.options(),
         });
 
         obs.subscribe({
@@ -53,6 +62,17 @@ export class FormDiagnosisGroupComponent {
                 this.optionsDiagnosis.set(value.diagnosis);
             }
         });
+    }
+
+    queryByIndex(index: any) {
+        this.swa$.loading();
+        this.Diagnosis$.getBy(index).subscribe({
+            next: (value) => {
+                this.swa$.close();
+                this.diagnosis.set(value);
+                this.dialogDetail()?.show();
+            }
+        })
     }
 
     reset() {

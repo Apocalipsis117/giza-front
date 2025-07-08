@@ -1,4 +1,4 @@
-<blade-panel section="setting" titleSection="medicamentos">
+<blade-panel section="setting">
     <ng-container panels>
         <div class="grid grid-cols-12 gap-3">
             <div class="col-span-8">
@@ -7,18 +7,11 @@
                         <article bsTabContent [idConnect]="tabsControls[0].idConnect" [isActive]="tabsControls[0].active">
                             <div class="flex flex-col gap-y-3">
                                 <div class="block">
-                                    <blade-box-panel setTitle="Nuevo" [padding]="true" [actionsActive]="true" (actionBar)="barAction($event)" [headerActive]="false" ui="clean">
+                                    <blade-box-panel setTitle="Nuevo medicamento" [padding]="true" [actionsActive]="true" (actionBar)="barAction($event)" [headerActive]="false" ui="clean">
                                         <ng-container boxbody>
                                             <form-medicine #formMedicine />
                                         </ng-container>
                                     </blade-box-panel>
-                                </div>
-                                <div class="block p-4 pt-0">
-                                    <blade-box-title setTitle="Actualizar codigos CUM">
-                                        <ng-container boxtitleBody>
-                                            <form-update-cum />
-                                        </ng-container>
-                                    </blade-box-title>
                                 </div>
                             </div>
                         </article>
@@ -40,13 +33,3 @@
         </div>
     </ng-container>
 </blade-panel>
-
-<app-note>
-    <ng-container noteBody>
-# inputs
-cum - pending
-Costcum - pending
-Costname - pending
----
-    </ng-container>
-</app-note>

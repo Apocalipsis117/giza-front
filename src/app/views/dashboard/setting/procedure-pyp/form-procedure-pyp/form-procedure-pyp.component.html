@@ -1,0 +1,13 @@
+<form [formGroup]="form">
+    <div class="d-grid">
+        <div class="col-span-4">
+            <input-text setLabel="Código" formControlName="code" />
+        </div>
+        <div class="col-span-8">
+            <input-text setLabel="Nombre" formControlName="name" [setValidate]="control['name']" #validate />
+        </div>
+        <div class="col-span-full">
+            <input-select setLabel="Tipo servicio pyp" formControlName="pypServiceTypeId" [setOptions]="optionsTypeServicePyp()" [setValidate]="control['pypServiceTypeId']" #validate />
+        </div>
+    </div>
+</form>

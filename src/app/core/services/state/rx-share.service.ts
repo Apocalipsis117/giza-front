@@ -3,7 +3,7 @@ import { Store } from '@ngrx/store';
 import * as actions from '@actions/share.action';
 import * as selectors from '@selectors/share.select';
 import { MenuShortcutShortcutMenu, NavegationMenuAside } from '@interfaces/index';
-import { distinctUntilChanged, map, take } from 'rxjs';
+import { distinctUntilChanged, map, share, take } from 'rxjs';
 
 @Injectable({
     providedIn: 'root'
@@ -20,7 +20,7 @@ export class RxShareService {
 
     // para componentes que no multiplican el take
     get watchShare() {
-        return this.appstore.select(selectors.select_share)
+        return this.appstore.select(selectors.select_share).pipe(share())
     }
 
     changeSection(data: NavegationMenuAside) {

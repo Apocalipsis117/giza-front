@@ -1,4 +1,3 @@
-import { CommonModule } from '@angular/common';
 import { Component, DestroyRef, inject, viewChild } from '@angular/core';
 import { DirectivesModule } from '@directive/module';
 import { ActionName, BarActions, Institutions_APP, Institutions_APPDTO, tabsControls } from '@interfaces/index';
@@ -19,7 +18,6 @@ import { TdetailInstitutionsComponent } from './tdetail-institutions/tdetail-ins
     standalone: true,
     imports: [
         BladePanelComponent,
-        CommonModule,
         BladeBoxPanelComponent,
         DirectivesModule,
         BladeTabsHorizontalComponent,

@@ -1,4 +1,4 @@
-import { Component, DestroyRef, inject, viewChild } from '@angular/core';
+import { Component, DestroyRef, inject, signal, viewChild } from '@angular/core';
 import { DirectivesModule } from '@directive/module';
 import { ActionName, BarActions, Diagnosis_APP, Diagnosis_APPDTO, tabsControls } from '@interfaces/index';
 import { BladeBoxPanelComponent } from '@layouts/dashboard/blades/blade-box-panel/blade-box-panel.component';
@@ -39,6 +39,7 @@ export class DiagnosisComponent {
     readonly formCreate = viewChild('formCreate', { read: FormDiagnosisComponent});
     readonly formUpdate = viewChild('formUpdate', { read: FormDiagnosisComponent});
     readonly table = viewChild('table', { read: TableDiagnosisComponent});
+    diagnosis = signal<Diagnosis_APP|null>(null);
     actionsDetail: BarActions = {
         edit: true,
         delete: true,
@@ -64,6 +65,11 @@ export class DiagnosisComponent {
     constructor() {
         this.destroyRef.onDestroy(() => {
             this.local$.entityEmit(null);
+        })
+        this.local$.readEntity$.subscribe({
+            next: (value) => {
+                this.diagnosis.set(value);
+            }
         })
     }
 

@@ -1,15 +1,19 @@
+import { action_diagnosis_options } from '@actions/diagnosis.action';
 import { HttpClient } from '@angular/common/http';
 import { inject, Injectable } from '@angular/core';
 import { apiHelper } from '@helpers/index';
 import { PathNameAPI, ResponseAPI } from '@interfaces/extend.i';
-import { Diagnosis_APP, Diagnosis_APPDTO, Diagnosis_ListResponse, Diagnosis_PageResponse, Diagnosis_Response, FormControlOption, FormControlOption2, TypeReturn } from '@interfaces/index';
+import { Diagnosis_APP, Diagnosis_APPDTO, Diagnosis_ListResponse, Diagnosis_PageResponse, Diagnosis_Response, FormControlOption, TypeReturn } from '@interfaces/index';
 import { Diagnosis, DiagnosisDTO, OptionsControl } from '@models/index';
-import { Observable, catchError, map, of } from 'rxjs';
+import { Store } from '@ngrx/store';
+import { select_diagnosisGroup_options } from '@selectors/diagnosis.select';
+import { Observable, catchError, map, of, switchMap, take, tap } from 'rxjs';
 
 @Injectable({
     providedIn: 'root'
 })
 export class DiagnosisService {
+    private store = inject(Store);
     private http = inject(HttpClient);
     private api: PathNameAPI = {
         base: 'config/diagnostico',
@@ -35,7 +39,6 @@ export class DiagnosisService {
     }
 
     list(): Observable<Diagnosis_APP[]>;
-    list(typeReturn: 'options2'): Observable<FormControlOption2[]>;
     list(typeReturn: 'options'): Observable<FormControlOption[]>;
     list(typeReturn: TypeReturn = null) {
         const api = apiHelper.api(this.api.base, { path: this.api.list });
@@ -68,5 +71,20 @@ export class DiagnosisService {
     delete(id: number) {
         const api = apiHelper.api(this.api.base, { path: id });
         return this.http.delete<ResponseAPI<string>>(api);
+    }
+
+    options(): Observable<FormControlOption[]> {
+        return this.store.select(select_diagnosisGroup_options).pipe(
+            take(1),
+            switchMap(data => {
+                if (data.length > 0) {
+                    return this.store.select(select_diagnosisGroup_options).pipe(take(1));
+                } else {
+                    return this.list('options').pipe(
+                        tap(data => this.store.dispatch(action_diagnosis_options({ data })))
+                    );
+                }
+            })
+        );
     }
 }

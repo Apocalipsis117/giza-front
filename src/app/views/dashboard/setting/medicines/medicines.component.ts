@@ -3,11 +3,8 @@ import { DirectivesModule } from '@directive/module';
 import { queries } from '@helpers/index';
 import { ActionName, BarActions, Medicine_PageAPP, tabsControls } from '@interfaces/index';
 import { BladeBoxPanelComponent } from '@layouts/dashboard/blades/blade-box-panel/blade-box-panel.component';
-import { BladeBoxTitleComponent } from '@layouts/dashboard/blades/blade-box-title/blade-box-title.component';
 import { BladePanelComponent } from '@layouts/dashboard/blades/blade-panel/blade-panel.component';
 import { BladeTabsHorizontalComponent } from '@layouts/dashboard/blades/blade-tabs-horizontal/blade-tabs-horizontal.component';
-import { FormUpdateCumComponent } from '@layouts/dashboard/forms/form-update-cum/form-update-cum.component';
-import { NoteComponent } from '@layouts/shared/note/note.component';
 import { MedicineService } from '@services/api';
 import { SweetalertService } from '@services/app';
 import { FormMedicineComponent } from './form-medicine/form-medicine.component';
@@ -21,10 +18,7 @@ import { TdetailMedicineComponent } from './tdetail-medicine/tdetail-medicine.co
     imports: [
         BladePanelComponent,
         BladeBoxPanelComponent,
-        BladeBoxTitleComponent,
         FormMedicineComponent,
-        FormUpdateCumComponent,
-        NoteComponent,
         BladeTabsHorizontalComponent,
         DirectivesModule,
         TableMedicineComponent,

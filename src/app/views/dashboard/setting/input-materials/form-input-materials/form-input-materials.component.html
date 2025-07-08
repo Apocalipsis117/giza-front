@@ -1,0 +1,20 @@
+<form class="d-grid" [formGroup]="form">
+    <div class="col-span-6">
+        <input-text setLabel="Nombre" formControlName="name" [setValidate]="control['name']" #validate />
+    </div>
+    <div class="col-span-6">
+        <input-onoff setLabel="Estado" formControlName="status" />
+    </div>
+    <div class="col-span-6">
+        <input-onoff setLabel="Facturable" formControlName="billable" />
+    </div>
+    <div class="col-span-6">
+        <input-select setLabel="Conceptos Rips" formControlName="ripsConceptId" [setOptions]="optionsRipConceps()" [setValidate]="control['ripsConceptId']" #validate />
+    </div>
+    <div class="col-span-6">
+        <input-select setLabel="Clasificación de materiales" formControlName="materialClassificationId" [setOptions]="optionsClassificationMaterials()" [setValidate]="control['materialClassificationId']" #validate />
+    </div>
+    <div class="col-span-full">
+        <input-select-add setLabel="Manual Tarifario de materiales" [setOptions]="optionsManualInputMaterials()" formControlName="manualInputMaterialsTariffIds" [setValidate]="control['manualInputMaterialsTariffIds']" #validate />
+    </div>
+</form>

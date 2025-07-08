@@ -1,17 +1,17 @@
 import { HttpInterceptorFn } from '@angular/common/http';
 import { inject } from '@angular/core';
 import { catchError } from 'rxjs';
-import { LocalStorageService } from '../services/app/local-storage.service';
+import { SessionStorageService } from '../services/app/session-storage.service';
 import { handleErrorResponse } from './httpHelper';
 
 export const interceptorAuthtoken: HttpInterceptorFn = (req, next) => {
-    const localStorage$ = inject(LocalStorageService);
+    const localStorage$ = inject(SessionStorageService);
     let clone = req;
     const store = localStorage$.userLogin;
-    if(store && store.token) {
+    if (store && store.login) {
         clone = req.clone({
             setHeaders: {
-                'Authorization': 'Bearer ' + store.token
+                'Authorization': 'Bearer ' + store.login.token
             }
         });
     }

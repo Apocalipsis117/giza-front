@@ -1,0 +1,25 @@
+@if(data()) {
+    <div class="ui-detail">
+        <div class="detail-titles">
+            <h2>{{ value().name }}</h2>
+        </div>
+        <div class="col-span-full">
+        <blade-box-collapse idParent="group-diagnosis">
+        @for (item of value().Diagnosis; track index; let index = $index) {
+            <blade-collapse-block
+                idParent="form-patient"
+                [idConnect]="'collapse-' + index"
+                [setTitle]="item.name"
+                setIcon="icofont-home"
+                [isActive]="false"
+                setTitleSize="sm"
+            >
+                <tdetail-diagnosis [data]="item" />
+            </blade-collapse-block>
+        }
+        </blade-box-collapse>
+        </div>
+    </div>
+} @else {
+    <select-some-item />
+}

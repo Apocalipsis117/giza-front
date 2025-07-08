@@ -33,6 +33,8 @@ export { TypeReferralService } from './api/single-query/type-referral.service';
 export { DiagnosisCharterService } from './api/single-query/diagnosis-charter.service';
 export { DiagnosisCategoryService } from './api/single-query/diagnosis-category.service';
 export { DiagnosisSubcategoryService } from './api/single-query/diagnosis-subcategory.service';
+export { ClassificationMaterialsService } from './api/single-query/classification-materials.service';
+export { TypeServicePypService } from './api/single-query/type-service-pyp.service';
 
 /**
  * Setting
@@ -56,3 +58,8 @@ export { RipConceptService } from './api/setting/rip-concept.service';
 export { ServiceLevelService } from './api/setting/service-level.service';
 export { ServicesService } from './api/setting/services.service';
 export { VehicleService } from './api/setting/vehicle.service';
+
+/**
+ * rate
+ */
+export { ManualInputMaterialsService } from './api/rate/manual-input-materials.service';

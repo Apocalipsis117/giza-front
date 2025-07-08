@@ -1,0 +1,26 @@
+<blade-table [rounded]="true" [setData]="dataTable()" [colspan]="5" (onPage)="paginate($event)" [loadingData]="load()">
+    <ng-container tableHead>
+        <tr>
+            <th>Material insumo</th>
+            <th width="150">Facturable</th>
+            <th width="150">Estado</th>
+            <th width="120" class="text-end">Accion</th>
+        </tr>
+    </ng-container>
+    <ng-container tableBody>
+        @for(entity of entities(); track entity.id) {
+            <tr TrSelected [idx]="tdSelected()" [id]="entity.id">
+                <td>{{ entity.name }}</td>
+                <td>
+                    <badge-status [setStatus]="entity.billable"/>
+                </td>
+                <td>
+                    <badge-status [setStatus]="entity.status"/>
+                </td>
+                <td class="text-end">
+                    <app-button setIcon="icofont-info-circle" setSize="sm" (action)="emit(entity)" />
+                </td>
+            </tr>
+        }
+    </ng-container>
+</blade-table>

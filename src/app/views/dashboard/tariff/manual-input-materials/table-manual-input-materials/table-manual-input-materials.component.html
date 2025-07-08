@@ -1,0 +1,24 @@
+<blade-table [setData]="dataTable()" [colspan]="3" (onPage)="paginate($event)" [loadingData]="load()">
+    <ng-container tableHead>
+        <tr>
+            <th>Evento adverso</th>
+            <th width="100">Estado</th>
+            <th width="150" class="text-end" width="120">Accion</th>
+        </tr>
+    </ng-container>
+    <ng-container tableBody>
+        @for(entity of entities(); track entity.id) {
+        <tr TrSelected [idx]="tdSelected()" [id]="entity.id">
+            <td>{{ entity.name }}</td>
+            <td>
+                <badge-status [setStatus]="entity.state" />
+            </td>
+            <td class="text-end">
+                <div class="inline-flex gap-2">
+                    <btns-action [enableActions]="{ edit: true, delete: true }" [data]="entity" (onBtn)="onBtn($event)" />
+                </div>
+            </td>
+        </tr>
+        }
+    </ng-container>
+</blade-table>
