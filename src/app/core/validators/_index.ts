@@ -73,3 +73,28 @@ export function ValidStrict(message?: string): ValidatorFn {
         return isEmpty ? { message: message || defaultMsg } : null;
     };
 }
+
+export function ValidateMaxNumber(max: number, message?: string): ValidatorFn {
+    const defaultMsg = `El valor debe ser menor o igual a ${max}`;
+    return (control: AbstractControl): ValidationErrors | null => {
+        const value = control.value;
+        if (Number.isNaN(value)) return null;
+        return value <= max ? null : { message: message || defaultMsg };
+    };
+}
+
+export function validateMaxDigits(maxDigits: number, message?: string): ValidatorFn {
+    const defaultMsg = `Debe tener como máximo ${maxDigits} dígito(s) numérico(s)`;
+    return (control: AbstractControl): ValidationErrors | null => {
+        const value = control.value;
+
+        if (value == null || value === '') return null;
+
+        // Aceptamos solo dígitos (ignora símbolos como puntos, comas o letras)
+        const numericPart = String(value).replace(/\D/g, '');
+
+        return numericPart.length <= maxDigits
+            ? null
+            : { message: message || defaultMsg };
+    };
+}

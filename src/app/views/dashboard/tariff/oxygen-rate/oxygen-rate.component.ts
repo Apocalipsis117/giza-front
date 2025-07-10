@@ -79,7 +79,8 @@ export class OxygenRateComponent {
 
     save() {
         const form = this.formCreate()?.form;
-        if (form?.valid) {
+        console.log("form", form?.value);
+        /*if (form?.valid) {
             this.swal.loading();
             this.OxygenRate$.post(form.value).subscribe({
                 next: (value) => {
@@ -96,7 +97,7 @@ export class OxygenRateComponent {
             this.swal.formSave('warning');
             form?.markAllAsTouched();
             this.formCreate()?.validate();
-        }
+        }*/
     }
 
     update() {

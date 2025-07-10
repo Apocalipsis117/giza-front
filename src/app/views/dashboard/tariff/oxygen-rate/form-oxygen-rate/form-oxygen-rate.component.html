@@ -4,7 +4,7 @@
             <input-text setLabel="Nombre" formControlName="name" [setValidate]="control['name']" #validate />
         </div>
         <div class="col-span-3">
-            <input-text setIcon="icofont-dollar" setLabel="Valor" setType="number" formControlName="value" [setValidate]="control['value']" #validate />
+            <input-number setIcon="icofont-dollar" setLabel="Valor" setType="number" formControlName="value" [setValidate]="control['value']" #validate />
         </div>
         <div class="col-span-4">
             <input-select-searh [setOptions]="optionsMedicine()" setLabel="Medicamento" formControlName="medicineId" [setValidate]="control['medicineId']" #validate />

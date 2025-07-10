@@ -14,7 +14,7 @@ import { BladeTabsHorizontalComponent } from '@layouts/dashboard/blades/blade-ta
 import { ButtonComponent } from '@layouts/shared/button/button.component';
 import { CostCenterService, GroupMedicationService, ManualTariffMedicineService, PharmaceuticalFormService, TypeConcentrationService, TypeMedicineService, TypeServiceService, TypeUnitMeasurementService, TypeViaMedicationService } from '@services/api';
 import { SweetalertService } from '@services/app';
-import { ValidateNumberEmpty, ValidateStringEmpty, ValidStrict } from '@valid-control/index';
+import { validateMaxDigits, ValidateNumberEmpty, ValidateStringEmpty, ValidStrict } from '@valid-control/index';
 import { forkJoin } from 'rxjs';
 
 @Component({
@@ -88,7 +88,7 @@ export class FormMedicineComponent {
         code: ['', [ValidateStringEmpty()]],
         name: ['', [ValidateStringEmpty()]],
         atc: ['', [ValidateStringEmpty()]],
-        cum: [NaN, [ValidateNumberEmpty()]],
+        cum: [NaN, [ValidateNumberEmpty(), validateMaxDigits(2)]],
         unitPrice: [NaN, [ValidateNumberEmpty()]],
         cumConsecutive: [''],
         cumName: ['', [ValidateStringEmpty()]],

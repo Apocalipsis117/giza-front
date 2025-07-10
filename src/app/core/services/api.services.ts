@@ -37,6 +37,7 @@ export { ClassificationMaterialsService } from './api/single-query/classificatio
 export { TypeServicePypService } from './api/single-query/type-service-pyp.service';
 export { TypeViaMedicationService } from './api/single-query/type-via-medication.service';
 export { GroupMedicationService } from './api/single-query/group-medication.service';
+export { TypeZonaService } from './api/single-query/type-zona.service';
 
 /**
  * Setting

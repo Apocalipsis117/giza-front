@@ -64,6 +64,8 @@ export * from './single-query/gender.i';
 export * from './single-query/material-classification.i';
 export * from './single-query/type-history.i';
 export * from './single-query/type-regime.i';
+export * from './single-query/type-zona.i';
+export * from './single-query/neighborhood.i';
 
 // fakes
 export * from './fakes/todo.interface';

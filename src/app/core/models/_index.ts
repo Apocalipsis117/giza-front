@@ -33,7 +33,8 @@ export * from './setting/rip-concept.m';
 export * from './setting/service.m';
 export * from './setting/vehicles.model';
 export * from './setting/input-materials.m';
-export * from './setting/procedure-pyp.i';
+export * from './setting/procedure-pyp.m';
+export * from './setting/neighborhood.m';
 
 // single-query
 export * from './single-query/activity.m';
@@ -43,4 +44,5 @@ export * from './single-query/medicine-rate-manual.m';
 export * from './single-query/name-entity.m';
 export * from './single-query/type-history.m';
 export * from './single-query/types-regime.m';
+export * from './single-query/type-zona.m';
 

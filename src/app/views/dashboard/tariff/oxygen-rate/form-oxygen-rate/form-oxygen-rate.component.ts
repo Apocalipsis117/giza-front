@@ -1,6 +1,7 @@
 import { Component, inject, signal, viewChildren } from '@angular/core';
 import { FormBuilder, FormGroup, ReactiveFormsModule } from '@angular/forms';
 import { ngFormHelper } from '@helpers/index';
+import { InputNumberComponent } from '@im-inputs/input-number/input-number.component';
 import { InputSelectSearhComponent } from '@im-inputs/input-select-searh/input-select-searh.component';
 import { InputTextComponent } from '@im-inputs/input-text/input-text.component';
 import { FormControlOption, FormGroupTyped, IForm, OxygenRate_APPDTO } from '@interfaces/index';
@@ -14,6 +15,7 @@ import { forkJoin } from 'rxjs';
     imports: [
         ReactiveFormsModule,
         InputTextComponent,
+        InputNumberComponent,
         InputSelectSearhComponent
     ],
     templateUrl: './form-oxygen-rate.component.html'
