@@ -1,4 +1,4 @@
-<article class="tabs-panel" [ngClass]="boxUi()"><!--  overflow-hidden -->
+<article class="tabs-panel" [class]="boxUi()"><!--  overflow-hidden -->
     <header class="tabs-header">
         @if(setTitle()) {
             <div class="label-header">{{ setTitle() }}</div>
@@ -8,7 +8,7 @@
             <button type="button" class="btn-tab" bsTabBtn [idConnect]="tab.idConnect" [isActive]="tab.active" (click)="emit(tab)">
                 <div class="btn-content">
                     @if(tab.icon) {
-                        <i class="mr-2" [ngClass]="tab.icon"></i>
+                        <i class="mr-2" [class]="tab.icon"></i>
                     }
                     {{ tab.label }}
                 </div>

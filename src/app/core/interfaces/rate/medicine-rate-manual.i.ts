@@ -6,8 +6,9 @@ import { NameStateEntity_API, NameStateEntity_APP } from "@interfaces/index";
  * ---------------------------
  */
 export interface MedicineRateManual_DTO {
-    maunualTarifaMedicamentoId: number;
+    manualTarifaMedicamentoId: number;
     valor:                      number;
+    id:                      number | null;
 }
 
 export interface MedicineRateManual_API {
@@ -22,6 +23,7 @@ export interface MedicineRateManual_API {
  * ---------------------------
  */
 export interface MedicineRateManual_APPDTO {
+    id?:                    number;
     medicineTariffManualId: number; // maunualTarifaMedicamentoId
     value:                  number; // valor
 }

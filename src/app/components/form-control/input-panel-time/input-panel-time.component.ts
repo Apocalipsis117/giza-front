@@ -1,7 +1,7 @@
 import { NgClass } from '@angular/common';
 import { Component, computed, forwardRef, input, signal } from '@angular/core';
 import { ControlValueAccessor, FormsModule, NG_VALUE_ACCESSOR } from '@angular/forms';
-import { dateFormate, generator } from '@helpers/index';
+import { DateHelper, generator } from '@helpers/index';
 import { InputDate, UiSize } from '@interfaces/index';
 
 @Component({
@@ -49,18 +49,18 @@ export class InputPanelTimeComponent implements ControlValueAccessor {
     }
 
     setTimeNow() {
-        const timeNow = new Date();
+        const fdate = new DateHelper(new Date());
         let time: string;
         if (this.setType() === 'datetime-local') {
-            time = dateFormate.getDatetime(timeNow).fomatDatetime;
+            time = fdate.getDataOfDate.fomatDatetime;
         }
         else if (this.setType() === 'time') {
-            time = dateFormate.getDatetime(timeNow).fomatTime;
+            time = fdate.getDataOfDate.fomatTime;
         }
         else {
-            time = dateFormate.getDatetime(timeNow).fomatDate;
+            time = fdate.getDataOfDate.fomatDate;
         }
         this.currentValue.set(time);
-        this.changeInput()
+        this.changeInput();
     }
 }

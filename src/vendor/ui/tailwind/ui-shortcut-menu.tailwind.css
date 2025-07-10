@@ -18,7 +18,12 @@
     }
     &:disabled {
         transform: none;
-        opacity: .5;
+        opacity: .25;
+        filter: grayscale(100%);
+        .icon-shortcut {
+            transform: none;
+            opacity: 1;
+        }
     }
 }
 

@@ -1,6 +1,6 @@
 import { Component, forwardRef, input, signal } from '@angular/core';
 import { FormsModule, NG_VALUE_ACCESSOR } from '@angular/forms';
-import { dateHelper, generator } from '@helpers/index';
+import { DateHelper, generator } from '@helpers/index';
 import { InputDate } from '@interfaces/index';
 
 @Component({
@@ -40,16 +40,16 @@ export class InputDateComponent {
     }
 
     setTimeNow() {
-        const timeNow = new Date();
+        const fdate = new DateHelper(new Date());
         let time: string;
         if (this.setType() === 'datetime-local') {
-            time = dateHelper.getDataOfDate(timeNow).fomatDatetime;
+            time = fdate.getDataOfDate.fomatDatetime;
         }
         else if (this.setType() === 'time') {
-            time = dateHelper.getDataOfDate(timeNow).fomatTime;
+            time = fdate.getDataOfDate.fomatTime;
         }
         else {
-            time = dateHelper.getDataOfDate(timeNow).fomatDate;
+            time = fdate.getDataOfDate.fomatDate;
         }
         this.currentValue.set(time);
         this.changeInput();

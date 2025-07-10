@@ -61,3 +61,25 @@ Ref
     </ng-container>
 </blade-tabs-horizontal>
 ```
+
+```html
+<blade-tabs-horizontal [tabsControls]="tabsControls" setTitle="Title">
+    <ng-container tabsBody>
+    @for (comp of tabsControls; track index; let index = $index) {
+        <article bsTabContent [idConnect]="comp.idConnect" [isActive]="comp.active">
+        @switch(comp.idConnect) {
+            @case(tabsControls[0].idConnect) {
+                <p>queso A</p>
+            }
+            @case(tabsControls[1].idConnect) {
+                <p>queso B</p>
+            }
+            @case(tabsControls[2].idConnect) {
+                <p>queso C</p>
+            }
+        }
+        </article>
+    }
+    </ng-container>
+</blade-tabs-horizontal>
+```

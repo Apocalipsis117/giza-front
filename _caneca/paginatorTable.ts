@@ -1,4 +1,4 @@
-export class PaginatorTable {
+export class XPaginatorTable {
     private itemsPerPage: number;
     private currentPage: number;
     private totalPages: number;

@@ -1,7 +1,7 @@
 import { Component, computed, forwardRef, inject, input, output, signal } from '@angular/core';
 import { AbstractControl, FormsModule, NG_VALUE_ACCESSOR } from '@angular/forms';
 import { ngFormHelper } from '@helpers/index';
-import { FormControlOption } from '@interfaces/index';
+import { FormControlOption, im_uiSize } from '@interfaces/index';
 import { SweetalertService } from '@services/app';
 
 @Component({
@@ -21,6 +21,7 @@ export class InputSelectAddComponent {
     private readonly swa$ = inject(SweetalertService);
     setOptions = input<FormControlOption[]>([]);
     setLabel = input<string>('');
+    setSize = input('ul-base', { transform: (value: im_uiSize) => `ul-${value}`});
     setPlaceholder = input<string>('Buscar...');
     selectedValues = signal<(number | string | null)[]>([]);
     searchA = signal<string>(''); // filtro lado A

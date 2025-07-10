@@ -1,44 +1,70 @@
-import { Component, computed, inject, signal } from '@angular/core';
+import { Component, computed, inject, input, viewChild } from '@angular/core';
+import { DirectivesModule } from '@directive/module';
+import { Medicine_APP, tabsControls } from '@interfaces/index';
+import { BladeTabsHorizontalComponent } from '@layouts/dashboard/blades/blade-tabs-horizontal/blade-tabs-horizontal.component';
 import { SelectSomeItemComponent } from '@layouts/dashboard/ux/select-some-item/select-some-item.component';
 import { BlockSwitchStatusComponent } from '@layouts/shared/block-switch-status/block-switch-status.component';
+import { ButtonComponent } from '@layouts/shared/button/button.component';
 import { LocalMedicineService } from '../local-medicine.service';
-import { Medicine_APP } from '@interfaces/index';
 
 @Component({
     selector: 'tdetail-medicine',
     standalone: true,
     imports: [
         BlockSwitchStatusComponent,
-        SelectSomeItemComponent
+        SelectSomeItemComponent,
+        BladeTabsHorizontalComponent,
+        DirectivesModule,
+        ButtonComponent
     ],
     templateUrl: './tdetail-medicine.component.html'
 })
 export class TdetailMedicineComponent {
-    data = signal<Medicine_APP | null>(null);
-    localServ = inject(LocalMedicineService);
-
-    ngOnInit(): void {
-        this.localServ.watchData.subscribe(data => this.data.set(data));
-    }
+    readonly tabController = viewChild('tabDetails', { read: BladeTabsHorizontalComponent});
+    public readonly data = input<Medicine_APP | null>(null);
+    local$ = inject(LocalMedicineService);
+    tabsControls: tabsControls[] = [
+        {
+            active: true,
+            idConnect: 'tab-detail-a',
+            label: 'Información'
+        },
+        {
+            active: false,
+            idConnect: 'tab-detail-b',
+            label: 'Otros datos'
+        }
+    ];
 
     value = computed(() => {
+        const _ = this.data()!;
         return {
-            name: this.data()!.name,
-            code: this.data()!.code,
-            atc: this.data()!.atc,
-            cum: this.data()?.cum ? this.data()!.cum : '',
-            cumCons: 'queso',
-            cumName: this.data()!.cumName,
-            referenceUnit: this.data()?.referenceUnit ? this.data()!.referenceUnit : '',
-            otherName: this.data()!.otherName,
-            adverseEffect: this.data()?.adverseEffect ? this.data()!.adverseEffect : 'Ninguno',
-            contraindications: this.data()?.contraindications ? this.data()!.contraindications : 'Ninguno',
-            interactionIncompatibility: this.data()?.interactionIncompatibility ? this.data()!.interactionIncompatibility : 'Ninguno',
-            isLiquid:  'queso',
-            isActive:  'queso',
-            medicineTypeName:  'queso',
-            measurementUnit:  'queso',
-            concentration:  'queso',
+            name: _.name,
+            code: _.code,
+            atc: _.atc,
+            unitPrice: _.unitPrice,
+            cum: _.cum || '',
+            cumCons: _.cumConsecutive || '',
+            cumName: _.cumName,
+            referenceUnit: _.referenceUnit || '',
+            otherName: _.otherName,
+            adverseEffect: _.adverseEffect || 'Ninguno',
+            contraindications: _.contraindications || 'Ninguno',
+            ompatibility: _.interactionIncompatibility || 'Ninguno',
+            liquid: _.liquid,
+            isActive:  _.status,
+            costCenter:  _.costCenter.name,
+            pharmaceuticalForm: _.pharmaceuticalForm.name,
+            medicineTypeName: _.medicineType.name,
+            measurementUnit: _.unitOfMeasure.name,
+            concentration: _.concentration.name,
         }
     });
+
+    manualsRate = computed(() => {
+        return this.data()!.medicineManualTariffMeds.map(x => ({
+            name: x.medicineTariffManual.name,
+            value: x.value
+        }))
+    })
 }

@@ -2,6 +2,10 @@
     @apply grid gap-4 grid-cols-12;
 }
 
+.li-action {
+    @apply flex gap-4 items-center justify-between;
+}
+
 .detail-titles {
     @apply col-span-full;
     h2 {

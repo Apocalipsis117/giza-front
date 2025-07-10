@@ -1,55 +1,94 @@
 <form [formGroup]="form">
     <div class="grid grid-cols-12 gap-x-3 gap-y-1 items-end">
         <div class="col-span-2">
-            <input-text setLabel="Código" formControlName="code" />
+            <input-text setLabel="Código" formControlName="code" [setValidate]="control['code']" #validate />
         </div>
-        <div class="col-span-10">
-            <input-text setLabel="Nombre" formControlName="name" />
+        <div class="col-span-7">
+            <input-text setLabel="Nombre" formControlName="name" [setValidate]="control['name']" #validate />
+        </div>
+        <div class="col-span-3">
+            <input-number setLabel="Precio unitario" formControlName="unitPrice" [setValidate]="control['unitPrice']" #validate />
         </div>
         <div class="col-span-2">
-            <input-text setLabel="ATC" formControlName="atc" />
+            <input-text setLabel="ATC" formControlName="atc" [setValidate]="control['atc']" #validate />
         </div>
         <div class="col-span-4">
-            <input-select setLabel="Grupos de Medicamento" formControlName="medicineGroupIds" />
+            <input-select setLabel="Tipo de Medicamento" formControlName="medicineTypeId" [setOptions]="optionsTypeMedicine()" [setValidate]="control['medicineTypeId']" #validate />
+        </div>
+        <div class="col-span-2">
+            <input-select setLabel="Unidad de Medida"  formControlName="unitOfMeasureId" [setOptions]="optionsMedicineUnit()" [setValidate]="control['unitOfMeasureId']" #validate />
+        </div>
+        <div class="col-span-4">
+            <input-select setLabel="Concentración" formControlName="concentrationId" [setOptions]="optionsConcentration()" [setValidate]="control['concentrationId']" #validate />
+        </div>
+        <div class="col-span-5">
+            <input-select-searh setLabel="Forma Farmacéutica" formControlName="pharmaceuticalFormId" [setOptions]="optionsPharmaForm()" />
+        </div>
+        <div class="col-span-2">
+            <input-text setLabel="Unidad Referencia" formControlName="referenceUnit" [setValidate]="control['referenceUnit']" #validate />
+        </div>
+        <div class="col-span-5">
+            <input-select setLabel="Centro de Costo" formControlName="costCenterId" [setOptions]="optionsCostcenter()" />
         </div>
         <div class="col-span-3">
-            <input-select setLabel="Tipo de Medicamento" formControlName="medicineTypeId" />
-        </div>
-        <div class="col-span-3">
-            <input-select setLabel="Unidad de Medida" formControlName="unitOfMeasureId" />
-        </div>
-        <div class="col-span-3">
-            <input-select setLabel="Concentración" formControlName="concentrationId" />
-        </div>
-        <div class="col-span-3">
-            <input-select setLabel="Forma Farmacéutica" formControlName="pharmaceuticalFormId" />
-        </div>
-        <div class="col-span-3">
-            <input-text setLabel="Unidad de Referencia" formControlName="referenceUnit" />
-        </div>
-        <div class="col-span-3">
-            <input-select setLabel="Centro de Costo" formControlName="costCenterId" />
-        </div>
-        <div class="col-span-3">
-            <input-number setLabel="CUM" formControlName="cum" />
+            <input-number setLabel="CUM" formControlName="cum" [setValidate]="control['cum']" #validate />
         </div>
         <div class="col-span-2">
             <input-text setLabel="Consecutivo CUM" formControlName="cumConsecutive" />
         </div>
         <div class="col-span-7">
-            <input-text setLabel="Nombre CUM" formControlName="cumName" />
+            <input-text setLabel="Nombre CUM" formControlName="cumName" [setValidate]="control['cumName']" #validate />
         </div>
         <div class="col-span-4">
-            <input-text setLabel="Otro Nombre" formControlName="otherName" />
+            <input-text setLabel="Otro Nombre" formControlName="otherName" [setValidate]="control['otherName']" #validate />
+        </div>
+        <div class="col-span-4">
+            <input-select setLabel="Tipo de Servicio" formControlName="serviceTypeId" [setOptions]="optionsTypeServ()" [setValidate]="control['serviceTypeId']" #validate />
+        </div>
+        <div class="col-span-2">
+            <input-onoff setLabel="Es liquido" [setText]="['No', 'Si']" formControlName="liquid" />
         </div>
         <div class="col-span-2">
             <input-onoff setLabel="Estado" formControlName="status" />
         </div>
-        <div class="col-span-3">
-            <input-select setLabel="Tipo de Servicio" formControlName="serviceTypeId" />
-        </div>
-        <div class="col-span-3">
-            <input-select setLabel="Vías de Administración" formControlName="administrationRouteIds" />
+        <div class="col-span-full pt-2">
+            <blade-tabs-horizontal [tabsControls]="tabs()"  ui="gentle-none">
+                <ng-container tabsBody>
+                @for (comp of tabs(); track index; let index = $index) {
+                    <article bsTabContent [idConnect]="comp.idConnect" [isActive]="comp.active">
+                    <div class="py-4">
+                        @switch(comp.idConnect) {
+                            @case(tabs()[0].idConnect) {
+                                <ol class="space-y-1.5 mb-2" formArrayName="medicineManualTariffMed">
+                                    @for (group of medicineManualTariffMed.controls; track group; let i = $index) {
+                                      <li class="d-grid items-end border border-[var(--color-100)] p-2 rounded bg-[var(--color-50)]" [formGroupName]="i">
+                                        <div class="col-span-6">
+                                            <input type="hidden" formControlName="id">
+                                            <input-select-searh setLabel="Manual tarifario medicamento" [setOptions]="optionsTypeManualTariffMedicine()" formControlName="medicineTariffManualId" />
+                                        </div>
+                                        <div class="col-span-4">
+                                            <input-text setLabel="Valor" formControlName="value" />
+                                        </div>
+                                        <div class="col-span-2">
+                                            <app-button setColor="red" setTitle="Eliminar" (action)="removeTodo(i)" />
+                                        </div>
+                                      </li>
+                                    }
+                                </ol>
+                                <app-button setColor="green" setTitle="Agregar Tarifa" (action)="addTodo()" />
+                            }
+                            @case(tabs()[1].idConnect) {
+                                <input-select-add setSize="sm" [setOptions]="optionsTypeViaMedication()" formControlName="administrationRouteIds" />
+                            }
+                            @case(tabs()[2].idConnect) {
+                                <input-select-add setSize="sm" [setOptions]="optionsGroupMedication()" formControlName="medicineGroupIds" />
+                            }
+                        }
+                    </div>
+                    </article>
+                }
+                </ng-container>
+            </blade-tabs-horizontal>
         </div>
         <div class="col-span-4">
             <input-textarea setLabel="Efecto Adverso" formControlName="adverseEffect" />

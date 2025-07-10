@@ -21,40 +21,41 @@ import { LocalOxygenRateService } from '../local-oxygen-rate.service';
     ]
 })
 export class TableOxygenRateComponent {
-    private readonly oxigen$ = inject(OxygenRateService);
+    private readonly OxygenRate$ = inject(OxygenRateService);
     private readonly local$ = inject(LocalOxygenRateService);
-    paramPaginate = signal<any>(queries.paramsPage);
-    dataTable = signal<OxygenRate_PageAPP | null>(null);
     tdSelected = signal<number>(-1);
     load = signal<boolean>(false);
+    paramPaginate = signal<any>(queries.paramsPage);
+    data = signal<OxygenRate_PageAPP | null>(null);
 
     ngOnInit(): void {
-        this.queryOxigenrates();
+        this.queryAssistaces();
     }
 
-    entities = computed(() => this.dataTable() ? this.dataTable()?.content : []);
+    list = computed(() => this.data() ? this.data()!.content : []);
 
-    emit(data: OxygenRate_APP) {
-        this.tdSelected.set(data.id);
-        this.local$.emit(data);
-    }
-
-    queryOxigenrates() {
+    queryAssistaces() {
         this.load.set(true);
-        this.oxigen$.page(this.paramPaginate()).subscribe({
+        this.OxygenRate$.page(this.paramPaginate()).subscribe({
             next: (value) => {
-                this.dataTable.set(value)
+                this.data.set(value);
                 this.load.set(false);
             }
         });
     }
 
+    emit(item: OxygenRate_APP) {
+        this.tdSelected.set(item.id);
+        this.local$.entityEmit(item);
+    }
+
     clean() {
         this.tdSelected.set(-1);
-        this.local$.emit(null);
+        this.local$.entityEmit(null);
     }
+
     paginate(e: any) {
         this.paramPaginate.set(e);
-        this.queryOxigenrates();
+        this.queryAssistaces();
     }
 }

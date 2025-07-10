@@ -9,8 +9,9 @@ export class MedicineRateManualDTO {
 
     get data(): MedicineRateManual_DTO {
         return {
-            maunualTarifaMedicamentoId: this.input.medicineTariffManualId,
-            valor: this.input.value
+            manualTarifaMedicamentoId: this.input.medicineTariffManualId,
+            valor: this.input.value,
+            id: this.input.id || null
         }
     }
 }

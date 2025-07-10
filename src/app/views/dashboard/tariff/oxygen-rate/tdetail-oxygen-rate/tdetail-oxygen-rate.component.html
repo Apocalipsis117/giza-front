@@ -1,45 +1,14 @@
-@if(oxigenRate()) {
-    <div class="d-grid">
-        <div class="col-span-full mb-2 text-xl">{{ oxigenRateData().title }}</div>
-        <ul class="col-span-full ul-list-row">
-            <li>
-                <div class="col-span-6">
-                    <small>Medicamento</small>
-                    <div>{{ oxigenRateData().medicineName }}</div>
-                </div>
-                <div class="col-span-6">
-                    <small>Valor</small>
-                    <div>{{ oxigenRateData().value }}</div>
-                </div>
-            </li>
-        </ul>
-        <div class="col-span-full font-bold"><i class="icofont-info-circle mr-2"></i> Datos de medicamento</div>
-        <ul class="col-span-full ul-list-row">
-            <li>
-                <div class="col-span-4">
-                    <small>Centro costo</small>
-                    <div>{{ oxigenRateData().medicineCenterCost }}</div>
-                </div>
-                <div class="col-span-4">
-                    <small>Area Centro Costo</small>
-                    <div>{{ oxigenRateData().medicineArea }}</div>
-                </div>
-                <div class="col-span-4">
-                    <small>Tipo medicamento</small>
-                    <div>{{ oxigenRateData().medicineType }}</div>
-                </div>
-            </li>
-            <li>
-                <div class="col-span-6">
-                    <small>Formula farmacéutica</small>
-                    <div>{{ oxigenRateData().pharmaceuticalForm }}</div>
-                </div>
-                <div class="col-span-6">
-                    <small>Tipo de servicio</small>
-                    <div>{{ oxigenRateData().serviceTypes }}</div>
-                </div>
-            </li>
-        </ul>
+@if(data()) {
+    <div class="ui-detail">
+        <div class="detail-titles">
+            <h2>{{ value().name }}</h2>
+            <ul>
+                <li><b>Precio:</b> {{ value().value | currency: '' : '$ ' : '1.0-0' }}</li>
+            </ul>
+        </div>
+        <div class="col-span-full">
+            <tdetail-medicine [data]="value().medicine" />
+        </div>
     </div>
 } @else {
     <select-some-item />

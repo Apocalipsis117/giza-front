@@ -7,6 +7,13 @@ export const generator = {
             return id.toString(15);
         });
     },
+    uuidShort(prefixe: string = 'uuid'): string {
+        return `${prefixe}-xxxxxx`.replace(/[x]/g, (c) => {
+            let ramdom = Math.random() * 15 | 0,
+                id = c == 'x' ? ramdom : (ramdom & 0x3 | 0x8);
+            return id.toString(15);
+        });
+    },
     formData(data: any) {
         let formData = new FormData();
         for (let i in data) {

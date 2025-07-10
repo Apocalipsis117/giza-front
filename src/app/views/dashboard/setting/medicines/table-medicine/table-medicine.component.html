@@ -1,25 +1,20 @@
-<blade-table [headDivider]="true" [bodyYDivider]="true" (controlPaginate)="paginate.emit($event)">
+<blade-table [rounded]="true" [setData]="dataTable()" [colspan]="5" (onPage)="paginate($event)" [loadingData]="load()">
     <ng-container tableHead>
         <tr>
-            <th>Nombre</th>
-            <th>Tipo</th>
-            <th>Formula farm.</th>
-            <th width="200">Tipo de servicio</th>
-            <th width="80" class="text-end">Accion</th>
+            <th>Medicamento</th>
+            <th class="text-end">Estado</th>
+            <th class="text-end">Acciones</th>
         </tr>
     </ng-container>
     <ng-container tableBody>
-        @for(item of list(); track item.id) {
-            <tr [ngClass]="item.id | trSelected: tdSelected()">
+        @for(entity of entities(); track entity.id) {
+            <tr TrSelected [idx]="tdSelected()" [id]="entity.id">
+                <td>{{ entity.name }}</td>
                 <td>
-                    <div>{{ item.name }}</div>
-                    <small class="text-gray-400">{{ item.code }}</small>
+                    <badge-status [setStatus]="entity.status" />
                 </td>
-                <td>{{ item.medicineType!.name }}</td>
-                <td>{{ item.pharmaceuticalForm.name }}</td>
-                <td>none</td>
                 <td class="text-end">
-                    <app-button setIcon="icofont-info-circle" setSize="sm" (action)="emit(item)" />
+                    <app-button setIcon="icofont-info-circle" setSize="sm" (action)="emit(entity)" />
                 </td>
             </tr>
         }

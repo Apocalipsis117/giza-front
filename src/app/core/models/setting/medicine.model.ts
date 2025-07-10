@@ -12,6 +12,7 @@ export class MedicineDTO {
     get data() {
         const data: Medicine_DTO = {
             atc: this.input.atc,
+            precioUnidad: this.input.unitPrice,
             centroCostoId: this.input.costCenterId,
             concentracionId: this.input.concentrationId,
             consCum: this.input.cumConsecutive,
@@ -50,30 +51,32 @@ export class Medicine {
     constructor(public input: Medicine_API) {}
 
     get data(): Medicine_APP {
+        const _ = this.input;
         return {
-            id: this.input.id,
-            code: this.input.codigo,
-            name: this.input.nombre,
-            atc: this.input.atc,
-            cum: this.input.cum,
-            cumName: this.input.nombreCum,
-            referenceUnit: this.input.unidadReferencia,
-            otherName: this.input.otroNombre,
-            adverseEffect: this.input.efectoAdverso,
-            contraindications: this.input.contraindicaciones,
-            interactionIncompatibility: this.input.interaccionIncompatibilidad,
-            administrationRoutes: this.nameIdEntities(this.input.viaAdministracion),
-            concentration: NamedEntity.setProperty(this.input.concentracion),
-            costCenter: CostCenter.setProperty(this.input.centroCosto),
-            cumConsecutive: this.input.consCum,
-            liquid: this.input.liquido,
-            medicineGroups: this.nameIdEntities(this.input.grupoMedicamentos),
-            medicineManualTariffMeds: this.medicineManualTariffMeds(this.input.medicamentoManualTarifaMeds),
-            medicineType: NameIdEntity.setProperty(this.input.tipoMedicamento),
-            pharmaceuticalForm: NameIdEntity.setProperty(this.input.formaFarmaceutica),
-            serviceType: Service.setProperty(this.input.tipoServicios),
-            status: this.input.estado,
-            unitOfMeasure: NameIdEntity.setProperty(this.input.unidadMedida)
+            unitPrice: _.precioUnidad,
+            id: _.id,
+            code: _.codigo,
+            name: _.nombre,
+            atc: _.atc,
+            cum: _.cum,
+            cumName: _.nombreCum,
+            referenceUnit: _.unidadReferencia,
+            otherName: _.otroNombre,
+            adverseEffect: _.efectoAdverso,
+            contraindications: _.contraindicaciones,
+            interactionIncompatibility: _.interaccionIncompatibilidad,
+            administrationRoutes: this.nameIdEntities(_.viaAdministracion),
+            concentration: NamedEntity.setProperty(_.concentracion),
+            costCenter: CostCenter.setProperty(_.centroCosto),
+            cumConsecutive: _.consCum,
+            liquid: _.liquido,
+            medicineGroups: this.nameIdEntities(_.grupoMedicamentos),
+            medicineManualTariffMeds: this.medicineManualTariffMeds(_.medicamentoManualTarifaMeds),
+            medicineType: NameIdEntity.setProperty(_.tipoMedicamento),
+            pharmaceuticalForm: NameIdEntity.setProperty(_.formaFarmaceutica),
+            serviceType: Service.setProperty(_.tipoServicios),
+            status: _.estado,
+            unitOfMeasure: NameIdEntity.setProperty(_.unidadMedida)
         };
     }
 

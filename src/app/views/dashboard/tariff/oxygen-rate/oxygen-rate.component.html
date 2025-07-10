@@ -1,16 +1,16 @@
-<blade-panel>
+<blade-panel section="setting" titleSection="Servicios asistenciales">
     <ng-container panels>
         <div class="d-grid">
             <div class="col-span-8 space-y-3">
-                <div class="w-full">
-                    <blade-box-panel setTitle="Tarifa de oxigeno" [padding]="true" (actionBar)="barAction($event)" [actionsActive]="true">
+                <div class="block">
+                    <blade-box-panel setTitle="Nueva tarifa de oxigeno" [padding]="true" [actionsActive]="true" (actionBar)="barAction($event)">
                         <ng-container boxbody>
-                            <form-oxygen-rate #form />
+                            <form-oxygen-rate #formCreate />
                         </ng-container>
                     </blade-box-panel>
                 </div>
-                <div class="w-full">
-                    <blade-box-panel setTitle="Tarifas de oxigenos">
+                <div class="block">
+                    <blade-box-panel setTitle="Tarifas">
                         <ng-container boxbody>
                             <table-oxygen-rate #table />
                         </ng-container>
@@ -18,27 +18,26 @@
                 </div>
             </div>
             <div class="col-span-4">
-                <blade-box-panel setTitle="Tarifas de oxigenos" [padding]="true" [actionsActive]="true" [setActionsBar]="barActions" (actionBar)="barAction($event)">
+                <blade-box-panel setTitle="Tarifa de oxigeno" [padding]="true" [actionsActive]="true" [setActionsBar]="actionsBar" (actionBar)="barAction($event)">
                     <ng-container boxbody>
                         <tdetail-oxygen-rate />
                     </ng-container>
-            </blade-box-panel>
+                </blade-box-panel>
             </div>
         </div>
     </ng-container>
 </blade-panel>
 
-<app-note>
-    <ng-container noteBody>
-# Tarifa de oxigeno
-# APIS
-- GET ✅
-- POST ✅
-- PUT ?
-- DELETE ?
-- GET BY ID ?
-- Paginate ?
----
-# FRON
+
+<blade-dialog idConnect="form-update" setSize="xl" [hideFooter]="true" #dialogUpdate [activeFade]="false">
+    <ng-container dialogHeader>
+        <card-basic-text setTitle="Actualizar Tarifa de oxigeno" />
     </ng-container>
-</app-note>
+    <ng-container dialogBody>
+        <blade-box-panel ui="clean" [padding]="true" [actionsActive]="true" [setActionsBar]="actionsUpdate" [headerActive]="false" (actionBar)="barAction($event)">
+            <ng-container boxbody>
+                <form-oxygen-rate #formUpdate />
+            </ng-container>
+        </blade-box-panel>
+    </ng-container>
+</blade-dialog>

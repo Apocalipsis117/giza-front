@@ -1,4 +1,4 @@
-import { Injectable } from '@angular/core';
+import { Injectable, signal } from '@angular/core';
 import { Medicine_APP } from '@interfaces/index';
 import { Subject } from 'rxjs';
 
@@ -6,10 +6,12 @@ import { Subject } from 'rxjs';
     providedIn: 'root'
 })
 export class LocalMedicineService {
-    private medicine$ = new Subject<Medicine_APP | null>();
-    watchData = this.medicine$.asObservable();
+    getEntity = signal<Medicine_APP|null>(null);
+    private readEntity = new Subject<Medicine_APP | null>();
+    readEntity$ = this.readEntity.asObservable();
 
-    emit(data: Medicine_APP | null) {
-        this.medicine$.next(data);
+    entityEmit(data: Medicine_APP | null) {
+        this.readEntity.next(data);
+        this.getEntity.set(data);
     }
 }

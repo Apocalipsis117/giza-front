@@ -1,5 +1,5 @@
 import { WritableSignal } from "@angular/core";
-import { AbstractControl } from "@angular/forms";
+import { AbstractControl, FormArray, FormGroup } from "@angular/forms";
 
 export const ngFormHelper = {
     unboxProperties<T extends Record<string, any[]>>(obj: T): { [K in keyof T]: T[K][0] } {
@@ -30,6 +30,36 @@ export const ngFormHelper = {
 
             const error = control.errors?.[key] || null;
             errorSignal.set(error);
+        });
+    },
+    isControlsValid<T>(formGroup: FormGroup<any>, keys: (keyof T)[]): boolean {
+        for (const key of keys) {
+            const control = formGroup.get(key as string);
+            if (!control || control.invalid) {
+                return false;
+            }
+        }
+        return true;
+    },
+    canAddNewFormArrayItem(formArray: FormArray, requiredFields: string[]): boolean {
+        if (formArray.length === 0) return true;
+
+        const lastGroup = formArray.at(formArray.length - 1);
+        if (!lastGroup) return true;
+
+        return requiredFields.every((field) => {
+            const control = lastGroup.get(field);
+            const value = control?.value;
+
+            const isEmpty =
+                control?.invalid ||
+                value === null ||
+                value === undefined ||
+                (typeof value === 'string' && value.trim() === '');
+
+            if (isEmpty) control?.markAsTouched();
+
+            return !isEmpty;
         });
     }
 }

@@ -1,3 +1,4 @@
+```ts
 import { Component, computed, inject, output, signal } from '@angular/core';
 import { DirectivesModule } from '@directive/module';
 import { queries } from '@helpers/index';
@@ -56,3 +57,34 @@ export class TableRolesComponent {
         this.onTable.emit(data);
     }
 }
+
+```
+
+```html
+<blade-table [setData]="dataTable()" [colspan]="7" (onPage)="paginate($event)" [loadingData]="load()">
+    <ng-container tableHead>
+        <tr>
+            <th>Todo</th>
+            <th>Descripcion</th>
+            <th width="100">Estado</th>
+            <th class="text-end" width="120">Accion</th>
+        </tr>
+    </ng-container>
+    <ng-container tableBody>
+        @for(entity of entities(); track entity.uuid) {
+        <tr TrSelected [idx]="tdSelected()" [id]="entity.uuid">
+            <td>{{ entity.title }}</td>
+            <td>{{ entity.description }}</td>
+            <td>
+                <badge-status [setStatus]="entity.status" />
+            </td>
+            <td class="text-end">
+                <div class="inline-flex gap-2">
+                    <btns-action [enableActions]="{ edit: true, delete: true }" [data]="entity" (onBtn)="onBtn($event)" />
+                </div>
+            </td>
+        </tr>
+        }
+    </ng-container>
+</blade-table>
+```

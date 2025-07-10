@@ -1,82 +1,139 @@
 @if(data()) {
-<div class="d-grid">
-    <div class="col-span-full mb-2">
-        <h2 class="text-xl">{{ value().name }}</h2>
-        <p class="text-gray-500">{{ value().code }}</p>
-    </div>
-    <ul class="col-span-full ul-list-row">
-        <li>
-            <div class="col-span-4">
-                <small>Tipo de medicamento</small>
-                <div>{{ value().medicineTypeName }}</div>
+<blade-tabs-horizontal [tabsControls]="tabsControls" ui="clean" #tabDetails>
+    <ng-container tabsBody>
+        <article bsTabContent [idConnect]="tabsControls[0].idConnect" [isActive]="tabsControls[0].active">
+            <div class="ui-detail pt-3">
+                <div class="detail-titles">
+                    <h2>{{ value().name }}</h2>
+                    <ul>
+                        <li><b>Código:</b> {{ value().code }}</li>
+                        <li><b>Precio:</b> {{ value().unitPrice }}</li>
+                    </ul>
+                </div>
+                <ul class="detail-ul">
+                    <li>
+                        <div class="col-span-6">
+                            <small>Forma Farmacéutica</small>
+                            <div>{{ value().pharmaceuticalForm }}</div>
+                        </div>
+                    </li>
+                    <li>
+                        <div class="col-span-8">
+                            <small>Tipo de medicamento</small>
+                            <div>{{ value().medicineTypeName }}</div>
+                        </div>
+                        <div class="col-span-4">
+                            <small>atc</small>
+                            <div>{{ value().atc }}</div>
+                        </div>
+                    </li>
+                    <li>
+                        <div class="col-span-4">
+                            <small>Unidad Media</small>
+                            <div>{{ value().measurementUnit }}</div>
+                        </div>
+                        <div class="col-span-4">
+                            <small>Concentración</small>
+                            <div>{{ value().concentration }}</div>
+                        </div>
+                        <div class="col-span-4">
+                            <small>Unidad Referencia</small>
+                            <div>{{ value().referenceUnit }}</div>
+                        </div>
+                    </li>
+                    <li>
+                        <div class="col-span-6">
+                            <small>Otro nombre</small>
+                            <div>{{ value().otherName }}</div>
+                        </div>
+                        <div class="col-span-6">
+                            <small>Concentracion</small>
+                            <div>{{ value().concentration }}</div>
+                        </div>
+                    </li>
+                    <li>
+                        <div class="col-span-full">
+                            <small>Centro de Costo</small>
+                            <div class="li-action">
+                                <div>{{ value().costCenter }}</div>
+                                <app-button setSize="sm" ui="sweet" setIcon="icofont-exclamation-circle" />
+                            </div>
+                        </div>
+                    </li>
+                    <li>
+                        <div class="col-span-6">
+                            <small>CUM</small>
+                            <div>{{ value().cumName }}</div>
+                        </div>
+                        <div class="col-span-3">
+                            <small>Costo</small>
+                            <div>{{ value().cumCons }}</div>
+                        </div>
+                        <div class="col-span-3">
+                            <small>Cun</small>
+                            <div>{{ value().cum }}</div>
+                        </div>
+                    </li>
+                </ul>
+                <div class="detail-title">
+                    <i class="icofont-settings"></i>
+                    <span>Opciones</span>
+                </div>
+                <ul class="col-span-full divide-y">
+                    <li>
+                        <block-switch-status [active]="value().liquid">Liquido</block-switch-status>
+                    </li>
+                    <li>
+                        <block-switch-status  [active]="value().isActive">Estado</block-switch-status>
+                    </li>
+                </ul>
             </div>
-            <div class="col-span-3">
-                <small>atc</small>
-                <div>{{ value().atc }}</div>
+        </article>
+        <article bsTabContent [idConnect]="tabsControls[1].idConnect" [isActive]="tabsControls[1].active">
+            <div class="ui-detail pt-3">
+                <ul class="detail-ul">
+                    <li>
+                        <div class="col-span-full">
+                            <small>Efecto Adverso</small>
+                            <div>{{ value().adverseEffect }}</div>
+                        </div>
+                    </li>
+                    <li>
+                        <div class="col-span-full">
+                            <small>Contraindicación</small>
+                            <div>{{ value().contraindications }}</div>
+                        </div>
+                    </li>
+                    <li>
+                        <div class="col-span-full">
+                            <small>nteracción/Incompatibilidad</small>
+                            <div>{{ value().ompatibility }}</div>
+                        </div>
+                    </li>
+                </ul>
+                <div class="detail-title">
+                    <i class="icofont-settings"></i>
+                    <span>Manual Tarifario de medicamentos</span>
+                </div>
+                <ul class="detail-ul">
+                    @for (item of manualsRate(); track index; let index = $index) {
+                        <li>
+                            <div class="col-span-8">
+                                <small>Manual</small>
+                                <div>{{ item.name }}</div>
+                            </div>
+                            <div class="col-span-4">
+                                <small>Valor</small>
+                                <div>{{ item.value }}</div>
+                            </div>
+                        </li>
+                    }
+                </ul>
             </div>
-            <div class="col-span-5">
-                <small>Unidad de referencia</small>
-                <div>{{ value().referenceUnit }}</div>
-            </div>
-        </li>
-        <li>
-            <div class="col-span-6">
-                <small>Otro nombre</small>
-                <div>{{ value().otherName }}</div>
-            </div>
-            <div class="col-span-6">
-                <small>Concentracion</small>
-                <div>{{ value().concentration }}</div>
-            </div>
-        </li>
-    </ul>
-    <div class="col-span-full font-bold"><i class="icofont-settings mr-2"></i> Cum</div>
-    <ul class="col-span-full ul-list-row">
-        <li>
-            <div class="col-span-full">
-                <div>{{ value().cumName }}</div>
-            </div>
-        </li>
-        <li>
-            <div class="col-span-6">
-                <small>Costo</small>
-                <div>{{ value().cumCons }}</div>
-            </div>
-            <div class="col-span-6">
-                <small>Cun</small>
-                <div>{{ value().cum }}</div>
-            </div>
-        </li>
-    </ul>
-    <div class="col-span-full font-bold"><i class="icofont-settings mr-2"></i> Opciones</div>
-    <ul class="col-span-full divide-y">
-        <li>
-            <block-switch-status>Queso</block-switch-status>
-        </li>
-        <li>
-            <block-switch-status>Queso</block-switch-status>
-        </li>
-    </ul>
-    <div class="col-span-full font-bold"><i class="icofont-warning-alt"></i> Descripcion y advertencia</div>
-    <ul class="col-span-full ul-list-row">
-        <li>
-            <div class="col-span-full">
-                <small>Efectos adversos</small>
-                <div>{{ value().adverseEffect }}</div>
-            </div>
-        </li>
-        <li>
-            <div class="col-span-6">
-                <small>Contraindicaciones</small>
-                <div>{{ value().contraindications }}</div>
-            </div>
-            <div class="col-span-6">
-                <small>Interaccion incompatibilidad</small>
-                <div>{{ value().interactionIncompatibility }}</div>
-            </div>
-        </li>
-    </ul>
-</div>
+        </article>
+    </ng-container>
+</blade-tabs-horizontal>
+
 } @else {
     <select-some-item />
 }

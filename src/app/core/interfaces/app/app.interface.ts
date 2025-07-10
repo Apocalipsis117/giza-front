@@ -226,7 +226,7 @@ export type anyAPP_PAGE = any;
 export type AppColor = 'default' | 'teal';
 export type AppMode = 'dark' | 'light' | 'system';
 export type AppMenu = 'menu-aside' | 'menu-icons' | 'menu-hide';
-export type im_uiSize = 'xm' | 'sm' | 'base' | 'md' | 'lg' | 'xl';
+export type im_uiSize = 'xs' | 'sm' | 'base' | 'md' | 'lg' | 'xl';
 
 export interface AppGisa {
     color: AppColor;

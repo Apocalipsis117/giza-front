@@ -4,7 +4,7 @@
         "menuShortcut": [
             {
                 "uuid": "09048e05-29cb-423b-b624-4e2b9a1ac00c",
-                "path": "/dashboard/setting/ips",
+                "path": "",
                 "icon": "icofont-users-alt-5",
                 "color": "text-red-400",
                 "display": [
@@ -40,7 +40,7 @@
             },
             {
                 "uuid": "a8c6082c-510a-4e3c-b697-50c43f63b879",
-                "path": "/dashboard/setting/cups",
+                "path": "",
                 "icon": "icofont-bricks",
                 "color": "text-emerald-400",
                 "display": [
@@ -64,7 +64,7 @@
             },
             {
                 "uuid": "a63eccb1-e011-40cb-8842-5465587c1ed9",
-                "path": "/dashboard/setting/contracts",
+                "path": "",
                 "icon": "icofont-handshake-deal",
                 "color": "text-sky-400",
                 "display": [
@@ -100,7 +100,7 @@
             },
             {
                 "uuid": "8ba1cbdd-1cef-4d89-ba84-1b86e4989b56",
-                "path": "/dashboard/setting/cups-group",
+                "path": "",
                 "icon": "icofont-test-bottle",
                 "color": "text-violet-400",
                 "display": [
@@ -112,7 +112,7 @@
             },
             {
                 "uuid": "86907ef9-d785-4f33-86bd-3c27ebfb6140",
-                "path": "/dashboard/setting/care-programs",
+                "path": "",
                 "icon": "icofont-users",
                 "color": "text-fuchsia-400",
                 "display": [
@@ -136,7 +136,7 @@
             },
             {
                 "uuid": "2502838e-baed-4e5d-a815-60a97943d276",
-                "path": "/dashboard/setting/employees",
+                "path": "",
                 "icon": "icofont-girl",
                 "color": "text-rose-400",
                 "display": [
@@ -268,7 +268,7 @@
             },
             {
                 "uuid": "211ee847-74bd-4ed6-ad96-8a315f839e76",
-                "path": "/dashboard/setting/roles",
+                "path": "",
                 "icon": "icofont-company",
                 "color": "text-purple-400",
                 "display": [

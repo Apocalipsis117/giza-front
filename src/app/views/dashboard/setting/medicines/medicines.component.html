@@ -1,35 +1,42 @@
-<blade-panel section="setting">
+<blade-panel>
     <ng-container panels>
-        <div class="grid grid-cols-12 gap-3">
+        <div class="d-grid">
             <div class="col-span-8">
-                <blade-tabs-horizontal [tabsControls]="tabsControls" setTitle="Medicamentos">
+                <blade-tabs-horizontal [tabsControls]="tabs" #tabController>
                     <ng-container tabsBody>
-                        <article bsTabContent [idConnect]="tabsControls[0].idConnect" [isActive]="tabsControls[0].active">
-                            <div class="flex flex-col gap-y-3">
-                                <div class="block">
-                                    <blade-box-panel setTitle="Nuevo medicamento" [padding]="true" [actionsActive]="true" (actionBar)="barAction($event)" [headerActive]="false" ui="clean">
-                                        <ng-container boxbody>
-                                            <form-medicine #formMedicine />
-                                        </ng-container>
-                                    </blade-box-panel>
-                                </div>
-                            </div>
+                        <article bsTabContent [idConnect]="tabs[0].idConnect" [isActive]="tabs[0].active">
+                            <blade-box-panel [headerActive]="false" [padding]="true" ui="clean" [actionsActive]="true" (actionBar)="barAction($event)">
+                                <ng-container boxbody>
+                                    <form-medicine #formCreate />
+                                </ng-container>
+                            </blade-box-panel>
                         </article>
-                        <article bsTabContent [idConnect]="tabsControls[1].idConnect" [isActive]="tabsControls[1].active">
-                            <table-medicine [dataTable]="medicineData()" (paginate)="paginate($event)" #table />
+                        <article class="pb-3" bsTabContent [idConnect]="tabs[1].idConnect" [isActive]="tabs[1].active">
+                            <table-medicine #table />
                         </article>
                     </ng-container>
                 </blade-tabs-horizontal>
             </div>
             <div class="col-span-4">
-                <div class="flex flex-col gap-y-3">
-                    <blade-box-panel setTitle="Medicamento" [padding]="true" [actionsActive]="true" [setActionsBar]="actionssBar" (actionBar)="barAction($event)">
-                        <ng-container boxbody>
-                            <tdetail-medicine />
-                        </ng-container>
-                    </blade-box-panel>
-                </div>
+                <blade-box-panel setTitle="Entidad" [padding]="true" [actionsActive]="true" [setActionsBar]="actionsDetail" (actionBar)="barAction($event)">
+                    <ng-container boxbody>
+                        <tdetail-medicine [data]="medicine()" />
+                    </ng-container>
+                </blade-box-panel>
             </div>
         </div>
     </ng-container>
 </blade-panel>
+
+<blade-dialog idConnect="admin-entity-update" setSize="xl" [hideFooter]="true" #dialogUpdate [activeFade]="false">
+    <ng-container dialogHeader>
+        <card-basic-text setTitle="Actualizar Medicamento" />
+    </ng-container>
+    <ng-container dialogBody>
+        <blade-box-panel ui="clean" [padding]="true" [actionsActive]="true" [setActionsBar]="actionsUpdate" [headerActive]="false" (actionBar)="barAction($event)">
+            <ng-container boxbody>
+                <form-medicine #formUpdate />
+            </ng-container>
+        </blade-box-panel>
+    </ng-container>
+</blade-dialog>

@@ -1,11 +1,11 @@
-import { Component, computed, inject, input, output, signal } from '@angular/core';
+import { Component, computed, inject, signal } from '@angular/core';
 import { DirectivesModule } from '@directive/module';
+import { queries } from '@helpers/index';
+import { HealthcareServices_APP, HealthcareServices_PageAPP } from '@interfaces/index';
 import { BladeTableComponent } from '@layouts/dashboard/blades/blade-table/blade-table.component';
 import { ButtonComponent } from '@layouts/shared/button/button.component';
-import { LocalAssistanceServiceService } from '../local-assistance-service.service';
-import { HealthcareServices_APP, HealthcareServices_PageAPP } from '@interfaces/index';
-import { queries } from '@helpers/index';
 import { HealthcareServicesService } from '@services/api';
+import { LocalAssistanceServiceService } from '../local-assistance-service.service';
 
 
 @Component({

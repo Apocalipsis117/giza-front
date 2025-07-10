@@ -127,10 +127,30 @@
             }
         }
         > ul {
-            min-height: 200px;
+            min-height: 100px;
             max-height: 400px;
             display: block;
             overflow-y: auto;
+
+            &.ul-xs {
+                max-height: 160px;
+            }
+
+            &.ul-sm {
+                max-height: 230px;
+            }
+
+            &.ul-md {
+                max-height: 270px;
+            }
+
+            &.ul-lg {
+                max-height: 380px;
+            }
+
+            &.ul-xl {
+                max-height: 500px;
+            }
             > li + li {
                 margin-top: 5px;
             }

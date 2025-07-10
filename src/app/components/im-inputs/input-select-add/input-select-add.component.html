@@ -16,7 +16,7 @@
                 </button>
             </div>
         </header>
-        <ul>
+        <ul [class]="setSize()">
         @for(option of available(); track option.value) {
             <li>
                 <span class="cursor-pointer" (click)="onSelect.emit(option.value)">{{ option.name }}</span>
@@ -46,7 +46,7 @@
                 </button>
             </div>
         </header>
-        <ul>
+        <ul [class]="setSize()">
         @for(option of added(); track option.value) {
             <li>
                 <span class="cursor-pointer" (click)="onSelect.emit(option.value)">{{ option.name }}</span>

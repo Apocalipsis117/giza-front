@@ -14,23 +14,25 @@
             </select>
         </div>
         <button
-        class="btn btn-sm rounded-md btn-sweet-default"
-        [disabled]="setPage()!.pageNumber === 0"
-        (click)="navigateToPage(setPage()!.pageNumber - 1)">
-        Anterior
+            class="btn btn-sm rounded-md btn-sweet-default"
+            [disabled]="setPage()!.pageNumber === 0"
+            (click)="navigateToPage(setPage()!.pageNumber - 1)">
+            Anterior
         </button>
         <button
-        class="btn btn-sm rounded-md btn-sweet-default"
-        [disabled]="setPage()!.last"
-        (click)="navigateToPage(setPage()!.pageNumber + 1)">
-        Siguiente
+            class="btn btn-sm rounded-md btn-sweet-default"
+            [disabled]="setPage()!.last"
+            (click)="navigateToPage(setPage()!.pageNumber + 1)">
+            Siguiente
         </button>
         <div class="w-[80px]">
             <input type="number" class="form-control form-control-sm" [(ngModel)]="pageGo">
         </div>
         <button
-        [disabled]="!pageGo()"
-        class="btn !px-4 btn-sm rounded-md btn-sweet-default" (click)="go()">Ir</button>
+            [disabled]="!pageGo()"
+            class="btn !px-4 btn-sm rounded-md btn-sweet-default" (click)="go()">
+            Ir
+        </button>
     </div>
 </section>
 }

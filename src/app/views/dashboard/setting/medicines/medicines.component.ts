@@ -1,15 +1,18 @@
-import { Component, inject, signal, viewChild } from '@angular/core';
+import { Component, DestroyRef, inject, signal, viewChild } from '@angular/core';
 import { DirectivesModule } from '@directive/module';
-import { queries } from '@helpers/index';
-import { ActionName, BarActions, Medicine_PageAPP, tabsControls } from '@interfaces/index';
+import { ActionName, BarActions, Medicine_APP, Medicine_APPDTO, tabsControls } from '@interfaces/index';
 import { BladeBoxPanelComponent } from '@layouts/dashboard/blades/blade-box-panel/blade-box-panel.component';
+import { BladeDialogComponent } from '@layouts/dashboard/blades/blade-dialog/blade-dialog.component';
 import { BladePanelComponent } from '@layouts/dashboard/blades/blade-panel/blade-panel.component';
 import { BladeTabsHorizontalComponent } from '@layouts/dashboard/blades/blade-tabs-horizontal/blade-tabs-horizontal.component';
+import { CardBasicTextComponent } from '@layouts/dashboard/cards/card-basic-text/card-basic-text.component';
 import { MedicineService } from '@services/api';
 import { SweetalertService } from '@services/app';
 import { FormMedicineComponent } from './form-medicine/form-medicine.component';
+import { LocalMedicineService } from './local-medicine.service';
 import { TableMedicineComponent } from './table-medicine/table-medicine.component';
 import { TdetailMedicineComponent } from './tdetail-medicine/tdetail-medicine.component';
+import { FormBuilder } from '@angular/forms';
 
 @Component({
     selector: 'app-medicines',
@@ -22,75 +25,200 @@ import { TdetailMedicineComponent } from './tdetail-medicine/tdetail-medicine.co
         BladeTabsHorizontalComponent,
         DirectivesModule,
         TableMedicineComponent,
-        TdetailMedicineComponent
+        TdetailMedicineComponent,
+        BladeDialogComponent,
+        CardBasicTextComponent
     ]
 })
 export class MedicinesComponent {
-    readonly formMedicine = viewChild('formMedicine', { read: FormMedicineComponent});
-    readonly tabController = viewChild('tabController', { read: BladeTabsHorizontalComponent});
-    readonly table = viewChild('table', { read: TableMedicineComponent});
-    medicineServ = inject(MedicineService);
-    swal = inject(SweetalertService);
-    medicineData = signal<Medicine_PageAPP | null>(null);
-    paramPaginate = signal<any>(queries.paramsPage);
-    actionssBar: BarActions = {
+    private readonly destroyRef = inject(DestroyRef);
+    private readonly swal$ = inject(SweetalertService);
+    private readonly Medicine$ = inject(MedicineService);
+    private readonly local$ = inject(LocalMedicineService);
+    readonly tabController = viewChild('tabController', { read: BladeTabsHorizontalComponent });
+    readonly dialogUpdate = viewChild('dialogUpdate', { read: BladeDialogComponent });
+    readonly formCreate = viewChild('formCreate', { read: FormMedicineComponent });
+    readonly formUpdate = viewChild('formUpdate', { read: FormMedicineComponent });
+    readonly table = viewChild('table', { read: TableMedicineComponent });
+    medicine = signal<Medicine_APP|null>(null);
+    actionsDetail: BarActions = {
         edit: true,
         delete: true,
         clean: true
     }
-    tabsControls: tabsControls[] = [
+    actionsUpdate: BarActions = {
+        update: true,
+        return: true
+    }
+    tabs: tabsControls[] = [
         {
             active: true,
-            idConnect: 'tab-medicine-a',
-            label: 'Nueva'
+            idConnect: 'add-medicine',
+            label: 'Nuevo medicamento'
         },
         {
             active: false,
-            idConnect: 'tab-medicine-b',
-            label: 'Lista'
+            idConnect: 'list-mdicine',
+            label: 'Medicamentos'
         }
     ];
-    ngOnInit(): void {
-        this.queryMedicine();
-    }
 
-    barAction(e: ActionName) {
-        if (e === 'save') this.save();
-        else if (e === 'reset') this.formMedicine()?.reset();
-        else if (e === 'clean') this.table()?.clean();
-    }
-
-    queryMedicine() {
-        this.medicineServ.page(this.paramPaginate()).subscribe({
+    constructor() {
+        this.destroyRef.onDestroy(() => {
+            this.local$.entityEmit(null);
+        })
+        this.local$.readEntity$.subscribe({
             next: (value) => {
-                this.medicineData.set(value)
+                this.medicine.set(value)
             }
         })
     }
 
-    save() {
-        const form = this.formMedicine()?.form;
-        if (form?.valid) {
-            this.swal.loading();
-            this.medicineServ.post(form.value).subscribe({
-                next: () => {
-                    this.swal.formSave('success');
-                    this.formMedicine()?.reset();
-                    this.showTab(1);
-                },
-                error: () => this.swal.formSave('error')
-            })
-        } else {
-            this.swal.formSave('warning');
+    canGoOut(): Promise<boolean> | boolean {
+        return this.swal$.canOutup(this.formCreate()?.form.dirty)
+    }
+
+    barAction(e: ActionName) {
+        const data = this.local$.getEntity();
+        if (e === 'save') this.save();
+        else if (e === 'reset') this.formCreate()?.reset();
+        else if (e === 'clean') this.cleanTdetail();
+        else if (e === 'edit') {
+            if (data) {
+                this.dataEdit(data);
+                this.dialogUpdate()?.show();
+            } else {
+                this.swal$.alertSimple('Debe seleccionar una Entidad', 'info');
+            }
+        }
+        else if (e === 'delete') {
+            this.deleteAlert(data);
+        }
+        else if (e === 'update') this.update();
+        else if (e === 'return') {
+            this.dataEdit(data)
+            this.swal$.alertSimple('Valores originales cargados.', 'success');
         }
     }
 
-    showTab(id: number) {
-        this.tabController()?.showTab(this.tabsControls[id].idConnect);
+    private showTab(id: number) {
+        this.tabController()?.showTab(this.tabs[id].idConnect);
     }
 
-    paginate(e: any) {
-        this.paramPaginate.set(e);
-        this.queryMedicine();
+    private save() {
+        const form = this.formCreate()?.form;
+        if (form?.valid) {
+            this.swal$.loading();
+            this.Medicine$.post(form.value).subscribe({
+                next: (value) => {
+                    this.local$.entityEmit(value);
+                },
+                complete: () => {
+                    this.swal$.formSave('success');
+                    this.formCreate()?.reset();
+                    this.table()?.queryAdministrativeEntities();
+                    this.showTab(1);
+                },
+                error: () => this.swal$.formSave('error')
+            })
+        } else {
+            this.swal$.formSave('warning');
+            this.formCreate()?.markAlltouched();
+        }
+    }
+
+    private update() {
+        const form = this.formUpdate()?.form;
+        if (form?.valid) {
+            this.swal$.loading();
+            const data = this.local$.getEntity();
+            this.Medicine$.update(data!.id, form.value).subscribe({
+                next: (value) => {
+                    this.local$.entityEmit(value);
+                },
+                complete: () => {
+                    this.dialogUpdate()?.hide();
+                    this.swal$.formSave('success');
+                    this.table()?.queryAdministrativeEntities();
+                    this.showTab(1);
+                },
+                error: () => this.swal$.formSave('error')
+            })
+        } else {
+            this.swal$.formSave('warning');
+            this.formUpdate()?.markAlltouched();
+        }
+    }
+
+    private deleteAlert(data: Medicine_APP | null) {
+        if (data) {
+            this.swal$.toastConfirm('warning', {
+                text: 'Seguro que desea elimina ' + data.name,
+                title: 'Confirmar'
+            }).then(value => {
+                if (value.isConfirmed) {
+                    this.delete(data);
+                }
+            })
+        }
+    }
+
+    private delete(data: Medicine_APP) {
+        this.swal$.loading();
+        this.Medicine$.delete(data.id).subscribe({
+            next: () => {
+                const text = data.name + ' ha sido liminado';
+                this.swal$.alertSimple(text, 'success');
+                this.table()?.queryAdministrativeEntities();
+                this.local$.entityEmit(null);
+            }
+        });
+    }
+
+    private cleanTdetail() {
+        this.table()?.clean();
+    }
+    fb = inject(FormBuilder);
+
+    private dataEdit(data: Medicine_APP | null) {
+        if (data) {
+            this.formUpdate()?.reset();
+            const _ = data;
+            const values: Medicine_APPDTO = {
+                adverseEffect: _.adverseEffect,
+                atc: _.atc,
+                code: _.code,
+                concentrationId: _.concentration.id,
+                contraindications: _.contraindications,
+                costCenterId: _.costCenter.id,
+                cum: _.cum,
+                cumConsecutive: _.cumConsecutive,
+                cumName: _.cumName,
+                liquid: _.liquid,
+                unitPrice: _.unitPrice,
+                medicineGroupIds: _.medicineGroups.map(x => x.id),
+                interactionIncompatibility: _.interactionIncompatibility,
+                administrationRouteIds: _.administrationRoutes.map(x => x.id),
+                medicineTypeId: _.medicineType.id,
+                name: _.name,
+                otherName: _.otherName,
+                status: _.status,
+                serviceTypeId: 1,
+                referenceUnit: _.referenceUnit,
+                unitOfMeasureId: _.unitOfMeasure.id,
+                pharmaceuticalFormId: _.pharmaceuticalForm.id,
+                medicineManualTariffMed: []
+            }
+            this.formUpdate()?.setValues(values);
+            const formArray = this.fb.array(
+                _.medicineManualTariffMeds.map(item => this.fb.group({
+                    id: [item.id],
+                    value: [item.value],
+                    medicineTariffManualId: [item.medicineTariffManual.id],
+                }))
+            );
+
+            this.formUpdate()?.form.setControl('medicineManualTariffMed', formArray);
+        }
     }
 }

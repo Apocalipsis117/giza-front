@@ -1,24 +1,26 @@
-<blade-table [setData]="dataTable()" [colspan]="5" (onPage)="paginate($event)" [loadingData]="load()">
+<blade-table [colspan]="6" [setData]="data()" [loadingData]="load()" (onPage)="paginate($event)">
     <ng-container tableHead>
         <tr>
             <th>Nombre</th>
-            <th>Codigo de medicamento</th>
+            <th width="180">Código medic..</th>
+            <th>Medicamentos</th>
             <th>Valor</th>
             <th>Estado</th>
-            <th class="text-right">Accion</th>
+            <th width="80" class="text-right">Accion</th>
         </tr>
     </ng-container>
     <ng-container tableBody>
-        @for(oxigen of entities(); track oxigen.id) {
-            <tr TrSelected [idx]="tdSelected()" [id]="oxigen.id">
-                <td>{{ oxigen.name }}</td>
-                <td>queso</td>
-                <td class="text-right">$ {{ oxigen.value }}</td>
+        @for(oxygen of list(); track oxygen.id; let idx = $index) {
+            <tr TrSelected [idx]="tdSelected()" [id]="oxygen.id">
+                <td>{{ oxygen.name }}</td>
+                <td>{{ oxygen.medicine.code }}</td>
+                <td>{{ oxygen.medicine.name }}</td>
+                <td class="text-right">$ {{ oxygen.value }}</td>
                 <td class="text-center">
-                    <badge-status [setStatus]="oxigen.status"/>
+                    <badge-status [setStatus]="oxygen.status"/>
                 </td>
                 <td class="text-right">
-                    <app-button setIcon="icofont-info-circle" setSize="sm" (action)="emit(oxigen)" />
+                    <app-button setIcon="icofont-info-circle" setSize="sm" (action)="emit(oxygen)" />
                 </td>
             </tr>
         }

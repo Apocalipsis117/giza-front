@@ -26,6 +26,7 @@
 /**
  * ui-clean
  */
+.tabs-panel.ui-gentle-none,
 .tabs-panel.ui-clean {
     @apply bg-transparent shadow-none;
     .tabs-header {
@@ -35,7 +36,7 @@
         @apply text-black;
     }
     .btn-tab {
-        @apply bg-transparent text-white rounded-t-md pb-0 mb-[-1px];
+        @apply bg-transparent rounded-t-md pb-0 mb-[-1px];
     }
     .btn-content {
         @apply bg-transparent text-[var(--color-400)] rounded-b-none;
@@ -45,6 +46,22 @@
     }
     .btn-tab.active .btn-content {
         @apply bg-white border-x border-t border-[var(--color-300)];
+    }
+}
+
+/**
+ * gentle-p-none
+ */
+
+.tabs-panel.ui-gentle-none {
+    .tabs-header {
+        @apply bg-[var(--color-50)];
+    }
+    .btn-content {
+        @apply text-[var(--color-800)];
+    }
+    .btn-tab.active .btn-content {
+        @apply bg-white;
     }
 }
 

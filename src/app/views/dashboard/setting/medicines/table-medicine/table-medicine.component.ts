@@ -1,41 +1,62 @@
-import { Component, input, computed, inject, signal, output } from '@angular/core';
+import { Component, computed, inject, signal } from '@angular/core';
+import { DirectivesModule } from '@directive/module';
+import { queries } from '@helpers/index';
+import { Medicine_APP, Medicine_PageAPP } from '@interfaces/index';
 import { BladeTableComponent } from '@layouts/dashboard/blades/blade-table/blade-table.component';
 import { ButtonComponent } from '@layouts/shared/button/button.component';
-import { DirectivesModule } from '@directive/module';
 import { PipesModule } from '@pipes/module';
-import { NgClass } from '@angular/common';
+import { MedicineService } from '@services/api';
 import { LocalMedicineService } from '../local-medicine.service';
-import { Medicine_PageAPP } from '@interfaces/index';
+import { BadgeStatusComponent } from '@layouts/shared/badge-status/badge-status.component';
 
 @Component({
     selector: 'table-medicine',
     standalone: true,
     imports: [
         BladeTableComponent,
+        BadgeStatusComponent,
         ButtonComponent,
         DirectivesModule,
-        PipesModule,
-        NgClass
+        PipesModule
     ],
     templateUrl: './table-medicine.component.html'
 })
 export class TableMedicineComponent {
-    paginate = output<any>();
-    localServ = inject(LocalMedicineService);
-    dataTable = input<Medicine_PageAPP | null>(null);
+    private readonly Medicine$ = inject(MedicineService);
+    private readonly local$ = inject(LocalMedicineService);
+    paramPaginate = signal<any>(queries.paramsPage);
+    dataTable = signal<Medicine_PageAPP | null>(null);
     tdSelected = signal<number>(-1);
+    load = signal<boolean>(false);
 
-    list = computed(() => this.dataTable() ? this.dataTable()!.content : []);
-    load = computed(() => this.dataTable() ? this.dataTable()!.content.length > 0 : false);
+    entities = computed(() => this.dataTable() ? this.dataTable()?.content : []);
 
-    emit(data: any) {
-        this.tdSelected.set(data.id);
-        this.localServ.emit(data);
+    ngOnInit(): void {
+        this.queryAdministrativeEntities()
     }
 
-    // optional
+    queryAdministrativeEntities() {
+        this.load.set(true);
+        this.Medicine$.page(this.paramPaginate()).subscribe({
+            next: (value) => {
+                this.dataTable.set(value)
+                this.load.set(false);
+            }
+        })
+    }
+
+    emit(item: Medicine_APP) {
+        this.tdSelected.set(item.id);
+        this.local$.entityEmit(item);
+    }
+
     clean() {
         this.tdSelected.set(-1);
-        this.localServ.emit(null);
+        this.local$.entityEmit(null);
+    }
+
+    paginate(e: any) {
+        this.paramPaginate.set(e);
+        this.queryAdministrativeEntities();
     }
 }

@@ -16,6 +16,7 @@ interface Base_API {
     nombreCum:                   string;
     unidadReferencia:            string;
     otroNombre:                  string;
+    precioUnidad:                number;
     efectoAdverso:               string;
     contraindicaciones:          string;
     interaccionIncompatibilidad: string;
@@ -74,6 +75,7 @@ interface Base_APP {
     cumName:                    string; // nombreCum
     referenceUnit:              string; // unidadReferencia
     otherName:                  string; // otroNombre
+    unitPrice:                  number; // precioUnidad
     adverseEffect:              string; // efectoAdverso
     contraindications:          string; // contraindicaciones
     interactionIncompatibility: string; // interaccionIncompatibilidad
