@@ -1,9 +1,10 @@
 import { Component, inject } from '@angular/core';
-import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
+import { FormBuilder, FormGroup, ReactiveFormsModule } from '@angular/forms';
 import { InputPanelSelectComponent } from '@form-control/input-panel-select/input-panel-select.component';
 import { InputPanelTextComponent } from '@form-control/input-panel-text/input-panel-text.component';
 import { ngFormHelper } from '@helpers/index';
 import { IForm } from '@interfaces/index';
+import { ValidateStringEmpty } from '@valid-control/index';
 
 @Component({
     selector: 'patients-form-other',
@@ -21,7 +22,7 @@ export class PatientsFormOtherComponent {
 
     formDataCLone: any;
     formData: IForm<any> = {
-        name: ['', Validators.required]
+        name: ['', [ValidateStringEmpty()]]
     }
 
     constructor() {

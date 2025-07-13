@@ -45,9 +45,9 @@ export class FormRegisterIpsTwoComponent {
     form: FormGroup;
     itemClone: any;
     item: IForm<any> = {
-        file: ['', Validators.required],
-        type: ['', Validators.required],
-        name: ['', Validators.required]
+        file: ['', [Validators.required]],
+        type: ['', [Validators.required]],
+        name: ['', [Validators.required]]
     };
 
     constructor() {

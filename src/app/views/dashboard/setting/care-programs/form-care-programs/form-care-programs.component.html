@@ -1,0 +1,22 @@
+<form [formGroup]="form">
+    <div class="d-grid">
+        <div class="col-span-3">
+            <input-text setLabel="Nombre" formControlName="name" setType="text" />
+        </div>
+        <div class="col-span-3">
+            <input-text setLabel="Nombre corto" formControlName="shortName" setType="text" />
+        </div>
+        <div class="col-span-2">
+            <input-number setLabel="Edad Min" formControlName="minAge" />
+        </div>
+        <div class="col-span-2">
+            <input-number setLabel="Edad Max" formControlName="maxAge" />
+        </div>
+        <div class="col-span-2">
+            <input-select setLabel="Sexo" formControlName="genderId" />
+        </div>
+        <div class="col-span-full">
+            <input-tags [setOptions]="optionsTypeHistory()" setLabel="Tipos de historia" formControlName="historyTypeIds" [setValidate]="control['historyTypeIds']" #validate />
+        </div>
+    </div>
+</form>

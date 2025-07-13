@@ -1,3 +1,5 @@
+import { ElementRef } from "@angular/core";
+
 export interface SelectKeyboardNavConfig<T = any> {
     /** Lista de opciones actualmente visibles (filtradas) */
     options: T[];
@@ -32,6 +34,11 @@ export const arrayControlHelper = {
             }
         } else if (resetOnOtherKeys) {
             setCurrentIndex(-1);
+        }
+    },
+    autoScroll(idx: number, items: readonly ElementRef<HTMLLIElement>[]) {
+        if (idx >= 0 && idx < items.length) {
+            items[idx]?.nativeElement.scrollIntoView({ block: 'nearest', behavior: 'smooth' });
         }
     }
 }

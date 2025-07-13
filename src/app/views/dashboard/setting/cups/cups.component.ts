@@ -15,6 +15,7 @@ import { FormCupsComponent } from './form-cups/form-cups.component';
 import { PanelReportsComponent } from './panel-reports/panel-reports.component';
 import { TableCupsComponent } from './table-cups/table-cups.component';
 import { TdetailCupComponent } from './tdetail-cup/tdetail-cup.component';
+import { ValidateStringEmpty } from '@valid-control/index';
 
 @Component({
     selector: 'app-cups',
@@ -74,7 +75,7 @@ export class CupsComponent {
         levelId: [''],
         maxAge: [''],
         minAge: [''],
-        name: ['', Validators.required],
+        name: ['', [ValidateStringEmpty()]],
         nonInvasiveProcedure: [false],
         points: [''],
         ripsConceptId: [''],

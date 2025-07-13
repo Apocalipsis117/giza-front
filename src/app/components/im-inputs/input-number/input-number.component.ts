@@ -1,4 +1,4 @@
-import { Component, computed, forwardRef, input, signal } from '@angular/core';
+import { Component, forwardRef, input, signal } from '@angular/core';
 import { AbstractControl, FormsModule, NG_VALUE_ACCESSOR } from '@angular/forms';
 import { generator, ngFormHelper } from '@helpers/index';
 import { IMaskModule } from 'angular-imask';
@@ -59,3 +59,4 @@ export class InputNumberComponent {
         this.validate();
     }
 }
+

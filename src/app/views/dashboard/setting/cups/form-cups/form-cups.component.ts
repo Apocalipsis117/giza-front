@@ -23,7 +23,7 @@ import { GroupQxService, RipConceptService, ServiceLevelService, ServicesService
     templateUrl: './form-cups.component.html'
 })
 export class FormCupsComponent {
-    public setForm = input<FormGroup<IForm<CupsDTO_APP>>>();
+    public setForm = input<any>();
     levelServ = inject(ServiceLevelService);
     genderServ = inject(TypeGenderService);
     ambitServ = inject(TypeAmbitService);

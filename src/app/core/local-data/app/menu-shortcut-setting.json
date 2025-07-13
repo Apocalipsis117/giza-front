@@ -112,7 +112,7 @@
             },
             {
                 "uuid": "86907ef9-d785-4f33-86bd-3c27ebfb6140",
-                "path": "",
+                "path": "/dashboard/setting/care-programs",
                 "icon": "icofont-users",
                 "color": "text-fuchsia-400",
                 "display": [

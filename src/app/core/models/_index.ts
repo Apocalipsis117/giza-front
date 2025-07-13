@@ -35,6 +35,8 @@ export * from './setting/vehicles.model';
 export * from './setting/input-materials.m';
 export * from './setting/procedure-pyp.m';
 export * from './setting/neighborhood.m';
+export * from './setting/service-programs.m';
+export * from './setting/care-programs.m';
 
 // single-query
 export * from './single-query/activity.m';
@@ -45,4 +47,5 @@ export * from './single-query/name-entity.m';
 export * from './single-query/type-history.m';
 export * from './single-query/types-regime.m';
 export * from './single-query/type-zona.m';
+export * from './single-query/outpatient-clinic.m';
 

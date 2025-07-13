@@ -1,17 +1,23 @@
 import { WritableSignal } from "@angular/core";
-import { AbstractControl, FormArray, FormGroup } from "@angular/forms";
+import { AbstractControl, FormArray, FormControl, FormGroup } from "@angular/forms";
 
 export const ngFormHelper = {
-    unboxProperties<T extends Record<string, any[]>>(obj: T): { [K in keyof T]: T[K][0] } {
-        const result: { [K in keyof T]?: T[K][0] } = {};
-
+    unboxProperties<T extends Record<string, any>>(obj: T): any {
+        const result: any = {};
         for (const key in obj) {
-            if (obj.hasOwnProperty(key)) {
-                result[key] = obj[key][0];
+            if (!obj.hasOwnProperty(key)) continue;
+            const val = obj[key] as any;
+            if (val instanceof FormControl || val instanceof FormGroup || val instanceof FormArray) {
+                result[key] = val.value;
+            }
+            else if (Array.isArray(val)) {
+                result[key] = val[0];
+            }
+            else {
+                result[key] = val;
             }
         }
-
-        return result as { [K in keyof T]: T[K][0] };
+        return result;
     },
     /**
      * Valida un control de formulario y actualiza un signal con el mensaje de error, si corresponde.

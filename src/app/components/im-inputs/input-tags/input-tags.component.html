@@ -1,0 +1,31 @@
+<fieldset class="im-tags" [class.invalid]="error()">
+    @if(setLabel()) {
+        <legend>{{ setLabel() }}</legend>
+    }
+
+    <ul>
+        @for(option of selected(); track option.value) {
+            <li class="add">
+                <span>
+                    {{ option.name }}
+                </span>
+                <button type="button" (click)="remove(option.value)">
+                    <i class="icofont-close-line"></i>
+                </button>
+            </li>
+        }
+        <li class="filter" [id]="id">
+            <i class="icofont-search-1"></i>
+            <input class="form-control form-control-sm" type="search" [id]="idConnect" [(ngModel)]="searchValue" (blur)="changeInput()" [placeholder]="messageEmpty()" [disabled]="allSelected()" (keydown)="onKeydown($event)" autocomplete="off">
+            @if(hasAvailable()) {
+                <ul  [class]="{ 'active': visible() }">
+                    @for(tag of options(); track i; let i = $index) {
+                        <li [class.active]="i === currentIndex()" [ariaValueText]="tag.value" (click)="add(tag.value)" #optionItem>
+                            {{ tag.name }}
+                        </li>
+                    }
+                </ul>
+            }
+        </li>
+    </ul>
+</fieldset>

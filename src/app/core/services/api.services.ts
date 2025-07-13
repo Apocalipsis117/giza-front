@@ -61,6 +61,7 @@ export { RipConceptService } from './api/setting/rip-concept.service';
 export { ServiceLevelService } from './api/setting/service-level.service';
 export { ServicesService } from './api/setting/services.service';
 export { VehicleService } from './api/setting/vehicle.service';
+export { CareProgramsService } from './api/setting/care-programs.service';
 
 /**
  * rate

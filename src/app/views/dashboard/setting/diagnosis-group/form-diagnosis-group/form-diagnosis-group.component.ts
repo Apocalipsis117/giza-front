@@ -35,7 +35,7 @@ export class FormDiagnosisGroupComponent {
     form: FormGroup;
     formClone: DiagnosisGroup_APPDTO;
     formValues: IForm<DiagnosisGroup_APPDTO> = {
-        diagnosisIds: [[] as string[], [ValidateArrayEmpty()]],
+        diagnosisIds: [[], [ValidateArrayEmpty()]],
         name: ['', [ValidateStringEmpty()]]
     }
 

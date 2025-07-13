@@ -10,14 +10,14 @@ import { IMaskModule } from 'angular-imask';
         FormsModule,
         IMaskModule
     ],
-    templateUrl: './input-number.component.html',
+    templateUrl: './input-number-imaks.component.html',
     providers: [{
         provide: NG_VALUE_ACCESSOR,
-        useExisting: forwardRef(() => InputNumberComponent),
+        useExisting: forwardRef(() => InputNumberImaskComponent),
         multi: true
     }]
 })
-export class InputNumberComponent {
+export class InputNumberImaskComponent {
     public setValidate = input<AbstractControl | null>(null);
     public readonly setIcon = input<string>('');
     public readonly setLabel = input<string>('');

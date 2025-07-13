@@ -38,11 +38,10 @@ export class InputSelectSearhComponent {
 
     constructor() {
         effect(() => {
-            const idx = this.currentIndex();
-            const items = this.optionItems();
-            if (idx >= 0 && idx < items.length) {
-                items[idx]?.nativeElement.scrollIntoView({ block: 'nearest', behavior: 'smooth' });
-            }
+            arrayControlHelper.autoScroll(
+                this.currentIndex(),
+                this.optionItems()
+            );
         });
     }
 

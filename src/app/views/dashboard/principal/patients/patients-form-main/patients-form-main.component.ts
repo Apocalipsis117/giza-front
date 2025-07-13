@@ -5,6 +5,7 @@ import { InputPanelTextComponent } from '@form-control/input-panel-text/input-pa
 import { InputPanelTimeComponent } from '@form-control/input-panel-time/input-panel-time.component';
 import { ngFormHelper } from '@helpers/index';
 import { IForm } from '@interfaces/index';
+import { ValidateArrayEmpty } from '@valid-control/index';
 
 @Component({
     selector: 'patients-form-main',
@@ -23,7 +24,7 @@ export class PatientsFormMainComponent {
 
     formDataCLone: any;
     formData: IForm<any> = {
-        name: ['', Validators.required]
+        name: ['', [ValidateArrayEmpty()]]
     }
 
     constructor() {

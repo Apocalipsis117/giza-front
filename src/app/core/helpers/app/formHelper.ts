@@ -1,17 +1,17 @@
-import { FormControlOption } from "@interfaces/index";
+import { FormControlOption, FormControlValue } from "@interfaces/index";
 
 export const formHelper = {
-    filterAndSortItems(options: FormControlOption[], currentValue: (string | number)[]) {
+    filterAndSortItems(options: FormControlOption[], currentValue: FormControlValue[]) {
         if (!Array.isArray(options) || !Array.isArray(currentValue)) {
             throw new Error('Both options and currentValue must be arrays');
         }
 
         const filteredItems = options.filter(item =>
-            item && typeof item === 'object' && 'name' in item && currentValue.includes(String(item.value))
+            item && typeof item === 'object' && 'name' in item && currentValue.includes(item.value)
         );
 
         return filteredItems.sort((a, b) =>
-            currentValue.indexOf(String(a.value)) - currentValue.indexOf(String(b.value))
+            currentValue.indexOf(a.value) - currentValue.indexOf(b.value)
         );
     },
     sortByName(options: FormControlOption[]): FormControlOption[] {

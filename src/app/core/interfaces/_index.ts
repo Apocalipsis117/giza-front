@@ -45,6 +45,8 @@ export * from "./setting/rip-concept.i";
 export * from './setting/service.i';
 export * from "./setting/vehicle.i";
 export * from "./setting/procedure-pyp.i";
+export * from "./setting/care-programs.i";
+export * from "./setting/service-programs.i";
 
 // rate
 export * from './rate/input-materials-rate.i';
@@ -66,6 +68,7 @@ export * from './single-query/type-history.i';
 export * from './single-query/type-regime.i';
 export * from './single-query/type-zona.i';
 export * from './single-query/neighborhood.i';
+export * from './single-query/outpatient-clinic.i';
 
 // fakes
 export * from './fakes/todo.interface';

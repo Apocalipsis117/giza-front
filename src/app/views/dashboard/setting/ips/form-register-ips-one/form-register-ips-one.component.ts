@@ -23,7 +23,7 @@ import { LocalIpsService } from '../local-ips.service';
 export class FormRegisterIpsOneComponent {
     @ViewChild('inputLogo') inputLogo!: InputPanelImgComponent;
     // input
-    setForm = input<FormGroup<IForm<BasicDataIpsDTO_APP>>>();
+    setForm = input<FormGroup<any>>();
     // inject
     levelIps$ = inject(LevelIpsService);
     typeDniIps$ = inject(TypeDniIpsService);

@@ -23,6 +23,6 @@ import { TitleIconSectionComponent } from '@layouts/shared/title-icon-section/ti
     templateUrl: './form-register-ips-three.component.html'
 })
 export class FormRegisterIpsThreeComponent {
-    setForm = input<FormGroup<IForm<BillingIpsDTO_APP>>>();
+    setForm = input<FormGroup<any>>();
     form = computed(() => this.setForm() as FormGroup);
 }

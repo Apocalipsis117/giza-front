@@ -8,21 +8,21 @@ import { CostCenter_API, CostCenter_APP } from "./cost-center.i";
  * API
  * ---------------------------
  */
-export interface AttentionProgram_DTO {
+
+interface Base_API {
     nombre:         string;
-    nombreCorto:    string;
-    edadMin:        string;
-    edadMax:        string;
+    nombreCorto:  string;
+    edadMin:      string;
+    edadMax:      string;
+}
+
+export interface AttentionProgram_DTO extends Base_API {
     sexoId:         number;
     tipoHistoriaId: number;
     centroCostoId:  number;
 }
-export interface AttentionProgram_API {
+export interface AttentionProgram_API extends Base_API {
     id:           number;
-    nombre:       string;
-    nombreCorto:  string;
-    edadMin:      string;
-    edadMax:      string;
     sexo:         Gender_API;
     tipoHistoria: TypeHistory_API;
     centroCosto:  CostCenter_API;
@@ -38,21 +38,21 @@ export interface AttentionProgram_Response extends ResponseAPI<AttentionProgram_
  * APP
  * ---------------------------
  */
-export interface AttentionProgram_APPDTO {
+
+interface Base_APP {
     name:          string; // nombre
     shortName:     string; // nombreCorto
     minAge:        string; // edadMin
     maxAge:        string; // edadMax
+}
+
+export interface AttentionProgram_APPDTO extends Base_APP {
     genderId:      number; // sexoId
     historyTypeId: number; // tipoHistoriaId
     costCenterId:  number; // centroCostoId
 }
-export interface AttentionProgram_APP {
+export interface AttentionProgram_APP  extends Base_APP {
     id:          number; // id
-    name:        string; // nombre
-    shortName:   string; // nombreCorto
-    minAge:      string; // edadMin
-    maxAge:      string; // edadMax
     gender:      Gender_APP; // sexo
     historyType: TypeHistory_APP; // tipoHistoria
     costCenter:  CostCenter_APP; // centroCosto
