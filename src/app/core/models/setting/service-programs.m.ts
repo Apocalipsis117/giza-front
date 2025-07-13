@@ -16,8 +16,8 @@ export class ServiceProgramsDTO {
             causaExternaId: _.externalCauseId,
             codigo: _.code,
             componente: _.component,
-            edadMax: _.maxAge,
-            edadMin: _.minAge,
+            edadMax: String(_.maxAge),
+            edadMin: String(_.minAge),
             finalidadConsultaId: _.consultationPurposeId,
             nombre: _.name,
             programasAtencionId: _.careProgramsId,
@@ -46,8 +46,8 @@ export class ServicePrograms {
             gender: Gender.setProperty(_.sexo),
             externalCause: OutpatientClinic.setProperty(_.causaExterna),
             id: _.id,
-            maxAge: _.edadMax,
-            minAge: _.edadMin,
+            maxAge: Number(_.edadMax),
+            minAge: Number(_.edadMin),
             name: _.nombre
         };
     }

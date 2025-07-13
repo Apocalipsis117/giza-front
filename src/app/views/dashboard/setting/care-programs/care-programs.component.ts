@@ -98,7 +98,8 @@ export class CareProgramsComponent {
 
     private save() {
         const form = this.formCreate()?.form;
-        if (form?.valid) {
+        console.log("form", form?.value);
+        /*if (form?.valid) {
             this.swal$.loading();
             this.CarePrograms$.post(form.value).subscribe({
                 next: (value) => {
@@ -115,7 +116,7 @@ export class CareProgramsComponent {
         } else {
             this.swal$.formSave('warning');
             this.formCreate()?.markAlltouched();
-        }
+        }*/
     }
 
     private update() {

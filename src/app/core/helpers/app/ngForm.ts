@@ -57,15 +57,20 @@ export const ngFormHelper = {
             const control = lastGroup.get(field);
             const value = control?.value;
 
-            const isEmpty =
-                control?.invalid ||
-                value === null ||
-                value === undefined ||
-                (typeof value === 'string' && value.trim() === '');
+            const isEmpty = control?.invalid || value === null || value === undefined || (typeof value === 'string' && value.trim() === '');
 
             if (isEmpty) control?.markAsTouched();
 
             return !isEmpty;
         });
+    },
+    lastControlIsValid(formArray: FormArray): boolean {
+        if (formArray.length === 0) return true;
+
+        const lastGroup = formArray.at(formArray.length - 1);
+        if (!lastGroup || !(lastGroup instanceof FormGroup)) return true;
+
+        lastGroup.markAllAsTouched();
+        return lastGroup.valid;
     }
 }

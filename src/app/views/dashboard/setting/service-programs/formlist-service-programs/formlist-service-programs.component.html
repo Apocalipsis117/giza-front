@@ -1,0 +1,84 @@
+<table-ui [colspan]="6" [items]="items">
+    <ng-container tableHead>
+        <tr>
+            <th width="250">Servicio</th>
+            <th width="180">Sexo, Edad min/max</th>
+            <th width="180">Componente</th>
+            <th width="180">Finalidad consulta</th>
+            <th width="180">Consulta externa</th>
+            <th class="text-end">Accion</th>
+        </tr>
+    </ng-container>
+    <ng-container tableBody>
+        @for (item of itemsTable; let i = $index; track i) {
+            @if (i !== editingIndex()) {
+            <tr>
+                <td>
+                    <p class="font-semibold">{{ item.name }}</p>
+                    <small><span class="text-gray-400">CODIGO:</span> {{ item.code }}</small>
+                </td>
+                <td>
+                    <p>{{ item.genderName }}</p>
+                    <p><small class="text-gray-400">Min:</small> {{ item.minAge }}, <small class="text-gray-400">Max:</small> {{ item.maxAge }}</p>
+                </td>
+                <td>lorem</td>
+                <td>lorem</td>
+                <td>lorem</td>
+                <td class="text-end">
+                    <div class="inline-flex gap-2">
+                        <app-button setIcon="icofont-pencil-alt-5" ui="sweet" (action)="edit(i)" setSize="sm" />
+                        <app-button setIcon="icofont-bin" setColor="red" ui="sweet" (action)="delete(i)" setSize="sm" />
+                    </div>
+                </td>
+            </tr>
+            }
+        }
+    </ng-container>
+</table-ui>
+
+<section class="mt-8">
+    <blade-box-title setTitle="Agregar Programa Servicio" ui="flat" [activeShadow]="false">
+        <ng-container boxtitleBody>
+    <div class="col-span-full">
+        <form [formGroup]="form" (submit)="addItem()">
+          <div class="d-grid items-end">
+            <div class="col-span-1">
+                <input-text setLabel="Código" formControlName="code" />
+            </div>
+            <div class="col-span-4">
+                <input-text setLabel="Nombre del servicio" formControlName="name" [setValidate]="control['name']" #validate />
+            </div>
+            <div class="col-span-3">
+                <input-text setLabel="Componente" formControlName="component" setType="text" />
+            </div>
+            <div class="col-span-2">
+                <input-number setLabel="Edad mínima" formControlName="minAge" />
+            </div>
+            <div class="col-span-2">
+                <input-number setLabel="Edad máxima" formControlName="maxAge" />
+            </div>
+            <div class="col-span-4">
+                <input-select setLabel="Finalidad de consulta" formControlName="consultationPurposeId" />
+            </div>
+            <div class="col-span-4">
+                <input-select setLabel="Sexo" formControlName="genderId" [setOptions]="optionsGender()" />
+            </div>
+            <div class="col-span-4">
+                <input-select setLabel="Programas de atención" formControlName="careProgramsId" />
+            </div>
+            <div class="col-span-4">
+                <input-select setLabel="Causa externa" formControlName="externalCauseId" />
+            </div>
+            <div class="col-span-4 flex gap-2">
+                @let label = editingIndex() !== null ? 'Actualizar' : 'Agregar';
+                <app-button setType="submit" [setTitle]="label" />
+                @if(editingIndex() !== null) {
+                    <app-button setType="submit" setColor="teal" (action)="cancelEdit()" setTitle="Cancelar" />
+                }
+            </div>
+          </div>
+        </form>
+    </div>
+        </ng-container>
+    </blade-box-title>
+</section>

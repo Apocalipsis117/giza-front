@@ -16,5 +16,12 @@ export const formHelper = {
     },
     sortByName(options: FormControlOption[]): FormControlOption[] {
         return options.sort((a, b) => a.name.localeCompare(b.name));
+    },
+    findOption(value: FormControlValue, options: FormControlOption[] = []): FormControlOption | undefined {
+        if (!value || options.length === 0) return undefined;
+
+        return options.find(option =>
+            option.value === value || option.name === value
+        );
     }
 };

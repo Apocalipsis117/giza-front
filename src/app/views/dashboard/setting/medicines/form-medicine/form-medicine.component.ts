@@ -83,8 +83,8 @@ export class FormMedicineComponent {
     })
 
     form!: FormGroup;
-    formMedicineCLone: any;
-    formMedicine: IForm<Medicine_APPDTO> = {
+    formCLone: Medicine_APPDTO;
+    formControls: IForm<Medicine_APPDTO> = {
         code: ['', [ValidateStringEmpty()]],
         name: ['', [ValidateStringEmpty()]],
         atc: ['', [ValidateStringEmpty()]],
@@ -111,8 +111,8 @@ export class FormMedicineComponent {
     }
 
     constructor() {
-        this.form = this.fb.group(this.formMedicine);
-        this.formMedicineCLone = ngFormHelper.unboxProperties(this.formMedicine)
+        this.form = this.fb.group(this.formControls);
+        this.formCLone = ngFormHelper.unboxProperties(this.formControls)
     }
 
     get control() {
@@ -123,8 +123,8 @@ export class FormMedicineComponent {
         return this.form.get('medicineManualTariffMed') as FormArray;
     }
 
-    addTodo() {
-        if(!ngFormHelper.canAddNewFormArrayItem(this.medicineManualTariffMed, ['medicineTariffManualId', 'value'])) {
+    add() {
+        if(!ngFormHelper.lastControlIsValid(this.medicineManualTariffMed)) {
             this.swa$.alertSimple('!Llene el agregado antes de añadir otro!', 'info');
             return
         };
@@ -138,7 +138,7 @@ export class FormMedicineComponent {
         this.medicineManualTariffMed.push(todoGroup);
     }
 
-    removeTodo(index: number) {
+    remove(index: number) {
         const control = this.medicineManualTariffMed.at(index);
         const id = control.value.id;
         if(id) {
@@ -187,7 +187,7 @@ export class FormMedicineComponent {
     }
 
     reset() {
-        this.form.reset(this.formMedicineCLone);
+        this.form.reset(this.formCLone);
         this.form.setControl('medicineManualTariffMed', this.fb.array([]));
     }
 

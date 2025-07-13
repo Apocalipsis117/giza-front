@@ -43,11 +43,12 @@ interface Base_APP {
     code:              string; // codigo
     name:              string; // nombre
     component:         string; // componente
-    minAge:            string; // edadMin
-    maxAge:            string; // edadMax
+    minAge:            number; // edadMin
+    maxAge:            number; // edadMax
 }
 
 export interface ServicePrograms_APPDTO extends Base_APP {
+    id:                   number | null; // id
     consultationPurposeId: number; // finalidadConsultaId
     genderId:             number; // sexoId
     careProgramsId:       number | null; // programasAtencionId

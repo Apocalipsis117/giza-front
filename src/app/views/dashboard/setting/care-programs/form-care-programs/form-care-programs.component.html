@@ -13,10 +13,13 @@
             <input-number setLabel="Edad Max" formControlName="maxAge" />
         </div>
         <div class="col-span-2">
-            <input-select setLabel="Sexo" formControlName="genderId" />
+            <input-select setLabel="Sexo" formControlName="genderId" [setOptions]="optionsTypeGender()" />
         </div>
         <div class="col-span-full">
             <input-tags [setOptions]="optionsTypeHistory()" setLabel="Tipos de historia" formControlName="historyTypeIds" [setValidate]="control['historyTypeIds']" #validate />
+        </div>
+        <div class="col-span-full">
+            <formlist-service-programs [list]="programServices" [optionsGender]="optionsTypeGender()" />
         </div>
     </div>
 </form>

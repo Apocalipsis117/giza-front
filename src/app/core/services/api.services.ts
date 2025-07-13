@@ -62,6 +62,7 @@ export { ServiceLevelService } from './api/setting/service-level.service';
 export { ServicesService } from './api/setting/services.service';
 export { VehicleService } from './api/setting/vehicle.service';
 export { CareProgramsService } from './api/setting/care-programs.service';
+export { ServiceProgramsService } from './api/setting/service-programs.service';
 
 /**
  * rate

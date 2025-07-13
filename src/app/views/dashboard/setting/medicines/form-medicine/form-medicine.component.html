@@ -70,12 +70,12 @@
                                             <input-text setLabel="Valor" formControlName="value" />
                                         </div>
                                         <div class="col-span-2">
-                                            <app-button setColor="red" setTitle="Eliminar" (action)="removeTodo(i)" />
+                                            <app-button setColor="red" setTitle="Eliminar" (action)="remove(i)" />
                                         </div>
                                       </li>
                                     }
                                 </ol>
-                                <app-button setColor="green" setTitle="Agregar Tarifa" (action)="addTodo()" />
+                                <app-button setColor="green" setTitle="Agregar Tarifa" (action)="add()" />
                             }
                             @case(tabs()[1].idConnect) {
                                 <input-select-add setSize="sm" [setOptions]="optionsTypeViaMedication()" formControlName="administrationRouteIds" />
