@@ -59,7 +59,7 @@ export class FormDiagnosisComponent {
             subcategories: this.subcategoryDiag$.list('options'),
             charters: this.charterDiag.list('options'),
             categories: this.categoryDiag$.list('options'),
-            genders: this.gender$.list('options'),
+            genders: this.gender$.options(),
         });
 
         obs.subscribe({

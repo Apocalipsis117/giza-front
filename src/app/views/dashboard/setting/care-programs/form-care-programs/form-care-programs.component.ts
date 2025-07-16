@@ -7,9 +7,10 @@ import { InputTagsComponent } from '@im-inputs/input-tags/input-tags.component';
 import { InputTextComponent } from '@im-inputs/input-text/input-text.component';
 import { FormControlOption, FormGroupTyped, IForm, ServicePrograms_APPDTO } from '@interfaces/index';
 import { CarePrograms_APPDTO } from '@interfaces/setting/care-programs.i';
-import { TypeGenderService, TypeHistoryService } from '@services/api';
-import { ValidateArrayEmpty } from '@valid-control/index';
+import { DiagnosisService, TypeGenderService, TypeHistoryService } from '@services/api';
+import { ValidateArrayEmpty, ValidateNumberEmpty, ValidateStringEmpty, ValidStrict } from '@valid-control/index';
 import { FormlistServiceProgramsComponent } from '../../service-programs/formlist-service-programs/formlist-service-programs.component';
+import { InputSelectAddComponent } from '@im-inputs/input-select-add/input-select-add.component';
 
 @Component({
     selector: 'form-care-programs',
@@ -20,26 +21,29 @@ import { FormlistServiceProgramsComponent } from '../../service-programs/formlis
         InputNumberComponent,
         InputSelectComponent,
         InputTagsComponent,
-        FormlistServiceProgramsComponent
+        FormlistServiceProgramsComponent,
+        InputSelectAddComponent
     ],
     templateUrl: './form-care-programs.component.html'
 })
 export class FormCareProgramsComponent {
     private validates = viewChildren('validate');
     private readonly fb = inject(FormBuilder);
+    private readonly Diagnosis$ = inject(DiagnosisService);
     private readonly TypeHistory$ = inject(TypeHistoryService);
     private readonly TypeGender$ = inject(TypeGenderService);
 
+    optionsDiagnosis = signal<FormControlOption[]>([]);
     optionsTypeHistory = signal<FormControlOption[]>([]);
     optionsTypeGender = signal<FormControlOption[]>([]);
 
     form: FormGroup;
     formCloneEntity: CarePrograms_APPDTO;
     formEntity: IForm<CarePrograms_APPDTO> = {
-        genderId:        [null],
-        maxAge:          [NaN],
-        minAge:          [NaN],
-        name:            [''],
+        genderId:        [null, [ValidStrict()]],
+        maxAge:          [NaN, [ValidateNumberEmpty()]],
+        minAge:          [NaN, [ValidateNumberEmpty()]],
+        name:            ['', [ValidateStringEmpty()]],
         shortName:       [''],
         historyTypeIds:  [[] as number[], [ValidateArrayEmpty()]],
         diagnosisIds:    [[] as number[]],
@@ -60,8 +64,9 @@ export class FormCareProgramsComponent {
     }
 
     ngOnInit(): void {
-        this.TypeHistory$.list('options').subscribe(data => this.optionsTypeHistory.set(data));
-        this.TypeGender$.list('options').subscribe(data => this.optionsTypeGender.set(data));
+        this.Diagnosis$.options().subscribe(data => this.optionsDiagnosis.set(data));
+        this.TypeHistory$.options().subscribe(data => this.optionsTypeHistory.set(data));
+        this.TypeGender$.options().subscribe(data => this.optionsTypeGender.set(data));
     }
 
     reset() {

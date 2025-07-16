@@ -38,6 +38,8 @@ export { TypeServicePypService } from './api/single-query/type-service-pyp.servi
 export { TypeViaMedicationService } from './api/single-query/type-via-medication.service';
 export { GroupMedicationService } from './api/single-query/group-medication.service';
 export { TypeZonaService } from './api/single-query/type-zona.service';
+export { PurposeConsultationService } from './api/single-query/purpose-consultation.service';
+export { ExternalCauseService } from './api/single-query/external-cause.s';
 
 /**
  * Setting

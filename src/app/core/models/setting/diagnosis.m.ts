@@ -38,11 +38,11 @@ export class Diagnosis {
         const _ = this.input;
         return {
             active: _.vigente,
-            category: SDiag.setProperty(_.categoriasDiag),
-            chapter: SDiag.setProperty(_.capitulosDiag),
+            category: _.categoriasDiag ? SDiag.setProperty(_.categoriasDiag) : null,
+            chapter: _.capitulosDiag ? SDiag.setProperty(_.capitulosDiag) : null,
             code: _.codigo,
             common: _.comun,
-            gender: Gender.setProperty(_.sexo),
+            gender: _.sexo ? Gender.setProperty(_.sexo) : null,
             hospitalization: _.hospitalizacion,
             id: _.id,
             maxAge: _.edadMax,
@@ -50,7 +50,7 @@ export class Diagnosis {
             name: _.nombre,
             notify: _.notificar,
             procedure: _.procedimiento,
-            subCategory: SDiag.setProperty(_.subCategoriasDiag)
+            subCategory: _.subCategoriasDiag ? SDiag.setProperty(_.subCategoriasDiag) : null
         };
     }
 }

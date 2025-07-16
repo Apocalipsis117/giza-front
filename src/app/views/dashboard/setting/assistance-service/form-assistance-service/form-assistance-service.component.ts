@@ -66,7 +66,7 @@ export class FormAssistanceServiceComponent {
 
     ngOnInit(): void {
         const obs = forkJoin({
-            typeHistory: this.typeHistory$.list('options'),
+            typeHistory: this.typeHistory$.options(),
             serviceLevel: this.serviceLevel$.list('options'),
             typeService: this.typeService$.list('options'),
         });

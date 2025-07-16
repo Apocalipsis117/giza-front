@@ -10,7 +10,7 @@ import { Observable, catchError, map, of } from 'rxjs';
 export class ServiceProgramsService {
     private http = inject(HttpClient);
     private api: PathNameAPI = {
-        base: 'config/usuarios',
+        base: 'config/programas-servicios',
         save: 'save',
         list: 'lista',
         page: 'page',

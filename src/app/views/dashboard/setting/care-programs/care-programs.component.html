@@ -20,7 +20,7 @@
             <div class="col-span-4">
                 <blade-box-panel setTitle="Entidad" [padding]="true" [actionsActive]="true" [setActionsBar]="actionsDetail" (actionBar)="barAction($event)">
                     <ng-container boxbody>
-                        deetalles
+                        <tdetail-care-programs />
                     </ng-container>
                 </blade-box-panel>
             </div>
@@ -30,7 +30,7 @@
 
 <blade-dialog idConnect="care-program-update" setSize="xl" [hideFooter]="true" #dialogUpdate [activeFade]="false">
     <ng-container dialogHeader>
-        <card-basic-text setTitle="Actualizar Entidad" />
+        <card-basic-text setTitle="Actualizar Programa de atención" />
     </ng-container>
     <ng-container dialogBody>
         <blade-box-panel ui="clean" [padding]="true" [actionsActive]="true" [setActionsBar]="actionsUpdate" [headerActive]="false" (actionBar)="barAction($event)">

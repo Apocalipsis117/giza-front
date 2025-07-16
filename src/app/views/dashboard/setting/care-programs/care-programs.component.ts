@@ -11,6 +11,7 @@ import { SweetalertService } from '@services/app';
 import { CareProgramsService } from '@services/api';
 import { LocalCareProgramsService } from './local-care-programs.service';
 import { ActionName, BarActions, CarePrograms_APP, CarePrograms_APPDTO, tabsControls } from '@interfaces/index';
+import { TdetailCareProgramsComponent } from './tdetail-care-programs/tdetail-care-programs.component';
 
 @Component({
     selector: 'care-programs',
@@ -23,6 +24,7 @@ import { ActionName, BarActions, CarePrograms_APP, CarePrograms_APPDTO, tabsCont
         CardBasicTextComponent,
         BladeTabsHorizontalComponent,
         DirectivesModule,
+        TdetailCareProgramsComponent,
         TableCareProgramsComponent,
         FormCareProgramsComponent
     ]
@@ -98,8 +100,7 @@ export class CareProgramsComponent {
 
     private save() {
         const form = this.formCreate()?.form;
-        console.log("form", form?.value);
-        /*if (form?.valid) {
+        if (form?.valid) {
             this.swal$.loading();
             this.CarePrograms$.post(form.value).subscribe({
                 next: (value) => {
@@ -116,7 +117,7 @@ export class CareProgramsComponent {
         } else {
             this.swal$.formSave('warning');
             this.formCreate()?.markAlltouched();
-        }*/
+        }
     }
 
     private update() {

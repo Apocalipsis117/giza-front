@@ -1,0 +1,32 @@
+<blade-table [setData]="dataTable()" [colspan]="7" (onPage)="paginate($event)" [loadingData]="load()">
+    <ng-container tableHead>
+        <tr>
+            <th width="250">Servicio</th>
+            <th width="180">Sexo, Edad min/max</th>
+            <th width="180">Componente</th>
+            <th width="180">Finalidad consulta</th>
+            <th width="180">Consulta externa</th>
+            <th class="text-end">Accion</th>
+        </tr>
+    </ng-container>
+    <ng-container tableBody>
+        @for(entity of entities(); track entity.id) {
+        <tr TrSelected [idx]="tdSelected()" [id]="entity.id">
+            <td>
+                <p class="font-semibold">{{ entity.name }}</p>
+                <small><span class="text-gray-400">CODIGO:</span> {{ entity.code }}</small>
+            </td>
+            <td>
+                <p>{{ entity.gender.name }}</p>
+                <p><small class="text-gray-400">Min:</small> {{ entity.minAge }}, <small class="text-gray-400">Max:</small> {{ entity.maxAge }}</p>
+            </td>
+            <td>lorem</td>
+            <td>{{ entity.consultationPurpose.name }}</td>
+            <td>{{ entity.externalCause.name }}</td>
+            <td class="text-end">
+                <btns-action [enableActions]="{ edit: true, delete: true }" [data]="entity" (onBtn)="onBtn($event)" />
+            </td>
+        </tr>
+        }
+    </ng-container>
+</blade-table>

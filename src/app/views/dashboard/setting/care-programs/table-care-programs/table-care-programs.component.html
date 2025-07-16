@@ -1,10 +1,9 @@
 <blade-table [rounded]="true" [setData]="dataTable()" [colspan]="5" (onPage)="paginate($event)" [loadingData]="load()">
     <ng-container tableHead>
         <tr>
-            <th>Codigo</th>
+            <th width="100">Codigo</th>
             <th>Programa</th>
-            <th>Edad Min/Max</th>
-            <th>Sexo</th>
+            <th width="220">Sexo, Edad Min/Max</th>
             <th class="text-end">Acciones</th>
         </tr>
     </ng-container>
@@ -17,9 +16,9 @@
                     <a class="text-gray-400 text-sm">{{ entity.shortName }}</a>
                 </td>
                 <td>
-                    Edad min: <span class="font-semibold">{{ entity.minAge }}</span>, max: <span class="font-semibold">{{ entity.maxAge }}</span>
+                    <p>{{ entity.gender.name }}</p>
+                    <small class="text-gray-400">Edad min:</small> <span class="font-semibold">{{ entity.minAge }}</span>, <span class="text-gray-400">max:</span> <span class="font-semibold">{{ entity.maxAge }}</span>
                 </td>
-                <td class="text-end">{{ entity.gender.name }}</td>
                 <td class="text-end">
                     <app-button setIcon="icofont-info-circle" setSize="sm" (action)="emit(entity)" />
                 </td>

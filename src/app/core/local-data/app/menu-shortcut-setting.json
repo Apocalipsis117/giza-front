@@ -123,6 +123,18 @@
                 ]
             },
             {
+                "uuid": "2cd4dffd-9c92-413f-a0db-b071c5957834",
+                "path": "/dashboard/setting/service-programs",
+                "icon": "icofont-users",
+                "color": "text-green-400",
+                "display": [
+                    {
+                        "lang": "es",
+                        "title": "Programa de servicios"
+                    }
+                ]
+            },
+            {
                 "uuid": "86907ef9-d785-4f33-86bd-3c27ebfb6140",
                 "path": "/dashboard/setting/procedure-pyp",
                 "icon": "icofont-ui-social-link",

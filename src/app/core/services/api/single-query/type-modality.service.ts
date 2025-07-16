@@ -1,15 +1,19 @@
+import { action_singles_options } from '@actions/singles.action';
 import { HttpClient } from '@angular/common/http';
 import { Injectable, inject } from '@angular/core';
 import { apiHelper } from '@helpers/index';
 import { PathNameAPI, ResponseAPI } from '@interfaces/extend.i';
 import { NamedEntityAPP, FormControlOption, TypeReturn, NameIdEntity_API } from '@interfaces/index';
 import { NamedEntity, OptionsControl } from '@models/index';
-import { Observable, catchError, map, of } from 'rxjs';
+import { Store } from '@ngrx/store';
+import { select_singles } from '@selectors/singles.select';
+import { Observable, catchError, map, of, switchMap, take, tap } from 'rxjs';
 
 @Injectable({
     providedIn: 'root'
 })
 export class TypeModalityService {
+    private store = inject(Store);
     private http = inject(HttpClient);
     private api: PathNameAPI = {
         base: 'modalidad',
@@ -28,6 +32,21 @@ export class TypeModalityService {
                 return data.data.map(x => NamedEntity.setProperty(x));
             }),
             catchError(() => of([]))
+        );
+    }
+
+    options(): Observable<FormControlOption[]> {
+        return this.store.select(select_singles('typeModality')).pipe(
+            take(1),
+            switchMap(data => {
+                if (data.length > 0) {
+                    return of(data);
+                } else {
+                    return this.list('options').pipe(
+                        tap(data => this.store.dispatch(action_singles_options({ data, name: 'typeModality' })))
+                    );
+                }
+            })
         );
     }
 }

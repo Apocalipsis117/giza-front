@@ -56,7 +56,7 @@ export class FormHospitalServicesComponent {
 
     ngOnInit(): void {
         const obs = forkJoin({
-            gender: this.gender$.list('options'),
+            gender: this.gender$.options(),
             typeAmbit: this.TypeAmbit$.list('options'),
             costCenter: this.CostCenter$.list('options'),
         });

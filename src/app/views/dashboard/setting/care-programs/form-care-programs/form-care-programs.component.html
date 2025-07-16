@@ -1,25 +1,30 @@
 <form [formGroup]="form">
     <div class="d-grid">
         <div class="col-span-3">
-            <input-text setLabel="Nombre" formControlName="name" setType="text" />
+            <input-text setLabel="Nombre" formControlName="name" setType="text" [setValidate]="control['name']" #validate />
         </div>
         <div class="col-span-3">
             <input-text setLabel="Nombre corto" formControlName="shortName" setType="text" />
         </div>
         <div class="col-span-2">
-            <input-number setLabel="Edad Min" formControlName="minAge" />
+            <input-number setLabel="Edad Min" formControlName="minAge" [setValidate]="control['minAge']" #validate />
         </div>
         <div class="col-span-2">
-            <input-number setLabel="Edad Max" formControlName="maxAge" />
+            <input-number setLabel="Edad Max" formControlName="maxAge" [setValidate]="control['maxAge']" #validate />
         </div>
         <div class="col-span-2">
-            <input-select setLabel="Sexo" formControlName="genderId" [setOptions]="optionsTypeGender()" />
+            <input-select setLabel="Sexo" formControlName="genderId" [setOptions]="optionsTypeGender()" [setValidate]="control['genderId']" #validate />
         </div>
         <div class="col-span-full">
             <input-tags [setOptions]="optionsTypeHistory()" setLabel="Tipos de historia" formControlName="historyTypeIds" [setValidate]="control['historyTypeIds']" #validate />
         </div>
         <div class="col-span-full">
-            <formlist-service-programs [list]="programServices" [optionsGender]="optionsTypeGender()" />
+            <input-select-add setLabel="Diagnosticos" formControlName="diagnosisIds" [setOptions]="optionsDiagnosis()" [setValidate]="control['diagnosisIds']" #validate />
         </div>
+        @if(form.valid) {
+            <div class="col-span-full">
+                <formlist-service-programs [list]="programServices" [optionsGender]="optionsTypeGender()" [formCareProgram]="form.value" />
+            </div>
+        }
     </div>
 </form>

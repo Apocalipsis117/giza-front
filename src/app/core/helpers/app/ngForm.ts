@@ -1,5 +1,6 @@
 import { WritableSignal } from "@angular/core";
-import { AbstractControl, FormArray, FormControl, FormGroup } from "@angular/forms";
+import { AbstractControl, FormArray, FormControl, FormGroup, ValidatorFn } from "@angular/forms";
+import { FormControlValue } from "@interfaces/index";
 
 export const ngFormHelper = {
     unboxProperties<T extends Record<string, any>>(obj: T): any {
@@ -72,5 +73,17 @@ export const ngFormHelper = {
 
         lastGroup.markAllAsTouched();
         return lastGroup.valid;
+    },
+    setValidate(control: AbstractControl, fnValid: ValidatorFn[], value: FormControlValue = null) {
+        if (!control) {
+            console.warn(`Control no encontrado`);
+            return;
+        }
+        if(value) {
+            control.setValue(value)
+        }
+        control.clearValidators();
+        control.setValidators(fnValid);
+        control.updateValueAndValidity();
     }
 }

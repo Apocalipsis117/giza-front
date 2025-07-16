@@ -1,15 +1,17 @@
-import { Component, inject, input, signal, viewChildren } from '@angular/core';
-import { AbstractControl, FormBuilder, FormGroup, ReactiveFormsModule } from '@angular/forms';
+import { Component, effect, inject, input, signal, viewChildren } from '@angular/core';
+import { AbstractControl, FormBuilder, FormGroup, ReactiveFormsModule, ValidatorFn } from '@angular/forms';
 import { formHelper, ngFormHelper } from '@helpers/index';
 import { InputNumberComponent } from '@im-inputs/input-number/input-number.component';
 import { InputSelectComponent } from '@im-inputs/input-select/input-select.component';
 import { InputTextComponent } from '@im-inputs/input-text/input-text.component';
-import { FormControlOption, FormGroupTyped, IForm, ServicePrograms_APPDTO } from '@interfaces/index';
+import { CarePrograms_APPDTO, FormControlOption, FormControlValue, FormGroupTyped, IForm, ServicePrograms_APPDTO } from '@interfaces/index';
 import { BladeBoxTitleComponent } from '@layouts/dashboard/blades/blade-box-title/blade-box-title.component';
 import { TableUiComponent } from '@layouts/dashboard/tables/table-ui/table-ui.component';
 import { ButtonComponent } from '@layouts/shared/button/button.component';
+import { ExternalCauseService, PurposeConsultationService } from '@services/api';
 import { SweetalertService } from '@services/app';
-import { ValidateStringEmpty } from '@valid-control/index';
+import { ValidateAllowedValues, ValidateMaxNumber, ValidateMinNumber, ValidateNumberEmpty, ValidateStringEmpty, ValidStrict } from '@valid-control/index';
+import { forkJoin } from 'rxjs';
 
 @Component({
     selector: 'formlist-service-programs',
@@ -26,9 +28,14 @@ import { ValidateStringEmpty } from '@valid-control/index';
 })
 export class FormlistServiceProgramsComponent {
     private validates = viewChildren('validate');
+    public readonly formCareProgram = input<CarePrograms_APPDTO | null>(null);
     private readonly swal$ = inject(SweetalertService);
-    public readonly optionsGender = input<FormControlOption[]>([]);
+    private readonly PurposeConsultation$ = inject(PurposeConsultationService);
+    private readonly ExternalCause$ = inject(ExternalCauseService);
     public list = input<AbstractControl | null>();
+    optionsGender = input<FormControlOption[]>([]);
+    optionsExternalCause = signal<FormControlOption[]>([]);
+    optionsPurposeConsultation = signal<FormControlOption[]>([]);
     editingIndex = signal<number | null>(null);
     fb = inject(FormBuilder);
     form!: FormGroup;
@@ -48,12 +55,40 @@ export class FormlistServiceProgramsComponent {
 
     constructor() {
         this.form = this.fb.group(this.formControls);
-        this.formCLone = ngFormHelper.unboxProperties(this.formControls)
+        this.formCLone = ngFormHelper.unboxProperties(this.formControls);
+
+        effect(() => {
+            const values = this.formCareProgram();
+            if(values?.maxAge) this.setValidate('maxAge', [ValidateMaxNumber(values?.maxAge), ValidateNumberEmpty()]);
+            if(values?.minAge) this.setValidate('minAge', [ValidateMinNumber(values?.minAge), ValidateNumberEmpty()]);
+            if(values?.genderId) {
+                const genders = formHelper.genderValids(values?.genderId, this.optionsGender());
+                this.setValidate('genderId', [ValidateAllowedValues(genders.valids, genders.message), ValidStrict()])
+            }
+        });
+    }
+
+    ngOnInit(): void {
+        forkJoin({
+            purposeConsultation: this.PurposeConsultation$.options(),
+            externalCause: this.ExternalCause$.options(),
+        }).subscribe({
+            next: (value) => {
+                this.optionsPurposeConsultation.set(value.purposeConsultation);
+                this.optionsExternalCause.set(value.externalCause);
+            }
+        });
+    }
+
+    setValidate(name: keyof ServicePrograms_APPDTO, fnV: ValidatorFn[], value: FormControlValue = null) {
+        ngFormHelper.setValidate(this.control[name], fnV, value)
     }
     get itemsTable() {
         return this.items.map(x => ({
             ...x,
-            genderName: formHelper.findOption(x.genderId, this.optionsGender())?.name
+            genderName: formHelper.findOption(x.genderId, this.optionsGender())?.name,
+            causename: formHelper.findOption(x.externalCauseId, this.optionsExternalCause())?.name,
+            purposeName: formHelper.findOption(x.consultationPurposeId, this.optionsPurposeConsultation())?.name,
         }))
     }
     get control() {
@@ -85,7 +120,10 @@ export class FormlistServiceProgramsComponent {
         if (editingIndex !== null) {
             updated[editingIndex] = newItem;
         } else {
-            updated.push(newItem);
+            updated.push({
+                ...newItem,
+                maxAge: newItem.minAge || this.formCareProgram()!.minAge
+            });
         }
 
         this.items = updated;

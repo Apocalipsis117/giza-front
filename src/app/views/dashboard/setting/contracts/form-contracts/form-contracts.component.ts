@@ -147,8 +147,8 @@ export class FormContractsComponent {
 
     ngOnInit(): void {
         const obs = forkJoin({
-            modality: this.modality$.list('options'),
-            level: this.level$.list('options'),
+            modality: this.modality$.options(),
+            level: this.level$.options(),
             benefitPlan: this.benefitPlan$.list('options'),
             regimen: this.regimen$.list('options'),
             typeAttention: this.typeAttention$.list('options'),

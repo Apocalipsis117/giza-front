@@ -246,7 +246,7 @@
 .im-check {
     --accent: 52 103 208;
     --size: 20px;
-    --size-switch: 22px;
+    --size-switch: 16px;
     display: inline-flex;
     position: relative;
     input {
@@ -317,10 +317,11 @@
             display: block;
             width: var(--size-switch);
             height: var(--size-switch);
-            left: 0;
+            left: 3px;
             border-radius: 100%;
             background-color: #fff;
             box-shadow: shadow_i();
+            opacity: .7;
         }
     }
 
@@ -339,7 +340,8 @@
     &.switch input:checked ~ figure {
         background-color: map.get(colors.$color-emerald, '500');
         &::before {
-            left: calc(100% - var(--size-switch));
+            left: calc(100% - calc(var(--size-switch) + 3px));
+            opacity: 1;
         }
     }
 }
@@ -422,10 +424,10 @@
 .im-fieldset {
     position: relative;
     &.invalid {
-        border-color: map.get(colors.$color-red, '200');
+        border-color: map.get(colors.$color-red, '300');
         background-color: map.get(colors.$color-red, '50');
         legend {
-            color: map.get(colors.$color-red, '400');
+            color: map.get(colors.$color-red, '500');
         }
     }
     .message-error {

@@ -1,5 +1,6 @@
 import { Component, ElementRef, PLATFORM_ID, afterNextRender, inject, signal, viewChild } from '@angular/core';
 import { Chart } from 'chart.js';
+import { timer } from 'rxjs';
 
 @Component({
     selector: 'chart-vertical-bars',
@@ -15,7 +16,7 @@ export class ChartVerticalBarsComponent {
     constructor() {
         afterNextRender(() => {
             if(this.platform) {
-                this.chartInit()
+                timer(0).subscribe(() => this.chartInit())
             }
         })
     }

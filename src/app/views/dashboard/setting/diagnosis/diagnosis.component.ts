@@ -182,18 +182,18 @@ export class DiagnosisComponent {
         if(data) {
             const values: Diagnosis_APPDTO = {
                 active: data.active,
-                categoryId: data.category.id,
-                chapterId: data.chapter.id,
+                categoryId: data.category ? data.category.id : null,
+                chapterId: data.chapter ? data.chapter.id : null,
                 code: data.code,
                 common: data.common,
-                genderId: data.gender.id,
+                genderId: data.gender ? data.gender.id : null,
                 hospitalization: data.hospitalization,
                 maxAge: data.maxAge,
                 minAge: data.minAge,
                 name: data.name,
                 notify: data.notify,
                 procedure: data.procedure,
-                subCategoryId: data.subCategory.id
+                subCategoryId: data.subCategory ? data.subCategory.id : null
             }
             this.formUpdate()?.setValues(values);
         }

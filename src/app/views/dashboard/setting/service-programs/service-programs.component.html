@@ -1,1 +1,33 @@
-<p>service-programs works!</p>
+<blade-panel  section="setting" titleSection="Vehiculos">
+    <ng-container panels>
+        <div class="d-grid">
+            <div class="col-span-4">
+                <blade-box-panel setTitle="Vehiculo" [padding]="true" [actionsActive]="true"  (actionBar)="barAction($event)" >
+                    <ng-container boxbody>
+                        <form-service-programs #formCreate />
+                    </ng-container>
+                </blade-box-panel>
+            </div>
+            <div class="col-span-8">
+                <blade-box-panel setTitle="Vehiculos">
+                    <ng-container boxbody>
+                        <table-service-programs (onTable)="onTable($event)" #table />
+                    </ng-container>
+                </blade-box-panel>
+            </div>
+        </div>
+    </ng-container>
+</blade-panel>
+
+<blade-dialog idConnect="vehicle-update" setSize="md" [hideFooter]="true" [activeFade]="false" #dialogUpdate>
+    <ng-container dialogHeader>
+        <card-basic-text setTitle="Actualizar Entidad" />
+    </ng-container>
+    <ng-container dialogBody>
+        <blade-box-panel ui="clean" [padding]="true" [actionsActive]="true" [setActionsBar]="actionsUpdate" [headerActive]="false" (actionBar)="barAction($event)">
+            <ng-container boxbody>
+                <form-service-programs #formUpdate />
+            </ng-container>
+        </blade-box-panel>
+    </ng-container>
+</blade-dialog>

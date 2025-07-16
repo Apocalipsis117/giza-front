@@ -1,4 +1,4 @@
-import { action_diagnosis_options } from '@actions/diagnosis.action';
+import { action_setting_options } from '@actions/setting.action';
 import { HttpClient } from '@angular/common/http';
 import { inject, Injectable } from '@angular/core';
 import { apiHelper } from '@helpers/index';
@@ -6,7 +6,7 @@ import { PathNameAPI, ResponseAPI } from '@interfaces/extend.i';
 import { Diagnosis_APP, Diagnosis_APPDTO, Diagnosis_ListResponse, Diagnosis_PageResponse, Diagnosis_Response, FormControlOption, TypeReturn } from '@interfaces/index';
 import { Diagnosis, DiagnosisDTO, OptionsControl } from '@models/index';
 import { Store } from '@ngrx/store';
-import { select_diagnosisGroup_options } from '@selectors/diagnosis.select';
+import { select_setting } from '@selectors/setting.select';
 import { Observable, catchError, map, of, switchMap, take, tap } from 'rxjs';
 
 @Injectable({
@@ -74,14 +74,14 @@ export class DiagnosisService {
     }
 
     options(): Observable<FormControlOption[]> {
-        return this.store.select(select_diagnosisGroup_options).pipe(
+        return this.store.select(select_setting('diagnosis')).pipe(
             take(1),
             switchMap(data => {
                 if (data.length > 0) {
-                    return this.store.select(select_diagnosisGroup_options).pipe(take(1));
+                    return of(data);
                 } else {
                     return this.list('options').pipe(
-                        tap(data => this.store.dispatch(action_diagnosis_options({ data })))
+                        tap(data => this.store.dispatch(action_setting_options({ data, name: 'diagnosis' })))
                     );
                 }
             })

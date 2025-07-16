@@ -1,8 +1,8 @@
-import { Component, computed, inject, input, signal } from '@angular/core';
+import { Component, computed, inject, input } from '@angular/core';
+import { Diagnosis_APP } from '@interfaces/index';
 import { SelectSomeItemComponent } from '@layouts/dashboard/ux/select-some-item/select-some-item.component';
 import { BlockSwitchStatusComponent } from '@layouts/shared/block-switch-status/block-switch-status.component';
 import { LocalDiagnosisService } from '../local-diagnosis.service';
-import { Diagnosis_APP } from '@interfaces/index';
 
 @Component({
     selector: 'tdetail-diagnosis',
@@ -18,32 +18,25 @@ export class TdetailDiagnosisComponent {
     data = input<Diagnosis_APP | null>(null);
     localServ = inject(LocalDiagnosisService);
 
-    /*ngOnInit(): void {
-        this.localServ.readEntity$.subscribe({
-            next: (value) => {
-                this.data.set(value)
-            }
-        });
-    }*/
-
     value = computed(() => {
+        const _ = this.data()!;
         return {
-            name: this.data()!.name,
-            code: this.data()!.code,
-            minAge: this.data()!.minAge,
-            maxAge: this.data()!.maxAge,
-            notify: this.data()!.notify,
-            procedure: this.data()!.procedure,
-            hospitalization: this.data()!.hospitalization,
-            common: this.data()!.common,
-            active: this.data()!.active,
-            categoryName: this.data()!.category.name,
-            categoryRange: this.data()!.category.range,
-            chapter: this.data()!.chapter.name,
-            chapterRange: this.data()!.chapter.range,
-            gender: this.data()!.gender.name,
-            subCategory: this.data()!.subCategory.name,
-            subCategoryRabge: this.data()!.subCategory.range,
+            name: _.name,
+            code: _.code,
+            minAge: _.minAge,
+            maxAge: _.maxAge,
+            notify: _.notify,
+            procedure: _.procedure,
+            hospitalization: _.hospitalization,
+            common: _.common,
+            active: _.active,
+            categoryName: _.category ? _.category.name : '',
+            categoryRange: _.category ? _.category.range : '',
+            chapter: _.chapter ? _.chapter.name : '',
+            chapterRange: _.chapter ? _.chapter.range : '',
+            gender: _.gender ? _.gender.name : '',
+            subCategory: _.subCategory ? _.subCategory.name : '',
+            subCategoryRabge: _.subCategory ? _.subCategory.range : '',
         }
     });
 }

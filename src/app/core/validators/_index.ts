@@ -83,6 +83,16 @@ export function ValidateMaxNumber(max: number, message?: string): ValidatorFn {
     };
 }
 
+export function ValidateMinNumber(min: number, message?: string): ValidatorFn {
+    const defaultMsg = `El valor debe ser mayor o igual a ${min}`;
+    return (control: AbstractControl): ValidationErrors | null => {
+        const value = control.value;
+        if (Number.isNaN(value)) return null;
+        return value >= min ? null : { message: message || defaultMsg };
+    };
+}
+
+
 export function validateMaxDigits(maxDigits: number, message?: string): ValidatorFn {
     const defaultMsg = `Debe tener como máximo ${maxDigits} dígito(s) numérico(s)`;
     return (control: AbstractControl): ValidationErrors | null => {
@@ -96,5 +106,17 @@ export function validateMaxDigits(maxDigits: number, message?: string): Validato
         return numericPart.length <= maxDigits
             ? null
             : { message: message || defaultMsg };
+    };
+}
+
+export function ValidateAllowedValues<T>(allowedValues: T[], message?: string): ValidatorFn {
+    return (control: AbstractControl): ValidationErrors | null => {
+        const value = control.value;
+        if (value === null || value === undefined || allowedValues.includes(value)) {
+            return null;
+        }
+        return {
+            message: message || `El valor debe ser uno de: ${allowedValues.join(', ')}`
+        };
     };
 }

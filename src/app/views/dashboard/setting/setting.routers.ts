@@ -93,5 +93,9 @@ export const routers: Route[] = [{
 {
     path: 'procedure-pyp',
     loadComponent: () => import('./procedure-pyp/procedure-pyp.component').then(c => c.ProcedurePypComponent)
+},
+{
+    path: 'service-programs',
+    loadComponent: () => import('./service-programs/service-programs.component').then(c => c.ServiceProgramsComponent)
 }
 ];

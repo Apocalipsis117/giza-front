@@ -19,18 +19,18 @@ interface Base_API {
 }
 
 export interface Diagnosis_DTO extends Base_API {
-    sexoId:              number;
-    capitulosDiagId:     number;
-    categoriasDiagId:    number;
-    subCategoriasDiagId: number;
+    sexoId:              number | null;
+    capitulosDiagId:     number | null;
+    categoriasDiagId:    number | null;
+    subCategoriasDiagId: number | null;
 }
 
 export interface Diagnosis_API extends Base_API {
     id:                number;
-    sexo:              Gender_API;
-    capitulosDiag:     SDiag_API;
-    categoriasDiag:    SDiag_API;
-    subCategoriasDiag: SDiag_API;
+    sexo:              Gender_API | null;
+    capitulosDiag:     SDiag_API | null;
+    categoriasDiag:    SDiag_API | null;
+    subCategoriasDiag: SDiag_API | null;
 }
 
 export interface SDiag_API {
@@ -64,18 +64,18 @@ interface Base_APP {
 }
 
 export interface Diagnosis_APPDTO extends Base_APP {
-    genderId: number;                // sexoId
-    chapterId: number;               // capitulosDiagId
-    categoryId: number;              // categoriasDiagId
-    subCategoryId: number;           // subCategoriasDiagId
+    genderId: number | null;                // sexoId
+    chapterId: number | null;               // capitulosDiagId
+    categoryId: number | null;              // categoriasDiagId
+    subCategoryId: number | null;           // subCategoriasDiagId
 }
 
 export interface Diagnosis_APP extends Base_APP {
     id: number;                      // id
-    gender: Gender_APP;              // sexo
-    chapter: SDiag_APP;              // capitulosDiag
-    category: SDiag_APP;             // categoriasDiag
-    subCategory: SDiag_APP;          // subCategoriasDiag
+    gender: Gender_APP | null;              // sexo
+    chapter: SDiag_APP | null;              // capitulosDiag
+    category: SDiag_APP | null;             // categoriasDiag
+    subCategory: SDiag_APP | null;          // subCategoriasDiag
 }
 
 export interface SDiag_APP {

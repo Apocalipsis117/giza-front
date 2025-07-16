@@ -1,0 +1,28 @@
+<form [formGroup]="form">
+    <div class="d-grid items-end">
+        <div class="col-span-3">
+            <input-text setLabel="Código" formControlName="code" />
+        </div>
+        <div class="col-span-9">
+            <input-text setLabel="Nombre del servicio" formControlName="name" [setValidate]="control['name']" #validate />
+        </div>
+        <div class="col-span-6">
+            <input-text setLabel="Componente" formControlName="component" setType="text" />
+        </div>
+        <div class="col-span-3">
+            <input-number setLabel="Edad mínima" formControlName="minAge" [setValidate]="control['minAge']" #validate />
+        </div>
+        <div class="col-span-3">
+            <input-number setLabel="Edad máxima" formControlName="maxAge" [setValidate]="control['maxAge']" #validate />
+        </div>
+        <div class="col-span-6">
+            <input-select setLabel="Finalidad de consulta" formControlName="consultationPurposeId" [setOptions]="optionsPurposeConsultation()" [setValidate]="control['consultationPurposeId']" #validate />
+        </div>
+        <div class="col-span-6">
+            <input-select setLabel="Sexo" formControlName="genderId" [setOptions]="optionsGender()" [setValidate]="control['genderId']" #validate />
+        </div>
+        <div class="col-span-full">
+            <input-select setLabel="Causa externa" formControlName="externalCauseId" [setOptions]="optionsExternalCause()" [setValidate]="control['externalCauseId']" #validate />
+        </div>
+    </div>
+</form>

@@ -2,6 +2,16 @@
     @apply grid gap-4 grid-cols-12;
 }
 
+.ul-actions {
+    @apply col-span-full space-y-1;
+    > li {
+        @apply py-2 px-3 border border-gray-100 rounded-md shadow-sm;
+        .actions {
+            @apply inline-flex gap-2;
+        }
+    }
+}
+
 .li-action {
     @apply flex gap-4 items-center justify-between;
 }
