@@ -4,6 +4,7 @@ export const routerDashboard: Route[] = [{
     path: '',
     children: [{
         path: 'panel',
+        loadComponent: () => import('./panel/panel.component').then(c => c.PanelComponent),
         loadChildren: () => import('./panel/panel.routers').then(r => r.routers)
     },
     {

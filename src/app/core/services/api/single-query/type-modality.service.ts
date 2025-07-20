@@ -7,7 +7,7 @@ import { NamedEntityAPP, FormControlOption, TypeReturn, NameIdEntity_API } from 
 import { NamedEntity, OptionsControl } from '@models/index';
 import { Store } from '@ngrx/store';
 import { select_singles } from '@selectors/singles.select';
-import { Observable, catchError, map, of, switchMap, take, tap } from 'rxjs';
+import { Observable, catchError, map, of, shareReplay, switchMap, take, tap } from 'rxjs';
 
 @Injectable({
     providedIn: 'root'
@@ -46,7 +46,8 @@ export class TypeModalityService {
                         tap(data => this.store.dispatch(action_singles_options({ data, name: 'typeModality' })))
                     );
                 }
-            })
+            }),
+            shareReplay(1)
         );
     }
 }

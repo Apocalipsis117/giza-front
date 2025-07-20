@@ -39,13 +39,13 @@
             },
             {
                 "uuid": "c73a516e-246d-4870-8a45-080e55c5a1c5",
-                "path": "",
+                "path": "/dashboard/tariff/manual-transfer-rate",
                 "icon": "icofont-ambulance-cross",
                 "color": "text-violet-400",
                 "display": [
                     {
                         "lang": "es",
-                        "title": "Tarifas traslados"
+                        "title": "Manual Tarifas traslados"
                     }
                 ]
             },

@@ -27,7 +27,16 @@ export class TableDiagnosisComponent {
     tdSelected = signal<number>(-1);
     load = signal<boolean>(false);
 
-    entities = computed(() => this.dataTable() ? this.dataTable()?.content : []);
+    entities = computed(() => this.dataTable() ? this.dataTable()?.content.map(x => ({
+        id: x.id,
+        name: x.name,
+        code: x.code,
+        gender: x.gender?.name || '',
+        minAge: x.minAge,
+        maxAge: x.maxAge,
+        active: x.active,
+        entity: x
+    })) : []);
 
     ngOnInit(): void {
         this.queryAdministrativeEntities()

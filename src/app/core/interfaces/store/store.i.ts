@@ -8,6 +8,7 @@ export interface AppStore {
     user: State_user;
     setting: State_setting;
     singles: State_singles;
+    tariff: State_tariff;
 }
 
 export interface State_share {
@@ -42,4 +43,8 @@ export interface State_singles {
     externalCause: FormControlOption[];
     levelService: FormControlOption[];
     typeModality: FormControlOption[];
+}
+
+export interface State_tariff {
+    mTransferRate: FormControlOption[];
 }

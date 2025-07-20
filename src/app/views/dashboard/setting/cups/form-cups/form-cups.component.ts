@@ -4,8 +4,7 @@ import { FormGroup, ReactiveFormsModule } from '@angular/forms';
 import { InputPanelCheckboxComponent } from '@form-control/input-panel-checkbox/input-panel-checkbox.component';
 import { InputPanelSelectComponent } from '@form-control/input-panel-select/input-panel-select.component';
 import { InputPanelTextComponent } from '@form-control/input-panel-text/input-panel-text.component';
-import { CupsDTO_APP } from '@interfaces/app';
-import { IForm, FormControlOption } from '@interfaces/index';
+import { FormControlOption } from '@interfaces/index';
 import { BladePanelOptionsComponent } from '@layouts/dashboard/blades/blade-panel-options/blade-panel-options.component';
 import { GroupQxService, RipConceptService, ServiceLevelService, ServicesService, TypeAmbitService, TypeBirthService, TypeGenderService } from '@services/api';
 
@@ -49,6 +48,6 @@ export class FormCupsComponent {
         this.birthServ.getAll('options').subscribe(data => this.optionsBirth.set(data));
         this.ripConceptServ.list('options').subscribe(data => this.optionsRipConcept.set(data));
         this.servicesServ.getAll('options').subscribe(data => this.optionsServices.set(data));
-        this.groupQxServ.getAll('options').subscribe(data => this.optionsGroupqx.set(data));
+        this.groupQxServ.list('options').subscribe(data => this.optionsGroupqx.set(data));
     }
 }

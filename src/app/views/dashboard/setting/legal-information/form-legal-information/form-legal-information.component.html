@@ -1,0 +1,20 @@
+<form [formGroup]="form">
+    <div class="d-flex gap-5">
+        <div class="w-[180px]">
+            <input-avatar (onFile)="avatar($event)" />
+        </div>
+        <div class="grow">
+            <div class="d-grid">
+                <div class="col-span-full">
+                    <input-text setLabel="Nombre y apellido" formControlName="name" [setValidate]="control['name']" #validate />
+                </div>
+                <div class="col-span-full">
+                    <input-select setLabel="Tipo de Vehículo" formControlName="healthcareRepTypeId" [setOptions]="optionsTypeRepresentative()" [setValidate]="control['healthcareRepTypeId']" #validate />
+                </div>
+                <div class="col-span-5">
+                    <input-onoff ui="switch" setLabel="Estado" formControlName="status" />
+                </div>
+            </div>
+        </div>
+    </div>
+</form>

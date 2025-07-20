@@ -1,0 +1,28 @@
+<blade-table [setData]="dataTable()" [colspan]="7" (onPage)="paginate($event)" [loadingData]="load()">
+    <ng-container tableHead>
+        <tr>
+            <th width="100">Foto</th>
+            <th width="150">Representante</th>
+            <th width="250">Tipo de representante</th>
+            <th width="150">Estado</th>
+            <th class="text-end" width="120">Accion</th>
+        </tr>
+    </ng-container>
+    <ng-container tableBody>
+        @for(entity of entities(); track entity.uuid) {
+        <tr TrSelected [idx]="tdSelected()" [id]="entity.uuid">
+            <td>{{ entity.signaturePath }}</td>
+            <td>{{ entity.name }}</td>
+            <td>{{ entity.healthcareRepType.name }}</td>
+            <td>
+                <badge-status [setStatus]="entity.status" />
+            </td>
+            <td class="text-end">
+                <div class="inline-flex gap-2">
+                    <btns-action [enableActions]="{ edit: true, delete: true }" [data]="entity" (onBtn)="onBtn($event)" />
+                </div>
+            </td>
+        </tr>
+        }
+    </ng-container>
+</blade-table>

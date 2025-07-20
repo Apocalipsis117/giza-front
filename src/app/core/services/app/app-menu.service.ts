@@ -4,7 +4,7 @@ import jsonBarTool from '@local-data/app/bar-tool-actions.json';
 import jsonMenuAsideConfig from '@local-data/app/menu-aside-config.json';
 import jsonMenuAudit from '@local-data/app/menu-shortcut-audit.json';
 import jsonMenuClinicHistory from '@local-data/app/menu-shortcut-clinic-history.json';
-import jsonMenuHome from '@local-data/app/menu-shortcut-home.json';
+import jsonViewTabs from '@local-data/app/menu-view-tabs.json';
 import jsonMenuPharmacy from '@local-data/app/menu-shortcut-pharmacy.json';
 import jsonMenuPrincipal from '@local-data/app/menu-shortcut-principal.json';
 import jsonMenuSetting from '@local-data/app/menu-shortcut-setting.json';
@@ -39,6 +39,19 @@ export class AppMenuService {
         return ModelMenutoolbar.setProperty(jsonBarTool.data);
     }
 
+    menuViews(typeMenu: string | null): Observable<MenuShortcutShortcutMenu[] | []> {
+        const menuMap: { [key: string]: any; } = {
+            'panel': jsonViewTabs.data.panel,
+            'ips': jsonViewTabs.data.ips,
+        };
+
+        if (typeMenu && menuMap[typeMenu]) {
+            return of(menuMap[typeMenu]);
+        }
+
+        return of([]);
+    }
+
     menuShorcut(typeMenu: string | null): Observable<MenuShortcutShortcutMenu[] | []> {
         const menuMap: { [key: string]: any; } = {
             'clinic-history': jsonMenuClinicHistory,
@@ -46,8 +59,7 @@ export class AppMenuService {
             'pharmacy': jsonMenuPharmacy,
             'tariff': jsonMenuTariff,
             'audit': jsonMenuAudit,
-            'principal': jsonMenuPrincipal,
-            'home': jsonMenuHome,
+            'principal': jsonMenuPrincipal
         };
 
         if (typeMenu && menuMap[typeMenu]) {

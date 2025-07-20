@@ -1,0 +1,45 @@
+<figure class="im-field-avatar">
+    @if(isCurrentImg()) {
+        <div class="relative block space-y-2">
+            <img class="w-full h-[230px] rounded-lg object-cover object-center" [attr.src]="currentImg()" alt="">
+            <button class="btn btn-green w-full rounded-lg" (click)="changeIsCurrentImg(false)">
+                <i class="mir mi-edit"></i>
+                <span>
+                    Cambiar
+                </span>
+            </button>
+        </div>
+    }
+    @else {
+        <div [hidden]="file()">
+            <label class="flex justify-center items-center w-full h-[230px] border border-dashed rounded-lg bg-gray-50 border-gray-300 active:translate-y-[1px] cursor-pointer">
+                <div class="text-center text-gray-400">
+                    <span class="text-2xl mb-2 inline-block">
+                        <i class="mir mi-image"></i>
+                    </span>
+                    <p class="text-sm">Cargar imagen</p>
+                </div>
+                <input class="hidden" type="file" name="files" [attr.accept]="accept()" (change)="changeFile($event)" title="Select image" [disabled]="visibility()" #inputFile>
+            </label>
+            <progress [hidden]="!visibility()" [value]="loading()" max="100"></progress>
+            @if(currentImg()) {
+                <button class="btn btn-sky mt-2 w-full rounded-lg" type="button" (click)="changeIsCurrentImg(true)">
+                    <i class="mir mi-close"></i>
+                    <span>Cancelar</span>
+                </button>
+            }
+        </div>
+        @if(file()) {
+            <div class="relative block space-y-2">
+                <img class="w-full h-[230px] rounded-lg object-cover object-center" [attr.src]="file()?.file" alt="">
+                <button class="btn btn-red w-full rounded-lg" (click)="remove()">
+                    <i class="mir mi-delete"></i>
+                    <span>
+                        Eliminar
+                    </span>
+                </button>
+            </div>
+        }
+    }
+</figure>
+

@@ -23,7 +23,7 @@ export { TypeMedicineService } from './api/single-query/type-medicine.service';
 export { TypeModalityService } from './api/single-query/type-modality.service';
 export { TypeModeratePaymentService } from './api/single-query/type-moderate-payment.service';
 export { TypeRegimeService } from './api/single-query/type-regime.service';
-export { TypeRepresentativeService } from './api/single-query/type-representative.service';
+export { TypeRepresentativeService } from './api/single-query/type-representative.s';
 export { TypeServiceService } from './api/single-query/type-service.service';
 export { TypeGenderService } from './api/single-query/type-gender.service';
 export { TypeUnitMeasurementService } from './api/single-query/type-unit-measurement.service';
@@ -65,6 +65,7 @@ export { ServicesService } from './api/setting/services.service';
 export { VehicleService } from './api/setting/vehicle.service';
 export { CareProgramsService } from './api/setting/care-programs.service';
 export { ServiceProgramsService } from './api/setting/service-programs.service';
+export { LegalInformationService } from './api/setting/legal-information.s';
 
 /**
  * rate

@@ -14,14 +14,14 @@
                 <td class="text-end">{{ entity.code }}</td>
                 <td>{{ entity.name }}</td>
                 <td>
-                    <p>SEXO: {{ entity.gender.name }}</p>
+                    <p>SEXO: {{ entity.name }}</p>
                     <p class="text-sm">EDAD: minima <span class="font-semibold">{{ entity.minAge }}</span>, maxima <span class="font-semibold">{{ entity.maxAge }}</span></p>
                 </td>
                 <td class="text-end">
                     {{ entity.active ? 'Activo' : 'Inactivo' }}
                 </td>
                 <td class="text-end">
-                    <app-button setIcon="icofont-info-circle" setSize="sm" (action)="emit(entity)" />
+                    <app-button setIcon="icofont-info-circle" setSize="sm" (action)="emit(entity.entity)" />
                 </td>
             </tr>
         }

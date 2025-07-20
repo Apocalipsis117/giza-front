@@ -6,7 +6,7 @@ import { InputOnoffComponent } from '@im-inputs/input-onoff/input-onoff.componen
 import { InputSelectSearhComponent } from '@im-inputs/input-select-searh/input-select-searh.component';
 import { InputSelectComponent } from '@im-inputs/input-select/input-select.component';
 import { InputTextComponent } from '@im-inputs/input-text/input-text.component';
-import { AdministrativeEntity_APPDTO, DataAssociated, FormControlOption, FormGroupTyped, IForm } from '@interfaces/index';
+import { AdministrativeEntity_APP, AdministrativeEntity_APPDTO, DataAssociated, FormControlOption, FormGroupTyped, IForm } from '@interfaces/index';
 import { TitleIconSectionComponent } from '@layouts/shared/title-icon-section/title-icon-section.component';
 import { TypeRegimeService } from '@services/api';
 import { RxAppGisaService } from '@services/app';
@@ -109,7 +109,27 @@ export class FormDateEntityComponent {
         this.validate();
     }
 
-    setValues(values: AdministrativeEntity_APPDTO) {
+    setValues(data: AdministrativeEntity_APP) {
+        const values: AdministrativeEntity_APPDTO = {
+            address: data.address,
+            authorizationLength: data.authorizationLength,
+            code: data.code,
+            departmentId: data.department.id,
+            electronicBillingEmail: data.electronicBillingEmail,
+            email: data.email,
+            filingAddress: data.filingAddress,
+            municipalityId: data.municipality.id,
+            name: data.name,
+            nit: data.nit,
+            otherData: data.otherData,
+            phone: data.phone,
+            regimeId: data.regime.id,
+            reportResolution256: data.reportResolution256,
+            requiresAnnex2: data.requiresAnnex2,
+            soat: data.soat,
+            status: data.status,
+            templateResolution1552: data.templateResolution1552
+        }
         this.form.setValue(values);
     }
 }

@@ -17,6 +17,13 @@ export interface FormControlOption<T = any> {
     data?: T;
 }
 
+export interface FormControlImagen {
+    name: string;
+    formate: string;
+    size: number;
+    file: any;
+}
+
 export interface FormControlOptionColor extends FormControlOption {
     cssClass: string;
 }
@@ -38,6 +45,7 @@ export interface DataAssociated {
     id?: number | null;
 }
 
+export type FormControlEncode = 'base64' | 'btoa' | 'file';
 export type ActionForm = 'save' | 'reset' | '';
 export type InputType = 'number' | 'text' | 'email' | 'tel' | 'date' | 'search' | 'datetime-local' | 'color' | 'time';
 export type InputDate = 'date' | 'datetime-local' | 'time';

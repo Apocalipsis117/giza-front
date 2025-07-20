@@ -64,7 +64,7 @@
             },
             {
                 "uuid": "a63eccb1-e011-40cb-8842-5465587c1ed9",
-                "path": "",
+                "path": "/dashboard/setting/contracts",
                 "icon": "icofont-handshake-deal",
                 "color": "text-sky-400",
                 "display": [
@@ -299,6 +299,18 @@
                     {
                         "lang": "es",
                         "title": "Concepto RIP"
+                    }
+                ]
+            },
+            {
+                "uuid": "5053c618-a327-401a-826d-c36ecabc8288",
+                "path": "/dashboard/setting/legal-information",
+                "icon": "icofont-users",
+                "color": "text-green-400",
+                "display": [
+                    {
+                        "lang": "es",
+                        "title": "Representantes Legales"
                     }
                 ]
             }

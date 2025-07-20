@@ -62,19 +62,20 @@ export class ContractsComponent {
 
     save() {
         const form = this.formContractRef()?.form;
-        if(form?.valid && form) {
+        console.log("form", form?.value);
+        /*if(form?.valid && form) {
             this.swal.loading();
             this.testServ.post(form.value).subscribe({
                 next: (data) => {
                     this.swal.formSave('success');
-                    // this.formContractRef()?.reset();
-                    // this.showTab(1);
+                    this.formContractRef()?.reset();
+                    this.showTab(1);
                 },
                 error: () => this.swal.formSave('error')
             });
         } else {
             this.swal.formSave('warning');
-        }
+        }*/
     }
 
     showTab(id: number) {

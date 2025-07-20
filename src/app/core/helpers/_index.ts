@@ -17,3 +17,4 @@ export { apiHelper } from './app/apiHelper';
 export { utilieHelper } from './app/utilieHelper';
 export { arrayControlHelper } from './app/arrayControlHelper';
 export * from './app/date-helper';
+export * from './app/fileReaderHelper';

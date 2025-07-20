@@ -1,7 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable, inject } from '@angular/core';
-import { queries } from '@helpers/index';
-import { IpsDTO } from '@models/index';
+import { of } from 'rxjs';
 
 @Injectable({
     providedIn: 'root'
@@ -13,8 +12,7 @@ export class IpsService {
     }
 
     post(data: any) {
-        const api = queries.api(this.api.save);
-        const dataPost = IpsDTO.setProperty(data);
-        return this.http.post(api, dataPost);
+        console.log("data", data);
+        return of(null)
     }
 }

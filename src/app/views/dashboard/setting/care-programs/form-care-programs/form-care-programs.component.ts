@@ -27,15 +27,14 @@ import { InputSelectAddComponent } from '@im-inputs/input-select-add/input-selec
     templateUrl: './form-care-programs.component.html'
 })
 export class FormCareProgramsComponent {
-    private validates = viewChildren('validate');
-    private readonly fb = inject(FormBuilder);
-    private readonly Diagnosis$ = inject(DiagnosisService);
+    private validates             = viewChildren('validate');
+    private readonly fb           = inject(FormBuilder);
+    private readonly Diagnosis$   = inject(DiagnosisService);
     private readonly TypeHistory$ = inject(TypeHistoryService);
-    private readonly TypeGender$ = inject(TypeGenderService);
-
-    optionsDiagnosis = signal<FormControlOption[]>([]);
-    optionsTypeHistory = signal<FormControlOption[]>([]);
-    optionsTypeGender = signal<FormControlOption[]>([]);
+    private readonly TypeGender$  = inject(TypeGenderService);
+    optionsDiagnosis              = signal<FormControlOption[]>([]);
+    optionsTypeHistory            = signal<FormControlOption[]>([]);
+    optionsTypeGender             = signal<FormControlOption[]>([]);
 
     form: FormGroup;
     formCloneEntity: CarePrograms_APPDTO;

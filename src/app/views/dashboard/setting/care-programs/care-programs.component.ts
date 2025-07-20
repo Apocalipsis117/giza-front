@@ -30,15 +30,15 @@ import { TdetailCareProgramsComponent } from './tdetail-care-programs/tdetail-ca
     ]
 })
 export class CareProgramsComponent {
-    private readonly destroyRef = inject(DestroyRef);
-    private readonly swal$ = inject(SweetalertService);
+    private readonly destroyRef    = inject(DestroyRef);
+    private readonly swal$         = inject(SweetalertService);
     private readonly CarePrograms$ = inject(CareProgramsService);
-    private readonly local$ = inject(LocalCareProgramsService);
-    readonly tabController = viewChild('tabController', { read: BladeTabsHorizontalComponent});
-    readonly dialogUpdate = viewChild('dialogUpdate', { read: BladeDialogComponent});
-    readonly formCreate = viewChild('formCreate', { read: FormCareProgramsComponent});
-    readonly formUpdate = viewChild('formUpdate', { read: FormCareProgramsComponent});
-    readonly table = viewChild('table', { read: TableCareProgramsComponent});
+    private readonly local$        = inject(LocalCareProgramsService);
+    readonly tabController         = viewChild('tabController', { read: BladeTabsHorizontalComponent});
+    readonly dialogUpdate          = viewChild('dialogUpdate', { read: BladeDialogComponent});
+    readonly formCreate            = viewChild('formCreate', { read: FormCareProgramsComponent});
+    readonly formUpdate            = viewChild('formUpdate', { read: FormCareProgramsComponent});
+    readonly table                 = viewChild('table', { read: TableCareProgramsComponent});
     actionsDetail: BarActions = {
         edit: true,
         delete: true,

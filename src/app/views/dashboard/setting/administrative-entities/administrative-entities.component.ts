@@ -174,27 +174,7 @@ export class AdministrativeEntitiesComponent {
 
     private dataEdit(data: AdministrativeEntity_APP | null) {
         if(data) {
-            const values: AdministrativeEntity_APPDTO = {
-                address: data.address,
-                authorizationLength: data.authorizationLength,
-                code: data.code,
-                departmentId: data.department.id,
-                electronicBillingEmail: data.electronicBillingEmail,
-                email: data.email,
-                filingAddress: data.filingAddress,
-                municipalityId: data.municipality.id,
-                name: data.name,
-                nit: data.nit,
-                otherData: data.otherData,
-                phone: data.phone,
-                regimeId: data.regime.id,
-                reportResolution256: data.reportResolution256,
-                requiresAnnex2: data.requiresAnnex2,
-                soat: data.soat,
-                status: data.status,
-                templateResolution1552: data.templateResolution1552
-            }
-            this.formUpdate()?.setValues(values);
+            this.formUpdate()?.setValues(data);
         }
     }
 }

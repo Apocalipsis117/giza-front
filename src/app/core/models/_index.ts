@@ -12,9 +12,6 @@ export { OptionsControl } from './app/options-form.model';
 export { ModelPatientsApp } from './app/patienst.model';
 export * from './app/types.model';
 
-// api
-export { IpsDTO } from './api/ips.model';
-
 // setting
 export * from './setting/administrative-entities.model';
 export * from './setting/apartment-cities.model';
@@ -37,6 +34,7 @@ export * from './setting/procedure-pyp.m';
 export * from './setting/neighborhood.m';
 export * from './setting/service-programs.m';
 export * from './setting/care-programs.m';
+export * from './setting/legal-information.m';
 
 // single-query
 export * from './single-query/activity.m';

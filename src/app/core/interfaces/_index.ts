@@ -1,6 +1,5 @@
 // api
 export * from './api/cargo.interface';
-export * from './api/legal-data.i';
 export * from './api/name-entity.i';
 export * from './api/paginate.i';
 export * from './api/role.i';
@@ -9,15 +8,12 @@ export * from './api/types.i';
 // setting
 export * from './api/setting/cup.i';
 export * from './api/setting/employees.i';
-export * from './api/setting/ips.i';
-export * from './api/setting/p-facturacion.i';
 
 // @APP
 export * from './app/app.interface';
 export * from './app/audit-data.interface';
 export * from './app/cargo.i';
 export * from './app/form.interface';
-export * from './app/ips.i';
 export * from './app/local-storage.interface';
 export * from './app/name-entity.i';
 export * from './app/patients.interface';
@@ -30,6 +26,7 @@ export * from './app/types.i';
 export * from './auth/auth.i';
 
 // setting
+export * from './setting/ips.i';
 export * from './setting/administrative-entities.i';
 export * from './setting/attention-program.i';
 export * from './setting/contract.i';
@@ -47,6 +44,7 @@ export * from "./setting/vehicle.i";
 export * from "./setting/procedure-pyp.i";
 export * from "./setting/care-programs.i";
 export * from "./setting/service-programs.i";
+export * from "./setting/legal-information.i";
 
 // rate
 export * from './rate/input-materials-rate.i';

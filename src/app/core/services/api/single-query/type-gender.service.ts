@@ -7,7 +7,7 @@ import { FormControlOption, NameIdEntity_API, NameIdEntity_APP, TypeReturn } fro
 import { OptionsControl } from '@models/index';
 import { Store } from '@ngrx/store';
 import { select_singles } from '@selectors/singles.select';
-import { Observable, catchError, map, of, switchMap, take, tap } from 'rxjs';
+import { Observable, catchError, map, of, shareReplay, switchMap, take, tap } from 'rxjs';
 import { NameIdEntity } from 'src/app/core/models/single-query/name-entity.m';
 
 @Injectable({
@@ -45,7 +45,8 @@ export class TypeGenderService {
                         tap(data => this.store.dispatch(action_singles_options({ data, name: 'genders' })))
                     );
                 }
-            })
+            }),
+            shareReplay(1)
         );
     }
 }
