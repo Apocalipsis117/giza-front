@@ -1,13 +1,15 @@
 import { Component, inject, viewChildren } from '@angular/core';
 import { FormBuilder, FormGroup, ReactiveFormsModule } from '@angular/forms';
 import { ngFormHelper } from '@helpers/index';
+import { InputOnoffComponent } from '@im-inputs/input-onoff/input-onoff.component';
 import { InputTextComponent } from '@im-inputs/input-text/input-text.component';
-import { FormGroupTyped, IForm, NameStateEntity_APP, NameStateEntity_APPDTO } from '@interfaces/index';
+import { FormGroupTyped, IForm, NameStateEntity_API, NameStateEntity_APP, NameStateEntity_APPDTO } from '@interfaces/index';
 import { ValidateStringEmpty } from '@valid-control/index';
 
 @Component({
     selector: 'form-manual-transfer-rate',
     imports: [
+        InputOnoffComponent,
         InputTextComponent,
         ReactiveFormsModule
     ],
@@ -21,7 +23,7 @@ export class FormManualTransferRateComponent {
     formClone: NameStateEntity_APPDTO;
     formValues: IForm<NameStateEntity_APPDTO> = {
         name: [ '', [ ValidateStringEmpty() ] ],
-        state: [ false ]
+        state: [ true ]
     };
 
     constructor() {
@@ -52,7 +54,7 @@ export class FormManualTransferRateComponent {
         const values: NameStateEntity_APPDTO = {
             name: data.name,
             state: data.state
-        };
+        }
         this.form.setValue(values);
     }
 }

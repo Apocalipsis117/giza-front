@@ -8,7 +8,7 @@ import { BladeDialogComponent } from '@layouts/dashboard/blades/blade-dialog/bla
 import { DiagnosisService } from '@services/api';
 import { ValidateArrayEmpty, ValidateStringEmpty } from '@valid-control/index';
 import { forkJoin } from 'rxjs';
-import { TdetailDiagnosisComponent } from '../../diagnosis/tdetail-diagnosis/tdetail-diagnosis.component';
+import { DetailDiagnosisComponent } from '../../diagnosis/detail-diagnosis/detail-diagnosis.component';
 import { SweetalertService } from '@services/app';
 
 @Component({
@@ -19,7 +19,7 @@ import { SweetalertService } from '@services/app';
         InputSelectAddComponent,
         ReactiveFormsModule,
         BladeDialogComponent,
-        TdetailDiagnosisComponent
+        DetailDiagnosisComponent
     ],
     templateUrl: './form-diagnosis-group.component.html'
 })

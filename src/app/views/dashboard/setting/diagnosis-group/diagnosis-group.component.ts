@@ -11,7 +11,7 @@ import { SweetalertService } from '@services/app';
 import { DiagnosisGroupService } from 'src/app/core/services/api/setting/diagnosis-group.service';
 import { LocalDiagnosisGroupService } from './local-diagnosis-group.service';
 import { ActionName, BarActions, DiagnosisGroup_APP, DiagnosisGroup_APPDTO, tabsControls } from '@interfaces/index';
-import { TdetailDiagnosisGroupComponent } from './tdetail-diagnosis-group/tdetail-diagnosis-group.component';
+import { DetailDiagnosisGroupComponent } from './detail-diagnosis-group/detail-diagnosis-group.component';
 
 @Component({
     selector: 'diagnostic-group',
@@ -23,7 +23,7 @@ import { TdetailDiagnosisGroupComponent } from './tdetail-diagnosis-group/tdetai
         DirectivesModule,
         FormDiagnosisGroupComponent,
         TableDiagnosisGroupComponent,
-        TdetailDiagnosisGroupComponent,
+        DetailDiagnosisGroupComponent,
         BladeDialogComponent,
         CardBasicTextComponent
     ],
@@ -71,7 +71,7 @@ export class DiagnosisGroupComponent {
         const data = this.local$.getEntity();
         if (e === 'save') this.save();
         else if (e === 'reset') this.formCreate()?.reset();
-        else if (e === 'clean') this.cleanTdetail();
+        else if (e === 'clean') this.cleanDetail();
         else if (e === 'edit') {
             if(data) {
                 this.dataEdit(data);
@@ -164,7 +164,7 @@ export class DiagnosisGroupComponent {
         });
     }
 
-    private cleanTdetail() {
+    private cleanDetail() {
         this.table()?.clean();
     }
 

@@ -11,7 +11,7 @@ import { SweetalertService } from '@services/app';
 import { FormInstitutionsComponent } from './form-institutions/form-institutions.component';
 import { LocalInstitutionsService } from './local-institutions.service';
 import { TableInstitutionsComponent } from './table-institutions/table-institutions.component';
-import { TdetailInstitutionsComponent } from './tdetail-institutions/tdetail-institutions.component';
+import { DetailInstitutionsComponent } from './detail-institutions/detail-institutions.component';
 
 @Component({
     selector: 'app-institutions',
@@ -22,7 +22,7 @@ import { TdetailInstitutionsComponent } from './tdetail-institutions/tdetail-ins
         DirectivesModule,
         BladeTabsHorizontalComponent,
         TableInstitutionsComponent,
-        TdetailInstitutionsComponent,
+        DetailInstitutionsComponent,
         BladeDialogComponent,
         CardBasicTextComponent,
         FormInstitutionsComponent

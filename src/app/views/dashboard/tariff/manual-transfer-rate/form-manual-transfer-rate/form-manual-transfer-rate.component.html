@@ -1,7 +1,10 @@
 <form [formGroup]="form">
     <div class="d-grid">
-        <div class="col-span-full">
+        <div class="col-span-8">
             <input-text setLabel="Titulo" formControlName="name" [setValidate]="control['name']" #validate />
+        </div>
+        <div class="col-span-4">
+            <input-onoff setLabel="estado" formControlName="state" />
         </div>
     </div>
 </form>

@@ -18,3 +18,4 @@ export { utilieHelper } from './app/utilieHelper';
 export { arrayControlHelper } from './app/arrayControlHelper';
 export * from './app/date-helper';
 export * from './app/fileReaderHelper';
+export * from './app/array-signal-crud.helper';

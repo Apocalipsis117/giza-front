@@ -71,3 +71,4 @@ export { LegalInformationService } from './api/setting/legal-information.s';
  * rate
  */
 export { ManualInputMaterialsService } from './api/rate/manual-input-materials.service';
+export { ManualTransferRateService } from './api/rate/manual-transfer-rate.s';

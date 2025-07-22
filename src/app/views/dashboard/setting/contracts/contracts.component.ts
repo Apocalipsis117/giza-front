@@ -9,7 +9,7 @@ import { ContractService } from '@services/api';
 import { SweetalertService, TestService } from '@services/app';
 import { FormContractsComponent } from './form-contracts/form-contracts.component';
 import { TableContractsComponent } from './table-contracts/table-contracts.component';
-import { TdetailContractsComponent } from './tdetail-contracts/tdetail-contracts.component';
+import { DetailContractsComponent } from './detail-contracts/detail-contracts.component';
 
 @Component({
     selector: 'app-contracts',
@@ -23,7 +23,7 @@ import { TdetailContractsComponent } from './tdetail-contracts/tdetail-contracts
         BladeTabsHorizontalComponent,
         DirectivesModule,
         TableContractsComponent,
-        TdetailContractsComponent
+        DetailContractsComponent
     ]
 })
 export class ContractsComponent {

@@ -1,1 +1,42 @@
-ips
+<blade-panel>
+    <ng-container panels>
+        <div class="d-grid">
+            <div class="col-span-8">
+                <blade-tabs-horizontal [tabsControls]="tabs" #tabController>
+                    <ng-container tabsBody>
+                        <article bsTabContent [idConnect]="tabs[0].idConnect" [isActive]="tabs[0].active">
+                            <blade-box-panel [headerActive]="false" [padding]="true" ui="clean" [actionsActive]="true" (actionBar)="barAction($event)">
+                                <ng-container boxbody>
+                                    <form-ips #formCreate />
+                                </ng-container>
+                            </blade-box-panel>
+                        </article>
+                        <article class="pb-3" bsTabContent [idConnect]="tabs[1].idConnect" [isActive]="tabs[1].active">
+                            <table-ips #table />
+                        </article>
+                    </ng-container>
+                </blade-tabs-horizontal>
+            </div>
+            <div class="col-span-4">
+                <blade-box-panel setTitle="Entidad" [padding]="true" [actionsActive]="true" [setActionsBar]="actionsDetail" (actionBar)="barAction($event)">
+                    <ng-container boxbody>
+                        <detail-ips />
+                    </ng-container>
+                </blade-box-panel>
+            </div>
+        </div>
+    </ng-container>
+</blade-panel>
+
+<blade-dialog idConnect="admin-entity-update" setSize="xl" [hideFooter]="true" #dialogUpdate [activeFade]="false">
+    <ng-container dialogHeader>
+        <card-basic-text setTitle="Actualizar Entidad" />
+    </ng-container>
+    <ng-container dialogBody>
+        <blade-box-panel ui="clean" [padding]="true" [actionsActive]="true" [setActionsBar]="actionsUpdate" [headerActive]="false" (actionBar)="barAction($event)">
+            <ng-container boxbody>
+                <form-ips #formUpdate />
+            </ng-container>
+        </blade-box-panel>
+    </ng-container>
+</blade-dialog>

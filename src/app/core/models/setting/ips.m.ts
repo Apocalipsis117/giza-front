@@ -50,6 +50,7 @@ export class Ips {
     get data(): Ips_APP {
         const _ = this.input;
         return {
+            uuid: _.uuid,
             address: _.correo,
             billingParameters: BillingParameters.setProperty(_.parametrosFacturacionIps),
             code: _.codigo,

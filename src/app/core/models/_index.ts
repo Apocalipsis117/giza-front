@@ -35,6 +35,7 @@ export * from './setting/neighborhood.m';
 export * from './setting/service-programs.m';
 export * from './setting/care-programs.m';
 export * from './setting/legal-information.m';
+export * from './setting/ips.m';
 
 // single-query
 export * from './single-query/activity.m';

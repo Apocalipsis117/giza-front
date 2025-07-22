@@ -35,6 +35,7 @@ export interface Ips_DTO {
 }
 
 export interface Ips_API extends Base_API {
+    uuid:                     string;
     nivel:                    NameIdEntity_API;
     tipoIdentificacionIps:    NameIdEntity_API;
     departamento:             Apartment_API;
@@ -74,13 +75,16 @@ interface Ips_AdditionalData_APP {
     municipalityId:         number;  // municipioId
 }
 
+export interface Ips_base_APPDTO extends Base_APP, Ips_AdditionalData_APP {}
+
 export interface Ips_APPDTO {
-    ips:               Base_APP & Ips_AdditionalData_APP;  // ips
+    ips:               Ips_base_APPDTO;  // ips
     legalInformation:  LegalInformation_APPDTO[];  // datosLegalesIps
     billingParameters: BillingParameters_APPDTO;  // parametrosFacturacionIps
 }
 
 export interface Ips_APP extends Base_APP {
+    uuid:                     string;
     level:                    NameIdEntity_APP;  // nivel
     healthcareFacilityIdType: NameIdEntity_APP;  // tipoIdentificacionIps
     department:               Apartment_APP;     // departamento

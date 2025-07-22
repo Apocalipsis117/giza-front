@@ -11,7 +11,7 @@ import { SweetalertService } from '@services/app';
 import { FormMedicineComponent } from './form-medicine/form-medicine.component';
 import { LocalMedicineService } from './local-medicine.service';
 import { TableMedicineComponent } from './table-medicine/table-medicine.component';
-import { TdetailMedicineComponent } from './tdetail-medicine/tdetail-medicine.component';
+import { DetailMedicineComponent } from './detail-medicine/detail-medicine.component';
 import { FormBuilder } from '@angular/forms';
 
 @Component({
@@ -25,7 +25,7 @@ import { FormBuilder } from '@angular/forms';
         BladeTabsHorizontalComponent,
         DirectivesModule,
         TableMedicineComponent,
-        TdetailMedicineComponent,
+        DetailMedicineComponent,
         BladeDialogComponent,
         CardBasicTextComponent
     ]
@@ -82,7 +82,7 @@ export class MedicinesComponent {
         const data = this.local$.getEntity();
         if (e === 'save') this.save();
         else if (e === 'reset') this.formCreate()?.reset();
-        else if (e === 'clean') this.cleanTdetail();
+        else if (e === 'clean') this.cleanDetail();
         else if (e === 'edit') {
             if (data) {
                 this.dataEdit(data);
@@ -175,7 +175,7 @@ export class MedicinesComponent {
         });
     }
 
-    private cleanTdetail() {
+    private cleanDetail() {
         this.table()?.clean();
     }
     fb = inject(FormBuilder);

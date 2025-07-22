@@ -11,7 +11,7 @@ import { SweetalertService } from '@services/app';
 import { CareProgramsService } from '@services/api';
 import { LocalCareProgramsService } from './local-care-programs.service';
 import { ActionName, BarActions, CarePrograms_APP, CarePrograms_APPDTO, tabsControls } from '@interfaces/index';
-import { TdetailCareProgramsComponent } from './tdetail-care-programs/tdetail-care-programs.component';
+import { DetailCareProgramsComponent } from './detail-care-programs/detail-care-programs.component';
 
 @Component({
     selector: 'care-programs',
@@ -24,7 +24,7 @@ import { TdetailCareProgramsComponent } from './tdetail-care-programs/tdetail-ca
         CardBasicTextComponent,
         BladeTabsHorizontalComponent,
         DirectivesModule,
-        TdetailCareProgramsComponent,
+        DetailCareProgramsComponent,
         TableCareProgramsComponent,
         FormCareProgramsComponent
     ]
@@ -75,7 +75,7 @@ export class CareProgramsComponent {
         const data = this.local$.getEntity();
         if (e === 'save') this.save();
         else if (e === 'reset') this.formCreate()?.reset();
-        else if (e === 'clean') this.cleanTdetail();
+        else if (e === 'clean') this.cleanDetail();
         else if (e === 'edit') {
             if(data) {
                 this.dataEdit(data);
@@ -168,7 +168,7 @@ export class CareProgramsComponent {
         });
     }
 
-    private cleanTdetail() {
+    private cleanDetail() {
         this.table()?.clean();
     }
 

@@ -1,1 +1,33 @@
-<p>manual-transfer-rate works!</p>
+<blade-panel  section="setting" titleSection="Manual tarifas traslado">
+    <ng-container panels>
+        <div class="d-grid">
+            <div class="col-span-4">
+                <blade-box-panel setTitle="Vehiculo" [padding]="true" [actionsActive]="true"  (actionBar)="barAction($event)" >
+                    <ng-container boxbody>
+                        <form-manual-transfer-rate #formCreate />
+                    </ng-container>
+                </blade-box-panel>
+            </div>
+            <div class="col-span-8">
+                <blade-box-panel setTitle="Manual tarifas traslado">
+                    <ng-container boxbody>
+                        <table-manual-transfer-rate (onTable)="onTable($event)" #table />
+                    </ng-container>
+                </blade-box-panel>
+            </div>
+        </div>
+    </ng-container>
+</blade-panel>
+
+<blade-dialog idConnect="vehicle-update" setSize="md" [hideFooter]="true" [activeFade]="false" #dialogUpdate>
+    <ng-container dialogHeader>
+        <card-basic-text setTitle="Actualizar Entidad" />
+    </ng-container>
+    <ng-container dialogBody>
+        <blade-box-panel ui="clean" [padding]="true" [actionsActive]="true" [setActionsBar]="actionsUpdate" [headerActive]="false" (actionBar)="barAction($event)">
+            <ng-container boxbody>
+                <form-manual-transfer-rate #formUpdate />
+            </ng-container>
+        </blade-box-panel>
+    </ng-container>
+</blade-dialog>

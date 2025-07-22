@@ -1,6 +1,6 @@
 import { Component, DestroyRef, inject, viewChild } from '@angular/core';
 import { DirectivesModule } from '@directive/module';
-import { ActionName, AdministrativeEntity_APP, AdministrativeEntity_APPDTO, BarActions, tabsControls } from '@interfaces/index';
+import { ActionName, AdministrativeEntity_APP, BarActions, tabsControls } from '@interfaces/index';
 import { BladeBoxPanelComponent } from '@layouts/dashboard/blades/blade-box-panel/blade-box-panel.component';
 import { BladeDialogComponent } from '@layouts/dashboard/blades/blade-dialog/blade-dialog.component';
 import { BladePanelComponent } from '@layouts/dashboard/blades/blade-panel/blade-panel.component';
@@ -8,10 +8,10 @@ import { BladeTabsHorizontalComponent } from '@layouts/dashboard/blades/blade-ta
 import { CardBasicTextComponent } from '@layouts/dashboard/cards/card-basic-text/card-basic-text.component';
 import { AdministrativeEntitiesService } from '@services/api';
 import { SweetalertService } from '@services/app';
+import { DetailAdministrativeEntityComponent } from './detail-administrative-entity/detail-administrative-entity.component';
 import { FormDateEntityComponent } from './form-date-entity/form-date-entity.component';
 import { LocalAdministrativeEntitiesService } from './local-administrative-entities.service';
 import { TablePlatformEntityComponent } from './table-platform-entity/table-platform-entity.component';
-import { TdetailAdministrativeEntityComponent } from './tdetail-administrative-entity/tdetail-administrative-entity.component';
 
 @Component({
     selector: 'administrative-entities',
@@ -24,7 +24,7 @@ import { TdetailAdministrativeEntityComponent } from './tdetail-administrative-e
         DirectivesModule,
         FormDateEntityComponent,
         TablePlatformEntityComponent,
-        TdetailAdministrativeEntityComponent,
+        DetailAdministrativeEntityComponent,
         BladeDialogComponent,
         CardBasicTextComponent
     ]
@@ -75,7 +75,7 @@ export class AdministrativeEntitiesComponent {
         const data = this.local$.getEntity();
         if (e === 'save') this.save();
         else if (e === 'reset') this.formCreate()?.reset();
-        else if (e === 'clean') this.cleanTdetail();
+        else if (e === 'clean') this.cleanDetail();
         else if (e === 'edit') {
             if(data) {
                 this.dataEdit(data);
@@ -168,7 +168,7 @@ export class AdministrativeEntitiesComponent {
         });
     }
 
-    private cleanTdetail() {
+    private cleanDetail() {
         this.table()?.clean();
     }
 

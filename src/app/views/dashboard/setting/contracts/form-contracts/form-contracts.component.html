@@ -26,16 +26,16 @@
                                 <input-number setLabel="Numero de contrato" formControlName="contractNumber" />
                             </div>
                             <div class="col-span-3">
-                                <input-select setLabel="Modalidad" [setOptions]="optionsModality()" [emptyValue]="null" formControlName="modalityId" />
+                                <input-select setLabel="Modalidad" [setOptions]="optionsModality()" formControlName="modalityId" />
                             </div>
                             <div class="col-span-4">
-                                <input-select setLabel="Regimen" [setOptions]="optionsRegimen()" [emptyValue]="null" formControlName="regimeId" />
+                                <input-select setLabel="Regimen" [setOptions]="optionsRegimen()" formControlName="regimeId" />
                             </div>
                             <div class="col-span-4">
                                 <input-number setType="number" setLabel="Vr. U.P.C" formControlName="upc" />
                             </div>
                             <div class="col-span-4">
-                                <input-select setLabel="Entidad Administradora" [emptyValue]="null" [setOptions]="optionsAdminEntities()" formControlName="administratorEntitiesId" />
+                                <input-select setLabel="Entidad Administradora" [setOptions]="optionsAdminEntities()" formControlName="administratorEntitiesId" />
                             </div>
                             <div class="col-span-3">
                                 <input-date setLabel="Fecha de inicio" setType="date" formControlName="startDate" />
@@ -60,13 +60,13 @@
                     @case ("collapse-two") {
                         <div class="d-grid">
                             <div class="col-span-4">
-                                <input-select setLabel="Tipo de pago moderado" [emptyValue]="null" [setOptions]="optionsTypeModeratePayment()" formControlName="moderatePaymentTypeId" />
+                                <input-select setLabel="Tipo de pago moderado" [setOptions]="optionsTypeModeratePayment()" formControlName="moderatePaymentTypeId" />
                             </div>
                             <div class="col-span-4">
                                 <input-onoff setLabel="Facturación grupal" [setText]="onoffText" typeCheck="switch" formControlName="outpatientAuthorization" />
                             </div>
                             <div class="col-span-4">
-                                <input-select setLabel="Plan de beneficios" [emptyValue]="null" [setOptions]="optionsBeneficies()" formControlName="benefitPlanId" />
+                                <input-select setLabel="Plan de beneficios" [setOptions]="optionsBeneficies()" formControlName="benefitPlanId" />
                             </div>
                             <div class="col-span-4">
                                 <input-onoff setLabel="Verificación de derechos" [setText]="onoffText" typeCheck="switch" formControlName="rightsVerification" />
@@ -75,7 +75,7 @@
                                 <input-onoff setLabel="Autorización Ambulatorio" [setText]="onoffText" typeCheck="switch" formControlName="outpatientAuthorization" />
                             </div>
                             <div class="col-span-4">
-                                <input-select setLabel="Nivel de observación" [emptyValue]="null" [setOptions]="optionsLevel()" formControlName="levelId" />
+                                <input-select setLabel="Nivel de observación" [setOptions]="optionsLevel()" formControlName="levelId" />
                             </div>
                             <div class="col-span-4">
                                 <input-onoff setLabel="Autorización Hospitalización" [setText]="onoffText" typeCheck="switch" formControlName="hospitalizationAuthorization" />
@@ -94,19 +94,19 @@
                     @case ("collapse-three") {
                         <div class="d-grid">
                             <div class="col-span-4">
-                                <input-select setLabel="Manual Tarifarío" [emptyValue]="null" [setOptions]="optionstariffManual()" formControlName="tariffManualId" />
+                                <input-select setLabel="Manual Tarifarío" [setOptions]="optionstariffManual()" formControlName="tariffManualId" />
                             </div>
                             <div class="col-span-4">
-                                <input-select setLabel="Tarifa traslado" [emptyValue]="null" />
+                                <input-select setLabel="Manual Tarifa traslado" [setOptions]="optionsManualTransferRate()" />
                             </div>
                             <div class="col-span-4">
-                                <input-select setLabel="Tarifa medicamento" [emptyValue]="null" [setOptions]="optionsTariffMedicine()" formControlName="medicationTariffId" />
+                                <input-select setLabel="Tarifa medicamento" [setOptions]="optionsTariffMedicine()" formControlName="medicationTariffId" />
                             </div>
                             <div class="col-span-4">
-                                <input-select setLabel="Tarifa oxigeno" [emptyValue]="null" [setOptions]="optionsOxigenRate()" />
+                                <input-select setLabel="Tarifa oxigeno" [setOptions]="optionsOxigenRate()" />
                             </div>
                             <div class="col-span-4">
-                                <input-select setLabel="Tarifa materiales" [emptyValue]="null" />
+                                <input-select setLabel="Tarifa materiales" />
                             </div>
                         </div>
                     }

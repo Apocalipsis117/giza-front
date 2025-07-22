@@ -4,7 +4,7 @@
         "menuShortcut": [
             {
                 "uuid": "09048e05-29cb-423b-b624-4e2b9a1ac00c",
-                "path": "",
+                "path": "/dashboard/setting/ips",
                 "icon": "icofont-users-alt-5",
                 "color": "text-red-400",
                 "display": [

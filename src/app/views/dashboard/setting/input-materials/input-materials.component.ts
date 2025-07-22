@@ -7,7 +7,7 @@ import { BladeTabsHorizontalComponent } from '@layouts/dashboard/blades/blade-ta
 import { CardBasicTextComponent } from '@layouts/dashboard/cards/card-basic-text/card-basic-text.component';
 import { TableInputMaterialsComponent } from './table-input-materials/table-input-materials.component';
 import { FormInputMaterialsComponent } from './form-input-materials/form-input-materials.component';
-import { TdetailInputMaterialsComponent } from './tdetail-input-materials/tdetail-input-materials.component';
+import { DetailInputMaterialsComponent } from './detail-input-materials/detail-input-materials.component';
 import { LocalInputMaterialsService } from './local-input-materials.service';
 import { SweetalertService } from '@services/app';
 import { InputMaterialsService } from 'src/app/core/services/api/setting/input-materials.service';
@@ -24,7 +24,7 @@ import { ActionName, BarActions, InputMaterials_APP, InputMaterials_APPDTO, tabs
         CardBasicTextComponent,
         TableInputMaterialsComponent,
         FormInputMaterialsComponent,
-        TdetailInputMaterialsComponent
+        DetailInputMaterialsComponent
     ],
     templateUrl: './input-materials.component.html'
 })

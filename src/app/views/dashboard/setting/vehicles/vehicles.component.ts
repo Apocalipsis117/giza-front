@@ -1,24 +1,24 @@
 import { Component, inject, signal, viewChild } from '@angular/core';
-import { BarActions, onBtn, Vehicle_APP, Vehicle_APPDTO } from '@interfaces/index';
+import { BarActions, onBtn, Vehicle_APP } from '@interfaces/index';
 import { BladeBoxPanelComponent } from '@layouts/dashboard/blades/blade-box-panel/blade-box-panel.component';
+import { BladeDialogComponent } from '@layouts/dashboard/blades/blade-dialog/blade-dialog.component';
 import { BladePanelComponent } from '@layouts/dashboard/blades/blade-panel/blade-panel.component';
+import { CardBasicTextComponent } from '@layouts/dashboard/cards/card-basic-text/card-basic-text.component';
 import { VehicleService } from '@services/api';
 import { SweetalertService } from '@services/app';
 import { FormVehiclesComponent } from './form-vehicles/form-vehicles.component';
 import { TableVehiclesComponent } from './table-vehicles/table-vehicles.component';
-import { BladeDialogComponent } from '@layouts/dashboard/blades/blade-dialog/blade-dialog.component';
-import { CardBasicTextComponent } from '@layouts/dashboard/cards/card-basic-text/card-basic-text.component';
 
 @Component({
     selector: 'page-vehicles',
     standalone: true,
     templateUrl: './vehicles.component.html',
     imports: [
-        BladePanelComponent,
-        BladeBoxPanelComponent,
         TableVehiclesComponent,
         FormVehiclesComponent,
         BladeDialogComponent,
+        BladeBoxPanelComponent,
+        BladePanelComponent,
         CardBasicTextComponent
     ]
 })
@@ -29,7 +29,7 @@ export class VehiclesComponent {
     readonly formCreate = viewChild('formCreate', { read: FormVehiclesComponent});
     readonly formUpdate = viewChild('formUpdate', { read: FormVehiclesComponent});
     readonly table = viewChild('table', { read: TableVehiclesComponent});
-    vehicle = signal<Vehicle_APP|null>(null);
+    currentData = signal<Vehicle_APP|null>(null);
     actionsUpdate: BarActions = {
         update: true,
         return: true
@@ -95,7 +95,7 @@ export class VehiclesComponent {
         const form = this.formUpdate()?.form;
         if (form?.valid) {
             this.swal$.loading();
-            this.vehicle$.update(this.vehicle()!.uuid, form.value).subscribe({
+            this.vehicle$.update(this.currentData()!.uuid, form.value).subscribe({
                 complete: () => {
                     this.dialogUpdate()?.hide();
                     this.swal$.formSave('success');
@@ -112,7 +112,7 @@ export class VehiclesComponent {
     onTable(event: onBtn<Vehicle_APP>) {
         const action = event.action;
         if(action === 'edit') {
-            this.vehicle.set(event.value);
+            this.currentData.set(event.value);
             this.dialogUpdate()?.show();
             this.dataEdit();
         }
@@ -122,18 +122,6 @@ export class VehiclesComponent {
     }
 
     dataEdit() {
-        const data = this.vehicle()
-        if(data) {
-            const values: Vehicle_APPDTO = {
-                activityId: data.activity.id,
-                brand: data.brand,
-                description: data.description,
-                model: data.model,
-                plate: data.plate,
-                status: data.status,
-                vehicleTypeId: data.vehicleType.id
-            }
-            this.formUpdate()?.setValues(values);
-        }
+        this.formUpdate()?.setValues(this.currentData());
     }
 }

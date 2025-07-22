@@ -43,6 +43,8 @@ export interface State_singles {
     externalCause: FormControlOption[];
     levelService: FormControlOption[];
     typeModality: FormControlOption[];
+    departments: FormControlOption[];
+    municipalities: FormControlOption[];
 }
 
 export interface State_tariff {

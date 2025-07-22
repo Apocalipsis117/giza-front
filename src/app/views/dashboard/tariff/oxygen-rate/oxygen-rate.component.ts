@@ -6,7 +6,7 @@ import { OxygenRateService } from '@services/api';
 import { SweetalertService } from '@services/app';
 import { FormOxygenRateComponent } from './form-oxygen-rate/form-oxygen-rate.component';
 import { TableOxygenRateComponent } from './table-oxygen-rate/table-oxygen-rate.component';
-import { TdetailOxygenRateComponent } from './tdetail-oxygen-rate/tdetail-oxygen-rate.component';
+import { DetailOxygenRateComponent } from './detail-oxygen-rate/detail-oxygen-rate.component';
 import { BladeDialogComponent } from '@layouts/dashboard/blades/blade-dialog/blade-dialog.component';
 import { CardBasicTextComponent } from '@layouts/dashboard/cards/card-basic-text/card-basic-text.component';
 import { LocalOxygenRateService } from './local-oxygen-rate.service';
@@ -19,7 +19,7 @@ import { LocalOxygenRateService } from './local-oxygen-rate.service';
         BladeBoxPanelComponent,
         TableOxygenRateComponent,
         FormOxygenRateComponent,
-        TdetailOxygenRateComponent,
+        DetailOxygenRateComponent,
         BladeDialogComponent,
         CardBasicTextComponent
     ],
@@ -58,7 +58,7 @@ export class OxygenRateComponent {
         const data = this.local$.getEntity();
         if (e === 'save') this.save();
         else if (e === 'reset') this.formCreate()?.reset();
-        else if (e === 'clean') this.cleanTdetail();
+        else if (e === 'clean') this.cleanDetail();
         else if (e === 'edit') {
             if (data) {
                 this.dataEdit(data);
@@ -148,7 +148,7 @@ export class OxygenRateComponent {
         });
     }
 
-    cleanTdetail() {
+    cleanDetail() {
         this.table()?.clean();
     }
 

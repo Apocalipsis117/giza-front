@@ -1,1 +1,181 @@
-<p>form-ips works!</p>
+<div class="mb-2">
+    <bar-steps [setSteps]="steps" [setActive]="stepActive()" (onStep)="onStep($event)" />
+</div>
+<section class="w-full" [hidden]="stepActive() !== steps[0].action">
+    <form [formGroup]="formIps" class="d-grid">
+        <div class="col-span-3">
+            <input-avatar [currentImg]="formIps.get('ipsLogo')?.value || ''" (onFile)="pacthLogo($event)" #logoIps />
+        </div>
+        <div class="col-span-9">
+            <div class="d-grid">
+                <div class="col-span-9">
+                    <input-text setLabel="Nombre" formControlName="name" setType="text" [setValidate]="controlIps['name']" #validate />
+                </div>
+                <div class="col-span-3">
+                    <input-text setLabel="NIT" formControlName="taxId" setType="text" />
+                </div>
+                <div class="col-span-2">
+                    <input-text setLabel="Código" formControlName="code" setType="text" />
+                </div>
+                <div class="col-span-5">
+                    <input-select setLabel="Tipo identificación IPS" formControlName="healthcareFacilityIdTypeId" [setOptions]="optionsTypeDniIps()" />
+                </div>
+
+                <div class="col-span-5">
+                    <input-text setLabel="N° identificación" formControlName="identificationNumber" setType="text" />
+                </div>
+                <div class="col-span-2">
+                    <input-text setLabel="Prefijo" formControlName="prefix" setType="text" />
+                </div>
+                <div class="col-span-5">
+                    <input-text setLabel="Teléfono" setIcon="icofont-ui-call" formControlName="phone" setType="tel" [setValidate]="controlIps['phone']" #validate />
+                </div>
+
+                <div class="col-span-5">
+                    <input-text setLabel="Teléfono SIAU" setIcon="icofont-ui-call" formControlName="siauPhone" setType="tel" />
+                </div>
+                <div class="col-span-6">
+                    <input-select-searh setLabel="Departamento" formControlName="departmentId" [setOptions]="optionsApartments()" />
+                </div>
+                <div class="col-span-6">
+                    <input-select-searh setLabel="Municipio" formControlName="municipalityId" [setOptions]="optionsCities()" />
+                </div>
+                <div class="col-span-5">
+                    <input-text setLabel="Dirección" formControlName="address" setType="text" [setValidate]="controlIps['address']" #validate />
+                </div>
+                <div class="col-span-5">
+                    <input-text setLabel="Correo electrónico" setIcon="icofont-ui-email" formControlName="email" setType="email" />
+                </div>
+                <!-- Select Inputs -->
+                <div class="col-span-2">
+                    <input-select setLabel="Nivel" formControlName="levelId" [setOptions]="optionsLevelIps()" />
+                </div>
+
+                <!-- Number Input -->
+                <div class="col-span-4">
+                    <input-number setLabel="Dígito de verificación" formControlName="verificationDigit" />
+                </div>
+
+            </div>
+        </div>
+    </form>
+</section>
+<section class="w-full" [hidden]="stepActive() !== steps[1].action">
+    <form [formGroup]="formBilling" class="d-grid">
+        <!-- Number Inputs -->
+          <div class="col-span-4">
+            <input-number setLabel="Número resolución DIAN" formControlName="dianResolutionNumber" [setValidate]="controlBilling['dianResolutionNumber']" #validate />
+          </div>
+          <div class="col-span-4">
+            <input-number setLabel="Número inicial" formControlName="fromNumber" />
+          </div>
+          <div class="col-span-4">
+            <input-number setLabel="Número final" formControlName="toNumber" />
+          </div>
+
+          <div class="col-span-4">
+            <input-number setLabel="Número de factura" formControlName="invoiceNumber" />
+          </div>
+          <div class="col-span-4">
+            <input-number setLabel="Días de estancia" formControlName="stayDaysNumber" />
+          </div>
+
+          <!-- Date Inputs -->
+          <div class="col-span-4">
+            <input-date setLabel="Fecha de resolución" formControlName="resolutionDate" />
+          </div>
+          <div class="col-span-4">
+            <input-date setLabel="Vigencia de resolución" formControlName="resolutionValidity" />
+          </div>
+
+          <!-- Text Inputs -->
+          <div class="col-span-4">
+            <input-text setLabel="Número cuenta de cobro" formControlName="collectionAccountNumber" setType="text" />
+          </div>
+          <div class="col-span-4">
+            <input-text setLabel="Vigencia de fórmulas" formControlName="prescriptionValidity" setType="text" />
+          </div>
+          <div class="col-span-12">
+            <input-text setLabel="Pie de página cuenta de cobro" formControlName="collectionAccountFooter" setType="text" />
+          </div>
+
+          <!-- Boolean Inputs (Switches) -->
+          <div class="col-span-4">
+            <input-onoff setLabel="Recibe remisiones" formControlName="receivesReferrals" />
+          </div>
+          <div class="col-span-4">
+            <input-onoff setLabel="Imprime hojas de citas" formControlName="printsAppointmentSheets" />
+          </div>
+          <div class="col-span-4">
+            <input-onoff setLabel="Manejo historia clínica" formControlName="handlesMedicalRecords" />
+          </div>
+    </form>
+</section>
+<section class="w-full" [hidden]="stepActive() !== steps[2].action">
+    <div class="mb-2">
+        <table-ui [colspan]="5" [items]="legalInformation()">
+            <ng-container tableHead>
+                <tr>
+                    <th width="200">Firma</th>
+                    <th>Nombre</th>
+                    <th width="250">Cargo</th>
+                    <th width="100">Estado</th>
+                    <th width="120" class="text-right">Accion</th>
+                </tr>
+            </ng-container>
+            <ng-container tableBody>
+                @for (item of list(); track index; let index = $index) {
+                    @if(index !== crud.getIndexValue()) {
+                        <tr>
+                            <td>
+                                <img class="h-20 w-full object-cover object-center border-2 border-white shadow-md rounded-md" [src]="item.current.signatureImg" alt="">
+                            </td>
+                            <td>{{ item.current.name }}</td>
+                            <td>{{ item.healthcareRepTypeName }}</td>
+                            <td>
+                                <badge-status [setStatus]="item.current.status" />
+                            </td>
+                            <td class="text-right">
+                                <div class="inline-flex gap-2">
+                                    <app-button setSize="sm" setTitle="Editar" (action)="crud.edit(item.current)" />
+                                    <app-button setSize="sm" setColor="red" setTitle="Eliminar" (action)="crud.delete(index)" />
+                                </div>
+                            </td>
+                        </tr>
+                    }
+                }
+            </ng-container>
+        </table-ui>
+    </div>
+    <blade-box-title setTitle="Nuevo representante" [activeShadow]="false">
+        <ng-container boxtitleBody>
+            <form [formGroup]="formLegal" (ngSubmit)="submitForm()" class="d-grid gap-6">
+                <div class="col-span-3">
+                    <input-avatar [currentImg]="crud.getCurrent()?.signatureImg || ''" (onFile)="pacthImg($event)" #signatureImg />
+                </div>
+                <div class="col-span-9">
+                    <div class="d-grid">
+                        <div class="col-span-full">
+                          <input-text setLabel="Nombre" formControlName="name" setType="text" />
+                        </div>
+                        <div class="col-span-8">
+                          <input-select setLabel="Tipo de representante" formControlName="healthcareRepTypeId" [setOptions]="optionsTypeRepresentative()" />
+                        </div>
+                        <div class="col-span-4">
+                          <input-onoff setLabel="Estado" formControlName="status" />
+                        </div>
+                        <div class="col-span-full pt-2 space-x-2 text-right">
+                            @let label = crud.isEditing() ? 'Actualizar' : 'Agregar';
+                            <app-button [setTitle]="label" setType="submit" />
+                            @if(crud.isEditing()) {
+                                <app-button setTitle="Cancelar" setColor="teal" (action)="crud.cancel()" />
+                            }
+                        </div>
+                    </div>
+                </div>
+            </form>
+        </ng-container>
+    </blade-box-title>
+</section>
+
+

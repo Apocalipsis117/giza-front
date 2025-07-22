@@ -14,7 +14,7 @@ import { SweetalertService } from '@services/app';
 import { FormCupsComponent } from './form-cups/form-cups.component';
 import { PanelReportsComponent } from './panel-reports/panel-reports.component';
 import { TableCupsComponent } from './table-cups/table-cups.component';
-import { TdetailCupComponent } from './tdetail-cup/tdetail-cup.component';
+import { DetailCupComponent } from './detail-cup/detail-cup.component';
 import { ValidateStringEmpty } from '@valid-control/index';
 
 @Component({
@@ -31,7 +31,7 @@ import { ValidateStringEmpty } from '@valid-control/index';
         TableCupsComponent,
         DirectivesModule,
         BladeTabsHorizontalComponent,
-        TdetailCupComponent
+        DetailCupComponent
     ]
 })
 export class CupsComponent {
@@ -105,7 +105,7 @@ export class CupsComponent {
     barAction(e: ActionName) {
         if (e === 'save') this.save();
         else if (e === 'reset') this.reset();
-        else if (e === 'clean') this.cleanTdetail();
+        else if (e === 'clean') this.cleanDetail();
     }
 
     save() {
@@ -133,7 +133,7 @@ export class CupsComponent {
         this.tabController()?.showTab(this.tabs[id].idConnect);
     }
 
-    cleanTdetail() {
+    cleanDetail() {
         this.table()?.clean();
     }
 

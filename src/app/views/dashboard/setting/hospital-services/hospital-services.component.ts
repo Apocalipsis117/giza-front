@@ -8,7 +8,7 @@ import { SweetalertService } from '@services/app';
 import { FormHospitalServicesComponent } from './form-hospital-services/form-hospital-services.component';
 import { LocalHospitalServService } from './local-hospital-serv.service';
 import { TableHospitalServicesComponent } from './table-hospital-services/table-hospital-services.component';
-import { TdetailHospitalServicesComponent } from './tdetail-hospital-services/tdetail-hospital-services.component';
+import { DetailHospitalServicesComponent } from './detail-hospital-services/detail-hospital-services.component';
 import { CardBasicTextComponent } from '@layouts/dashboard/cards/card-basic-text/card-basic-text.component';
 
 @Component({
@@ -19,7 +19,7 @@ import { CardBasicTextComponent } from '@layouts/dashboard/cards/card-basic-text
         BladeBoxPanelComponent,
         TableHospitalServicesComponent,
         FormHospitalServicesComponent,
-        TdetailHospitalServicesComponent,
+        DetailHospitalServicesComponent,
         BladeDialogComponent,
         CardBasicTextComponent
     ],
@@ -58,7 +58,7 @@ export class HospitalServicesComponent {
         const data = this.local$.getEntity();
         if (e === 'save') this.save();
         else if (e === 'reset') this.formCreate()?.reset();
-        else if (e === 'clean') this.cleanTdetail();
+        else if (e === 'clean') this.cleanDetail();
         else if (e === 'edit') {
             if (data) {
                 this.dataEdit(data);
@@ -147,7 +147,7 @@ export class HospitalServicesComponent {
         });
     }
 
-    cleanTdetail() {
+    cleanDetail() {
         this.table()?.clean();
     }
 

@@ -8,7 +8,9 @@ const state: State_singles = {
     purposeConsultation: [],
     externalCause: [],
     levelService: [],
-    typeModality: []
+    typeModality: [],
+    departments: [],
+    municipalities: []
 }
 export const reducer_singles = createReducer(
     state,

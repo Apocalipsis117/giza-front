@@ -7,7 +7,7 @@ import { HealthcareServicesService } from '@services/api';
 import { SweetalertService } from '@services/app';
 import { FormAssistanceServiceComponent } from './form-assistance-service/form-assistance-service.component';
 import { TableAssistanceServiceComponent } from './table-assistance-service/table-assistance-service.component';
-import { TdetailAssistanceServiceComponent } from './tdetail-assistance-service/tdetail-assistance-service.component';
+import { DetailAssistanceServiceComponent } from './detail-assistance-service/detail-assistance-service.component';
 import { LocalAssistanceServiceService } from './local-assistance-service.service';
 import { BladeDialogComponent } from '@layouts/dashboard/blades/blade-dialog/blade-dialog.component';
 import { CardBasicTextComponent } from '@layouts/dashboard/cards/card-basic-text/card-basic-text.component';
@@ -23,7 +23,7 @@ import { CardBasicTextComponent } from '@layouts/dashboard/cards/card-basic-text
         TableAssistanceServiceComponent,
         FormAssistanceServiceComponent,
         BladeDialogComponent,
-        TdetailAssistanceServiceComponent,
+        DetailAssistanceServiceComponent,
         CardBasicTextComponent
     ]
 })
@@ -60,7 +60,7 @@ export class AssistanceServiceComponent {
         const data = this.local$.getEntity();
         if (e === 'save') this.save();
         else if (e === 'reset') this.formCreate()?.reset();
-        else if (e === 'clean') this.cleanTdetail();
+        else if (e === 'clean') this.cleanDetail();
         else if (e === 'edit') {
             if (data) {
                 this.dataEdit(data);
@@ -149,7 +149,7 @@ export class AssistanceServiceComponent {
         });
     }
 
-    cleanTdetail() {
+    cleanDetail() {
         this.table()?.clean();
     }
 

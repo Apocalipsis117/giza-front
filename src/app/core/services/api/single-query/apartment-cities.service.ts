@@ -3,12 +3,15 @@ import { Injectable, inject } from '@angular/core';
 import { queries } from '@helpers/index';
 import { Apartment_APP, Apartment_ListResponse, DataAssociated, FormControlOption, Municipality_APP, Municipality_ListResponse, TypeReturn } from '@interfaces/index';
 import { Apartment, OptionsControl } from '@models/index';
+import { Store } from '@ngrx/store';
+import { select_appGisa_countries } from '@selectors/app-gisa.select';
 import { Observable, map } from 'rxjs';
 
 @Injectable({
     providedIn: 'root'
 })
 export class ApartmentCitiesService {
+    private store = inject(Store);
     private http = inject(HttpClient);
 
     apartaments(): Observable<Apartment_APP[]>;
@@ -37,6 +40,12 @@ export class ApartmentCitiesService {
                 };
                 return data.data.map(x => Apartment.setProperty(x));
             }),
+        );
+    }
+
+    filterByDepartment(id: number): Observable<FormControlOption[]> {
+        return this.store.select(select_appGisa_countries).pipe(
+            map(data => data.minicipalies.filter(x => x.data?.id === id))
         );
     }
 }

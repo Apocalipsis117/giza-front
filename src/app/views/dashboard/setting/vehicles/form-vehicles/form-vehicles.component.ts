@@ -5,7 +5,7 @@ import { InputOnoffComponent } from '@im-inputs/input-onoff/input-onoff.componen
 import { InputSelectComponent } from '@im-inputs/input-select/input-select.component';
 import { InputTextComponent } from '@im-inputs/input-text/input-text.component';
 import { InputTextareaComponent } from '@im-inputs/input-textarea/input-textarea.component';
-import { FormControlOption, FormGroupTyped, IForm, Vehicle_APPDTO } from '@interfaces/index';
+import { FormControlOption, FormGroupTyped, IForm, Vehicle_APP, Vehicle_APPDTO } from '@interfaces/index';
 import { ActivityService, TypeVehicleService } from '@services/api';
 import { ValidateStringEmpty, ValidStrict } from '@valid-control/index';
 import { forkJoin } from 'rxjs';
@@ -86,7 +86,18 @@ export class FormVehiclesComponent {
         this.validate();
     }
 
-    setValues(values: Vehicle_APPDTO) {
-        this.form.setValue(values);
+    setValues(data: Vehicle_APP | null) {
+        if(data) {
+            const values: Vehicle_APPDTO = {
+                activityId: data.activity.id,
+                brand: data.brand,
+                description: data.description,
+                model: data.model,
+                plate: data.plate,
+                status: data.status,
+                vehicleTypeId: data.vehicleType.id
+            }
+            this.form.patchValue(values)
+        }
     }
 }

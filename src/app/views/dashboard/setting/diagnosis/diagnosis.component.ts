@@ -11,7 +11,7 @@ import { SweetalertService } from '@services/app';
 import { FormDiagnosisComponent } from './form-diagnosis/form-diagnosis.component';
 import { LocalDiagnosisService } from './local-diagnosis.service';
 import { TableDiagnosisComponent } from './table-diagnosis/table-diagnosis.component';
-import { TdetailDiagnosisComponent } from './tdetail-diagnosis/tdetail-diagnosis.component';
+import { DetailDiagnosisComponent } from './detail-diagnosis/detail-diagnosis.component';
 
 @Component({
     selector: 'app-diagnosis',
@@ -20,7 +20,7 @@ import { TdetailDiagnosisComponent } from './tdetail-diagnosis/tdetail-diagnosis
         BladePanelComponent,
         BladeBoxPanelComponent,
         DirectivesModule,
-        TdetailDiagnosisComponent,
+        DetailDiagnosisComponent,
         TableDiagnosisComponent,
         CardBasicTextComponent,
         BladeTabsHorizontalComponent,
@@ -81,7 +81,7 @@ export class DiagnosisComponent {
         const data = this.local$.getEntity();
         if (e === 'save') this.save();
         else if (e === 'reset') this.formCreate()?.reset();
-        else if (e === 'clean') this.cleanTdetail();
+        else if (e === 'clean') this.cleanDetail();
         else if (e === 'edit') {
             if(data) {
                 this.dataEdit(data);
@@ -174,7 +174,7 @@ export class DiagnosisComponent {
         });
     }
 
-    private cleanTdetail() {
+    private cleanDetail() {
         this.table()?.clean();
     }
 
