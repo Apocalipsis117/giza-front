@@ -1,0 +1,71 @@
+@if(data()) {
+    <div class="ui-detail">
+        <div class="detail-titles">
+            <h2>{{ value().name }}</h2>
+        </div>
+        <ul class="detail-ul">
+            <li>
+                <div class="col-span-6">
+                    <small>Tipo de historia</small>
+                    <div>{{ value().historyType }}</div>
+                </div>
+                <div class="col-span-6">
+                    <small>Tipo de servicio</small>
+                    <div>{{ value().serviceType }}</div>
+                </div>
+            </li>
+            <li>
+                <div class="col-span-4">
+                    <small>Días oportunidad</small>
+                    <div>{{ value().opportunityDays }}</div>
+                </div>
+                <div class="col-span-4">
+                    <small>Cod. indicativo</small>
+                    <div>{{ value().indicatorCode }}</div>
+                </div>
+                <div class="col-span-4">
+                    <small>Nivel</small>
+                    <div>{{ value().serviceLevel }}</div>
+                </div>
+            </li>
+        </ul>
+        <div class="detail-title">
+            <i class="icofont-settings"></i>
+            <span>Opciones</span>
+        </div>
+        <ul class="detail-items">
+            <li>
+                <block-switch-status [active]="value().doctor">Medico.</block-switch-status>
+            </li>
+            <li>
+                <block-switch-status [active]="value().specialists">Especialista.</block-switch-status>
+            </li>
+            <li>
+                <block-switch-status [active]="value().appointments">Citas</block-switch-status>
+            </li>
+            <li>
+                <block-switch-status [active]="value().receive">Recibir.</block-switch-status>
+            </li>
+            <li>
+                <block-switch-status [active]="value().consultations">Consultas.</block-switch-status>
+            </li>
+            <li>
+                <block-switch-status [active]="value().institutionActive">Institución Activa</block-switch-status>
+            </li>
+            <li>
+                <block-switch-status [active]="value().surgery">R. Cirujía.</block-switch-status>
+            </li>
+            <li>
+                <block-switch-status [active]="value().medicines">Medicamentos</block-switch-status>
+            </li>
+            <li>
+                <block-switch-status [active]="value().otherServices">Otros servicios.</block-switch-status>
+            </li>
+            <li>
+                <block-switch-status [active]="value().procedures">Procedimiento.</block-switch-status>
+            </li>
+        </ul>
+    </div>
+} @else {
+    <select-some-item />
+}

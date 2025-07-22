@@ -1,0 +1,97 @@
+@if(data()) {
+    <div class="ui-detail">
+        <div class="detail-titles">
+            <h2>{{ value().name }}</h2>
+            <ul>
+                <li><b>Nombre corto:</b> {{ value().shortName }}</li>
+            </ul>
+        </div>
+        <ul class="detail-ul">
+            <li>
+                <div class="col-span-4">
+                    <small>Sexo</small>
+                    <div>{{ value().gender }}</div>
+                </div>
+                <div class="col-span-2">
+                    <small>Edad min</small>
+                    <div>{{ value().minAge }}</div>
+                </div>
+                <div class="col-span-2">
+                    <small>Edad max</small>
+                    <div>{{ value().maxAge }}</div>
+                </div>
+            </li>
+        </ul>
+        <div class="detail-title">
+            <i class="icofont-files-stack"></i>
+            <span>Tipo de hisotria</span>
+        </div>
+        <ul class="detail-items">
+            @for (item of value().typeHistories; track index; let index = $index) {
+                <li>{{ item.name }}</li>
+            }
+        </ul>
+        @if(value().diagnoses.length > 0) {
+            <div class="detail-title">
+                <i class="icofont-patient-file"></i>
+                <span>Diagnosticos</span>
+            </div>
+            <ul class="ul-actions">
+                @for (item of value().diagnoses; track index; let index = $index) {
+                    <li class="li-action">
+                        <div>{{ item.name }}</div>
+                        <div class="actions">
+                            <app-button setSize="sm" ui="outlight" setIcon="icofont-info-circle" idConnect="detail-diagnosis" setRole="modal" (action)="watchDiagnosis(item.id)" />
+                        </div>
+                    </li>
+                }
+            </ul>
+        }
+        @if(value().programServices.length > 0) {
+            <div class="detail-title">
+                <i class="icofont-nurse-alt"></i>
+                <span>Programa de servicios</span>
+            </div>
+            <ul class="ul-actions">
+                @for (item of value().programServices; track index; let index = $index) {
+                    <li class="li-action">
+                        <div>{{ item.name }}</div>
+                        <div class="actions">
+                            <app-button setSize="sm" ui="outlight" setIcon="icofont-info-circle" idConnect="detail-program-service" setRole="modal" (action)="watchprogramServices(item.id)" />
+                        </div>
+                    </li>
+                }
+            </ul>
+        }
+
+        <div class="detail-title">
+            <i class="icofont-settings"></i>
+            <span>Caracteristicas</span>
+        </div>
+        <ul class="detail-items">
+            <li>
+                <block-switch-status [active]="true">
+                    Activo
+                </block-switch-status>
+            </li>
+        </ul>
+    </div>
+} @else {
+    <select-some-item />
+}
+
+<blade-dialog idConnect="detail-diagnosis" [activeFade]="false" [hideFooter]="true">
+    <ng-container dialogBody>
+        <div class="p-4">
+            <detail-diagnosis [data]="diagnosis()" />
+        </div>
+    </ng-container>
+</blade-dialog>
+
+<blade-dialog idConnect="detail-program-service" [activeFade]="false" [hideFooter]="true">
+    <ng-container dialogBody>
+        <div class="p-4">
+            <detail-service-programs [data]="programServices()" />
+        </div>
+    </ng-container>
+</blade-dialog>

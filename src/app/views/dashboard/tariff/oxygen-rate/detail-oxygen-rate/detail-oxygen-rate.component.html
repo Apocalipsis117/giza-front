@@ -1,0 +1,15 @@
+@if(data()) {
+    <div class="ui-detail">
+        <div class="detail-titles">
+            <h2>{{ value().name }}</h2>
+            <ul>
+                <li><b>Precio:</b> {{ value().value | currency: '' : '$ ' : '1.0-0' }}</li>
+            </ul>
+        </div>
+        <div class="col-span-full">
+            <detail-medicine [data]="value().medicine" />
+        </div>
+    </div>
+} @else {
+    <select-some-item />
+}

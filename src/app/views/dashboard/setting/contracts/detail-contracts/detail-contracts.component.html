@@ -1,0 +1,31 @@
+@if(data()) {
+<div class="ui-detail">
+    <div class="detail-titles">
+        <h2>Title</h2>
+        <ul>
+            <li><b>text:</b> queso</li>
+        </ul>
+    </div>
+    <ul class="detail-ul">
+        <li>
+            <div class="col-span-4">
+                <small>title</small>
+                <div>text</div>
+            </div>
+        </li>
+    </ul>
+    <div class="detail-title">
+        <i class="icofont-settings"></i>
+        <span>Caracteristicas</span>
+    </div>
+    <ul class="detail-items">
+        <li>
+            <block-switch-status [active]="true">
+                Activo
+            </block-switch-status>
+        </li>
+    </ul>
+</div>
+} @else {
+    <select-some-item />
+}
